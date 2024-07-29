@@ -36,57 +36,10 @@ def load_rws():
     with open("runewords.json") as json_file:
         global RUNEWORDS
         RUNEWORDS = json.load(json_file)
-        
-
-def is_rw_possible(rune_inventory: list, runeword: list) -> tuple[bool, list]:
-    local_inv = rune_inventory.copy()
-    rw_runes = runeword.copy()
-    upgs_done = [0 for _ in RUNES]
-    while len(rw_runes) > 0:
-        highest_rune = max(rw_runes, key=lambda x: RUNES_INDEX[x])
-        rw_runes.remove(highest_rune)
-        for i in range(RUNES_INDEX[highest_rune]+1, len(RUNES)):
-            local_inv[i] = 0
-        score = get_inv_el_value(local_inv)
-        rune_score = get_el_value(RUNES_INDEX[highest_rune])
-        ## print(f"Score: {score}, Rune: {highest_rune}, Rune Score: {rune_score}")
-        if rune_score > score:
-            return False, []
-        ## Remove the rune (or El valu equivalent) from the inventory
-        current_score_removed = 0
-        while current_score_removed < rune_score:
-            for i in range(RUNES_INDEX[highest_rune], -1, -1):
-                if local_inv[i] > 0:
-                    max_remove = min(local_inv[i], (rune_score - current_score_removed) // get_el_value(i))
-                    upgs_done[i] = (rune_score - current_score_removed) // get_el_value(i) - max_remove
-                    local_inv[i] -= max_remove
-                    current_score_removed += get_el_value(i) * max_remove
-                    ## print(f"Removed {max_remove} {RUNES[i]} (equivalent to {highest_rune})")
-                    break
-            
-    return True, upgs_done
-
-
-def get_possible_rws(rune_inventory: list):
-    possible_runewords = []
-    for runeword in RUNEWORDS:
-        ## print(f"Checking {runeword['name']}")
-        can_make, upgs_to_make = is_rw_possible(rune_inventory, runeword['runes'])
-        runeword["upgs"] = upgs_to_make 
-        if can_make:
-            possible_runewords.append(runeword)
-    return possible_runewords
-                
-
-def runes_list_to_inv(runes: list):
-    return [0 if r not in runes else runes.count(r) for r in RUNES]
-
-def inv_empty(rune_inventory: list):
-    return
 
 def get_path_rw(rune_inventory: list, rw_runes : list):
     working_inv = rune_inventory.copy()
-    working_runes = runes_list_to_inv(rw_runes)
+    working_runes =  [0 if r not in rw_runes else rw_runes.count(r) for r in RUNES]
     upgs_done = [0 for _ in RUNES]
     highest_index = max([i for i in range(len(RUNES)) if working_runes[i] > 0])
 
@@ -97,13 +50,11 @@ def get_path_rw(rune_inventory: list, rw_runes : list):
                 substract = min(working_runes[i], working_inv[i])
                 working_runes[i] -= substract
                 working_inv[i] -= substract
-        if sum(working_runes) == 0:
-            break
+                
         highest_nb = working_runes[rune_index]
         working_runes[rune_index] = 0
         working_runes[rune_index - 1] += upg_nb(rune_index-1) * highest_nb
         upgs_done[rune_index-1] += highest_nb
-        
     
     success = working_inv[0] >= working_runes[0]
     lacking = default_inventory()
