@@ -14,6 +14,11 @@ RUNES = ['El', 'Eld', 'Tir', 'Nef', 'Eth',
          'Um', 'Mal', 'Ist', 'Gul', 'Vex', 'Ohm',
          'Lo', 'Sur', 'Ber', 'Jah', 'Cham', 'Zod']
 
+GEM_Q = ['Chipped', 'Flawed', '', 'Flawless']
+GEM_TYPE = ['Topaz', 'Amethyst', 'Sapphire', 'Ruby', 'Emerald', 'Diamond']
+
+UPG_COST = ["" for i in range(9)] + [" ".join([i,j]).strip() for i in GEM_Q for j in GEM_TYPE]
+
 
 RUNES_INDEX = {rune: i for i, rune in enumerate(RUNES)}
 
@@ -58,9 +63,7 @@ def get_path_rw(rune_inventory: list, rw_runes : list):
     
     success = working_inv[0] >= working_runes[0]
     lacking = default_inventory()
-    if not success:
-        lacking = els_decompose(working_runes[0] - working_inv[0])
-    return (success, upgs_done, lacking)
+    return (success, upgs_done, working_runes[0] - working_inv[0])
         
 def els_decompose(els: int):
     runes = [0 if i != "El" else els for i in RUNES]
@@ -74,7 +77,7 @@ def format_lacking(lacking):
     return ", ".join([f"{lacking[i]} {RUNES[i]}" for i in range(len(RUNES)) if lacking[i] > 0])
 
 def format_upgs(upgs):
-    return "\n".join([f"{upgs[i] * upg_nb(i)} {RUNES[i]} * {upg_nb(i)} ->  {upgs[i]} {RUNES[i+1]}" for i in range(len(RUNES)-1) if upgs[i] > 0])
+    return "\n".join([f"{upgs[i] * upg_nb(i)} {RUNES[i]}{' '.join([' +', str(upgs[i]), UPG_COST[i]]) if upgs[i] > 0 and UPG_COST[i] != '' else ''}  ->  {upgs[i]} {RUNES[i+1]}" for i in range(len(RUNES)-1) if upgs[i] > 0])
 
 if __name__ == "__main__":
     load_rws()
@@ -112,16 +115,18 @@ if __name__ == "__main__":
     test_inv[Jah] = 0
     test_inv[Cham] = 0
     test_inv[Zod] = 0
-    
+    test_inv2 = default_inventory()
+    test_inv2[El] = 9912978591
+    #test_inv2[Um] = 64
     RUNEWORDS.sort(key=lambda x: sum([get_el_value(RUNES_INDEX[r]) for r in x["runes"]]), reverse=True)
     for rw in RUNEWORDS:
-        print("Checking: " + rw['name'])
-        success, upgs, lacking = get_path_rw(test_inv, rw['runes'])
+        print("Checking: " + rw['name'] + " (" + " / ".join(rw['runes']) + ")")
+        success, upgs, lacking = get_path_rw(test_inv2, rw['runes'])
         print(f"Success: {success}")
         if success:
             if sum(upgs) > 0:
                 print("Upgrades:")
                 print(format_upgs(upgs))
         else:
-            print("Lacking:")
-            print(format_lacking(lacking))
+            print("Lacking: " + str(lacking) + " Els, or...")
+            print(format_lacking(els_decompose(lacking)))
