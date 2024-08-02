@@ -60,6 +60,12 @@
 		let row = document.createElement("tr");
 		let name = document.createElement("td");
 		name.innerText = runeword_data.name;
+		if (runeword_data.ladder) {
+			name.appendChild(document.createElement("br"));
+			let ladder = document.createElement("small");
+			ladder.innerText = "Ladder Only";
+			name.appendChild(ladder);
+		}
 		row.appendChild(name);
 		let item_types = document.createElement("td");
 		item_types.innerHTML = runeword_data.type.join("<br />");
@@ -114,7 +120,9 @@
 
 		</div>
 		<main class="container" id="content">
-			<h2>Runeword Calculator</h2>
+			<hgroup>
+				<h2>Runeword Calculator</h2>
+			</hgroup>
 			<section>
 				<article>
 					<details open>
