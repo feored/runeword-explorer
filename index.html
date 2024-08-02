@@ -45,18 +45,21 @@
 			let id = RUNES[i] + "_rune";
 			inventory.push(document.getElementById(id).value);
 		}
-		RUNEWORDS.forEach(rw => {
+		let table = document.querySelector("#rwtable tbody");
+		for (let i = 0; i < RUNEWORDS.length; i++) {
+			let rw = RUNEWORDS[i];
 			let { success, upgsDone, lacking } = getPathRw(inventory, rw.runes);
 			rw.success = success;
 			rw.upgsDone = upgsDone;
 			rw.lacking = lacking;
+			row = makeTableEntry(rw);
+			rw.row = row;
 			RUNEWORDS_DATA.push(rw);
-			addEntryToTable(rw);
-		});
+			table.appendChild(row);
+		}
 	}
 
-	function addEntryToTable(runeword_data) {
-		let table = document.querySelector("#rwtable tbody");
+	function makeTableEntry(runeword_data) {
 		let row = document.createElement("tr");
 		let name = document.createElement("td");
 		name.innerText = runeword_data.name;
@@ -88,7 +91,11 @@
 		let possible = document.createElement("td");
 		possible.innerText = runeword_data.success ? "Yes" : "No";
 		row.appendChild(possible);
-		table.appendChild(row);
+		return row;
+	}
+
+	function addEntryToTable(runeword_data) {
+
 	}
 
 	document.onreadystatechange = () => {
@@ -103,6 +110,26 @@
 		}
 	};
 
+	function updateFilters() {
+		let ladder = document.getElementById("ladder").checked;
+		let versions = [];
+		document.getElementsByName("version").forEach((x) => x.checked ? versions.push(x.value) : null);
+
+		for (let i = 0; i < RUNEWORDS_DATA.length; i++) {
+			let rw = RUNEWORDS_DATA[i];
+			let show = true;
+			if (!ladder && rw.ladder) {
+				show = false;
+			}
+			if (versions.indexOf(rw.version) == -1) {
+				console.log("Could not find", rw.version, "in", versions);
+				show = false;
+			}
+			console.log(rw.name, show);
+			rw.row.style.display = show ? "table-row" : "none";
+		}
+	}
+
 
 </script>
 
@@ -115,6 +142,36 @@
 					<head>
 						<h4>Filters</h4>
 					</head>
+					<main>
+						<fieldset>
+							<label><input type="checkbox" id="ladder" name="ladder" value="ladder" checked
+									oninput="updateFilters();" />Show
+								Ladder-Only Runewords
+							</label>
+						</fieldset>
+						<fieldset class="grid">
+							<label><input type="checkbox" name="version" value="1.09" checked
+									oninput="updateFilters();" />Show
+								D2LoD 1.09 Runewords
+							</label>
+							<label><input type="checkbox" name="version" value="1.10" checked
+									oninput="updateFilters();" />Show
+								D2LoD 1.10 Runewords
+							</label>
+							<label><input type="checkbox" name="version" value="1.11" checked
+									oninput="updateFilters();" />Show
+								D2LoD 1.11 Runewords
+							</label>
+							<label><input type="checkbox" name="version" value="2.4" checked
+									oninput="updateFilters();" />Show
+								D2R 2.4 Runewords
+							</label>
+							<label><input type="checkbox" name="version" value="2.6" checked
+									oninput="updateFilters();" />Show
+								D2LoD 2.6 Runewords
+							</label>
+						</fieldset>
+					</main>
 				</article>
 			</div>
 
@@ -296,104 +353,6 @@
 							</tr>
 						</thead>
 						<tbody>
-							<!-- <tr>
-								<td>
-									Ancient's Pledge<br />
-									<small class="ladder-only">Ladder Only</small>
-								</td>
-								<td>
-									Shield
-								</td>
-								<td>
-									3
-								</td>
-								<td>
-									Ral Ort Tal
-								</td>
-								<td>
-									+50% Enhanced Defense<br />
-									Cold Resist +43%<br />
-									Fire Resist +48%<br />
-									Lightning Resist +48%<br />
-									Poison Resist +48%<br />
-									10% Damage Goes To Mana<br />
-								</td>
-								<td>
-									21
-								</td>
-								<td>
-									No
-								</td>
-								<td>
-									No
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Beast
-								</td>
-								<td>
-									Axe<br />Scepter<br />Hammer
-								</td>
-								<td>
-									5
-								</td>
-								<td>
-									Ber Tir Um Mal Lum
-								</td>
-								<td>
-									Level 9 Fanaticism Aura When Equipped<br />
-									+40% Increased Attack Speed<br />
-									+240-270% Enhanced Damage<br />
-									20% Chance of Crushing Blow<br />
-									25% Chance of Open Wounds<br />
-									+3 To Werebear<br />
-									+3 To Lycanthropy<br />
-									Prevent Monster Heal<br />
-									+25-40 To Strength<br />
-									+10 To Energy<br />
-									+2 To Mana After Each Kill<br />
-								</td>
-								<td>
-									63
-								</td>
-								<td>
-									<button class="outline">Yes</button>
-								</td>
-								<td>
-									<button class="outline" disabled>No</button>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Black
-								</td>
-								<td>
-									Club/Mace
-								</td>
-								<td>
-									3
-								</td>
-								<td>
-									Thul Io Nef
-								</td>
-								<td>
-									+120% Enhanced Damage<br />
-									40% Chance Of Crushing Blow<br />
-									+200 To Attack Rating<br />
-									Adds 3-14 Cold Damage - 3 Second Duration<br />
-									+10 To Vitality<br />
-									+15 To Dexterity<br />
-								</td>
-								<td>
-									35
-								</td>
-								<td>
-									<button class="outline" disabled>No</button>
-								</td>
-								<td>
-									<button class="outline">Yes</button>
-								</td> -->
 						</tbody>
 					</table>
 				</section>
