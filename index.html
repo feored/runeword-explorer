@@ -52,6 +52,8 @@
 			rw.success = success;
 			rw.upgsDone = upgsDone;
 			rw.lacking = lacking;
+			rw.el_value = rw.runes.map((x) => getElValue(RUNES.indexOf(x))).reduce((partialSum, a) => partialSum + a, 0);
+			console.log(rw.name + ", els ->" + rw.el_value);
 			row = makeTableEntry(rw);
 			rw.row = row;
 			RUNEWORDS_DATA.push(rw);
@@ -78,6 +80,7 @@
 		row.appendChild(sockets);
 		let runes = document.createElement("td");
 		runes.innerText = runeword_data.runes.join(" ");
+		runes.setAttribute("data-sort", runeword_data.el_value);
 		row.appendChild(runes);
 		let stats = document.createElement("td");
 		stats.innerHTML = runeword_data.stats.join("<br />");
