@@ -1,0 +1,130 @@
+:root {
+	--color-unique: rgb(199, 179, 119);
+	--color-normal: rgb(255, 255, 255);
+	--color-magic: rgb(105, 105, 255);
+	--color-grey: rgb(105, 105, 105);
+	--color-craft: rgb(255, 168, 0);
+	--color-server: rgb(255, 77, 77);
+}
+
+
+/* Custom CSS for the sidebar */
+.wrapper {
+	display: grid;
+	grid-gap: 20px;
+	grid-template-columns: 1fr 4fr;
+}
+
+.wrapper #sidebar .container {
+	position: sticky;
+	top: 0;
+}
+
+@media (max-width: 1400px) {
+	.wrapper {
+		grid-template-columns: 2fr;
+	}
+
+	.wrapper #sidebar .container {
+		position: relative;
+	}
+
+}
+
+/* Fix default picocss size: https://github.com/picocss/pico/discussions/482#discussioncomment-9043725*/
+
+:root {
+	--pico-font-family-sans-serif: Inter, system-ui, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, Helvetica, Arial, "Helvetica Neue", sans-serif, var(--pico-font-family-emoji);
+	--pico-font-size: 100%;
+	/* Original: 100% */
+	--pico-line-height: 1.25;
+	/* Original: 1.5 */
+	--pico-form-element-spacing-vertical: 0.5rem;
+	/* Original: 1rem */
+	--pico-form-element-spacing-horizontal: 1.0rem;
+	/* Original: 1.25rem */
+	--pico-border-radius: 0.375rem;
+	/* Original: 0.25rem */
+}
+
+@media (min-width: 576px) {
+	:root {
+		--pico-font-size: 100%;
+		/* Original: 106.25% */
+	}
+}
+
+@media (min-width: 768px) {
+	:root {
+		--pico-font-size: 100%;
+		/* Original: 112.5% */
+	}
+}
+
+@media (min-width: 1024px) {
+	:root {
+		--pico-font-size: 100%;
+		/* Original: 118.75% */
+	}
+}
+
+@media (min-width: 1280px) {
+	:root {
+		--pico-font-size: 100%;
+		/* Original: 125% */
+	}
+}
+
+@media (min-width: 1536px) {
+	:root {
+		--pico-font-size: 100%;
+		/* Original: 131.25% */
+	}
+}
+
+
+
+article,
+table {
+	border: 1px solid var(--pico-muted-border-color);
+	/* Original doesn't have a border */
+	border-radius: calc(var(--pico-border-radius) * 2);
+	/* Original: var(--pico-border-radius) */
+}
+
+article>footer {
+	border-radius: calc(var(--pico-border-radius) * 2);
+	/* Original: var(--pico-border-radius) */
+}
+
+tbody tr td {
+	padding-top: calc(var(--pico-spacing));
+	padding-bottom: calc(var(--pico-spacing));
+}
+
+/* Table col order: name, item type, sockets, runes, stats, level req */
+#rwtable tbody td:nth-child(1) {
+	font-weight: bolder;
+	color: var(--color-unique);
+}
+
+/* #rwtable tbody td:nth-child(2),
+#rwtable tbody td:nth-child(3) {
+	color: var(--color-grey);
+} */
+
+#rwtable tbody td:nth-child(4) {
+	color: var(--color-craft);
+}
+
+#rwtable tbody td:nth-child(5) {
+	color: var(--color-magic);
+}
+
+#rwtable tbody td:nth-child(6) {
+	color: var(--color-server);
+}
+
+.ladder-only {
+	color: var(--color-normal);
+}

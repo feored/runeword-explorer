@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="color-scheme" content="light dark">
+	<link rel="stylesheet" href="css/pico.jade.css">
+	<link rel="stylesheet" href="css/custom.css">
+	<link rel="stylesheet" href="css/sortable.css">
+	<title>Runeword Calculator</title>
+	<script src="./js/sortable.min.js"></script>
+	<script src="./js/rw.js"></script>
+
+</head>
+
+<script>
+	var RUNEWORDS_DATA = [];
+
+	function setAllRunes(num) {
+		for (let i = 0; i < RUNES.length; i++) {
+			let id = RUNES[i] + "_rune";
+			document.getElementById(id).value = num;
+		}
+		update_runewords();
+	}
+
+	function resetAllRunes() {
+		setAllRunes(0);
+	}
+
+	function cleanTable() {
+		let table_element = document.querySelector("#rwtable tbody");
+		while (table_element.firstChild) {
+			table_element.removeChild(table_element.firstChild);
+		}
+	}
+
+	function update_runewords() {
+		console.log("Updating runewords");
+		cleanTable();
+		RUNEWORDS_DATA = [];
+		let inventory = [];
+		for (let i = 0; i < RUNES.length; i++) {
+			let id = RUNES[i] + "_rune";
+			inventory.push(document.getElementById(id).value);
+		}
+		RUNEWORDS.forEach(rw => {
+			let { success, upgsDone, lacking } = getPathRw(inventory, rw.runes);
+			rw.success = success;
+			rw.upgsDone = upgsDone;
+			rw.lacking = lacking;
+			RUNEWORDS_DATA.push(rw);
+			addEntryToTable(rw);
+		});
+	}
+
+	function addEntryToTable(runeword_data) {
+		let table = document.querySelector("#rwtable tbody");
+		let row = document.createElement("tr");
+		let name = document.createElement("td");
+		name.innerText = runeword_data.name;
+		row.appendChild(name);
+		let item_types = document.createElement("td");
+		item_types.innerHTML = runeword_data.type.join("<br />");
+		row.appendChild(item_types);
+		let sockets = document.createElement("td");
+		sockets.innerText = runeword_data.sockets;
+		row.appendChild(sockets);
+		let runes = document.createElement("td");
+		runes.innerText = runeword_data.runes.join(" ");
+		row.appendChild(runes);
+		let stats = document.createElement("td");
+		stats.innerHTML = runeword_data.stats.join("<br />");
+		row.appendChild(stats);
+		let level_req = document.createElement("td");
+		level_req.innerText = runeword_data.levelreq;
+		row.appendChild(level_req);
+		let cubing_required = document.createElement("td");
+		cubing_required.innerText = runeword_data.upgsDone.length > 0 ? "Yes" : "No";
+		row.appendChild(cubing_required);
+		let possible = document.createElement("td");
+		possible.innerText = runeword_data.success ? "Yes" : "No";
+		row.appendChild(possible);
+		table.appendChild(row);
+	}
+
+	document.onreadystatechange = () => {
+		if (document.readyState === "interactive") {
+			for (let i = 0; i < RUNES.length; i++) {
+				let id = RUNES[i] + "_rune";
+				document.getElementById(id).addEventListener("input", update_runewords);
+			}
+			loadData().then(() => {
+				update_runewords();
+			});
+		}
+	};
+
+
+</script>
+
+<body>
+	<div class="wrapper">
+		<div id="sidebar">
+			<div class="container">
+				<article>
+
+					<head>
+						<h4>Filters</h4>
+					</head>
+				</article>
+			</div>
+
+		</div>
+		<main class="container" id="content">
+			<h2>Runeword Calculator</h2>
+			<section>
+				<article>
+					<details open>
+						<summary>
+							<h4>Runes</h4>
+						</summary>
+
+						<fieldset class="grid">
+							<div>
+								<input type="number" id="El_rune" name="El_rune" value="0" min="0" step="1" />
+								<small id="El_rune">El</small>
+							</div>
+							<div>
+								<input type="Number" id="Eld_rune" name="Eld_rune" value="0" min="0" step="1" />
+								<small id="Eld_rune">Eld</small>
+							</div>
+							<div>
+								<input type="number" id="Tir_rune" name="Tir_rune" value="0" min="0" step="1" />
+								<small id="Tir_rune">Tir</small>
+							</div>
+							<div>
+								<input type="number" id="Nef_rune" name="Nef_rune" value="0" min="0" step="1" />
+								<small id="Nef_rune">Nef</small>
+							</div>
+							<div>
+								<input type="number" id="Eth_rune" name="Eth_rune" value="0" min="0" step="1" />
+								<small id="Eth_rune">Eth</small>
+							</div>
+							<div>
+								<input type="number" id="Ith_rune" name="Ith_rune" value="0" min="0" step="1" />
+								<small id="Ith_rune">Ith</small>
+							</div>
+							<div>
+								<input type="number" id="Tal_rune" name="Tal_rune" value="0" min="0" step="1" />
+								<small id="Tal_rune">Tal</small>
+							</div>
+							<div>
+								<input type="number" id="Ral_rune" name="Ral_rune" value="0" min="0" step="1" />
+								<small id="Ral_rune">Ral</small>
+							</div>
+							<div>
+								<input type="number" id="Ort_rune" name="Ort_rune" value="0" min="0" step="1" />
+								<small id="Ort_rune">Ort</small>
+							</div>
+							<div>
+								<input type="number" id="Thul_rune" name="Thul_rune" value="0" min="0" step="1" />
+								<small id="Thul_rune">Thul</small>
+							</div>
+							<div>
+								<input type="number" id="Amn_rune" name="Amn_rune" value="0" min="0" step="1" />
+								<small id="Amn_rune">Amn</small>
+							</div>
+						</fieldset>
+						<fieldset class="grid">
+							<div>
+								<input type="number" id="Sol_rune" name="Sol_rune" value="0" min="0" step="1" />
+								<small id="Sol_rune">Sol</small>
+							</div>
+							<div>
+								<input type="number" id="Shael_rune" name="Shael_rune" value="0" min="0" step="1" />
+								<small id="Shael_rune">Shael</small>
+							</div>
+							<div>
+								<input type="number" id="Dol_rune" name="Dol_rune" value="0" min="0" step="1" />
+								<small id="Dol_rune">Dol</small>
+							</div>
+							<div>
+								<input type="number" id="Hel_rune" name="Hel_rune" value="0" min="0" step="1" />
+								<small id="Hel_rune">Hel</small>
+							</div>
+							<div>
+								<input type="number" id="Io_rune" name="Io_rune" value="0" min="0" step="1" />
+								<small id="Io_rune">Io</small>
+							</div>
+							<div>
+								<input type="number" id="Lum_rune" name="Lum_rune" value="0" min="0" step="1" />
+								<small id="Lum_rune">Lum</small>
+							</div>
+							<div>
+								<input type="number" id="Ko_rune" name="Ko_rune" value="0" min="0" step="1" />
+								<small id="Ko_rune">Ko</small>
+							</div>
+							<div>
+								<input type="number" id="Fal_rune" name="Fal_rune" value="0" min="0" step="1" />
+								<small id="Fal_rune">Fal</small>
+							</div>
+							<div>
+								<input type="number" id="Lem_rune" name="Lem_rune" value="0" min="0" step="1" />
+								<small id="Lem_rune">Lem</small>
+							</div>
+							<div>
+								<input type="number" id="Pul_rune" name="Pul_rune" value="0" min="0" step="1" />
+								<small id="Pul_rune">Pul</small>
+							</div>
+							<div>
+								<input type="number" id="Um_rune" name="Um_rune" value="0" min="0" step="1" />
+								<small id="Um_rune">Um</small>
+							</div>
+						</fieldset>
+						<fieldset class="grid">
+							<div>
+								<input type="number" id="Mal_rune" name="Mal_rune" value="0" min="0" step="1" />
+								<small id="Mal_rune">Mal</small>
+							</div>
+							<div>
+								<input type="number" id="Ist_rune" name="Ist_rune" value="0" min="0" step="1" />
+								<small id="Ist_rune">Ist</small>
+							</div>
+							<div>
+								<input type="number" id="Gul_rune" name="Gul_rune" value="0" min="0" step="1" />
+								<small id="Gul_rune">Gul</small>
+							</div>
+							<div>
+								<input type="number" id="Vex_rune" name="Vex_rune" value="0" min="0" step="1" />
+								<small id="Vex_rune">Vex</small>
+							</div>
+							<div>
+								<input type="number" id="Ohm_rune" name="Ohm_rune" value="0" min="0" step="1" />
+								<small id="Ohm_rune">Ohm</small>
+							</div>
+							<div>
+								<input type="number" id="Lo_rune" name="Lo_rune" value="0" min="0" step="1" />
+								<small id="Lo_rune">Lo</small>
+							</div>
+							<div>
+								<input type="number" id="Sur_rune" name="Sur_rune" value="0" min="0" step="1" />
+								<small id="Sur_rune">Sur</small>
+							</div>
+							<div>
+								<input type="number" id="Ber_rune" name="Ber_rune" value="0" min="0" step="1" />
+								<small id="Ber_rune">Ber</small>
+							</div>
+							<div>
+								<input type="number" id="Jah_rune" name="Jah_rune" value="0" min="0" step="1" />
+								<small id="Jah_rune">Jah</small>
+							</div>
+							<div>
+								<input type="number" id="Cham_rune" name="Cham_rune" value="0" min="0" step="1" />
+								<small id="Cham_rune">Cham</small>
+							</div>
+							<div>
+								<input type="number" id="Zod_rune" name="Zod_rune" value="0" min="0" step="1" />
+								<small id="Zod_rune">Zod</small>
+							</div>
+						</fieldset>
+						<form>
+							<fieldset class="grid">
+								<input type="button" value="Reset All" onclick="resetAllRunes();" />
+								<fieldset role="group" aria-labelledby="all_runes">
+									<input type="number" aria-describedby="all_runes" id="all_runes" name="all_runes"
+										value="1" min="0" step="1" />
+									<input type="button" value="Set All"
+										onclick="setAllRunes(document.getElementById('all_runes').value);" />
+								</fieldset>
+							</fieldset>
+						</form>
+					</details>
+				</article>
+				<section class="overflow-auto">
+					<table id="rwtable" class="striped sortable">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Item Types</th>
+								<th>Sockets</th>
+								<th>Runes</th>
+								<th class="no-sort">Stats</th>
+								<th>Level Req.</th>
+								<th>Cubing Required</th>
+								<th>Can Make</th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- <tr>
+								<td>
+									Ancient's Pledge<br />
+									<small class="ladder-only">Ladder Only</small>
+								</td>
+								<td>
+									Shield
+								</td>
+								<td>
+									3
+								</td>
+								<td>
+									Ral Ort Tal
+								</td>
+								<td>
+									+50% Enhanced Defense<br />
+									Cold Resist +43%<br />
+									Fire Resist +48%<br />
+									Lightning Resist +48%<br />
+									Poison Resist +48%<br />
+									10% Damage Goes To Mana<br />
+								</td>
+								<td>
+									21
+								</td>
+								<td>
+									No
+								</td>
+								<td>
+									No
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Beast
+								</td>
+								<td>
+									Axe<br />Scepter<br />Hammer
+								</td>
+								<td>
+									5
+								</td>
+								<td>
+									Ber Tir Um Mal Lum
+								</td>
+								<td>
+									Level 9 Fanaticism Aura When Equipped<br />
+									+40% Increased Attack Speed<br />
+									+240-270% Enhanced Damage<br />
+									20% Chance of Crushing Blow<br />
+									25% Chance of Open Wounds<br />
+									+3 To Werebear<br />
+									+3 To Lycanthropy<br />
+									Prevent Monster Heal<br />
+									+25-40 To Strength<br />
+									+10 To Energy<br />
+									+2 To Mana After Each Kill<br />
+								</td>
+								<td>
+									63
+								</td>
+								<td>
+									<button class="outline">Yes</button>
+								</td>
+								<td>
+									<button class="outline" disabled>No</button>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Black
+								</td>
+								<td>
+									Club/Mace
+								</td>
+								<td>
+									3
+								</td>
+								<td>
+									Thul Io Nef
+								</td>
+								<td>
+									+120% Enhanced Damage<br />
+									40% Chance Of Crushing Blow<br />
+									+200 To Attack Rating<br />
+									Adds 3-14 Cold Damage - 3 Second Duration<br />
+									+10 To Vitality<br />
+									+15 To Dexterity<br />
+								</td>
+								<td>
+									35
+								</td>
+								<td>
+									<button class="outline" disabled>No</button>
+								</td>
+								<td>
+									<button class="outline">Yes</button>
+								</td> -->
+						</tbody>
+					</table>
+				</section>
+			</section>
+		</main>
+	</div>
+
+</body>
+
+</html>

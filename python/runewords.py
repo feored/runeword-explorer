@@ -121,7 +121,7 @@ if __name__ == "__main__":
     RUNEWORDS.sort(key=lambda x: sum([get_el_value(RUNES_INDEX[r]) for r in x["runes"]]), reverse=True)
     for rw in RUNEWORDS:
         print("Checking: " + rw['name'] + " (" + " / ".join(rw['runes']) + ")")
-        success, upgs, lacking = get_path_rw(test_inv2, rw['runes'])
+        success, upgs, lacking = get_path_rw(test_inv, rw['runes'])
         print(f"Success: {success}")
         if success:
             if sum(upgs) > 0:
