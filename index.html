@@ -22,7 +22,7 @@
 			let id = RUNES[i] + "_rune";
 			document.getElementById(id).value = num;
 		}
-		update_runewords();
+		updateRunewords();
 	}
 
 	function resetAllRunes() {
@@ -36,7 +36,7 @@
 		}
 	}
 
-	function update_runewords() {
+	function updateRunewords() {
 		console.log("Updating runewords");
 		cleanTable();
 		RUNEWORDS_DATA = [];
@@ -102,10 +102,11 @@
 		if (document.readyState === "interactive") {
 			for (let i = 0; i < RUNES.length; i++) {
 				let id = RUNES[i] + "_rune";
-				document.getElementById(id).addEventListener("input", update_runewords);
+				document.getElementById(id).addEventListener("input", updateRunewords);
 			}
 			loadData().then(() => {
-				update_runewords();
+				updateRunewords();
+				updateFilters();
 			});
 		}
 	};
@@ -114,22 +115,29 @@
 		let ladder = document.getElementById("ladder").checked;
 		let versions = [];
 		document.getElementsByName("version").forEach((x) => x.checked ? versions.push(x.value) : null);
-
+		let shown_nb = 0;
 		for (let i = 0; i < RUNEWORDS_DATA.length; i++) {
 			let rw = RUNEWORDS_DATA[i];
 			let show = true;
 			if (!ladder && rw.ladder) {
 				show = false;
 			}
-			if (versions.indexOf(rw.version) == -1) {
-				console.log("Could not find", rw.version, "in", versions);
+			else if (versions.indexOf(rw.version) == -1) {
 				show = false;
 			}
-			console.log(rw.name, show);
+			else if (rw.sockets < document.getElementById("minsocket").value || rw.sockets > document.getElementById(
+				"maxsocket").value) {
+				show = false;
+			}
+			else if (rw.levelreq < document.getElementById("minlevel").value || rw.levelreq > document.getElementById(
+				"maxlevel").value) {
+				show = false;
+			}
+			shown_nb += show ? 1 : 0;
 			rw.row.style.display = show ? "table-row" : "none";
 		}
+		document.getElementById("runeword-nb").innerText = "Current filter shows " + shown_nb + "/" + RUNEWORDS_DATA.length + " runewords (" + (shown_nb / RUNEWORDS_DATA.length * 100).toFixed(2) + "%)";
 	}
-
 
 </script>
 
@@ -170,6 +178,19 @@
 									oninput="updateFilters();" />Show
 								D2LoD 2.6 Runewords
 							</label>
+						</fieldset>
+						<fieldset class="grid">
+							<label><input type="number" id="minsocket" name="minsocket" value="2" min="2" step="1"
+									max="6" oninput="updateFilters();" />Minimum
+								Sockets</label>
+							<label><input type="number" id="maxsocket" name="maxsocket" value="6" min="2" step="1"
+									max="6" oninput="updateFilters();" />Maximum Sockets</label>
+						</fieldset>
+						<fieldset class="grid">
+							<label><input type="number" id="minlevel" name="minlevel" value="1" min="1" step="1"
+									max="99" oninput="updateFilters();" />Minimum Level Required</label>
+							<label><input type="number" id="maxlevel" name="maxlevel" value="99" min="1" step="1"
+									max="99" oninput="updateFilters();" />Maximum Level Required</label>
 						</fieldset>
 					</main>
 				</article>
@@ -338,6 +359,9 @@
 						</form>
 					</details>
 				</article>
+				<section>
+					<p id="runeword-nb">Current filter shows: 24/97 </p>
+				</section>
 				<section class="overflow-auto">
 					<table id="rwtable" class="striped sortable">
 						<thead>
