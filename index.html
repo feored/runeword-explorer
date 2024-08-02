@@ -77,7 +77,7 @@
 		level_req.innerText = runeword_data.levelreq;
 		row.appendChild(level_req);
 		let cubing_required = document.createElement("td");
-		cubing_required.innerText = runeword_data.upgsDone.length > 0 ? "Yes" : "No";
+		cubing_required.innerText = runeword_data.upgsDone.reduce((partialSum, a) => partialSum + a, 0) > 0 ? "Yes" : "No";
 		row.appendChild(cubing_required);
 		let possible = document.createElement("td");
 		possible.innerText = runeword_data.success ? "Yes" : "No";
