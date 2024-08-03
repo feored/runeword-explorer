@@ -18,6 +18,7 @@ const RUNES_INDEX = Object.fromEntries(RUNES.map((rune, i) => [rune, i]));
 
 var RUNE_DATA = [];
 var RUNEWORDS = [];
+var ITEM_TYPES = {};
 
 async function loadJSON(url) {
 	const res = await fetch(url);
@@ -38,14 +39,6 @@ function getInvElValue(runeInventory) {
 
 function defaultInventory() {
 	return Array(RUNES.length).fill(0);
-}
-
-function loadRws() {
-	fetch('../data/runewords.json')
-		.then(response => response.json())
-		.then(data => {
-			RUNEWORDS = data;
-		});
 }
 
 function getPathRw(runeInventory, rwRunes) {
@@ -99,10 +92,11 @@ function formatUpgs(upgs) {
 
 async function loadData() {
 	let result = null;
-	let promises = [loadJSON('./data/runes.json'), loadJSON('./data/runewords.json')];
+	let promises = [loadJSON('./data/runes.json'), loadJSON('./data/runewords.json'), loadJSON('./data/itemtypes.json')];
 
 	result = await Promise.all(promises)
 	RUNE_DATA = result[0];
 	RUNEWORDS = result[1];
+	ITEM_TYPES = result[2];
 	return
 }

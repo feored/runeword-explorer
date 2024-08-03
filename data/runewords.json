@@ -577,7 +577,7 @@
 		],
 		"name": "White",
 		"type": [
-			"Wand"
+			"Wands"
 		],
 		"sockets": 2,
 		"levelreq": 35,
@@ -970,7 +970,6 @@
 			"Dol"
 		],
 		"stats": [
-			"Paladin Shields Only!)",
 			"15% Chance To Cast Level 5 Life Tap On Striking",
 			"Level 13-16 Defiance Aura When Equipped (varies)",
 			"+2 To Offensive Auras (Paladin Only)",
@@ -985,7 +984,7 @@
 		],
 		"name": "Exile",
 		"type": [
-			"Shields"
+			"Paladin Shields"
 		],
 		"sockets": 4,
 		"levelreq": 57,
@@ -1209,7 +1208,7 @@
 		],
 		"name": "Sanctuary",
 		"type": [
-			"Shields"
+			"Off-hands"
 		],
 		"sockets": 3,
 		"levelreq": 49,
@@ -1234,7 +1233,7 @@
 		],
 		"name": "Splendor",
 		"type": [
-			"Shields"
+			"Off-hands"
 		],
 		"sockets": 2,
 		"levelreq": 37,
@@ -1409,7 +1408,7 @@
 		"name": "Dragon",
 		"type": [
 			"Body Armors",
-			"Shields"
+			"Off-hands"
 		],
 		"sockets": 3,
 		"levelreq": 61,
@@ -1438,7 +1437,7 @@
 		"name": "Dream",
 		"type": [
 			"Helms",
-			"Shields"
+			"Off-hands"
 		],
 		"sockets": 3,
 		"levelreq": 65,
@@ -1884,7 +1883,7 @@
 		],
 		"name": "Phoenix",
 		"type": [
-			"Shields"
+			"Off-hands"
 		],
 		"sockets": 4,
 		"levelreq": 65,
@@ -2001,7 +2000,7 @@
 		],
 		"name": "Spirit",
 		"type": [
-			"Shields"
+			"Off-hands"
 		],
 		"sockets": 4,
 		"levelreq": 25,
@@ -2580,7 +2579,7 @@
 		],
 		"name": "Hustle",
 		"type": [
-			"Armor"
+			"Armors"
 		],
 		"sockets": 3,
 		"levelreq": 39,
