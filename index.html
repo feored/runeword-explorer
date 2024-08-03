@@ -16,6 +16,7 @@
 
 <script>
 	var RUNEWORDS_DATA = [];
+	var last_clicked_th = null;
 
 	function setAllRunes(num) {
 		for (let i = 0; i < RUNES.length; i++) {
@@ -57,6 +58,11 @@
 			RUNEWORDS_DATA.push(rw);
 			table.appendChild(row);
 		}
+		if (last_clicked_th) {
+			// Sort the table again
+			last_clicked_th.click();
+			last_clicked_th.click();
+		}
 		updateFilters();
 	}
 
@@ -72,7 +78,7 @@
 		}
 		row.appendChild(name);
 		let item_types = document.createElement("td");
-		item_types.innerHTML = runeword_data.type.join("<br />");
+		item_types.innerHTML = runeword_data.type.map((x) => x in ITEM_TYPES ? ('<em data-html="true" data-tooltip="' + (ITEM_TYPES[x].join('&#10;')) + '"">' + x + '</em>') : x).join("<br />");
 		row.appendChild(item_types);
 		let sockets = document.createElement("td");
 		sockets.innerText = runeword_data.sockets;
@@ -103,6 +109,12 @@
 				let id = RUNES[i] + "_rune";
 				document.getElementById(id).addEventListener("input", updateRunewords);
 			}
+			// Keep track of how the table is sorted for when we need to update the table
+			document.querySelectorAll("#rwtable thead th").forEach((x) => x.addEventListener("click", function () {
+				last_clicked_th = x;
+			}));
+			// Set table to sort by name by default
+			document.getElementById("runeword_name").click();
 			loadData().then(() => {
 				updateRunewords();
 			});
@@ -154,7 +166,7 @@
 			shown_nb += show ? 1 : 0;
 			rw.row.style.display = show ? "table-row" : "none";
 		}
-		document.getElementById("runeword-nb").innerText = "Current filter shows " + shown_nb + "/" + RUNEWORDS_DATA.length + " runewords (" + (shown_nb / RUNEWORDS_DATA.length * 100).toFixed(2) + "%)";
+		document.getElementById("runeword-nb").innerText = "Showing: " + shown_nb + "/" + RUNEWORDS_DATA.length + " runewords (" + (shown_nb / RUNEWORDS_DATA.length * 100).toFixed(2) + "%)";
 	}
 
 	function resetFilters() {
@@ -276,7 +288,7 @@
 						<!--Weapons-->
 						<div id="Weapons">
 							<fieldset class="flex">
-								<h5>Weapons</h5>
+								<h6>Weapons</h6>
 								<div class="flex" style="margin-left: auto; gap:1rem;">
 									<a href="#" onclick="selectBases(true, '#Weapons');">
 										All
@@ -496,13 +508,13 @@
 					</fieldset>
 				</article>
 				<section>
-					<p id="runeword-nb">Current filter shows: 24/97 </p>
+					<p id="runeword-nb">Showing: 24/97 </p>
 				</section>
 				<section class="overflow-auto">
 					<table id="rwtable" class="striped sortable asc">
 						<thead>
 							<tr>
-								<th>Name</th>
+								<th id="runeword_name">Name</th>
 								<th>Item Types</th>
 								<th>Sockets</th>
 								<th>Runes</th>

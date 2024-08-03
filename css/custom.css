@@ -129,6 +129,10 @@ tbody tr td {
 	padding-bottom: calc(var(--pico-spacing));
 }
 
+#rwtable tbody td {
+	text-align: center;
+}
+
 /* Table col order: name, item type, sockets, runes, stats, level req */
 #rwtable tbody td:nth-child(1) {
 	font-size: larger;
@@ -160,5 +164,5 @@ tbody tr td {
 #runeword-nb {
 	text-align: center;
 	font-style: italic;
-	color: var(--color-magic);
+	color: var(--color-grey);
 }

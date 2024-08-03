@@ -86,7 +86,6 @@ function formatUpgs(upgs) {
 	return RUNES.slice(0, -1)
 		.map((rune, i) => upgs[i] > 0 ? `${upgs[i] * upgNb(i)} ${rune}${upgs[i] > 0 && UPG_COST[i] ? ' +' + upgs[i] + ' ' + UPG_COST[i] : ''} -> ${upgs[i]} ${RUNES[i + 1]}` : null)
 		.filter(Boolean)
-		.join('\n');
 }
 
 
