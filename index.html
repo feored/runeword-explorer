@@ -164,7 +164,7 @@
 				show = false;
 			}
 			shown_nb += show ? 1 : 0;
-			rw.row.style.display = show ? "table-row" : "none";
+			rw.row.hidden = !show;
 		}
 		document.getElementById("runeword-nb").innerText = "Showing: " + shown_nb + "/" + RUNEWORDS_DATA.length + " runewords (" + (shown_nb / RUNEWORDS_DATA.length * 100).toFixed(2) + "%)";
 	}
