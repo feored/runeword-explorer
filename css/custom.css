@@ -42,10 +42,6 @@
 	color: var(--color-diamond);
 }
 
-.highlight {
-	color: var(--color-set);
-}
-
 .rune-text {
 	color: var(--color-craft);
 }
@@ -159,6 +155,17 @@ tbody tr td {
 [data-tooltip] {
 	width: max-content;
 }
+
+table.striped tbody tr:nth-child(odd of :not([hidden])) th,
+table.striped tbody tr:nth-child(odd of :not([hidden])) td {
+	background-color: var(--pico-table-row-stripped-background-color) !important;
+}
+
+table.striped tbody tr:nth-child(even of :not([hidden])) th,
+table.striped tbody tr:nth-child(even of :not([hidden])) td {
+	background-color: inherit !important;
+}
+
 
 /* Custom CSS for the runes */
 

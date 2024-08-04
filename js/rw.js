@@ -92,7 +92,7 @@ function formatUpgLine(runeIndex, nb, highlight = false) {
 		let gem = UPG_COST[runeIndex].split(' ');
 		gemColorClass = `${gem[gem.length - 1].toLowerCase()}"`;
 	}
-	return `${nb * upgNb(runeIndex)} <span class="rune-text">${RUNES[runeIndex]}</span> ${nb > 0 && UPG_COST[runeIndex] ? ' + ' + nb + ' <span class="' + gemColorClass + '">' + UPG_COST[runeIndex] + "</span>" : ''} 🡒 ${highlight ? "<span class='highlight'>" : ''} ${nb} ${highlight ? "</span>" : ''}  <span class="rune-text">${RUNES[runeIndex + 1]}</span>`;
+	return `${nb * upgNb(runeIndex)} <span class="rune-text">${RUNES[runeIndex]}</span> ${nb > 0 && UPG_COST[runeIndex] ? ' + ' + nb + ' <span class="' + gemColorClass + '">' + UPG_COST[runeIndex] + "</span>" : ''} 🡒 ${highlight ? "<mark>" : ''} ${nb}  <span class="rune-text">${RUNES[runeIndex + 1]}</span>${highlight ? "</mark>" : ''} `;
 }
 
 
