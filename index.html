@@ -19,17 +19,22 @@
 	<div class="wrapper">
 		<div id="sidebar">
 			<div class="container">
+				<div class="flex" style="justify-content: space-between;">
+					<h3>Filters</h3>
+					<button onclick=" resetFilters(); updateFilters();">Reset Filters</button>
+				</div>
 
-				<h4>Filters</h4>
 				<aside id="filters">
 					<section>
-						<button onclick=" resetFilters(); updateFilters();">Reset Filters</button>
+
 					</section>
+					<hr />
 					<fieldset>
 						<input id="searchbar" type="search" name="search"
 							placeholder="Search runewords, runes, bases, stats..." aria-label="Search"
 							oninput="updateFilters();" />
 					</fieldset>
+					<hr />
 					<fieldset>
 						<label><input type="checkbox" id="can_make" name="can_make" value="can_make" checked
 								oninput="updateFilters();" />Only Show Runewords I Can Make
@@ -75,11 +80,11 @@
 					<fieldset class="grid">
 						<fieldset>
 							<input type="number" id="minsocket" name="minsocket" value="2" min="2" step="1" max="6"
-								oninput="updateFilters();" /><small>Minimum</small>
+								onchange="updateFilters();" /><small>Minimum</small>
 						</fieldset>
 						<fieldset>
 							<input type="number" id="maxsocket" name="maxsocket" value="6" min="2" step="1" max="6"
-								oninput="updateFilters();" /><small>Maximum</small>
+								onchange="updateFilters();" /><small>Maximum</small>
 						</fieldset>
 					</fieldset>
 					<hr />
@@ -87,11 +92,11 @@
 					<fieldset class="grid">
 						<fieldset>
 							<input type="number" id="minlevel" name="minlevel" value="1" min="1" step="1" max="99"
-								oninput="updateFilters();" /><small>Minimum</small>
+								onchange="updateFilters();" /><small>Minimum</small>
 						</fieldset>
 						<fieldset>
 							<input type="number" id="maxlevel" name="maxlevel" value="99" min="1" step="1" max="99"
-								oninput="updateFilters();" /><small>Maximum</small>
+								onchange="updateFilters();" /><small>Maximum</small>
 						</fieldset>
 					</fieldset>
 					<div id="bases">
@@ -245,6 +250,12 @@
 							<input type="number" id="Amn_rune" name="Amn_rune" value="0" min="0" step="1" />
 							<small id="Amn_rune">Amn</small>
 						</div>
+						<fieldset role="group" aria-labelledby="all_runes">
+							<input type="number" aria-describedby="all_runes" id="all_runes" name="all_runes" value="1"
+								min="0" step="1" />
+							<input type="button" value="Set All"
+								onclick="setAllRunes(document.getElementById('all_runes').value);" />
+						</fieldset>
 					</fieldset>
 					<fieldset class="grid">
 						<div>
@@ -291,6 +302,12 @@
 							<input type="number" id="Um_rune" name="Um_rune" value="0" min="0" step="1" />
 							<small id="Um_rune">Um</small>
 						</div>
+						<fieldset role="group" aria-labelledby="all_runes">
+							<input type="number" aria-describedby="all_runes" id="all_runes" name="all_runes" value="1"
+								min="0" step="1" />
+							<input type="button" value="Set All"
+								onclick="setAllRunes(document.getElementById('all_runes').value);" />
+						</fieldset>
 					</fieldset>
 					<fieldset class="grid">
 						<div>
@@ -337,6 +354,12 @@
 							<input type="number" id="Zod_rune" name="Zod_rune" value="0" min="0" step="1" />
 							<small id="Zod_rune">Zod</small>
 						</div>
+						<fieldset role="group" aria-labelledby="all_runes">
+							<input type="number" aria-describedby="all_runes" id="all_runes" name="all_runes" value="1"
+								min="0" step="1" />
+							<input type="button" value="Set All"
+								onclick="setAllRunes(document.getElementById('all_runes').value);" />
+						</fieldset>
 					</fieldset>
 					<fieldset class="flex" style="  justify-content: space-between;">
 						<input type="button" value="Reset All" onclick="resetAllRunes();" style="width:auto;" />

@@ -63,7 +63,7 @@ function makeTableEntryName(runeword_data) {
 
 function makeTableEntryBases(runeword_data) {
 	let item_types = document.createElement("td");
-	item_types.innerHTML = runeword_data.type.map((x) => x in ITEM_TYPES ? ('<em data-html="true" data-tooltip="' + (ITEM_TYPES[x].join('&#10;')) + '"">' + x + '</em>') : x).join("<br />");
+	item_types.innerHTML = runeword_data.type.map((x) => x in ITEM_TYPES ? ('<em data-html="true" data-tooltip="' + (ITEM_TYPES[x].join(',\n')) + '"">' + x + '</em>') : x).join("<br />");
 	return item_types;
 }
 
@@ -105,6 +105,7 @@ function makeTableEntryPossible(runeword_data) {
 	let checkbox = document.createElement("input");
 	checkbox.type = "checkbox";
 	checkbox.checked = runeword_data.success;
+	checkbox.disabled = true;
 	possible.appendChild(checkbox);
 	return possible;
 }
@@ -159,9 +160,19 @@ function updateFilters() {
 	let checked_item_types = [];
 	document.querySelectorAll("#bases input[type=checkbox]:checked").forEach((x) => checked_item_types.push(x.name));
 	let versions = [];
+	let [minsocket, maxsocket] = [document.getElementById("minsocket"), document.getElementById("maxsocket")];
+	if (parseInt(minsocket.value) > parseInt(maxsocket.value)) {
+		[minsocket.value, maxsocket.value] = [maxsocket.value, maxsocket.value];
+	}
+	let [minlevel, maxlevel] = [document.getElementById("minlevel"), document.getElementById("maxlevel")];
+	if (parseInt(minlevel.value) > parseInt(maxlevel.value)) {
+		[minlevel.value, maxlevel.value] = [maxlevel.value, maxlevel.value];
+	}
+
 	document.getElementsByName("version").forEach((x) => x.checked ? versions.push(x.value) : null);
 	let search_term = document.getElementById("searchbar").value.toLowerCase();
 	let shown_nb = 0;
+
 	for (let i = 0; i < RUNEWORDS_DATA.length; i++) {
 		let rw = RUNEWORDS_DATA[i];
 		let show = true;
@@ -174,12 +185,10 @@ function updateFilters() {
 		else if (versions.indexOf(rw.version) == -1) {
 			show = false;
 		}
-		else if (rw.sockets < document.getElementById("minsocket").value || rw.sockets > document.getElementById(
-			"maxsocket").value) {
+		else if (rw.sockets < minsocket.value || rw.sockets > maxsocket.value) {
 			show = false;
 		}
-		else if (rw.levelreq < document.getElementById("minlevel").value || rw.levelreq > document.getElementById(
-			"maxlevel").value) {
+		else if (rw.levelreq < minlevel.value || rw.levelreq > maxlevel.value) {
 			show = false;
 		}
 		else if (!isAnyBaseShown(rw.type, checked_item_types)) {

@@ -1,3 +1,5 @@
+/* COLORS */
+
 :root {
 	/* https://d2mods.info/forum/viewtopic.php?t=16396 */
 	--color-unique: rgb(199, 179, 119);
@@ -15,6 +17,12 @@
 
 .rune-text {
 	color: var(--color-craft);
+}
+
+/* LAYOUT */
+
+.flex {
+	display: flex;
 }
 
 /* Custom CSS for the sidebar */
@@ -44,7 +52,7 @@
 
 }
 
-/* Fix default picocss size: https://github.com/picocss/pico/discussions/482#discussioncomment-9043725*/
+/* PicoCSS fixes : https://github.com/picocss/pico/discussions/482#discussioncomment-9043725*/
 
 :root {
 	--pico-font-family-sans-serif: Inter, system-ui, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, Helvetica, Arial, "Helvetica Neue", sans-serif, var(--pico-font-family-emoji);
@@ -95,29 +103,6 @@
 	}
 }
 
-#runes small {
-	/* color: var(--color-craft); */
-	font-size: medium;
-}
-
-.flex {
-	display: flex;
-}
-
-#filters fieldset {
-	margin-bottom: 0;
-}
-
-.filter-grid {
-	display: grid;
-	grid-auto-flow: row;
-	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-	grid-template-rows: repeat(auto-fill, 1fr);
-	column-gap: var(--pico-grid-column-gap);
-	row-gap: var(--pico-grid-row-gap);
-}
-
-
 article,
 table {
 	border: 1px solid var(--pico-muted-border-color);
@@ -136,6 +121,19 @@ tbody tr td {
 	padding-bottom: calc(var(--pico-spacing));
 }
 
+[data-tooltip] {
+	width: max-content;
+}
+
+/* Custom CSS for the runes */
+
+#runes small {
+	/* color: var(--color-craft); */
+	font-size: medium;
+}
+
+
+/* Custom CSS for the runewords table*/
 
 #rwtable th,
 td {
@@ -153,11 +151,6 @@ td {
 	color: var(--color-set);
 }
 
-/* #rwtable tbody td:nth-child(2),
-#rwtable tbody td:nth-child(3) {
-	color: var(--color-grey);
-} */
-
 #rwtable tbody td:nth-child(4) {
 	color: var(--color-craft);
 }
@@ -166,21 +159,27 @@ td {
 	color: var(--color-magic);
 }
 
-/* #rwtable tbody td:nth-child(6) {
-	color: var(--color-server);
-} */
-
 #runeword-nb {
 	text-align: center;
 	font-style: italic;
 	color: var(--color-grey);
 }
 
-/* tbody tr td {
-	cursor: pointer;
-	transition: 0.1s background cubic-bezier(0.86, 0, 0.07, 1); 
-}*/
-
-tbody tr:hover td {
+#rwtable tbody tr:hover td {
 	background: rgba(127, 127, 127, 0.1) !important;
+}
+
+/* Custom CSS for the filters */
+
+#filters fieldset {
+	margin-bottom: 0;
+}
+
+.filter-grid {
+	display: grid;
+	grid-auto-flow: row;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	grid-template-rows: repeat(auto-fill, 1fr);
+	column-gap: var(--pico-grid-column-gap);
+	row-gap: var(--pico-grid-row-gap);
 }
