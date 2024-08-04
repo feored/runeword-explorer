@@ -62,7 +62,15 @@ def get_path_rw(rune_inventory: list, rw_runes : list):
         upgs_done[rune_index-1] += highest_nb
     
     success = working_inv[0] >= working_runes[0]
-    lacking = default_inventory()
+    # if not success:
+    #     lacking = els_decompose(working_runes[0] - working_inv[0])
+    #     for i in range(len(RUNES), 0, -1):
+    #         if lacking[i] > 0:
+    #             for j in range(i, 0, -1):
+    #                 if working_inv[j] > 0:
+    #                     substract = min(lacking[i], working_inv[j])
+    #                     lacking[i] -= substract
+    #                     working_inv[j] -= substract
     return (success, upgs_done, working_runes[0] - working_inv[0])
         
 def els_decompose(els: int):
@@ -116,17 +124,22 @@ if __name__ == "__main__":
     test_inv[Cham] = 0
     test_inv[Zod] = 0
     test_inv2 = default_inventory()
-    test_inv2[El] = 9912978591
+    test_inv2[El] = 1
+    test_inv2[Eld] = 2
+    test_inv2[Tir] = 0
+    test_inv2[Nef] = 0
     #test_inv2[Um] = 64
     RUNEWORDS.sort(key=lambda x: sum([get_el_value(RUNES_INDEX[r]) for r in x["runes"]]), reverse=True)
     for rw in RUNEWORDS:
         print("Checking: " + rw['name'] + " (" + " / ".join(rw['runes']) + ")")
-        success, upgs, lacking = get_path_rw(test_inv, rw['runes'])
+        success, upgs, lacking = get_path_rw(test_inv2, rw['runes'])
         print(f"Success: {success}")
         if success:
             if sum(upgs) > 0:
                 print("Upgrades:")
                 print(format_upgs(upgs))
         else:
+            print("Upgrades:")
+            print(format_upgs(upgs))
             print("Lacking: " + str(lacking) + " Els, or...")
             print(format_lacking(els_decompose(lacking)))
