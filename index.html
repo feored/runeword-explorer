@@ -26,6 +26,11 @@
 						<button onclick=" resetFilters(); updateFilters();">Reset Filters</button>
 					</section>
 					<fieldset>
+						<input id="searchbar" type="search" name="search"
+							placeholder="Search runewords, runes, bases, stats..." aria-label="Search"
+							oninput="updateFilters();" />
+					</fieldset>
+					<fieldset>
 						<label><input type="checkbox" id="can_make" name="can_make" value="can_make" checked
 								oninput="updateFilters();" />Only Show Runewords I Can Make
 						</label>
@@ -35,7 +40,19 @@
 						</label>
 					</fieldset>
 					<hr />
-					<h5>Version</h5>
+					<div class="flex">
+						<h5>Version</h5>
+						<div class="flex" style="margin-left: auto; gap:1rem;">
+							<a href="#" onclick="selectVersions(true);">
+								All
+							</a>
+							<p>/</p>
+							<a href="#" onclick="selectVersions(false);">
+								None
+							</a>
+						</div>
+					</div>
+
 					<fieldset class="filter-grid">
 						<label><input type="checkbox" name="version" value="1.09" checked
 								oninput="updateFilters();" />D2LoD 1.09

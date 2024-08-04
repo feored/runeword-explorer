@@ -87,7 +87,7 @@ function formatUpgs(upgs, rw_runes) {
 }
 
 function formatUpgLine(runeIndex, nb, highlight = false) {
-	return `${nb * upgNb(runeIndex)} <span class="rune-text">${RUNES[runeIndex]}</span> ${nb > 0 && UPG_COST[runeIndex] ? ' +' + nb + ' ' + UPG_COST[runeIndex] : ''} 🡒 ${highlight ? "<span class='highlight'>" : ''} ${nb} ${highlight ? "</span>" : ''}  <span class="rune-text">${RUNES[runeIndex + 1]}</span>`;
+	return `${nb * upgNb(runeIndex)} <span class="rune-text">${RUNES[runeIndex]}</span> ${nb > 0 && UPG_COST[runeIndex] ? ' + ' + nb + ' ' + UPG_COST[runeIndex] : ''} 🡒 ${highlight ? "<span class='highlight'>" : ''} ${nb} ${highlight ? "</span>" : ''}  <span class="rune-text">${RUNES[runeIndex + 1]}</span>`;
 }
 
 

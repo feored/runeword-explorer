@@ -160,6 +160,7 @@ function updateFilters() {
 	document.querySelectorAll("#bases input[type=checkbox]:checked").forEach((x) => checked_item_types.push(x.name));
 	let versions = [];
 	document.getElementsByName("version").forEach((x) => x.checked ? versions.push(x.value) : null);
+	let search_term = document.getElementById("searchbar").value.toLowerCase();
 	let shown_nb = 0;
 	for (let i = 0; i < RUNEWORDS_DATA.length; i++) {
 		let rw = RUNEWORDS_DATA[i];
@@ -184,6 +185,17 @@ function updateFilters() {
 		else if (!isAnyBaseShown(rw.type, checked_item_types)) {
 			show = false;
 		}
+
+		// search bar
+		if (search_term != "") {
+			show = false;
+			if ((rw.name.toLowerCase().includes(search_term))
+				|| (rw.runes.some((x) => x.toLowerCase().includes(search_term)))
+				|| (rw.stats.some((x) => x.toLowerCase().includes(search_term)))
+				|| (rw.type.some((x) => x.toLowerCase().includes(search_term)))) {
+				show = true;
+			}
+		}
 		shown_nb += show ? 1 : 0;
 		rw.row.hidden = !show;
 	}
@@ -204,6 +216,14 @@ function resetFilters() {
 
 function selectBases(selected, bases = '') {
 	let inputs = document.querySelectorAll("#bases " + bases + " input[type=checkbox]");
+	for (let i = 0; i < inputs.length; i++) {
+		inputs[i].checked = selected ? true : false;
+	}
+	updateFilters();
+}
+
+function selectVersions(selected) {
+	let inputs = document.querySelectorAll("#filters input[name=version]");
 	for (let i = 0; i < inputs.length; i++) {
 		inputs[i].checked = selected ? true : false;
 	}
