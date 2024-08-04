@@ -205,7 +205,7 @@
 			</hgroup>
 			<section>
 				<article id="runes">
-					<fieldset class="grid">
+					<fieldset class="rune-grid">
 						<div>
 							<input type="number" id="El_rune" name="El_rune" value="0" min="0" step="1" />
 							<small id="El_rune">El</small>
@@ -250,14 +250,14 @@
 							<input type="number" id="Amn_rune" name="Amn_rune" value="0" min="0" step="1" />
 							<small id="Amn_rune">Amn</small>
 						</div>
-						<fieldset role="group" aria-labelledby="all_runes">
-							<input type="number" aria-describedby="all_runes" id="all_runes" name="all_runes" value="1"
+						<fieldset role="group" aria-labelledby="el_to_amn">
+							<input type="number" aria-describedby="el_to_amn" id="el_to_amn" name="el_to_amn" value="1"
 								min="0" step="1" />
-							<input type="button" value="Set All"
-								onclick="setAllRunes(document.getElementById('all_runes').value);" />
+							<input type="button" value="Set Row"
+								onclick="setRunes(0, 11, document.getElementById('el_to_amn').value);" />
 						</fieldset>
 					</fieldset>
-					<fieldset class="grid">
+					<fieldset class="rune-grid">
 						<div>
 							<input type="number" id="Sol_rune" name="Sol_rune" value="0" min="0" step="1" />
 							<small id="Sol_rune">Sol</small>
@@ -302,14 +302,14 @@
 							<input type="number" id="Um_rune" name="Um_rune" value="0" min="0" step="1" />
 							<small id="Um_rune">Um</small>
 						</div>
-						<fieldset role="group" aria-labelledby="all_runes">
-							<input type="number" aria-describedby="all_runes" id="all_runes" name="all_runes" value="1"
+						<fieldset role="group" aria-labelledby="sol_to_um">
+							<input type="number" aria-describedby="sol_to_um" id="sol_to_um" name="sol_to_um" value="1"
 								min="0" step="1" />
-							<input type="button" value="Set All"
-								onclick="setAllRunes(document.getElementById('all_runes').value);" />
+							<input type="button" value="Set Row"
+								onclick="setRunes(11, 22, document.getElementById('sol_to_um').value);" />
 						</fieldset>
 					</fieldset>
-					<fieldset class="grid">
+					<fieldset class="rune-grid">
 						<div>
 							<input type="number" id="Mal_rune" name="Mal_rune" value="0" min="0" step="1" />
 							<small id="Mal_rune">Mal</small>
@@ -354,20 +354,20 @@
 							<input type="number" id="Zod_rune" name="Zod_rune" value="0" min="0" step="1" />
 							<small id="Zod_rune">Zod</small>
 						</div>
-						<fieldset role="group" aria-labelledby="all_runes">
-							<input type="number" aria-describedby="all_runes" id="all_runes" name="all_runes" value="1"
-								min="0" step="1" />
-							<input type="button" value="Set All"
-								onclick="setAllRunes(document.getElementById('all_runes').value);" />
+						<fieldset role="group" aria-labelledby="mal_to_zod">
+							<input type="number" aria-describedby="mal_to_zod" id="mal_to_zod" name="mal_to_zod"
+								value="1" min="0" step="1" />
+							<input type="button" value="Set Row"
+								onclick="setRunes(22, 33, document.getElementById('mal_to_zod').value);" />
 						</fieldset>
 					</fieldset>
 					<fieldset class="flex" style="  justify-content: space-between;">
-						<input type="button" value="Reset All" onclick="resetAllRunes();" style="width:auto;" />
+						<input type="button" value="Reset All" onclick="setRunes(0, 33, 0);" style="width:auto;" />
 						<fieldset role="group" aria-labelledby="all_runes" style="width:auto;">
 							<input type="number" aria-describedby="all_runes" id="all_runes" name="all_runes" value="1"
 								min="0" step="1" />
 							<input type="button" value="Set All"
-								onclick="setAllRunes(document.getElementById('all_runes').value);" />
+								onclick="setRunes(0, 33, document.getElementById('all_runes').value);" />
 						</fieldset>
 					</fieldset>
 				</article>
@@ -378,14 +378,14 @@
 					<table id="rwtable" class="striped sortable asc">
 						<thead>
 							<tr>
-								<th id="runeword_name">Name</th>
-								<th>Item Types</th>
-								<th>Sockets</th>
-								<th>Runes</th>
-								<th class="no-sort">Stats</th>
-								<th>Level Req.</th>
-								<th>Cubing Required</th>
-								<th>Can Make</th>
+								<th class="runeword_can_make">Can Make</th>
+								<th class="runeword_name">Name</th>
+								<th class="runeword_bases">Bases</th>
+								<th class="runeword_sockets">Sockets</th>
+								<th class="runeword_runes">Runes</th>
+								<th class="runeword_stats no-sort">Stats</th>
+								<th class="runeword_levelreq">Level Req.</th>
+								<th class="runeword_cube">Cubed Runes</th>
 							</tr>
 						</thead>
 						<tbody>
