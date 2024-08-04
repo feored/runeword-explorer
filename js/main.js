@@ -1,5 +1,7 @@
 var RUNEWORDS_DATA = [];
 var last_clicked_th = null;
+var mark_instance = null;
+
 
 function setRunes(minId, maxId, num) {
 	for (let i = minId; i < maxId; i++) {
@@ -200,10 +202,10 @@ function updateFilters() {
 		}
 
 		// search bar
-		if (search_term != "") {
+		if (show && search_term != "") {
 			show = false;
 			if ((rw.name.toLowerCase().includes(search_term))
-				|| (rw.runes.some((x) => x.toLowerCase().includes(search_term)))
+				|| (rw.runes.join(" ").toLowerCase().includes(search_term))
 				|| (rw.stats.some((x) => x.toLowerCase().includes(search_term)))
 				|| (rw.type.some((x) => x.toLowerCase().includes(search_term)))) {
 				show = true;
@@ -212,6 +214,9 @@ function updateFilters() {
 		shown_nb += show ? 1 : 0;
 		rw.row.hidden = !show;
 	}
+	if (mark_instance != null) { mark_instance.unmark(); }
+	mark_instance = new Mark(document.querySelector("#rwtable tbody")).mark(search_term);
+
 	document.getElementById("runeword-nb").innerText = "Showing: " + shown_nb + "/" + RUNEWORDS_DATA.length + " runewords (" + (shown_nb / RUNEWORDS_DATA.length * 100).toFixed(2) + "%)";
 }
 
