@@ -82,11 +82,12 @@ function formatLacking(lacking) {
 	return RUNES.map((rune, i) => lacking[i] > 0 ? `${lacking[i]} ${rune}` : null).filter(Boolean).join(', ');
 }
 
-function formatUpgs(upgs) {
-	return RUNES.slice(0, -1)
-		.map((rune, i) => upgs[i] > 0 ? `${upgs[i] * upgNb(i)} ${rune}${upgs[i] > 0 && UPG_COST[i] ? ' +' + upgs[i] + ' ' + UPG_COST[i] : ''} -> ${upgs[i]} ${RUNES[i + 1]}` : null)
-		.filter(Boolean)
-		.join('\n');
+function formatUpgs(upgs, rw_runes) {
+	return upgs.map((nb, i) => nb > 0 ? formatUpgLine(i, nb, rw_runes.includes(RUNES[i + 1])) : null).filter(Boolean).join('<br>');
+}
+
+function formatUpgLine(runeIndex, nb, highlight = false) {
+	return `${nb * upgNb(runeIndex)} <span class="rune-text">${RUNES[runeIndex]}</span> ${nb > 0 && UPG_COST[runeIndex] ? ' +' + nb + ' ' + UPG_COST[runeIndex] : ''} 🡒 ${highlight ? "<span class='highlight'>" : ''} ${nb} ${highlight ? "</span>" : ''}  <span class="rune-text">${RUNES[runeIndex + 1]}</span>`;
 }
 
 

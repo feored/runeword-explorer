@@ -9,6 +9,13 @@
 	--color-set: rgb(0, 255, 0);
 }
 
+.highlight {
+	color: var(--color-set);
+}
+
+.rune-text {
+	color: var(--color-craft);
+}
 
 /* Custom CSS for the sidebar */
 .wrapper {
@@ -129,6 +136,12 @@ tbody tr td {
 	padding-bottom: calc(var(--pico-spacing));
 }
 
+
+#rwtable th,
+td {
+	text-align: center;
+}
+
 /* Table col order: name, item type, sockets, runes, stats, level req */
 #rwtable tbody td:nth-child(1) {
 	font-size: larger;
@@ -153,12 +166,21 @@ tbody tr td {
 	color: var(--color-magic);
 }
 
-#rwtable tbody td:nth-child(6) {
+/* #rwtable tbody td:nth-child(6) {
 	color: var(--color-server);
-}
+} */
 
 #runeword-nb {
 	text-align: center;
 	font-style: italic;
-	color: var(--color-magic);
+	color: var(--color-grey);
+}
+
+/* tbody tr td {
+	cursor: pointer;
+	transition: 0.1s background cubic-bezier(0.86, 0, 0.07, 1); 
+}*/
+
+tbody tr:hover td {
+	background: rgba(127, 127, 127, 0.1) !important;
 }

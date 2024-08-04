@@ -11,173 +11,9 @@
 	<title>Runeword Calculator</title>
 	<script src="./js/sortable.min.js"></script>
 	<script src="./js/rw.js"></script>
+	<script src="./js/main.js"></script>
 
 </head>
-
-<script>
-	var RUNEWORDS_DATA = [];
-
-	function setAllRunes(num) {
-		for (let i = 0; i < RUNES.length; i++) {
-			let id = RUNES[i] + "_rune";
-			document.getElementById(id).value = num;
-		}
-		updateRunewords();
-	}
-
-	function resetAllRunes() {
-		setAllRunes(0);
-	}
-
-	function cleanTable() {
-		let table_element = document.querySelector("#rwtable tbody");
-		while (table_element.firstChild) {
-			table_element.removeChild(table_element.firstChild);
-		}
-	}
-
-	function updateRunewords() {
-		cleanTable();
-		RUNEWORDS_DATA = [];
-		let inventory = [];
-		for (let i = 0; i < RUNES.length; i++) {
-			let id = RUNES[i] + "_rune";
-			inventory.push(document.getElementById(id).value);
-		}
-		let table = document.querySelector("#rwtable tbody");
-		for (let i = 0; i < RUNEWORDS.length; i++) {
-			let rw = RUNEWORDS[i];
-			let { success, upgsDone, lacking } = getPathRw(inventory, rw.runes);
-			rw.success = success;
-			rw.upgsDone = upgsDone;
-			rw.lacking = lacking;
-			rw.el_value = rw.runes.map((x) => getElValue(RUNES.indexOf(x))).reduce((partialSum, a) => partialSum + a, 0);
-			row = makeTableEntry(rw);
-			rw.row = row;
-			RUNEWORDS_DATA.push(rw);
-			table.appendChild(row);
-		}
-		updateFilters();
-	}
-
-	function makeTableEntry(runeword_data) {
-		let row = document.createElement("tr");
-		let name = document.createElement("td");
-		name.innerText = runeword_data.name;
-		if (runeword_data.ladder) {
-			name.appendChild(document.createElement("br"));
-			let ladder = document.createElement("small");
-			ladder.innerText = "Ladder Only";
-			name.appendChild(ladder);
-		}
-		row.appendChild(name);
-		let item_types = document.createElement("td");
-		item_types.innerHTML = runeword_data.type.join("<br />");
-		row.appendChild(item_types);
-		let sockets = document.createElement("td");
-		sockets.innerText = runeword_data.sockets;
-		row.appendChild(sockets);
-		let runes = document.createElement("td");
-		runes.innerText = runeword_data.runes.join(" ");
-		runes.setAttribute("data-sort", runeword_data.el_value);
-		row.appendChild(runes);
-		let stats = document.createElement("td");
-		stats.innerHTML = runeword_data.stats.join("<br />");
-		row.appendChild(stats);
-		let level_req = document.createElement("td");
-		level_req.innerText = runeword_data.levelreq;
-		row.appendChild(level_req);
-		let cubing_required = document.createElement("td");
-		cubing_required.innerText = runeword_data.upgsDone.reduce((partialSum, a) => partialSum + a, 0) > 0 ? "Yes" : "No";
-		row.appendChild(cubing_required);
-		let possible = document.createElement("td");
-		possible.innerText = runeword_data.success ? "Yes" : "No";
-		row.appendChild(possible);
-		return row;
-	}
-
-
-	document.onreadystatechange = () => {
-		if (document.readyState === "interactive") {
-			for (let i = 0; i < RUNES.length; i++) {
-				let id = RUNES[i] + "_rune";
-				document.getElementById(id).addEventListener("input", updateRunewords);
-			}
-			loadData().then(() => {
-				updateRunewords();
-			});
-		}
-	};
-
-	function isAnyBaseShown(itemtypes, selected_bases) {
-		let final_item_types = [];
-		for (let i = 0; i < itemtypes.length; i++) {
-			if (itemtypes[i] in ITEM_TYPES) {
-				final_item_types = final_item_types.concat(ITEM_TYPES[itemtypes[i]]);
-			} else {
-				final_item_types.push(itemtypes[i]);
-			}
-		}
-		return final_item_types.some((x) => selected_bases.indexOf(x) != -1);
-	}
-
-	function updateFilters() {
-		let ladder = document.getElementById("ladder").checked;
-		let checked_item_types = [];
-		document.querySelectorAll("#bases input[type=checkbox]:checked").forEach((x) => checked_item_types.push(x.name));
-		let versions = [];
-		document.getElementsByName("version").forEach((x) => x.checked ? versions.push(x.value) : null);
-		let shown_nb = 0;
-		for (let i = 0; i < RUNEWORDS_DATA.length; i++) {
-			let rw = RUNEWORDS_DATA[i];
-			let show = true;
-			if (!ladder && rw.ladder) {
-				show = false;
-			}
-			else if (document.getElementById("can_make").checked && !rw.success) {
-				show = false;
-			}
-			else if (versions.indexOf(rw.version) == -1) {
-				show = false;
-			}
-			else if (rw.sockets < document.getElementById("minsocket").value || rw.sockets > document.getElementById(
-				"maxsocket").value) {
-				show = false;
-			}
-			else if (rw.levelreq < document.getElementById("minlevel").value || rw.levelreq > document.getElementById(
-				"maxlevel").value) {
-				show = false;
-			}
-			else if (!isAnyBaseShown(rw.type, checked_item_types)) {
-				show = false;
-			}
-			shown_nb += show ? 1 : 0;
-			rw.row.style.display = show ? "table-row" : "none";
-		}
-		document.getElementById("runeword-nb").innerText = "Current filter shows " + shown_nb + "/" + RUNEWORDS_DATA.length + " runewords (" + (shown_nb / RUNEWORDS_DATA.length * 100).toFixed(2) + "%)";
-	}
-
-	function resetFilters() {
-		let inputs = document.querySelectorAll("#filters input");
-		for (let i = 0; i < inputs.length; i++) {
-			if (inputs[i].type == "checkbox") {
-				inputs[i].checked = inputs[i].defaultChecked;
-			}
-			else {
-				inputs[i].value = inputs[i].defaultValue;
-			}
-		}
-	}
-
-	function selectBases(selected, bases = '') {
-		let inputs = document.querySelectorAll("#bases " + bases + " input[type=checkbox]");
-		for (let i = 0; i < inputs.length; i++) {
-			inputs[i].checked = selected ? true : false;
-		}
-		updateFilters();
-	}
-
-</script>
 
 <body>
 	<div class="wrapper">
@@ -276,7 +112,7 @@
 						<!--Weapons-->
 						<div id="Weapons">
 							<fieldset class="flex">
-								<h5>Weapons</h5>
+								<h6>Weapons</h6>
 								<div class="flex" style="margin-left: auto; gap:1rem;">
 									<a href="#" onclick="selectBases(true, '#Weapons');">
 										All
@@ -496,13 +332,13 @@
 					</fieldset>
 				</article>
 				<section>
-					<p id="runeword-nb">Current filter shows: 24/97 </p>
+					<p id="runeword-nb">Showing: 24/97 </p>
 				</section>
 				<section class="overflow-auto">
 					<table id="rwtable" class="striped sortable asc">
 						<thead>
 							<tr>
-								<th>Name</th>
+								<th id="runeword_name">Name</th>
 								<th>Item Types</th>
 								<th>Sockets</th>
 								<th>Runes</th>
