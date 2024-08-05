@@ -48,6 +48,14 @@
 
 /* LAYOUT */
 
+.yarc-header {
+	padding-block: var(--pico-block-spacing-vertical);
+}
+
+.text-center {
+	text-align: center;
+}
+
 .flex {
 	display: flex;
 }
@@ -59,8 +67,24 @@
 /* Custom CSS for the sidebar */
 .wrapper {
 	display: grid;
-	grid-gap: 20px;
-	grid-template-columns: 1fr 3fr;
+	gap: var(--pico-spacing);
+	grid-template-columns: minmax(30em, 1fr) 3fr;
+	grid-template-rows: auto 1fr;
+	grid-template-areas:
+		"sidebar runes"
+		"sidebar main";
+}
+
+.grid-sidebar {
+	grid-area: sidebar;
+}
+
+.grid-runes {
+	grid-area: runes;
+}
+
+.grid-main {
+	grid-area: main;
 }
 
 .wrapper #sidebar .container {
@@ -71,9 +95,13 @@
 	overflow-y: auto;
 }
 
-@media (max-width: 1536px) {
+@media (max-width: 100em) {
 	.wrapper {
-		grid-template-columns: 2fr;
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			"runes"
+			"sidebar"
+			"main";
 	}
 
 	.wrapper #sidebar .container {

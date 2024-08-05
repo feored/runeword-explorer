@@ -18,7 +18,7 @@
 
 <body>
 	<div class="wrapper">
-		<div id="sidebar">
+		<div id="sidebar" class="grid-sidebar">
 			<div class="container">
 				<div class="flex" style="justify-content: space-between;">
 					<h3>Filters</h3>
@@ -200,178 +200,184 @@
 				</aside>
 			</div>
 		</div>
-		<main class="container-fluid" id="content">
-			<hgroup>
-				<h2>Runeword Calculator</h2>
-			</hgroup>
+		<div class="container grid-runes">
+			<div class="yarc-header">
+				<hgroup>
+					<h4 class="text-center">YARC</h4>
+					<h5 class="text-center">Yet Another Runeword Calculator</h5>
+				</hgroup>
+			</div>
+			<article id="runes">
+				<fieldset class="rune-grid">
+					<div>
+						<input type="number" id="El_rune" name="El_rune" value="0" min="0" step="1" />
+						<small id="El_rune">El</small>
+					</div>
+					<div>
+						<input type="Number" id="Eld_rune" name="Eld_rune" value="0" min="0" step="1" />
+						<small id="Eld_rune">Eld</small>
+					</div>
+					<div>
+						<input type="number" id="Tir_rune" name="Tir_rune" value="0" min="0" step="1" />
+						<small id="Tir_rune">Tir</small>
+					</div>
+					<div>
+						<input type="number" id="Nef_rune" name="Nef_rune" value="0" min="0" step="1" />
+						<small id="Nef_rune">Nef</small>
+					</div>
+					<div>
+						<input type="number" id="Eth_rune" name="Eth_rune" value="0" min="0" step="1" />
+						<small id="Eth_rune">Eth</small>
+					</div>
+					<div>
+						<input type="number" id="Ith_rune" name="Ith_rune" value="0" min="0" step="1" />
+						<small id="Ith_rune">Ith</small>
+					</div>
+					<div>
+						<input type="number" id="Tal_rune" name="Tal_rune" value="0" min="0" step="1" />
+						<small id="Tal_rune">Tal</small>
+					</div>
+					<div>
+						<input type="number" id="Ral_rune" name="Ral_rune" value="0" min="0" step="1" />
+						<small id="Ral_rune">Ral</small>
+					</div>
+					<div>
+						<input type="number" id="Ort_rune" name="Ort_rune" value="0" min="0" step="1" />
+						<small id="Ort_rune">Ort</small>
+					</div>
+					<div>
+						<input type="number" id="Thul_rune" name="Thul_rune" value="0" min="0" step="1" />
+						<small id="Thul_rune">Thul</small>
+					</div>
+					<div>
+						<input type="number" id="Amn_rune" name="Amn_rune" value="0" min="0" step="1" />
+						<small id="Amn_rune">Amn</small>
+					</div>
+					<fieldset role="group" aria-labelledby="el_to_amn">
+						<input type="number" aria-describedby="el_to_amn" id="el_to_amn" name="el_to_amn" value="1"
+							min="0" step="1" />
+						<input type="button" value="Set Row"
+							onclick="setRunes(0, 11, document.getElementById('el_to_amn').value);" />
+					</fieldset>
+				</fieldset>
+				<fieldset class="rune-grid">
+					<div>
+						<input type="number" id="Sol_rune" name="Sol_rune" value="0" min="0" step="1" />
+						<small id="Sol_rune">Sol</small>
+					</div>
+					<div>
+						<input type="number" id="Shael_rune" name="Shael_rune" value="0" min="0" step="1" />
+						<small id="Shael_rune">Shael</small>
+					</div>
+					<div>
+						<input type="number" id="Dol_rune" name="Dol_rune" value="0" min="0" step="1" />
+						<small id="Dol_rune">Dol</small>
+					</div>
+					<div>
+						<input type="number" id="Hel_rune" name="Hel_rune" value="0" min="0" step="1" />
+						<small id="Hel_rune">Hel</small>
+					</div>
+					<div>
+						<input type="number" id="Io_rune" name="Io_rune" value="0" min="0" step="1" />
+						<small id="Io_rune">Io</small>
+					</div>
+					<div>
+						<input type="number" id="Lum_rune" name="Lum_rune" value="0" min="0" step="1" />
+						<small id="Lum_rune">Lum</small>
+					</div>
+					<div>
+						<input type="number" id="Ko_rune" name="Ko_rune" value="0" min="0" step="1" />
+						<small id="Ko_rune">Ko</small>
+					</div>
+					<div>
+						<input type="number" id="Fal_rune" name="Fal_rune" value="0" min="0" step="1" />
+						<small id="Fal_rune">Fal</small>
+					</div>
+					<div>
+						<input type="number" id="Lem_rune" name="Lem_rune" value="0" min="0" step="1" />
+						<small id="Lem_rune">Lem</small>
+					</div>
+					<div>
+						<input type="number" id="Pul_rune" name="Pul_rune" value="0" min="0" step="1" />
+						<small id="Pul_rune">Pul</small>
+					</div>
+					<div>
+						<input type="number" id="Um_rune" name="Um_rune" value="0" min="0" step="1" />
+						<small id="Um_rune">Um</small>
+					</div>
+					<fieldset role="group" aria-labelledby="sol_to_um">
+						<input type="number" aria-describedby="sol_to_um" id="sol_to_um" name="sol_to_um" value="1"
+							min="0" step="1" />
+						<input type="button" value="Set Row"
+							onclick="setRunes(11, 22, document.getElementById('sol_to_um').value);" />
+					</fieldset>
+				</fieldset>
+				<fieldset class="rune-grid">
+					<div>
+						<input type="number" id="Mal_rune" name="Mal_rune" value="0" min="0" step="1" />
+						<small id="Mal_rune">Mal</small>
+					</div>
+					<div>
+						<input type="number" id="Ist_rune" name="Ist_rune" value="0" min="0" step="1" />
+						<small id="Ist_rune">Ist</small>
+					</div>
+					<div>
+						<input type="number" id="Gul_rune" name="Gul_rune" value="0" min="0" step="1" />
+						<small id="Gul_rune">Gul</small>
+					</div>
+					<div>
+						<input type="number" id="Vex_rune" name="Vex_rune" value="0" min="0" step="1" />
+						<small id="Vex_rune">Vex</small>
+					</div>
+					<div>
+						<input type="number" id="Ohm_rune" name="Ohm_rune" value="0" min="0" step="1" />
+						<small id="Ohm_rune">Ohm</small>
+					</div>
+					<div>
+						<input type="number" id="Lo_rune" name="Lo_rune" value="0" min="0" step="1" />
+						<small id="Lo_rune">Lo</small>
+					</div>
+					<div>
+						<input type="number" id="Sur_rune" name="Sur_rune" value="0" min="0" step="1" />
+						<small id="Sur_rune">Sur</small>
+					</div>
+					<div>
+						<input type="number" id="Ber_rune" name="Ber_rune" value="0" min="0" step="1" />
+						<small id="Ber_rune">Ber</small>
+					</div>
+					<div>
+						<input type="number" id="Jah_rune" name="Jah_rune" value="0" min="0" step="1" />
+						<small id="Jah_rune">Jah</small>
+					</div>
+					<div>
+						<input type="number" id="Cham_rune" name="Cham_rune" value="0" min="0" step="1" />
+						<small id="Cham_rune">Cham</small>
+					</div>
+					<div>
+						<input type="number" id="Zod_rune" name="Zod_rune" value="0" min="0" step="1" />
+						<small id="Zod_rune">Zod</small>
+					</div>
+					<fieldset role="group" aria-labelledby="mal_to_zod">
+						<input type="number" aria-describedby="mal_to_zod" id="mal_to_zod" name="mal_to_zod" value="1"
+							min="0" step="1" />
+						<input type="button" value="Set Row"
+							onclick="setRunes(22, 33, document.getElementById('mal_to_zod').value);" />
+					</fieldset>
+				</fieldset>
+				<hr />
+				<fieldset class="flex" style="  justify-content: space-between;">
+					<input type="button" value="Reset All" onclick="setRunes(0, 33, 0);" style="width:auto;" />
+					<fieldset role="group" aria-labelledby="all_runes" style="width:auto;">
+						<input type="number" aria-describedby="all_runes" id="all_runes" name="all_runes" value="1"
+							min="0" step="1" />
+						<input type="button" value="Set All"
+							onclick="setRunes(0, 33, document.getElementById('all_runes').value);" />
+					</fieldset>
+				</fieldset>
+			</article>
+		</div>
+		<main class="container-fluid" id="content" class="main">
 			<section>
-				<article id="runes">
-					<fieldset class="rune-grid">
-						<div>
-							<input type="number" id="El_rune" name="El_rune" value="0" min="0" step="1" />
-							<small id="El_rune">El</small>
-						</div>
-						<div>
-							<input type="Number" id="Eld_rune" name="Eld_rune" value="0" min="0" step="1" />
-							<small id="Eld_rune">Eld</small>
-						</div>
-						<div>
-							<input type="number" id="Tir_rune" name="Tir_rune" value="0" min="0" step="1" />
-							<small id="Tir_rune">Tir</small>
-						</div>
-						<div>
-							<input type="number" id="Nef_rune" name="Nef_rune" value="0" min="0" step="1" />
-							<small id="Nef_rune">Nef</small>
-						</div>
-						<div>
-							<input type="number" id="Eth_rune" name="Eth_rune" value="0" min="0" step="1" />
-							<small id="Eth_rune">Eth</small>
-						</div>
-						<div>
-							<input type="number" id="Ith_rune" name="Ith_rune" value="0" min="0" step="1" />
-							<small id="Ith_rune">Ith</small>
-						</div>
-						<div>
-							<input type="number" id="Tal_rune" name="Tal_rune" value="0" min="0" step="1" />
-							<small id="Tal_rune">Tal</small>
-						</div>
-						<div>
-							<input type="number" id="Ral_rune" name="Ral_rune" value="0" min="0" step="1" />
-							<small id="Ral_rune">Ral</small>
-						</div>
-						<div>
-							<input type="number" id="Ort_rune" name="Ort_rune" value="0" min="0" step="1" />
-							<small id="Ort_rune">Ort</small>
-						</div>
-						<div>
-							<input type="number" id="Thul_rune" name="Thul_rune" value="0" min="0" step="1" />
-							<small id="Thul_rune">Thul</small>
-						</div>
-						<div>
-							<input type="number" id="Amn_rune" name="Amn_rune" value="0" min="0" step="1" />
-							<small id="Amn_rune">Amn</small>
-						</div>
-						<fieldset role="group" aria-labelledby="el_to_amn">
-							<input type="number" aria-describedby="el_to_amn" id="el_to_amn" name="el_to_amn" value="1"
-								min="0" step="1" />
-							<input type="button" value="Set Row"
-								onclick="setRunes(0, 11, document.getElementById('el_to_amn').value);" />
-						</fieldset>
-					</fieldset>
-					<fieldset class="rune-grid">
-						<div>
-							<input type="number" id="Sol_rune" name="Sol_rune" value="0" min="0" step="1" />
-							<small id="Sol_rune">Sol</small>
-						</div>
-						<div>
-							<input type="number" id="Shael_rune" name="Shael_rune" value="0" min="0" step="1" />
-							<small id="Shael_rune">Shael</small>
-						</div>
-						<div>
-							<input type="number" id="Dol_rune" name="Dol_rune" value="0" min="0" step="1" />
-							<small id="Dol_rune">Dol</small>
-						</div>
-						<div>
-							<input type="number" id="Hel_rune" name="Hel_rune" value="0" min="0" step="1" />
-							<small id="Hel_rune">Hel</small>
-						</div>
-						<div>
-							<input type="number" id="Io_rune" name="Io_rune" value="0" min="0" step="1" />
-							<small id="Io_rune">Io</small>
-						</div>
-						<div>
-							<input type="number" id="Lum_rune" name="Lum_rune" value="0" min="0" step="1" />
-							<small id="Lum_rune">Lum</small>
-						</div>
-						<div>
-							<input type="number" id="Ko_rune" name="Ko_rune" value="0" min="0" step="1" />
-							<small id="Ko_rune">Ko</small>
-						</div>
-						<div>
-							<input type="number" id="Fal_rune" name="Fal_rune" value="0" min="0" step="1" />
-							<small id="Fal_rune">Fal</small>
-						</div>
-						<div>
-							<input type="number" id="Lem_rune" name="Lem_rune" value="0" min="0" step="1" />
-							<small id="Lem_rune">Lem</small>
-						</div>
-						<div>
-							<input type="number" id="Pul_rune" name="Pul_rune" value="0" min="0" step="1" />
-							<small id="Pul_rune">Pul</small>
-						</div>
-						<div>
-							<input type="number" id="Um_rune" name="Um_rune" value="0" min="0" step="1" />
-							<small id="Um_rune">Um</small>
-						</div>
-						<fieldset role="group" aria-labelledby="sol_to_um">
-							<input type="number" aria-describedby="sol_to_um" id="sol_to_um" name="sol_to_um" value="1"
-								min="0" step="1" />
-							<input type="button" value="Set Row"
-								onclick="setRunes(11, 22, document.getElementById('sol_to_um').value);" />
-						</fieldset>
-					</fieldset>
-					<fieldset class="rune-grid">
-						<div>
-							<input type="number" id="Mal_rune" name="Mal_rune" value="0" min="0" step="1" />
-							<small id="Mal_rune">Mal</small>
-						</div>
-						<div>
-							<input type="number" id="Ist_rune" name="Ist_rune" value="0" min="0" step="1" />
-							<small id="Ist_rune">Ist</small>
-						</div>
-						<div>
-							<input type="number" id="Gul_rune" name="Gul_rune" value="0" min="0" step="1" />
-							<small id="Gul_rune">Gul</small>
-						</div>
-						<div>
-							<input type="number" id="Vex_rune" name="Vex_rune" value="0" min="0" step="1" />
-							<small id="Vex_rune">Vex</small>
-						</div>
-						<div>
-							<input type="number" id="Ohm_rune" name="Ohm_rune" value="0" min="0" step="1" />
-							<small id="Ohm_rune">Ohm</small>
-						</div>
-						<div>
-							<input type="number" id="Lo_rune" name="Lo_rune" value="0" min="0" step="1" />
-							<small id="Lo_rune">Lo</small>
-						</div>
-						<div>
-							<input type="number" id="Sur_rune" name="Sur_rune" value="0" min="0" step="1" />
-							<small id="Sur_rune">Sur</small>
-						</div>
-						<div>
-							<input type="number" id="Ber_rune" name="Ber_rune" value="0" min="0" step="1" />
-							<small id="Ber_rune">Ber</small>
-						</div>
-						<div>
-							<input type="number" id="Jah_rune" name="Jah_rune" value="0" min="0" step="1" />
-							<small id="Jah_rune">Jah</small>
-						</div>
-						<div>
-							<input type="number" id="Cham_rune" name="Cham_rune" value="0" min="0" step="1" />
-							<small id="Cham_rune">Cham</small>
-						</div>
-						<div>
-							<input type="number" id="Zod_rune" name="Zod_rune" value="0" min="0" step="1" />
-							<small id="Zod_rune">Zod</small>
-						</div>
-						<fieldset role="group" aria-labelledby="mal_to_zod">
-							<input type="number" aria-describedby="mal_to_zod" id="mal_to_zod" name="mal_to_zod"
-								value="1" min="0" step="1" />
-							<input type="button" value="Set Row"
-								onclick="setRunes(22, 33, document.getElementById('mal_to_zod').value);" />
-						</fieldset>
-					</fieldset>
-					<fieldset class="flex" style="  justify-content: space-between;">
-						<input type="button" value="Reset All" onclick="setRunes(0, 33, 0);" style="width:auto;" />
-						<fieldset role="group" aria-labelledby="all_runes" style="width:auto;">
-							<input type="number" aria-describedby="all_runes" id="all_runes" name="all_runes" value="1"
-								min="0" step="1" />
-							<input type="button" value="Set All"
-								onclick="setRunes(0, 33, document.getElementById('all_runes').value);" />
-						</fieldset>
-					</fieldset>
-				</article>
 				<section>
 					<p id="runeword-nb">Showing: 24/97 </p>
 				</section>
