@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
 	<meta charset="utf-8">
@@ -9,11 +9,11 @@
 	<link rel="stylesheet" href="css/custom.css">
 	<link rel="stylesheet" href="css/sortable.css">
 	<title>Runeword Calculator</title>
+	<script src="https://unpkg.com/lucide@0.424.0/dist/umd/lucide.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sortable-tablesort@3.2.3/sortable.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script>
 	<script src="./js/rw.js"></script>
 	<script src="./js/main.js"></script>
-
 </head>
 
 <body>
@@ -38,10 +38,10 @@
 					<h5>General</h5>
 					<article>
 						<fieldset>
-							<label><input type="checkbox" id="can_make" name="can_make" value="can_make" checked
-									oninput="updateFilters();" />Only Show Runewords I Can Make
+							<label><input type="checkbox" role="switch" id="can_make" name="can_make" value="can_make"
+									checked oninput="updateFilters();" />Only Show Runewords I Can Make
 							</label>
-							<label><input type="checkbox" id="ladder" name="ladder" value="ladder" checked
+							<label><input type="checkbox" role="switch" id="ladder" name="ladder" value="ladder" checked
 									oninput="updateFilters();" />Show
 								Ladder-Only Runewords
 							</label>
@@ -51,16 +51,16 @@
 					<div class="flex">
 						<h5>Version</h5>
 						<div class="flex" style="margin-left: auto; gap:1rem;">
-							<a href="#" onclick="selectVersions(true);">
+							<a href="#" onclick="selectCheckboxes(true, '#filterVersions');">
 								All
 							</a>
 							<p>/</p>
-							<a href="#" onclick="selectVersions(false);">
+							<a href="#" onclick="selectCheckboxes(false, '#filterVersions');">
 								None
 							</a>
 						</div>
 					</div>
-					<article>
+					<article id="filterVersions">
 						<fieldset class="filter-grid">
 							<label><input type="checkbox" name="version" value="1.09" checked
 									oninput="updateFilters();" />D2LoD 1.09
@@ -108,11 +108,11 @@
 						<div class="flex">
 							<h5>Bases</h5>
 							<div class="flex" style="margin-left: auto; gap:1rem;">
-								<a href="#" onclick="selectBases(true);">
+								<a href="#" onclick="selectCheckboxes(true, '#bases');">
 									All Bases
 								</a>
 								<p>/</p>
-								<a href="#" onclick="selectBases(false);">
+								<a href="#" onclick="selectCheckboxes(false, '#bases');">
 									None
 								</a>
 							</div>
@@ -123,11 +123,11 @@
 							<div class="flex">
 								<h6>Off-hands</h6>
 								<div class="flex" style="margin-left: auto; gap:1rem;">
-									<a href="#" onclick="selectBases(true, '#Off-hands');">
+									<a href="#" onclick="selectCheckboxes(true, '#Off-hands');">
 										All Off-hands
 									</a>
 									<p>/</p>
-									<a href="#" onclick="selectBases(false, '#Off-hands');">
+									<a href="#" onclick="selectCheckboxes(false, '#Off-hands');">
 										None
 									</a>
 								</div>
@@ -149,11 +149,11 @@
 							<div class="flex">
 								<h6>Armors</h6>
 								<div class="flex" style="margin-left: auto; gap:1rem;">
-									<a href="#" onclick="selectBases(true, '#Armors');">
+									<a href="#" onclick="selectCheckboxes(true, '#Armors');">
 										All Armors
 									</a>
 									<p>/</p>
-									<a href="#" onclick="selectBases(false, '#Armors');">
+									<a href="#" onclick="selectCheckboxes(false, '#Armors');">
 										None
 									</a>
 								</div>
@@ -183,11 +183,11 @@
 							<fieldset class="flex">
 								<h6>Weapons</h6>
 								<div class="flex" style="margin-left: auto; gap:1rem;">
-									<a href="#" onclick="selectBases(true, '#Weapons');">
+									<a href="#" onclick="selectCheckboxes(true, '#Weapons');">
 										All Weapons
 									</a>
 									<p>/</p>
-									<a href="#" onclick="selectBases(false, '#Weapons');">
+									<a href="#" onclick="selectCheckboxes(false, '#Weapons');">
 										None
 									</a>
 								</div>
@@ -209,7 +209,6 @@
 							<hr />
 							<p><b>Melee Weapons</b></p>
 							<fieldset class="filter-grid">
-
 								<label><input type="checkbox" name="Amazon Spears" checked
 										oninput="updateFilters();" />Amazon
 									Spears</label>
@@ -218,12 +217,8 @@
 									Katars</label>
 								<label><input type="checkbox" name="Axes" checked
 										oninput="updateFilters();" />Axes</label>
-
 								<label><input type="checkbox" name="Clubs" checked
 										oninput="updateFilters();" />Clubs</label>
-
-								<label><input type="checkbox" name="Daggers" checked
-										oninput="updateFilters();" />Daggers</label>
 								<label><input type="checkbox" name="Hammers" checked
 										oninput="updateFilters();" />Hammers</label>
 								<label><input type="checkbox" name="Maces" checked
@@ -452,7 +447,9 @@
 			</section>
 		</main>
 	</div>
-
+	<script>
+		lucide.createIcons();
+	</script>
 </body>
 
 </html>

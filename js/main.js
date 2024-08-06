@@ -46,6 +46,7 @@ function updateRunewords() {
 		last_clicked_th.click();
 		last_clicked_th.click();
 	}
+	lucide.createIcons();
 	updateFilters();
 }
 
@@ -56,6 +57,7 @@ function makeTableEntryName(runeword_data) {
 	if (runeword_data.ladder) {
 		name.appendChild(document.createElement("br"));
 		let ladder = document.createElement("small");
+		ladder.classList.add("color-bad");
 		ladder.innerText = "Ladder Only";
 		name.appendChild(ladder);
 	}
@@ -87,7 +89,7 @@ function makeTableEntryRunes(runeword_data) {
 function makeTableEntryStats(runeword_data) {
 	let stats = document.createElement("td");
 	stats.classList.add("runeword_stats");
-	stats.innerHTML = runeword_data.stats.join("<br />");
+	stats.innerHTML = runeword_data.stats.map((x) => x.toLowerCase().includes('varies') ? "<span class='varying-stat'>" + x + "</span>" : x).join("<br />");
 	return stats;
 }
 
@@ -109,11 +111,7 @@ function makeTableEntryCubeReq(runeword_data) {
 function makeTableEntryPossible(runeword_data) {
 	let possible = document.createElement("td");
 	possible.classList.add("runeword_can_make");
-	let checkbox = document.createElement("input");
-	checkbox.type = "checkbox";
-	checkbox.checked = runeword_data.success;
-	checkbox.disabled = true;
-	possible.appendChild(checkbox);
+	possible.innerHTML = `<i data-lucide="${runeword_data.success ? "check" : "circle-x"}" class="${runeword_data.success ? "color-good" : "color-bad"}"></i>`;
 	possible.setAttribute("data-sort", runeword_data.success);
 	// let paragraph = document.createElement("p");
 	// paragraph.innerHTML = formatMissing(runeword_data.missing);
@@ -226,6 +224,7 @@ function updateFilters() {
 			}
 		}
 		shown_nb += show ? 1 : 0;
+
 		rw.row.hidden = !show;
 	}
 	if (mark_instance != null) { mark_instance.unmark(); }
@@ -246,24 +245,8 @@ function resetFilters() {
 	}
 }
 
-function selectCheckboxes(selected, div_id) {
-	let inputs = document.querySelectorAll("#" + div_id + " input[type=checkbox]");
-	for (let i = 0; i < inputs.length; i++) {
-		inputs[i].checked = selected ? true : false;
-	}
-	updateFilters();
-}
-
-function selectBases(selected, bases = '') {
-	let inputs = document.querySelectorAll("#bases " + bases + " input[type=checkbox]");
-	for (let i = 0; i < inputs.length; i++) {
-		inputs[i].checked = selected ? true : false;
-	}
-	updateFilters();
-}
-
-function selectVersions(selected) {
-	let inputs = document.querySelectorAll("#filters input[name=version]");
+function selectCheckboxes(selected, selector) {
+	let inputs = document.querySelectorAll(selector + " input[type=checkbox]");
 	for (let i = 0; i < inputs.length; i++) {
 		inputs[i].checked = selected ? true : false;
 	}

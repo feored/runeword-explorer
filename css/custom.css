@@ -10,13 +10,18 @@
 	--color-server: rgb(255, 77, 77);
 	--color-set: rgb(0, 255, 0);
 
+	--color-good: rgb(6, 151, 6);
+	--color-bad: var(--color-server);
+
 	--color-topaz: rgb(255, 255, 0);
 	--color-amethyst: rgb(153, 50, 204);
 	--color-sapphire: rgb(79, 164, 230);
 	--color-ruby: rgb(173, 26, 12);
 	--color-emerald: rgb(27, 180, 47);
 	--color-diamond: rgb(134, 134, 134);
+
 }
+
 
 .topaz {
 	color: var(--color-topaz);
@@ -44,6 +49,18 @@
 
 .rune-text {
 	color: var(--color-craft);
+}
+
+.color-good {
+	color: var(--color-good);
+}
+
+.color-bad {
+	color: var(--color-bad);
+}
+
+.varying-stat {
+	color: var(--color-sapphire)
 }
 
 /* LAYOUT */
@@ -96,16 +113,6 @@
 	resize: horizontal;
 }
 
-[data-tooltip][data-placement=top]::before,
-[data-tooltip][data-placement=top]::after,
-[data-tooltip]::before,
-[data-tooltip]::after {
-	max-width: 10em;
-	height: max-content;
-	white-space: nowrap;
-	word-wrap: normal;
-}
-
 
 @media (max-width: 100em) {
 	.wrapper {
@@ -123,7 +130,10 @@
 
 }
 
-/* PicoCSS fixes : https://github.com/picocss/pico/discussions/482#discussioncomment-9043725*/
+
+
+
+/* PicoCSS fixes and overrides : https://github.com/picocss/pico/discussions/482#discussioncomment-9043725*/
 
 :root {
 	--pico-font-family-sans-serif: Inter, system-ui, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, Helvetica, Arial, "Helvetica Neue", sans-serif, var(--pico-font-family-emoji);
@@ -192,9 +202,6 @@ tbody tr td {
 	padding-bottom: calc(var(--pico-spacing));
 }
 
-[data-tooltip] {
-	width: max-content;
-}
 
 table.striped tbody tr:nth-child(odd of :not([hidden])) th,
 table.striped tbody tr:nth-child(odd of :not([hidden])) td {
@@ -207,10 +214,20 @@ table.striped tbody tr:nth-child(even of :not([hidden])) td {
 }
 
 
+[data-tooltip][data-placement=top]::before,
+[data-tooltip][data-placement=top]::after,
+[data-tooltip]::before,
+[data-tooltip]::after {
+	height: max-content;
+	white-space: pre;
+	word-wrap: normal;
+}
+
+
+
 /* Custom CSS for the runes */
 
 #runes small {
-	/* color: var(--color-craft); */
 	font-size: medium;
 }
 
@@ -230,12 +247,6 @@ td {
 	text-align: center;
 }
 
-/* Table col order: name, item type, sockets, runes, stats, level req */
-#rwtable tbody td:nth-child(1) {
-	font-size: larger;
-	color: var(--color-unique);
-}
-
 #runeword-nb {
 	text-align: center;
 	font-style: italic;
@@ -247,13 +258,10 @@ td {
 }
 
 td.runeword_name {
+	font-size: larger;
 	color: var(--color-unique);
 }
 
-/* Ladder Only */
-td.runeword_name small {
-	color: var(--color-set);
-}
 
 td.runeword_runes {
 	color: var(--color-craft);
