@@ -61,7 +61,7 @@
 						</div>
 					</div>
 					<article id="filterVersions">
-						<fieldset class="filter-grid">
+						<fieldset class="custom-grid">
 							<label><input type="checkbox" name="version" value="1.09" checked
 									oninput="updateFilters();" />D2LoD 1.09
 							</label>
@@ -132,7 +132,7 @@
 									</a>
 								</div>
 							</div>
-							<fieldset class="filter-grid">
+							<fieldset class="custom-grid">
 								<label><input type="checkbox" name="Paladin Shields" checked
 										oninput="updateFilters();" />Paladin
 									Shields</label>
@@ -164,7 +164,7 @@
 									Armors</label>
 							</fieldset>
 							<br>
-							<fieldset class="filter-grid">
+							<fieldset class="custom-grid">
 								<label><input type="checkbox" name="Helms" checked
 										oninput="updateFilters();" />Helms</label>
 								<label><input type="checkbox" name="Circlets" checked
@@ -194,7 +194,7 @@
 							</fieldset>
 							<br />
 							<p><b>Missile Weapons</b></p>
-							<fieldset class="filter-grid">
+							<fieldset class="custom-grid">
 
 								<label><input type="checkbox" name="Amazon Bows" checked
 										oninput="updateFilters();" />Amazon
@@ -208,7 +208,7 @@
 							</fieldset>
 							<hr />
 							<p><b>Melee Weapons</b></p>
-							<fieldset class="filter-grid">
+							<fieldset class="custom-grid">
 								<label><input type="checkbox" name="Amazon Spears" checked
 										oninput="updateFilters();" />Amazon
 									Spears</label>
@@ -241,7 +241,7 @@
 				</aside>
 			</div>
 		</div>
-		<div class="container grid-runes">
+		<div class="container-fluid grid-runes">
 			<div class="yarc-header">
 				<hgroup>
 					<h4 class="text-center">YARC</h4>
@@ -249,7 +249,7 @@
 				</hgroup>
 			</div>
 			<article id="runes">
-				<fieldset class="rune-grid">
+				<fieldset class="custom-grid">
 					<div>
 						<input type="number" id="El_rune" name="El_rune" value="0" min="0" step="1" />
 						<small id="El_rune">El</small>
@@ -294,14 +294,6 @@
 						<input type="number" id="Amn_rune" name="Amn_rune" value="0" min="0" step="1" />
 						<small id="Amn_rune">Amn</small>
 					</div>
-					<fieldset role="group" aria-labelledby="el_to_amn">
-						<input type="number" aria-describedby="el_to_amn" id="el_to_amn" name="el_to_amn" value="1"
-							min="0" step="1" />
-						<input type="button" value="Set Row"
-							onclick="setRunes(0, 11, document.getElementById('el_to_amn').value);" />
-					</fieldset>
-				</fieldset>
-				<fieldset class="rune-grid">
 					<div>
 						<input type="number" id="Sol_rune" name="Sol_rune" value="0" min="0" step="1" />
 						<small id="Sol_rune">Sol</small>
@@ -346,14 +338,6 @@
 						<input type="number" id="Um_rune" name="Um_rune" value="0" min="0" step="1" />
 						<small id="Um_rune">Um</small>
 					</div>
-					<fieldset role="group" aria-labelledby="sol_to_um">
-						<input type="number" aria-describedby="sol_to_um" id="sol_to_um" name="sol_to_um" value="1"
-							min="0" step="1" />
-						<input type="button" value="Set Row"
-							onclick="setRunes(11, 22, document.getElementById('sol_to_um').value);" />
-					</fieldset>
-				</fieldset>
-				<fieldset class="rune-grid">
 					<div>
 						<input type="number" id="Mal_rune" name="Mal_rune" value="0" min="0" step="1" />
 						<small id="Mal_rune">Mal</small>
@@ -398,17 +382,12 @@
 						<input type="number" id="Zod_rune" name="Zod_rune" value="0" min="0" step="1" />
 						<small id="Zod_rune">Zod</small>
 					</div>
-					<fieldset role="group" aria-labelledby="mal_to_zod">
-						<input type="number" aria-describedby="mal_to_zod" id="mal_to_zod" name="mal_to_zod" value="1"
-							min="0" step="1" />
-						<input type="button" value="Set Row"
-							onclick="setRunes(22, 33, document.getElementById('mal_to_zod').value);" />
-					</fieldset>
+
 				</fieldset>
 				<hr />
-				<fieldset class="flex" style="  justify-content: space-between;">
-					<input type="button" value="Reset All" onclick="setRunes(0, 33, 0);" style="width:auto;" />
-					<fieldset role="group" aria-labelledby="all_runes" style="width:auto;">
+				<fieldset class="flex" style="justify-content: space-between;">
+					<input type="button" value="Reset All" onclick="setRunes(0, 33, 0);" class="auto-width" />
+					<fieldset role="group" aria-labelledby="all_runes" class="auto-width">
 						<input type="number" aria-describedby="all_runes" id="all_runes" name="all_runes" value="1"
 							min="0" step="1" />
 						<input type="button" value="Set All"

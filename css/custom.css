@@ -65,6 +65,15 @@
 
 /* LAYOUT */
 
+.custom-grid {
+	display: grid;
+	grid-auto-flow: row;
+	grid-template-columns: repeat(auto-fill, minmax(10em, 1fr));
+	grid-template-rows: repeat(auto-fill, 1fr);
+	column-gap: var(--pico-grid-column-gap);
+	row-gap: var(--pico-grid-row-gap);
+}
+
 .yarc-header {
 	padding-block: var(--pico-block-spacing-vertical);
 }
@@ -78,7 +87,7 @@
 }
 
 .auto-width {
-	width: auto;
+	width: auto !important;
 }
 
 /* Custom CSS for the sidebar */
@@ -231,14 +240,6 @@ table.striped tbody tr:nth-child(even of :not([hidden])) td {
 	font-size: medium;
 }
 
-.rune-grid {
-	display: grid;
-	grid-template-columns: repeat(11, 1fr) 2fr;
-	grid-template-rows: 1fr;
-	grid-column-gap: var(--pico-grid-column-gap);
-	grid-row-gap: var(--pico-grid-row-gap);
-}
-
 
 /* Custom CSS for the runewords table*/
 
@@ -281,13 +282,4 @@ td.runeword_stats {
 
 #filters fieldset {
 	margin-bottom: 0;
-}
-
-.filter-grid {
-	display: grid;
-	grid-auto-flow: row;
-	grid-template-columns: repeat(auto-fill, minmax(10em, 1fr));
-	grid-template-rows: repeat(auto-fill, 1fr);
-	column-gap: var(--pico-grid-column-gap);
-	row-gap: var(--pico-grid-row-gap);
 }
