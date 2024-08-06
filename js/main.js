@@ -24,15 +24,17 @@ function updateRunewords() {
 	let inventory = [];
 	for (let i = 0; i < RUNES.length; i++) {
 		let id = RUNES[i] + "_rune";
-		inventory.push(document.getElementById(id).value);
+		let val = parseInt(document.getElementById(id).value);
+		val = isNaN(val) ? 0 : val;
+		inventory.push(val);
 	}
 	let table = document.querySelector("#rwtable tbody");
 	for (let i = 0; i < RUNEWORDS.length; i++) {
 		let rw = RUNEWORDS[i];
-		let { success, upgsDone, lacking } = getPathRw(inventory, rw.runes);
+		let { success, upgsDone, missing } = getPathRw(inventory, rw.runes);
 		rw.success = success;
 		rw.upgsDone = upgsDone;
-		rw.lacking = lacking;
+		rw.missing = missing;
 		rw.el_value = rw.runes.map((x) => getElValue(RUNES.indexOf(x))).reduce((partialSum, a) => partialSum + a, 0);
 		row = makeTableEntry(rw);
 		rw.row = row;
@@ -99,9 +101,8 @@ function makeTableEntryLevelReq(runeword_data) {
 function makeTableEntryCubeReq(runeword_data) {
 	let cubing_required = document.createElement("td");
 	cubing_required.classList.add("runeword_cubing");
-	if (runeword_data.success && runeword_data.upgsDone.reduce((partialSum, a) => partialSum + a, 0) > 0) {
-		cubing_required.innerHTML = formatUpgs(runeword_data.upgsDone, runeword_data.runes);
-	}
+	cubing_required.innerHTML = runeword_data.success ? formatUpgs(runeword_data.upgsDone, runeword_data.runes) : "";
+	cubing_required.setAttribute("data-sort", runeword_data.upgsDone.filter((x) => x > 0).length);
 	return cubing_required;
 }
 
@@ -113,13 +114,26 @@ function makeTableEntryPossible(runeword_data) {
 	checkbox.checked = runeword_data.success;
 	checkbox.disabled = true;
 	possible.appendChild(checkbox);
+	possible.setAttribute("data-sort", runeword_data.success);
+	// let paragraph = document.createElement("p");
+	// paragraph.innerHTML = formatMissing(runeword_data.missing);
+	// possible.appendChild(paragraph);
+
 	return possible;
+}
+
+function makeTableEntryVersion(runeword_data) {
+	let version = document.createElement("td");
+	version.classList.add("runeword_version");
+	version.innerText = runeword_data.version;
+	return version;
 }
 
 
 function makeTableEntry(runeword_data) {
 	let row = document.createElement("tr");
 	row.appendChild(makeTableEntryPossible(runeword_data));
+	row.appendChild(makeTableEntryVersion(runeword_data));
 	row.appendChild(makeTableEntryName(runeword_data));
 	row.appendChild(makeTableEntryBases(runeword_data));
 	row.appendChild(makeTableEntrySockets(runeword_data));
@@ -230,6 +244,14 @@ function resetFilters() {
 			inputs[i].value = inputs[i].defaultValue;
 		}
 	}
+}
+
+function selectCheckboxes(selected, div_id) {
+	let inputs = document.querySelectorAll("#" + div_id + " input[type=checkbox]");
+	for (let i = 0; i < inputs.length; i++) {
+		inputs[i].checked = selected ? true : false;
+	}
+	updateFilters();
 }
 
 function selectBases(selected, bases = '') {

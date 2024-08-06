@@ -93,7 +93,19 @@
 	top: 0;
 	max-height: 100vh;
 	overflow-y: auto;
+	resize: horizontal;
 }
+
+[data-tooltip][data-placement=top]::before,
+[data-tooltip][data-placement=top]::after,
+[data-tooltip]::before,
+[data-tooltip]::after {
+	max-width: 10em;
+	height: max-content;
+	white-space: nowrap;
+	word-wrap: normal;
+}
+
 
 @media (max-width: 100em) {
 	.wrapper {
@@ -266,7 +278,7 @@ td.runeword_stats {
 .filter-grid {
 	display: grid;
 	grid-auto-flow: row;
-	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(10em, 1fr));
 	grid-template-rows: repeat(auto-fill, 1fr);
 	column-gap: var(--pico-grid-column-gap);
 	row-gap: var(--pico-grid-row-gap);
