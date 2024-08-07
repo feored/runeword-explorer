@@ -86,6 +86,12 @@
 	row-gap: var(--pico-grid-row-gap);
 }
 
+
+.all_or_none {
+	margin-left: auto;
+	gap: 1rem;
+}
+
 .yarc-header {
 	padding-block: var(--pico-block-spacing-vertical);
 }
@@ -360,4 +366,13 @@ td.runeword_bases .bases_group small {
 
 #filters fieldset {
 	margin-bottom: 0;
+}
+
+.rune-grid {
+	display: grid;
+	grid-auto-flow: row;
+	grid-template-columns: repeat(auto-fill, minmax(5em, 1fr));
+	grid-template-rows: repeat(auto-fill, 1fr);
+	column-gap: var(--pico-grid-column-gap);
+	row-gap: var(--pico-grid-row-gap);
 }

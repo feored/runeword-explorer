@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="css/custom.css">
 	<link rel="stylesheet" href="css/sortable.css">
 	<title>Runeword Calculator</title>
+	<script src="https://cdn.jsdelivr.net/npm/ejs@3.1.10/ejs.min.js"></script>
 	<script src="https://unpkg.com/lucide@0.424.0/dist/umd/lucide.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sortable-tablesort@3.2.3/sortable.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script>
@@ -54,17 +55,17 @@
 					<hr />
 					<div class="flex">
 						<h5>Version</h5>
-						<div class="flex" style="margin-left: auto; gap:1rem;">
-							<a href="#" onclick="selectCheckboxes(true, '#filterVersions');">
-								All
+						<div class="flex all_or_none"">
+							<a href=" #" onclick="selectCheckboxes(true, '#filter_versions');">
+							All
 							</a>
 							<p>/</p>
-							<a href="#" onclick="selectCheckboxes(false, '#filterVersions');">
+							<a href="#" onclick="selectCheckboxes(false, '#filter_versions');">
 								None
 							</a>
 						</div>
 					</div>
-					<article id="filterVersions">
+					<article id="filter_versions">
 						<fieldset class="custom-grid">
 							<label><input type="checkbox" name="version" value="1.09" checked
 									oninput="updateFilters();" />D2LoD 1.09
@@ -111,9 +112,9 @@
 						<hr />
 						<div class="flex">
 							<h5>Bases</h5>
-							<div class="flex" style="margin-left: auto; gap:1rem;">
-								<a href="#" onclick="selectCheckboxes(true, '#bases');">
-									All Bases
+							<div class="flex all_or_none"">
+								<a href=" #" onclick="selectCheckboxes(true, '#bases');">
+								All Bases
 								</a>
 								<p>/</p>
 								<a href="#" onclick="selectCheckboxes(false, '#bases');">
@@ -126,9 +127,9 @@
 						<article id="Off-hands">
 							<div class="flex">
 								<h6>Off-hands</h6>
-								<div class="flex" style="margin-left: auto; gap:1rem;">
-									<a href="#" onclick="selectCheckboxes(true, '#Off-hands');">
-										All Off-hands
+								<div class="flex all_or_none"">
+									<a href=" #" onclick="selectCheckboxes(true, '#Off-hands');">
+									All
 									</a>
 									<p>/</p>
 									<a href="#" onclick="selectCheckboxes(false, '#Off-hands');">
@@ -137,12 +138,13 @@
 								</div>
 							</div>
 							<fieldset class="custom-grid">
-								<label><input type="checkbox" name="Paladin Shields" checked
+								<label><input type="checkbox" name="Paladin Shields" value="Paladin Shields" checked
 										oninput="updateFilters();" />Paladin
 									Shields</label>
-								<label><input type="checkbox" name="Shields" checked
+								<label><input type="checkbox" name="Shields" value="Shields" checked
 										oninput="updateFilters();" />Shields</label>
-								<label><input type="checkbox" name="Necromancer Shrunken Heads" checked
+								<label><input type="checkbox" name="Necromancer Shrunken Heads"
+										value="Necromancer Shrunken Heads" checked
 										oninput="updateFilters();" />Necromancer
 									Shrunken Heads</label>
 							</fieldset>
@@ -152,9 +154,9 @@
 						<article id="Armors">
 							<div class="flex">
 								<h6>Armors</h6>
-								<div class="flex" style="margin-left: auto; gap:1rem;">
-									<a href="#" onclick="selectCheckboxes(true, '#Armors');">
-										All Armors
+								<div class="flex all_or_none"">
+									<a href=" #" onclick="selectCheckboxes(true, '#Armors');">
+									All
 									</a>
 									<p>/</p>
 									<a href="#" onclick="selectCheckboxes(false, '#Armors');">
@@ -163,20 +165,20 @@
 								</div>
 							</div>
 							<fieldset>
-								<label><input type="checkbox" name="Body Armors" checked
+								<label><input type="checkbox" name="Body Armors" value="Body Armors" checked
 										oninput="updateFilters();" />Body
 									Armors</label>
 							</fieldset>
 							<br>
 							<fieldset class="custom-grid">
-								<label><input type="checkbox" name="Helms" checked
+								<label><input type="checkbox" name="Helms" value="Helms" checked
 										oninput="updateFilters();" />Helms</label>
-								<label><input type="checkbox" name="Circlets" checked
+								<label><input type="checkbox" name="Circlets" value="Circlets" checked
 										oninput="updateFilters();" />Circlets</label>
-								<label><input type="checkbox" name="Druid Pelts" checked
+								<label><input type="checkbox" name="Druid Pelts" value="Druid Pelts" checked
 										oninput="updateFilters();" />Druid
 									Pelts</label>
-								<label><input type="checkbox" name="Barbarian Helms" checked
+								<label><input type="checkbox" name="Barbarian Helms" value="Barbarian Helms" checked
 										oninput="updateFilters();" />Barbarian Helms</label>
 
 							</fieldset>
@@ -186,9 +188,9 @@
 						<article id="Weapons">
 							<fieldset class="flex">
 								<h6>Weapons</h6>
-								<div class="flex" style="margin-left: auto; gap:1rem;">
-									<a href="#" onclick="selectCheckboxes(true, '#Weapons');">
-										All Weapons
+								<div class="flex all_or_none"">
+									<a href=" #" onclick="selectCheckboxes(true, '#Weapons');">
+									All
 									</a>
 									<p>/</p>
 									<a href="#" onclick="selectCheckboxes(false, '#Weapons');">
@@ -200,12 +202,12 @@
 							<p><b>Missile Weapons</b></p>
 							<fieldset class="custom-grid">
 
-								<label><input type="checkbox" name="Amazon Bows" checked
+								<label><input type="checkbox" name="Amazon Bows" value="Amazon Bows" checked
 										oninput="updateFilters();" />Amazon
 									Bows</label>
-								<label><input type="checkbox" name="Bows" checked
+								<label><input type="checkbox" name="Bows" value="Bows" checked
 										oninput="updateFilters();" />Bows</label>
-								<label><input type="checkbox" name="Crossbows" checked
+								<label><input type="checkbox" name="Crossbows" value="Crossbows" checked
 										oninput="updateFilters();" />Crossbows</label>
 
 
@@ -213,34 +215,114 @@
 							<hr />
 							<p><b>Melee Weapons</b></p>
 							<fieldset class="custom-grid">
-								<label><input type="checkbox" name="Amazon Spears" checked
+								<label><input type="checkbox" name="Amazon Spears" value="Amazon Spears" checked
 										oninput="updateFilters();" />Amazon
 									Spears</label>
-								<label><input type="checkbox" name="Assassin Katars" checked
+								<label><input type="checkbox" name="Assassin Katars" value="Assassin Katars" checked
 										oninput="updateFilters();" />Assassin
 									Katars</label>
-								<label><input type="checkbox" name="Axes" checked
+								<label><input type="checkbox" name="Axes" value="Axes" checked
 										oninput="updateFilters();" />Axes</label>
-								<label><input type="checkbox" name="Clubs" checked
+								<label><input type="checkbox" name="Clubs" value="Clubs" checked
 										oninput="updateFilters();" />Clubs</label>
-								<label><input type="checkbox" name="Daggers" checked
+								<label><input type="checkbox" name="Daggers" value="Daggers" checked
 										oninput="updateFilters();" />Daggers</label>
-								<label><input type="checkbox" name="Hammers" checked
+								<label><input type="checkbox" name="Hammers" value="Hammers" checked
 										oninput="updateFilters();" />Hammers</label>
-								<label><input type="checkbox" name="Maces" checked
+								<label><input type="checkbox" name="Maces" value="Maces" checked
 										oninput="updateFilters();" />Maces</label>
-								<label><input type="checkbox" name="Polearms" checked
+								<label><input type="checkbox" name="Polearms" value="Polearms" checked
 										oninput="updateFilters();" />Polearms</label>
-								<label><input type="checkbox" name="Scepters" checked
+								<label><input type="checkbox" name="Scepters" value="Scepters" checked
 										oninput="updateFilters();" />Scepters</label>
-								<label><input type="checkbox" name="Spears" checked
+								<label><input type="checkbox" name="Spears" value="Spears" checked
 										oninput="updateFilters();" />Spears</label>
-								<label><input type="checkbox" name="Staves" checked
+								<label><input type="checkbox" name="Staves" value="Staves" checked
 										oninput="updateFilters();" />Staves</label>
-								<label><input type="checkbox" name="Swords" checked
+								<label><input type="checkbox" name="Swords" value="Swords" checked
 										oninput="updateFilters();" />Swords</label>
-								<label><input type="checkbox" name="Wands" checked
+								<label><input type="checkbox" name="Wands" value="Wands" checked
 										oninput="updateFilters();" />Wands</label>
+							</fieldset>
+						</article>
+					</div>
+					<div id="required_runes">
+						<div class="flex">
+							<h5>Required Runes</h5>
+							<div class="flex all_or_none"">
+								<a href=" #" onclick="selectCheckboxes(false, '#required_runes');">
+								None
+								</a>
+							</div>
+						</div>
+						<article>
+							<fieldset class="rune-grid">
+								<label><input type="checkbox" name="required_el" value="El"
+										oninput="updateFilters();" />El</label>
+								<label><input type="checkbox" name="required_eld" value="Eld"
+										oninput="updateFilters();" />Eld</label>
+								<label><input type="checkbox" name="required_tir" value="Tir"
+										oninput="updateFilters();" />Tir</label>
+								<label><input type="checkbox" name="required_nef" value="Nef"
+										oninput="updateFilters();" />Nef</label>
+								<label><input type="checkbox" name="required_eth" value="Eth"
+										oninput="updateFilters();" />Eth</label>
+								<label><input type="checkbox" name="required_ith" value="Ith"
+										oninput="updateFilters();" />Ith</label>
+								<label><input type="checkbox" name="required_tal" value="Tal"
+										oninput="updateFilters();" />Tal</label>
+								<label><input type="checkbox" name="required_ral" value="Ral"
+										oninput="updateFilters();" />Ral</label>
+								<label><input type="checkbox" name="required_ort" value="Ort"
+										oninput="updateFilters();" />Ort</label>
+								<label><input type="checkbox" name="required_thul" value="Thul"
+										oninput="updateFilters();" />Thul</label>
+								<label><input type="checkbox" name="required_amn" value="Amn"
+										oninput="updateFilters();" />Amn</label>
+								<label><input type="checkbox" name="required_sol" value="Sol"
+										oninput="updateFilters();" />Sol</label>
+								<label><input type="checkbox" name="required_shael" value="Shael"
+										oninput="updateFilters();" />Shael</label>
+								<label><input type="checkbox" name="required_dol" value="Dol"
+										oninput="updateFilters();" />Dol</label>
+								<label><input type="checkbox" name="required_hel" value="Hel"
+										oninput="updateFilters();" />Hel</label>
+								<label><input type="checkbox" name="required_io" value="Io"
+										oninput="updateFilters();" />Io</label>
+								<label><input type="checkbox" name="required_lum" value="Lum"
+										oninput="updateFilters();" />Lum</label>
+								<label><input type="checkbox" name="required_ko" value="Ko"
+										oninput="updateFilters();" />Ko</label>
+								<label><input type="checkbox" name="required_fal" value="Fal"
+										oninput="updateFilters();" />Fal</label>
+								<label><input type="checkbox" name="required_lem" value="Lem"
+										oninput="updateFilters();" />Lem</label>
+								<label><input type="checkbox" name="required_pul" value="Pul"
+										oninput="updateFilters();" />Pul</label>
+								<label><input type="checkbox" name="required_um" value="Um"
+										oninput="updateFilters();" />Um</label>
+								<label><input type="checkbox" name="required_mal" value="Mal"
+										oninput="updateFilters();" />Mal</label>
+								<label><input type="checkbox" name="required_ist" value="Ist"
+										oninput="updateFilters();" />Ist</label>
+								<label><input type="checkbox" name="required_gul" value="Gul"
+										oninput="updateFilters();" />Gul</label>
+								<label><input type="checkbox" name="required_vex" value="Vex"
+										oninput="updateFilters();" />Vex</label>
+								<label><input type="checkbox" name="required_ohm" value="Ohm"
+										oninput="updateFilters();" />Ohm</label>
+								<label><input type="checkbox" name="required_lo" value="Lo"
+										oninput="updateFilters();" />Lo</label>
+								<label><input type="checkbox" name="required_sur" value="Sur"
+										oninput="updateFilters();" />Sur</label>
+								<label><input type="checkbox" name="required_ber" value="Ber"
+										oninput="updateFilters();" />Ber</label>
+								<label><input type="checkbox" name="required_jah" value="Jah"
+										oninput="updateFilters();" />Jah</label>
+								<label><input type="checkbox" name="required_cham" value="Cham"
+										oninput="updateFilters();" />Cham</label>
+								<label><input type="checkbox" name="required_zod" value="Zod"
+										oninput="updateFilters();" />Zod</label>
 							</fieldset>
 						</article>
 					</div>
