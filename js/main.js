@@ -54,21 +54,75 @@ function makeTableEntryName(runeword_data) {
 	let name = document.createElement("td");
 	name.classList.add("runeword_name");
 	name.innerText = runeword_data.name;
-	if (runeword_data.ladder) {
-		name.appendChild(document.createElement("br"));
+	warnings = document.createElement("div");
+	warnings.classList.add("warnings");
+	if (runeword_data.ladder.d2lod) {
 		let ladder = document.createElement("small");
-		ladder.classList.add("color-bad");
-		ladder.innerText = "Ladder Only";
-		name.appendChild(ladder);
+		ladder.setAttribute("data-tooltip", "Runeword restricted to ladder in Diablo II:  Lord of Destruction.\nCan be made in any mode in Diablo II: Resurrected.");
+		ladder.setAttribute("data-placement", "bottom");
+		ladder.classList.add("d2lod_ladder");
+		ladder.innerText = "Ladder";
+		warnings.appendChild(ladder);
+
+	} else if (runeword_data.d2r_only) {
+		let version = document.createElement("small");
+		version.setAttribute("data-tooltip", "Runeword only available in Diablo II: Resurrected.\nCannot be made in Diablo II: Lord of Destruction.");
+		version.setAttribute("data-placement", "bottom");
+		version.classList.add("d2r_only");
+		version.innerText = "D2R";
+		warnings.appendChild(version);
+	}
+	if (runeword_data.ladder.d2r) {
+		let ladder = document.createElement("small");
+		ladder.setAttribute("data-tooltip", "Runeword restricted to ladder in Diablo II: Resurrected.\nCan be made in single-player mode.");
+		ladder.setAttribute("data-placement", "bottom");
+		ladder.classList.add("d2r_ladder");
+		ladder.innerText = "Ladder";
+		warnings.appendChild(ladder);
+	}
+	if (warnings.childElementCount > 0) {
+		name.appendChild(warnings);
 	}
 	return name
 }
 
 function makeTableEntryBases(runeword_data) {
+	function makeBasesHTML(bases) {
+		return bases.map((x) => x in ITEM_TYPES ? `<em data-html="true" data-tooltip="${ITEM_TYPES[x].join(',\n')}">${x}</em>` : `<span>${x}</span>`).join("<br />");
+	}
 	let item_types = document.createElement("td");
 	item_types.classList.add("runeword_bases");
-	item_types.innerHTML = runeword_data.type.map((x) => x in ITEM_TYPES ? ('<em data-html="true" data-tooltip="' + (ITEM_TYPES[x].join(',\n')) + '"">' + x + '</em>') : x).join("<br />");
-	return item_types;
+	if (runeword_data.bases_d2r.length == 0) {
+		item_types.innerHTML = makeBasesHTML(runeword_data.bases);
+		return item_types;
+	} else {
+		let d2lod_bases = document.createElement("div");
+		d2lod_bases.classList.add("bases_group");
+		let d2lod_warning = document.createElement("small");
+		d2lod_warning.setAttribute("data-tooltip", "Bases available in Diablo II: Lord of Destruction.");
+		d2lod_warning.classList.add("d2lod_ladder");
+		d2lod_warning.innerText = "D2LoD";
+		d2lod_actual_bases = document.createElement("p");
+		d2lod_actual_bases.innerHTML = makeBasesHTML(runeword_data.bases);
+		d2lod_bases.appendChild(d2lod_warning);
+		d2lod_bases.appendChild(d2lod_actual_bases);
+
+
+		let d2r_bases = document.createElement("div");
+		d2r_bases.classList.add("bases_group");
+		let d2r_warning = document.createElement("small");
+		d2r_warning.setAttribute("data-tooltip", "Bases available in Diablo II Resurrected.");
+		d2r_warning.classList.add("d2r_only");
+		d2r_warning.innerText = "D2R";
+		d2r_actual_bases = document.createElement("p");
+		d2r_actual_bases.innerHTML = makeBasesHTML(runeword_data.bases_d2r);
+		d2r_bases.appendChild(d2r_warning);
+		d2r_bases.appendChild(d2r_actual_bases);
+
+		item_types.appendChild(d2lod_bases);
+		item_types.appendChild(d2r_bases);
+		return item_types;
+	}
 }
 
 function makeTableEntrySockets(runeword_data) {
@@ -113,10 +167,6 @@ function makeTableEntryPossible(runeword_data) {
 	possible.classList.add("runeword_can_make");
 	possible.innerHTML = `<i data-lucide="${runeword_data.success ? "check" : "circle-x"}" class="${runeword_data.success ? "color-good" : "color-bad"}"></i>`;
 	possible.setAttribute("data-sort", runeword_data.success);
-	// let paragraph = document.createElement("p");
-	// paragraph.innerHTML = formatMissing(runeword_data.missing);
-	// possible.appendChild(paragraph);
-
 	return possible;
 }
 
@@ -174,9 +224,9 @@ function isAnyBaseShown(itemtypes, selected_bases) {
 }
 
 function updateFilters() {
-	let ladder = document.getElementById("ladder").checked;
-	let checked_item_types = [];
-	document.querySelectorAll("#bases input[type=checkbox]:checked").forEach((x) => checked_item_types.push(x.name));
+	let ladder_d2r = document.getElementById("ladder_d2r").checked;
+	let ladder_d2lod = document.getElementById("ladder_d2lod").checked;
+	let checked_item_types = Array.from(document.querySelectorAll("#bases input[type=checkbox]:checked")).map((x) => x.name);
 	let versions = [];
 	let [minsocket, maxsocket] = [document.getElementById("minsocket"), document.getElementById("maxsocket")];
 	if (parseInt(minsocket.value) > parseInt(maxsocket.value)) {
@@ -191,10 +241,12 @@ function updateFilters() {
 	let search_term = document.getElementById("searchbar").value.toLowerCase();
 	let shown_nb = 0;
 
+
 	for (let i = 0; i < RUNEWORDS_DATA.length; i++) {
+
 		let rw = RUNEWORDS_DATA[i];
 		let show = true;
-		if (!ladder && rw.ladder) {
+		if ((!ladder_d2lod && rw.ladder.d2lod) || (!ladder_d2r && rw.ladder.d2r)) {
 			show = false;
 		}
 		else if (document.getElementById("can_make").checked && !rw.success) {
@@ -209,7 +261,8 @@ function updateFilters() {
 		else if (rw.levelreq < minlevel.value || rw.levelreq > maxlevel.value) {
 			show = false;
 		}
-		else if (!isAnyBaseShown(rw.type, checked_item_types)) {
+		else if (!isAnyBaseShown(Array.from(new Set([].concat(rw.bases, rw.bases_d2r))), checked_item_types)) {
+			//Concat the bases from both versions and remove duplicates
 			show = false;
 		}
 
@@ -219,7 +272,8 @@ function updateFilters() {
 			if ((rw.name.toLowerCase().includes(search_term))
 				|| (rw.runes.join(" ").toLowerCase().includes(search_term))
 				|| (rw.stats.some((x) => x.toLowerCase().includes(search_term)))
-				|| (rw.type.some((x) => x.toLowerCase().includes(search_term)))) {
+				|| (rw.bases.some((x) => x.toLowerCase().includes(search_term)))
+				|| (rw.bases_d2r.some((x) => x.toLowerCase().includes(search_term)))) {
 				show = true;
 			}
 		}
@@ -236,6 +290,7 @@ function updateFilters() {
 function resetFilters() {
 	let inputs = document.querySelectorAll("#filters input");
 	for (let i = 0; i < inputs.length; i++) {
+		console.log(inputs[i]);
 		if (inputs[i].type == "checkbox") {
 			inputs[i].checked = inputs[i].defaultChecked;
 		}
@@ -248,7 +303,7 @@ function resetFilters() {
 function selectCheckboxes(selected, selector) {
 	let inputs = document.querySelectorAll(selector + " input[type=checkbox]");
 	for (let i = 0; i < inputs.length; i++) {
-		inputs[i].checked = selected ? true : false;
+		inputs[i].checked = selected;
 	}
 	updateFilters();
 }
