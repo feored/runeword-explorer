@@ -4,16 +4,16 @@
 		"levelreq": 11,
 		"mods": {
 			"weapon": [
-				"1% Light Radius",
+				"+1 To Light Radius",
 				"+50 Attack Rating"
 			],
 			"armor": [
 				"+15 Defense",
-				"+1 Light Radius"
+				"+1 To Light Radius"
 			],
 			"shield": [
 				"+15 Defense",
-				"+1 Light Radius"
+				"+1 To Light Radius"
 			]
 		}
 	},

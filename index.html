@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
 	<meta charset="utf-8">
@@ -9,11 +9,11 @@
 	<link rel="stylesheet" href="css/custom.css">
 	<link rel="stylesheet" href="css/sortable.css">
 	<title>Runeword Calculator</title>
+	<script src="https://unpkg.com/lucide@0.424.0/dist/umd/lucide.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sortable-tablesort@3.2.3/sortable.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script>
 	<script src="./js/rw.js"></script>
 	<script src="./js/main.js"></script>
-
 </head>
 
 <body>
@@ -24,7 +24,6 @@
 					<h3>Filters</h3>
 					<button onclick=" resetFilters(); updateFilters();">Reset Filters</button>
 				</div>
-
 				<aside id="filters">
 					<section>
 
@@ -36,46 +35,54 @@
 							oninput="updateFilters();" />
 					</fieldset>
 					<hr />
-					<fieldset>
-						<label><input type="checkbox" id="can_make" name="can_make" value="can_make" checked
-								oninput="updateFilters();" />Only Show Runewords I Can Make
-						</label>
-						<label><input type="checkbox" id="ladder" name="ladder" value="ladder" checked
-								oninput="updateFilters();" />Show
-							Ladder-Only Runewords
-						</label>
-					</fieldset>
+					<h5>General</h5>
+					<article>
+						<fieldset>
+							<label><input type="checkbox" role="switch" id="can_make" name="can_make" value="can_make"
+									checked oninput="updateFilters();" />Only Show Runewords I Can Make
+							</label>
+							<label><input type="checkbox" role="switch" id="ladder_d2r" name="ladder_d2r"
+									value="ladder_d2r" checked oninput="updateFilters();" />Show
+								Ladder-Only Runewords (D2R)
+							</label>
+							<label><input type="checkbox" role="switch" id="ladder_d2lod" name="ladder_d2lod"
+									value="ladder_d2lod" checked oninput="updateFilters();" />Show
+								Ladder-Only Runewords (D2LoD)
+							</label>
+						</fieldset>
+					</article>
 					<hr />
 					<div class="flex">
 						<h5>Version</h5>
 						<div class="flex" style="margin-left: auto; gap:1rem;">
-							<a href="#" onclick="selectVersions(true);">
+							<a href="#" onclick="selectCheckboxes(true, '#filterVersions');">
 								All
 							</a>
 							<p>/</p>
-							<a href="#" onclick="selectVersions(false);">
+							<a href="#" onclick="selectCheckboxes(false, '#filterVersions');">
 								None
 							</a>
 						</div>
 					</div>
-
-					<fieldset class="filter-grid">
-						<label><input type="checkbox" name="version" value="1.09" checked
-								oninput="updateFilters();" />D2LoD 1.09
-						</label>
-						<label><input type="checkbox" name="version" value="1.10" checked
-								oninput="updateFilters();" />D2LoD 1.10
-						</label>
-						<label><input type="checkbox" name="version" value="1.11" checked
-								oninput="updateFilters();" />D2LoD 1.11
-						</label>
-						<label><input type="checkbox" name="version" value="2.4" checked
-								oninput="updateFilters();" />D2R 2.4
-						</label>
-						<label><input type="checkbox" name="version" value="2.6" checked
-								oninput="updateFilters();" />D2R 2.6
-						</label>
-					</fieldset>
+					<article id="filterVersions">
+						<fieldset class="custom-grid">
+							<label><input type="checkbox" name="version" value="1.09" checked
+									oninput="updateFilters();" />D2LoD 1.09
+							</label>
+							<label><input type="checkbox" name="version" value="1.10" checked
+									oninput="updateFilters();" />D2LoD 1.10
+							</label>
+							<label><input type="checkbox" name="version" value="1.11" checked
+									oninput="updateFilters();" />D2LoD 1.11
+							</label>
+							<label><input type="checkbox" name="version" value="2.4" checked
+									oninput="updateFilters();" />D2R 2.4
+							</label>
+							<label><input type="checkbox" name="version" value="2.6" checked
+									oninput="updateFilters();" />D2R 2.6
+							</label>
+						</fieldset>
+					</article>
 					<hr />
 					<h5>Sockets</h5>
 					<fieldset class="grid">
@@ -105,50 +112,93 @@
 						<div class="flex">
 							<h5>Bases</h5>
 							<div class="flex" style="margin-left: auto; gap:1rem;">
-								<a href="#" onclick="selectBases(true);">
-									All
+								<a href="#" onclick="selectCheckboxes(true, '#bases');">
+									All Bases
 								</a>
 								<p>/</p>
-								<a href="#" onclick="selectBases(false);">
+								<a href="#" onclick="selectCheckboxes(false, '#bases');">
 									None
 								</a>
 							</div>
 						</div>
 						<br />
 						<!--Off-hands-->
-						<fieldset class="grid">
-							<label><input type="checkbox" name="Paladin Shields" checked
-									oninput="updateFilters();" />Paladin
-								Shields</label>
-							<label><input type="checkbox" name="Shields" checked
-									oninput="updateFilters();" />Shields</label>
-						</fieldset>
+						<article id="Off-hands">
+							<div class="flex">
+								<h6>Off-hands</h6>
+								<div class="flex" style="margin-left: auto; gap:1rem;">
+									<a href="#" onclick="selectCheckboxes(true, '#Off-hands');">
+										All Off-hands
+									</a>
+									<p>/</p>
+									<a href="#" onclick="selectCheckboxes(false, '#Off-hands');">
+										None
+									</a>
+								</div>
+							</div>
+							<fieldset class="custom-grid">
+								<label><input type="checkbox" name="Paladin Shields" checked
+										oninput="updateFilters();" />Paladin
+									Shields</label>
+								<label><input type="checkbox" name="Shields" checked
+										oninput="updateFilters();" />Shields</label>
+								<label><input type="checkbox" name="Necromancer Shrunken Heads" checked
+										oninput="updateFilters();" />Necromancer
+									Shrunken Heads</label>
+							</fieldset>
+						</article>
 						<hr />
 						<!--Armors-->
-						<fieldset class="grid">
-							<label><input type="checkbox" name="Body Armors" checked oninput="updateFilters();" />Body
-								Armors</label>
-							<label><input type="checkbox" name="Helms" checked
-									oninput="updateFilters();" />Helms</label>
-						</fieldset>
+						<article id="Armors">
+							<div class="flex">
+								<h6>Armors</h6>
+								<div class="flex" style="margin-left: auto; gap:1rem;">
+									<a href="#" onclick="selectCheckboxes(true, '#Armors');">
+										All Armors
+									</a>
+									<p>/</p>
+									<a href="#" onclick="selectCheckboxes(false, '#Armors');">
+										None
+									</a>
+								</div>
+							</div>
+							<fieldset>
+								<label><input type="checkbox" name="Body Armors" checked
+										oninput="updateFilters();" />Body
+									Armors</label>
+							</fieldset>
+							<br>
+							<fieldset class="custom-grid">
+								<label><input type="checkbox" name="Helms" checked
+										oninput="updateFilters();" />Helms</label>
+								<label><input type="checkbox" name="Circlets" checked
+										oninput="updateFilters();" />Circlets</label>
+								<label><input type="checkbox" name="Druid Pelts" checked
+										oninput="updateFilters();" />Druid
+									Pelts</label>
+								<label><input type="checkbox" name="Barbarian Helms" checked
+										oninput="updateFilters();" />Barbarian Helms</label>
+
+							</fieldset>
+						</article>
 						<hr />
 						<!--Weapons-->
-						<div id="Weapons">
+						<article id="Weapons">
 							<fieldset class="flex">
 								<h6>Weapons</h6>
 								<div class="flex" style="margin-left: auto; gap:1rem;">
-									<a href="#" onclick="selectBases(true, '#Weapons');">
-										All
+									<a href="#" onclick="selectCheckboxes(true, '#Weapons');">
+										All Weapons
 									</a>
 									<p>/</p>
-									<a href="#" onclick="selectBases(false, '#Weapons');">
+									<a href="#" onclick="selectCheckboxes(false, '#Weapons');">
 										None
 									</a>
 								</div>
 							</fieldset>
 							<br />
 							<p><b>Missile Weapons</b></p>
-							<fieldset class="filter-grid">
+							<fieldset class="custom-grid">
 
 								<label><input type="checkbox" name="Amazon Bows" checked
 										oninput="updateFilters();" />Amazon
@@ -162,8 +212,7 @@
 							</fieldset>
 							<hr />
 							<p><b>Melee Weapons</b></p>
-							<fieldset class="filter-grid">
-
+							<fieldset class="custom-grid">
 								<label><input type="checkbox" name="Amazon Spears" checked
 										oninput="updateFilters();" />Amazon
 									Spears</label>
@@ -172,10 +221,8 @@
 									Katars</label>
 								<label><input type="checkbox" name="Axes" checked
 										oninput="updateFilters();" />Axes</label>
-
 								<label><input type="checkbox" name="Clubs" checked
 										oninput="updateFilters();" />Clubs</label>
-
 								<label><input type="checkbox" name="Daggers" checked
 										oninput="updateFilters();" />Daggers</label>
 								<label><input type="checkbox" name="Hammers" checked
@@ -195,12 +242,12 @@
 								<label><input type="checkbox" name="Wands" checked
 										oninput="updateFilters();" />Wands</label>
 							</fieldset>
-						</div>
+						</article>
 					</div>
 				</aside>
 			</div>
 		</div>
-		<div class="container grid-runes">
+		<div class="container-fluid grid-runes">
 			<div class="yarc-header">
 				<hgroup>
 					<h4 class="text-center">YARC</h4>
@@ -208,7 +255,7 @@
 				</hgroup>
 			</div>
 			<article id="runes">
-				<fieldset class="rune-grid">
+				<fieldset class="custom-grid">
 					<div>
 						<input type="number" id="El_rune" name="El_rune" value="0" min="0" step="1" />
 						<small id="El_rune">El</small>
@@ -253,14 +300,6 @@
 						<input type="number" id="Amn_rune" name="Amn_rune" value="0" min="0" step="1" />
 						<small id="Amn_rune">Amn</small>
 					</div>
-					<fieldset role="group" aria-labelledby="el_to_amn">
-						<input type="number" aria-describedby="el_to_amn" id="el_to_amn" name="el_to_amn" value="1"
-							min="0" step="1" />
-						<input type="button" value="Set Row"
-							onclick="setRunes(0, 11, document.getElementById('el_to_amn').value);" />
-					</fieldset>
-				</fieldset>
-				<fieldset class="rune-grid">
 					<div>
 						<input type="number" id="Sol_rune" name="Sol_rune" value="0" min="0" step="1" />
 						<small id="Sol_rune">Sol</small>
@@ -305,14 +344,6 @@
 						<input type="number" id="Um_rune" name="Um_rune" value="0" min="0" step="1" />
 						<small id="Um_rune">Um</small>
 					</div>
-					<fieldset role="group" aria-labelledby="sol_to_um">
-						<input type="number" aria-describedby="sol_to_um" id="sol_to_um" name="sol_to_um" value="1"
-							min="0" step="1" />
-						<input type="button" value="Set Row"
-							onclick="setRunes(11, 22, document.getElementById('sol_to_um').value);" />
-					</fieldset>
-				</fieldset>
-				<fieldset class="rune-grid">
 					<div>
 						<input type="number" id="Mal_rune" name="Mal_rune" value="0" min="0" step="1" />
 						<small id="Mal_rune">Mal</small>
@@ -357,17 +388,12 @@
 						<input type="number" id="Zod_rune" name="Zod_rune" value="0" min="0" step="1" />
 						<small id="Zod_rune">Zod</small>
 					</div>
-					<fieldset role="group" aria-labelledby="mal_to_zod">
-						<input type="number" aria-describedby="mal_to_zod" id="mal_to_zod" name="mal_to_zod" value="1"
-							min="0" step="1" />
-						<input type="button" value="Set Row"
-							onclick="setRunes(22, 33, document.getElementById('mal_to_zod').value);" />
-					</fieldset>
+
 				</fieldset>
 				<hr />
-				<fieldset class="flex" style="  justify-content: space-between;">
-					<input type="button" value="Reset All" onclick="setRunes(0, 33, 0);" style="width:auto;" />
-					<fieldset role="group" aria-labelledby="all_runes" style="width:auto;">
+				<fieldset class="flex" style="justify-content: space-between;">
+					<input type="button" value="Reset All" onclick="setRunes(0, 33, 0);" class="auto-width" />
+					<fieldset role="group" aria-labelledby="all_runes" class="auto-width">
 						<input type="number" aria-describedby="all_runes" id="all_runes" name="all_runes" value="1"
 							min="0" step="1" />
 						<input type="button" value="Set All"
@@ -386,13 +412,17 @@
 						<thead>
 							<tr>
 								<th class="runeword_can_make">Can Make</th>
+								<th class="runeword_version">Version</th>
 								<th class="runeword_name">Name</th>
 								<th class="runeword_bases">Bases</th>
 								<th class="runeword_sockets">Sockets</th>
-								<th class="runeword_runes">Runes</th>
+								<th class="runeword_runes">
+									Runes
+								</th>
 								<th class="runeword_stats no-sort">Stats</th>
 								<th class="runeword_levelreq">Level Req.</th>
-								<th class="runeword_cube">Cubed Runes</th>
+								<th class="runeword_cube">Cubed
+									Runes</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -402,7 +432,9 @@
 			</section>
 		</main>
 	</div>
-
+	<script>
+		lucide.createIcons();
+	</script>
 </body>
 
 </html>

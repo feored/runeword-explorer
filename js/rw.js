@@ -63,8 +63,8 @@ function getPathRw(runeInventory, rwRunes) {
 	}
 
 	let success = workingInv[0] >= workingRunes[0];
-	let lacking = defaultInventory();
-	return { success, upgsDone, lacking: workingRunes[0] - workingInv[0] };
+	let missing = defaultInventory();
+	return { success, upgsDone, missing: workingRunes[0] - workingInv[0] };
 }
 
 function elsDecompose(els) {
@@ -78,8 +78,19 @@ function elsDecompose(els) {
 	return runes;
 }
 
-function formatLacking(lacking) {
-	return RUNES.map((rune, i) => lacking[i] > 0 ? `${lacking[i]} ${rune}` : null).filter(Boolean).join(', ');
+async function loadData() {
+	let result = null;
+	let promises = [loadJSON('./data/runes.json'), loadJSON('./data/runewords.json'), loadJSON('./data/itemtypes.json')];
+
+	result = await Promise.all(promises)
+	RUNE_DATA = result[0];
+	RUNEWORDS = result[1];
+	ITEM_TYPES = result[2];
+	return
+}
+
+function formatMissing(missing) {
+	return RUNES.map((rune, i) => missing[i] > 0 ? `${missing[i]} ${rune}` : null).filter(Boolean).join(', ');
 }
 
 function formatUpgs(upgs, rw_runes) {
@@ -92,17 +103,6 @@ function formatUpgLine(runeIndex, nb, highlight = false) {
 		let gem = UPG_COST[runeIndex].split(' ');
 		gemColorClass = `${gem[gem.length - 1].toLowerCase()}"`;
 	}
-	return `${nb * upgNb(runeIndex)} <span class="rune-text">${RUNES[runeIndex]}</span> ${nb > 0 && UPG_COST[runeIndex] ? ' + ' + nb + ' <span class="' + gemColorClass + '">' + UPG_COST[runeIndex] + "</span>" : ''} 🡒 ${highlight ? "<mark>" : ''} ${nb}  <span class="rune-text">${RUNES[runeIndex + 1]}</span>${highlight ? "</mark>" : ''} `;
-}
-
-
-async function loadData() {
-	let result = null;
-	let promises = [loadJSON('./data/runes.json'), loadJSON('./data/runewords.json'), loadJSON('./data/itemtypes.json')];
-
-	result = await Promise.all(promises)
-	RUNE_DATA = result[0];
-	RUNEWORDS = result[1];
-	ITEM_TYPES = result[2];
-	return
+	let upg_gem = nb > 0 && UPG_COST[runeIndex] ? ` + ${nb} <span class="${gemColorClass}">${UPG_COST[runeIndex]}</span>` : ''
+	return `${nb * upgNb(runeIndex)} <span class="rune-text">${RUNES[runeIndex]}</span> ${upg_gem} <i data-lucide="arrow-right" style="width:1em; height:1em;"></i> ${highlight ? "<span class='highlight'>" : ''}${nb} <span class="rune-text">${RUNES[runeIndex + 1]}</span>${highlight ? "</span>" : ''} `;
 }

@@ -10,13 +10,26 @@
 	--color-server: rgb(255, 77, 77);
 	--color-set: rgb(0, 255, 0);
 
+	--color-good: rgb(6, 151, 6);
+	--color-bad: var(--color-server);
+
 	--color-topaz: rgb(255, 255, 0);
 	--color-amethyst: rgb(153, 50, 204);
 	--color-sapphire: rgb(79, 164, 230);
 	--color-ruby: rgb(173, 26, 12);
 	--color-emerald: rgb(27, 180, 47);
 	--color-diamond: rgb(134, 134, 134);
+
+	--color-d2r: black;
+	--color-border-d2r: rgb(71, 71, 71);
+
+	--color-d2rladder: rgb(131, 0, 0);
+	--color-border-d2rladder: rgb(181, 0, 0);
+
+	--color-d2lodladder: rgb(45 78 121);
+	--color-border-d2lodladder: rgb(88, 82, 175)
 }
+
 
 .topaz {
 	color: var(--color-topaz);
@@ -46,7 +59,32 @@
 	color: var(--color-craft);
 }
 
+.color-good {
+	color: var(--color-good);
+}
+
+.color-bad {
+	color: var(--color-bad);
+}
+
+.varying-stat {
+	color: var(--color-sapphire)
+}
+
+.highlight {
+	text-decoration: underline;
+}
+
 /* LAYOUT */
+
+.custom-grid {
+	display: grid;
+	grid-auto-flow: row;
+	grid-template-columns: repeat(auto-fill, minmax(10em, 1fr));
+	grid-template-rows: repeat(auto-fill, 1fr);
+	column-gap: var(--pico-grid-column-gap);
+	row-gap: var(--pico-grid-row-gap);
+}
 
 .yarc-header {
 	padding-block: var(--pico-block-spacing-vertical);
@@ -61,7 +99,7 @@
 }
 
 .auto-width {
-	width: auto;
+	width: auto !important;
 }
 
 /* Custom CSS for the sidebar */
@@ -95,6 +133,7 @@
 	overflow-y: auto;
 }
 
+
 @media (max-width: 100em) {
 	.wrapper {
 		grid-template-columns: 1fr;
@@ -111,7 +150,10 @@
 
 }
 
-/* PicoCSS fixes : https://github.com/picocss/pico/discussions/482#discussioncomment-9043725*/
+
+
+
+/* PicoCSS fixes and overrides : https://github.com/picocss/pico/discussions/482#discussioncomment-9043725*/
 
 :root {
 	--pico-font-family-sans-serif: Inter, system-ui, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, Helvetica, Arial, "Helvetica Neue", sans-serif, var(--pico-font-family-emoji);
@@ -175,14 +217,17 @@ article>footer {
 	/* Original: var(--pico-border-radius) */
 }
 
+#rwtable thead th {
+	position: sticky;
+	top: 0;
+	z-index: 9;
+}
+
 tbody tr td {
 	padding-top: calc(var(--pico-spacing));
 	padding-bottom: calc(var(--pico-spacing));
 }
 
-[data-tooltip] {
-	width: max-content;
-}
 
 table.striped tbody tr:nth-child(odd of :not([hidden])) th,
 table.striped tbody tr:nth-child(odd of :not([hidden])) td {
@@ -195,19 +240,21 @@ table.striped tbody tr:nth-child(even of :not([hidden])) td {
 }
 
 
+[data-tooltip][data-placement=top]::before,
+[data-tooltip][data-placement=top]::after,
+[data-tooltip]::before,
+[data-tooltip]::after {
+	height: max-content;
+	white-space: pre;
+	word-wrap: normal;
+}
+
+
+
 /* Custom CSS for the runes */
 
 #runes small {
-	/* color: var(--color-craft); */
 	font-size: medium;
-}
-
-.rune-grid {
-	display: grid;
-	grid-template-columns: repeat(11, 1fr) 2fr;
-	grid-template-rows: 1fr;
-	grid-column-gap: var(--pico-grid-column-gap);
-	grid-row-gap: var(--pico-grid-row-gap);
 }
 
 
@@ -216,12 +263,6 @@ table.striped tbody tr:nth-child(even of :not([hidden])) td {
 #rwtable th,
 td {
 	text-align: center;
-}
-
-/* Table col order: name, item type, sockets, runes, stats, level req */
-#rwtable tbody td:nth-child(1) {
-	font-size: larger;
-	color: var(--color-unique);
 }
 
 #runeword-nb {
@@ -235,13 +276,50 @@ td {
 }
 
 td.runeword_name {
+	font-size: larger;
 	color: var(--color-unique);
 }
 
-/* Ladder Only */
-td.runeword_name small {
-	color: var(--color-set);
+td.runeword_name .warnings {
+	margin-top: var(--pico-spacing);
+	display: flex;
+	gap: var(--pico-spacing);
+	justify-content: center;
 }
+
+td.runeword_name .warnings [data-tooltip] {
+	border-bottom: none;
+}
+
+.d2r_only {
+	background-color: var(--color-d2r);
+	color: var(--color-normal);
+	border-radius: var(--pico-border-radius);
+	padding: calc(var(--pico-spacing)/3);
+	border: var(--pico-border-width) solid var(--color-border-d2r);
+	font-size: x-small;
+	width: fit-content;
+}
+
+.d2r_ladder {
+	background-color: var(--color-d2rladder);
+	color: var(--color-normal);
+	border-radius: var(--pico-border-radius);
+	border: var(--pico-border-width) solid var(--color-border-d2rladder);
+	padding: calc(var(--pico-spacing)/3);
+	font-size: x-small;
+	width: fit-content;
+}
+
+.d2lod_ladder {
+	background-color: var(--color-d2lodladder);
+	color: var(--color-normal);
+	border-radius: var(--pico-border-radius);
+	border: var(--pico-border-width) solid var(--color-border-d2lodladder);
+	padding: calc(var(--pico-spacing)/3);
+	font-size: x-small;
+}
+
 
 td.runeword_runes {
 	color: var(--color-craft);
@@ -251,23 +329,35 @@ td.runeword_stats {
 	color: var(--color-magic);
 }
 
+td.runeword_levelreq,
+td.runeword_sockets {
+	font-size: large;
+	font-weight: light;
+}
+
 .runeword_level,
 .runeword_sockets,
 .runeword_can_make {
 	width: min-content;
 }
 
+td.runeword_bases .bases_group {
+	border-radius: var(--pico-border-radius);
+	border: var(--pico-border-width) solid #28354f;
+}
+
+td.runeword_bases .bases_group:first-of-type {
+	margin-bottom: var(--pico-spacing);
+}
+
+td.runeword_bases .bases_group small {
+	bottom: 1em;
+}
+
+
+
 /* Custom CSS for the filters */
 
 #filters fieldset {
 	margin-bottom: 0;
-}
-
-.filter-grid {
-	display: grid;
-	grid-auto-flow: row;
-	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-	grid-template-rows: repeat(auto-fill, 1fr);
-	column-gap: var(--pico-grid-column-gap);
-	row-gap: var(--pico-grid-row-gap);
 }

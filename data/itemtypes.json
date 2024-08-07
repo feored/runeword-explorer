@@ -1,53 +1,51 @@
 {
 	"Off-hands": [
 		"Paladin Shields",
-		"Shields"
+		"Shields",
+		"Necromancer Shrunken Heads"
 	],
-	"Armors": [
+	"Helms": [
 		"Helms",
-		"Body Armors"
+		"Barbarian Helms",
+		"Druid Pelts",
+		"Circlets"
 	],
 	"Missile Weapons": [
 		"Amazon Bows",
 		"Bows",
-		"Crossbows",
-		"Amazon Javelins"
+		"Crossbows"
 	],
 	"Melee Weapons": [
 		"Amazon Spears",
-		"Javelins",
-		"Wands",
-		"Staves",
-		"Maces",
-		"Swords",
-		"Daggers",
 		"Assassin Katars",
-		"Sorceress Orbs",
 		"Axes",
+		"Clubs",
+		"Daggers",
+		"Hammers",
+		"Maces",
+		"Polearms",
+		"Scepters",
 		"Spears",
-		"Polearms"
+		"Staves",
+		"Swords",
+		"Wands"
 	],
 	"Weapons": [
-		"Maces",
-		"Scepters",
-		"Staves",
-		"Wands",
-		"Clubs",
-		"Hammers",
-		"Javelins",
-		"Spears",
-		"Throwing Knives",
-		"Throwing Axes",
-		"Amazon Spears",
-		"Swords",
-		"Daggers",
-		"Assassin Katars",
-		"Sorceress Orbs",
-		"Axes",
-		"Polearms",
 		"Amazon Bows",
+		"Amazon Spears",
+		"Assassin Katars",
+		"Axes",
 		"Bows",
+		"Clubs",
 		"Crossbows",
-		"Amazon Javelins"
+		"Hammers",
+		"Maces",
+		"Polearms",
+		"Scepters",
+		"Sorceress Orbs",
+		"Spears",
+		"Staves",
+		"Swords",
+		"Wands"
 	]
 }
