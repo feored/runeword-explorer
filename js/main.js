@@ -3,6 +3,28 @@ var last_clicked_th = null;
 var mark_instance = null;
 
 
+/* On page load */
+document.onreadystatechange = () => {
+	if (document.readyState === "interactive") {
+		for (let i = 0; i < RUNES.length; i++) {
+			let id = RUNES[i] + "_rune";
+			document.getElementById(id).addEventListener("input", updateRunewords);
+		}
+		// Keep track of how the table is sorted for when we need to update the table
+		document.querySelectorAll("#rwtable thead th").forEach((x) => x.addEventListener("click", function () {
+			last_clicked_th = x;
+		}));
+		// Set table to sort by name by default
+		document.querySelector("#rwtable th.runeword_name").click();
+		loadData().then(() => {
+			updateRunewords();
+		});
+	}
+};
+
+
+/* Useful functions to update a million checkboxes */
+
 function setRunes(minId, maxId, num) {
 	for (let i = minId; i < maxId; i++) {
 		let id = RUNES[i] + "_rune";
@@ -10,6 +32,18 @@ function setRunes(minId, maxId, num) {
 	}
 	updateRunewords();
 }
+
+function selectCheckboxes(selected, selector) {
+	let inputs = document.querySelectorAll(selector + " input[type=checkbox]");
+	for (let i = 0; i < inputs.length; i++) {
+		inputs[i].checked = selected;
+	}
+	updateFilters();
+}
+
+
+/* Updating the runewords table */
+
 
 function cleanTable() {
 	let table_element = document.querySelector("#rwtable tbody");
@@ -50,6 +84,134 @@ function updateRunewords() {
 	updateFilters();
 }
 
+
+function isAnyBaseShown(itemtypes, selected_bases) {
+	let final_item_types = [];
+	for (let i = 0; i < itemtypes.length; i++) {
+		if (itemtypes[i] in ITEM_TYPES) {
+			final_item_types = final_item_types.concat(ITEM_TYPES[itemtypes[i]]);
+		} else {
+			final_item_types.push(itemtypes[i]);
+		}
+	}
+	return final_item_types.some((x) => selected_bases.indexOf(x) != -1);
+}
+
+function filterRow(only_can_make, ladder_d2r, ladder_d2lod, checked_item_types, versions, minsocket, maxsocket, minlevel, maxlevel, required_runes, search_term, rw) {
+
+
+	return show
+
+}
+
+function updateFilters() {
+	let only_can_make = document.getElementById("can_make").checked;
+	let ladder_d2r = document.getElementById("ladder_d2r").checked;
+	let ladder_d2lod = document.getElementById("ladder_d2lod").checked;
+	let checked_item_types = Array.from(document.querySelectorAll("#bases input[type=checkbox]:checked")).map((x) => x.value);
+	let versions = Array.from(document.querySelectorAll("#filter_versions input[type=checkbox]:checked")).map((x) => x.value);
+	let required_runes = Array.from(document.querySelectorAll("#required_runes input[type=checkbox]:checked")).map((x) => x.value);
+
+	let [minsocket, maxsocket] = [document.getElementById("minsocket"), document.getElementById("maxsocket")];
+	if (parseInt(minsocket.value) > parseInt(maxsocket.value)) {
+		[minsocket.value, maxsocket.value] = [maxsocket.value, maxsocket.value];
+	}
+
+	let [minlevel, maxlevel] = [document.getElementById("minlevel"), document.getElementById("maxlevel")];
+	if (parseInt(minlevel.value) > parseInt(maxlevel.value)) {
+		[minlevel.value, maxlevel.value] = [maxlevel.value, maxlevel.value];
+	}
+
+	let search_term = document.getElementById("searchbar").value.toLowerCase();
+
+	let shown_nb = 0;
+
+	for (let i = 0; i < RUNEWORDS_DATA.length; i++) {
+		let rw = RUNEWORDS_DATA[i];
+
+		let show = true;
+		if (((!ladder_d2lod && rw.ladder.d2lod) || (!ladder_d2r && rw.ladder.d2r))
+			|| (only_can_make && !rw.success)
+			|| (versions.indexOf(rw.version) == -1)
+			|| (rw.sockets < minsocket.value || rw.sockets > maxsocket.value)
+			|| (rw.levelreq < minlevel.value || rw.levelreq > maxlevel.value)
+			|| (required_runes.some((x) => rw.runes.indexOf(x) == -1))
+			|| (!isAnyBaseShown(Array.from(new Set([].concat(rw.bases, rw.bases_d2r))), checked_item_types))) {
+			show = false;
+		}
+
+		// search bar
+		if (show && search_term != "") {
+			show = false;
+			if ((rw.name.toLowerCase().includes(search_term))
+				|| (rw.runes.join(" ").toLowerCase().includes(search_term))
+				|| (rw.stats.some((x) => x.toLowerCase().includes(search_term)))
+				|| (rw.bases.some((x) => x.toLowerCase().includes(search_term)))
+				|| (rw.bases_d2r.some((x) => x.toLowerCase().includes(search_term)))) {
+				show = true;
+			}
+		}
+
+		shown_nb += show ? 1 : 0;
+		rw.row.hidden = !show;
+	}
+
+	if (mark_instance != null) { mark_instance.unmark(); }
+	mark_instance = new Mark(document.querySelectorAll("#rwtable tr:not([hidden]) .searchable")).mark(search_term, { separateWordSearch: false });
+
+	document.getElementById("runeword-nb").innerText = `Showing: ${shown_nb}/${RUNEWORDS_DATA.length} runewords (${(shown_nb / RUNEWORDS_DATA.length * 100).toFixed(2)}%)`;
+}
+
+function resetFilters() {
+	let inputs = document.querySelectorAll("#filters input");
+	for (let i = 0; i < inputs.length; i++) {
+		console.log(inputs[i]);
+		if (inputs[i].type == "checkbox") {
+			inputs[i].checked = inputs[i].defaultChecked;
+		}
+		else {
+			inputs[i].value = inputs[i].defaultValue;
+		}
+	}
+}
+
+
+
+/* Making the runeword table rows */
+
+
+function makeTableEntry(runeword_data) {
+	let row = document.createElement("tr");
+	row.appendChild(makeTableEntryPossible(runeword_data));
+	row.appendChild(makeTableEntryVersion(runeword_data));
+	row.appendChild(makeTableEntryName(runeword_data));
+	row.appendChild(makeTableEntryBases(runeword_data));
+	row.appendChild(makeTableEntrySockets(runeword_data));
+	row.appendChild(makeTableEntryRunes(runeword_data));
+	row.appendChild(makeTableEntryStats(runeword_data));
+	row.appendChild(makeTableEntryLevelReq(runeword_data));
+	row.appendChild(makeTableEntryCubeReq(runeword_data));
+	return row;
+}
+
+
+function makeTableEntryPossible(runeword_data) {
+	let possible = document.createElement("td");
+	possible.classList.add("runeword_can_make");
+	possible.innerHTML = `<i data-lucide="${runeword_data.success ? "check" : "circle-x"}" class="${runeword_data.success ? "color-good" : "color-bad"}"></i>`;
+	possible.setAttribute("data-sort", runeword_data.success);
+	return possible;
+}
+
+
+function makeTableEntryVersion(runeword_data) {
+	let version = document.createElement("td");
+	version.classList.add("runeword_version");
+	version.innerText = runeword_data.version;
+	return version;
+}
+
+
 function makeTableEntryName(runeword_data) {
 	let name = document.createElement("td");
 	name.classList.add("runeword_name");
@@ -86,6 +248,7 @@ function makeTableEntryName(runeword_data) {
 	name.classList.add("searchable");
 	return name
 }
+
 
 function makeTableEntryBases(runeword_data) {
 	function makeBasesHTML(bases) {
@@ -168,148 +331,8 @@ function makeTableEntryCubeReq(runeword_data) {
 	return cubing_required;
 }
 
-function makeTableEntryPossible(runeword_data) {
-	let possible = document.createElement("td");
-	possible.classList.add("runeword_can_make");
-	possible.innerHTML = `<i data-lucide="${runeword_data.success ? "check" : "circle-x"}" class="${runeword_data.success ? "color-good" : "color-bad"}"></i>`;
-	possible.setAttribute("data-sort", runeword_data.success);
-	return possible;
-}
-
-function makeTableEntryVersion(runeword_data) {
-	let version = document.createElement("td");
-	version.classList.add("runeword_version");
-	version.innerText = runeword_data.version;
-	return version;
-}
 
 
-function makeTableEntry(runeword_data) {
-	let row = document.createElement("tr");
-	row.appendChild(makeTableEntryPossible(runeword_data));
-	row.appendChild(makeTableEntryVersion(runeword_data));
-	row.appendChild(makeTableEntryName(runeword_data));
-	row.appendChild(makeTableEntryBases(runeword_data));
-	row.appendChild(makeTableEntrySockets(runeword_data));
-	row.appendChild(makeTableEntryRunes(runeword_data));
-	row.appendChild(makeTableEntryStats(runeword_data));
-	row.appendChild(makeTableEntryLevelReq(runeword_data));
-	row.appendChild(makeTableEntryCubeReq(runeword_data));
-	return row;
-}
 
 
-document.onreadystatechange = () => {
-	if (document.readyState === "interactive") {
-		for (let i = 0; i < RUNES.length; i++) {
-			let id = RUNES[i] + "_rune";
-			document.getElementById(id).addEventListener("input", updateRunewords);
-		}
-		// Keep track of how the table is sorted for when we need to update the table
-		document.querySelectorAll("#rwtable thead th").forEach((x) => x.addEventListener("click", function () {
-			last_clicked_th = x;
-		}));
-		// Set table to sort by name by default
-		document.querySelector("#rwtable th.runeword_name").click();
-		loadData().then(() => {
-			updateRunewords();
-		});
-	}
-};
 
-function isAnyBaseShown(itemtypes, selected_bases) {
-	let final_item_types = [];
-	for (let i = 0; i < itemtypes.length; i++) {
-		if (itemtypes[i] in ITEM_TYPES) {
-			final_item_types = final_item_types.concat(ITEM_TYPES[itemtypes[i]]);
-		} else {
-			final_item_types.push(itemtypes[i]);
-		}
-	}
-	return final_item_types.some((x) => selected_bases.indexOf(x) != -1);
-}
-
-function updateFilters() {
-	let ladder_d2r = document.getElementById("ladder_d2r").checked;
-	let ladder_d2lod = document.getElementById("ladder_d2lod").checked;
-	let checked_item_types = Array.from(document.querySelectorAll("#bases input[type=checkbox]:checked")).map((x) => x.name);
-	let versions = [];
-	let [minsocket, maxsocket] = [document.getElementById("minsocket"), document.getElementById("maxsocket")];
-	if (parseInt(minsocket.value) > parseInt(maxsocket.value)) {
-		[minsocket.value, maxsocket.value] = [maxsocket.value, maxsocket.value];
-	}
-	let [minlevel, maxlevel] = [document.getElementById("minlevel"), document.getElementById("maxlevel")];
-	if (parseInt(minlevel.value) > parseInt(maxlevel.value)) {
-		[minlevel.value, maxlevel.value] = [maxlevel.value, maxlevel.value];
-	}
-
-	document.getElementsByName("version").forEach((x) => x.checked ? versions.push(x.value) : null);
-	let search_term = document.getElementById("searchbar").value.toLowerCase();
-	let shown_nb = 0;
-
-
-	for (let i = 0; i < RUNEWORDS_DATA.length; i++) {
-
-		let rw = RUNEWORDS_DATA[i];
-		let show = true;
-		if ((!ladder_d2lod && rw.ladder.d2lod) || (!ladder_d2r && rw.ladder.d2r)) {
-			show = false;
-		}
-		else if (document.getElementById("can_make").checked && !rw.success) {
-			show = false;
-		}
-		else if (versions.indexOf(rw.version) == -1) {
-			show = false;
-		}
-		else if (rw.sockets < minsocket.value || rw.sockets > maxsocket.value) {
-			show = false;
-		}
-		else if (rw.levelreq < minlevel.value || rw.levelreq > maxlevel.value) {
-			show = false;
-		}
-		else if (!isAnyBaseShown(Array.from(new Set([].concat(rw.bases, rw.bases_d2r))), checked_item_types)) {
-			//Concat the bases from both versions and remove duplicates
-			show = false;
-		}
-
-		// search bar
-		if (show && search_term != "") {
-			show = false;
-			if ((rw.name.toLowerCase().includes(search_term))
-				|| (rw.runes.join(" ").toLowerCase().includes(search_term))
-				|| (rw.stats.some((x) => x.toLowerCase().includes(search_term)))
-				|| (rw.bases.some((x) => x.toLowerCase().includes(search_term)))
-				|| (rw.bases_d2r.some((x) => x.toLowerCase().includes(search_term)))) {
-				show = true;
-			}
-		}
-		shown_nb += show ? 1 : 0;
-
-		rw.row.hidden = !show;
-	}
-	if (mark_instance != null) { mark_instance.unmark(); }
-	mark_instance = new Mark(document.querySelectorAll("#rwtable tr:not([hidden]) .searchable")).mark(search_term, { separateWordSearch: false });
-
-	document.getElementById("runeword-nb").innerText = "Showing: " + shown_nb + "/" + RUNEWORDS_DATA.length + " runewords (" + (shown_nb / RUNEWORDS_DATA.length * 100).toFixed(2) + "%)";
-}
-
-function resetFilters() {
-	let inputs = document.querySelectorAll("#filters input");
-	for (let i = 0; i < inputs.length; i++) {
-		console.log(inputs[i]);
-		if (inputs[i].type == "checkbox") {
-			inputs[i].checked = inputs[i].defaultChecked;
-		}
-		else {
-			inputs[i].value = inputs[i].defaultValue;
-		}
-	}
-}
-
-function selectCheckboxes(selected, selector) {
-	let inputs = document.querySelectorAll(selector + " input[type=checkbox]");
-	for (let i = 0; i < inputs.length; i++) {
-		inputs[i].checked = selected;
-	}
-	updateFilters();
-}
