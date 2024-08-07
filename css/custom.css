@@ -71,6 +71,10 @@
 	color: var(--color-sapphire)
 }
 
+.highlight {
+	text-decoration: underline;
+}
+
 /* LAYOUT */
 
 .custom-grid {

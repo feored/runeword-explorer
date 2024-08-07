@@ -83,6 +83,7 @@ function makeTableEntryName(runeword_data) {
 	if (warnings.childElementCount > 0) {
 		name.appendChild(warnings);
 	}
+	name.classList.add("searchable");
 	return name
 }
 
@@ -119,6 +120,9 @@ function makeTableEntryBases(runeword_data) {
 		d2r_bases.appendChild(d2r_warning);
 		d2r_bases.appendChild(d2r_actual_bases);
 
+		d2lod_bases.classList.add("searchable");
+		d2r_bases.classList.add("searchable");
+
 		item_types.appendChild(d2lod_bases);
 		item_types.appendChild(d2r_bases);
 		return item_types;
@@ -136,6 +140,7 @@ function makeTableEntryRunes(runeword_data) {
 	let runes = document.createElement("td");
 	runes.classList.add("runeword_runes");
 	runes.innerText = runeword_data.runes.join(" ");
+	runes.classList.add("searchable");
 	runes.setAttribute("data-sort", runeword_data.el_value);
 	return runes;
 }
@@ -143,6 +148,7 @@ function makeTableEntryRunes(runeword_data) {
 function makeTableEntryStats(runeword_data) {
 	let stats = document.createElement("td");
 	stats.classList.add("runeword_stats");
+	stats.classList.add("searchable");
 	stats.innerHTML = runeword_data.stats.map((x) => x.toLowerCase().includes('varies') ? "<span class='varying-stat'>" + x + "</span>" : x).join("<br />");
 	return stats;
 }
@@ -282,7 +288,7 @@ function updateFilters() {
 		rw.row.hidden = !show;
 	}
 	if (mark_instance != null) { mark_instance.unmark(); }
-	mark_instance = new Mark(document.querySelector("#rwtable tbody")).mark(search_term);
+	mark_instance = new Mark(document.querySelectorAll("#rwtable tr:not([hidden]) .searchable")).mark(search_term, { separateWordSearch: false });
 
 	document.getElementById("runeword-nb").innerText = "Showing: " + shown_nb + "/" + RUNEWORDS_DATA.length + " runewords (" + (shown_nb / RUNEWORDS_DATA.length * 100).toFixed(2) + "%)";
 }
