@@ -1,4 +1,4 @@
-const RUNES = [
+const RUNES: string[] = [
 	'El', 'Eld', 'Tir', 'Nef', 'Eth',
 	'Ith', 'Tal', 'Ral', 'Ort', 'Thul',
 	'Amn', 'Sol', 'Shael', 'Dol', 'Hel',
@@ -7,14 +7,14 @@ const RUNES = [
 	'Lo', 'Sur', 'Ber', 'Jah', 'Cham', 'Zod'
 ];
 
-const GEM_Q = ['Chipped', 'Flawed', '', 'Flawless'];
-const GEM_TYPE = ['Topaz', 'Amethyst', 'Sapphire', 'Ruby', 'Emerald', 'Diamond'];
+const GEM_Q: string[] = ['Chipped', 'Flawed', '', 'Flawless'];
+const GEM_TYPE: string[] = ['Topaz', 'Amethyst', 'Sapphire', 'Ruby', 'Emerald', 'Diamond'];
 
-const UPG_COST = Array(9).fill("").concat(
+const UPG_COST: string[] = Array(9).fill("").concat(
 	GEM_Q.flatMap(i => GEM_TYPE.map(j => `${i} ${j}`.trim()))
 );
 
-const RUNES_INDEX = Object.fromEntries(RUNES.map((rune, i) => [rune, i]));
+const RUNES_INDEX :{ [key: string]: number }= Object.fromEntries(RUNES.map((rune, i) => [rune, i]));
 
 var RUNE_DATA = [];
 var RUNEWORDS = [];

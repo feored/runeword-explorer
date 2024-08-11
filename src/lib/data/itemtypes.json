@@ -10,6 +10,9 @@
 		"Druid Pelts",
 		"Circlets"
 	],
+	"Armors": [
+		"Body Armors"
+	],
 	"Missile Weapons": [
 		"Amazon Bows",
 		"Bows",
@@ -37,6 +40,7 @@
 		"Axes",
 		"Bows",
 		"Clubs",
+		"Daggers",
 		"Crossbows",
 		"Hammers",
 		"Maces",
