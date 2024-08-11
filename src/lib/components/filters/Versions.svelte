@@ -7,7 +7,7 @@
 		filter_options.versions = { ...filter_versions };
 	});
 
-	function setVersions(value) {
+	export function setVersions(value) {
 		for (let i = 0; i < VERSIONS.length; i++) {
 			filter_versions[VERSIONS[i]] = value;
 		}

@@ -6,15 +6,20 @@
 	$effect(() => {
 		filter_options.required_runes = [...required_runes];
 	});
+
+	export function setRequiredRunes(value) {
+		for (let i = 0; i < RUNES.length; i++) {
+			required_runes[i] = value;
+		}
+		required_runes = [...required_runes];
+	}
 </script>
 
 <div id="required_runes">
 	<div class="flex">
 		<h5>Required Runes</h5>
 		<div class="flex all_or_none">
-			<a href={'#'} onclick={() => (required_runes = [...required_runes.map((x) => false)])}>
-				None
-			</a>
+			<a href={'#'} onclick={() => setRequiredRunes(false)}> None </a>
 		</div>
 	</div>
 	<article>

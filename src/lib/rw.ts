@@ -42,7 +42,7 @@ export const VERSIONS: string[] = ['1.09', '1.10', '1.11', '2.4', '2.6'];
 const GEM_Q: string[] = ['Chipped', 'Flawed', '', 'Flawless'];
 const GEM_TYPE: string[] = ['Topaz', 'Amethyst', 'Sapphire', 'Ruby', 'Emerald', 'Diamond'];
 
-const UPG_COST: string[] = Array(9).fill("").concat(
+export const UPG_GEM: string[] = Array(9).fill("").concat(
 	GEM_Q.flatMap(i => GEM_TYPE.map(j => `${i} ${j}`.trim()))
 );
 
@@ -58,7 +58,7 @@ async function loadJSON(url: string): Promise<any> {
 	return await res.json();
 }
 
-function upgNb(runeIndex: number): number {
+export function upgCost(runeIndex: number): number {
 	return runeIndex < 20 ? 3 : 2;
 }
 
@@ -91,7 +91,7 @@ export function getPathRw(runeInventory: number[], rwRunes: string[]) {
 
 		let highestNb: number = workingRunes[runeIndex];
 		workingRunes[runeIndex] = 0;
-		workingRunes[runeIndex - 1] += upgNb(runeIndex - 1) * highestNb;
+		workingRunes[runeIndex - 1] += upgCost(runeIndex - 1) * highestNb;
 		upgsDone[runeIndex - 1] += highestNb;
 	}
 
@@ -103,9 +103,9 @@ export function getPathRw(runeInventory: number[], rwRunes: string[]) {
 function elsDecompose(els: number): number[] {
 	let runes: number[] = RUNES.map((_, i) => i === 0 ? els : 0);
 	for (let i = 1; i < RUNES.length; i++) {
-		if (runes[i - 1] >= upgNb(i - 1)) {
-			runes[i] += Math.floor(runes[i - 1] / upgNb(i - 1));
-			runes[i - 1] %= upgNb(i - 1);
+		if (runes[i - 1] >= upgCost(i - 1)) {
+			runes[i] += Math.floor(runes[i - 1] / upgCost(i - 1));
+			runes[i - 1] %= upgCost(i - 1);
 		}
 	}
 	return runes;
@@ -125,16 +125,4 @@ export function formatMissing(missing: number[]): string {
 	return RUNES.map((rune, i) => missing[i] > 0 ? `${missing[i]} ${rune}` : null).filter(Boolean).join(', ');
 }
 
-export function formatUpgs(upgs: number[], rw_runes: string[]): string {
-	return upgs.map((nb, i) => nb > 0 ? formatUpgLine(i, nb, rw_runes.includes(RUNES[i + 1])) : null).filter(Boolean).join('<br>');
-}
 
-export function formatUpgLine(runeIndex: number, nb: number, highlight: boolean = false): string {
-	let gemColorClass = "";
-	if (nb > 0 && UPG_COST[runeIndex]) {
-		let gem = UPG_COST[runeIndex].split(' ');
-		gemColorClass = `${gem[gem.length - 1].toLowerCase()}"`;
-	}
-	let upg_gem = nb > 0 && UPG_COST[runeIndex] ? ` + ${nb} <span class="${gemColorClass}">${UPG_COST[runeIndex]}</span>` : ''
-	return `${nb * upgNb(runeIndex)} <span class="rune-text">${RUNES[runeIndex]}</span> ${upg_gem} <i data-lucide="arrow-right" style="width:1em; height:1em;"></i> ${highlight ? "<span class='highlight'>" : ''}${nb} <span class="rune-text">${RUNES[runeIndex + 1]}</span>${highlight ? "</span>" : ''} `;
-}

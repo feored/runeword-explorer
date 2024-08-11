@@ -1,35 +1,53 @@
 <script lang="ts">
-	import { VERSIONS } from '$lib/rw';
 	import Bases from '$lib/components/Filters/Bases.svelte';
 	import Versions from '$lib/components/Filters/Versions.svelte';
 	import RequiredRunes from '$lib/components/Filters/RequiredRunes.svelte';
-	import type { FilterOptions } from '$lib/runewords.svelte.ts';
-	import { filter_options } from '$lib/runewords.svelte.ts';
+	import { default_filter_options, filter_options } from '$lib/runewords.svelte.ts';
 
 	let filter_sockets = $state({ ...filter_options.sockets });
 	let filter_levelreq = $state({ ...filter_options.levelreq });
 
 	$effect(() => {
-		if (filter_sockets.min > filter_sockets.max) {
-			filter_sockets.max = filter_sockets.min;
+		filter_sockets.max = Math.min(filter_sockets.max, 6);
+		filter_sockets.min = Math.max(filter_sockets.min, 2);
+
+		if (filter_sockets.max < filter_sockets.min) {
+			filter_sockets.min = filter_sockets.max;
 		}
 
 		filter_options.sockets = { ...filter_sockets };
-		console.log('UPDATED SOCKETS');
 	});
 
 	$effect(() => {
+		filter_levelreq.max = Math.min(filter_levelreq.max, 99);
+		filter_levelreq.min = Math.max(filter_levelreq.min, 1);
+
 		if (filter_levelreq.min > filter_levelreq.max) {
 			filter_levelreq.max = filter_levelreq.min;
 		}
 		filter_options.levelreq = { ...filter_levelreq };
-		console.log('UPDATED LEVELREQ');
 	});
+
+	let versions;
+	let bases;
+	let required_runes;
+
+	function reset_filter_options() {
+		filter_options.search = default_filter_options.search;
+		filter_options.can_make = default_filter_options.can_make;
+		filter_options.ladder_d2r = default_filter_options.ladder_d2r;
+		filter_options.ladder_d2lod = default_filter_options.ladder_d2lod;
+		versions.setVersions(true);
+		filter_sockets = { ...default_filter_options.sockets };
+		filter_levelreq = { ...default_filter_options.levelreq };
+		bases.setAllBases(true);
+		required_runes.setRequiredRunes(false);
+	}
 </script>
 
 <div class="flex" style="justify-content: space-between;">
 	<h3>Filters</h3>
-	<button onclick={resetFilters()}>Reset Filters</button>
+	<button onclick={() => reset_filter_options()}>Reset Filters</button>
 </div>
 <br />
 <hr />
@@ -81,7 +99,7 @@
 		</fieldset>
 	</article>
 	<hr />
-	<Versions />
+	<Versions bind:this={versions} />
 	<hr />
 	<div class="flex">
 		<h5>Sockets</h5>
@@ -160,8 +178,8 @@
 			/><small>Maximum</small>
 		</fieldset>
 	</fieldset>
-	<Bases />
-	<RequiredRunes />
+	<Bases bind:this={bases} />
+	<RequiredRunes bind:this={required_runes} />
 </aside>
 
 <style>

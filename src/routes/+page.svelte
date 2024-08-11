@@ -1,8 +1,7 @@
 <script lang="ts">
 	import RunesGrid from '$lib/components/RuneGrid.svelte';
-	import { RUNES } from '$lib/rw';
-	import { rune_inventory } from '$lib/runewords.svelte.ts';
 	import Filters from '$lib/components/filters/Filters.svelte';
+	import Table from '$lib/components/table/Table.svelte';
 </script>
 
 <div class="wrapper">
@@ -17,7 +16,9 @@
 		</header>
 		<RunesGrid />
 	</div>
-	<main class="container-fluid grid-main" id="content"></main>
+	<main class="container-fluid grid-main" id="content">
+		<Table />
+	</main>
 </div>
 
 <style>

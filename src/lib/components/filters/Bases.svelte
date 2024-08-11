@@ -7,13 +7,14 @@
 		filter_options.bases = { ...filter_bases };
 	});
 
-	function setBases(base_type, value) {
+	export function setBases(base_type, value) {
 		for (let i = 0; i < BASES[base_type].length; i++) {
 			filter_bases[BASES[base_type][i]] = value;
 		}
+		filter_bases = { ...filter_bases };
 	}
 
-	function setAllBases(value) {
+	export function setAllBases(value) {
 		Object.keys(BASES).forEach((base_type) => {
 			setBases(base_type, value);
 		});

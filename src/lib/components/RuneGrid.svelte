@@ -11,7 +11,7 @@
 	}
 </script>
 
-<article>
+<article id="runes">
 	<fieldset class="custom-grid">
 		{#each RUNES as rune, index}
 			<div>
@@ -57,3 +57,9 @@
 		/>
 	</fieldset>
 </fieldset>
+
+<style>
+	#runes small {
+		font-size: medium;
+	}
+</style>
