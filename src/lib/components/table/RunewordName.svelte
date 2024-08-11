@@ -29,7 +29,7 @@
 				<small
 					data-tooltip={tooltips.d2lod_ladder}
 					data-placement="bottom"
-					class="warning d2lod_ladder">LoD Ladder</small
+					class="warning d2lod_ladder">Ladder (D2)</small
 				>
 			{/if}
 		</div>

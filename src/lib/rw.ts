@@ -25,6 +25,7 @@ export interface Runeword {
 	version: "1.09" | "1.10" | "1.11" | "2.4" | "2.6"
 }
 
+
 export type Bases = { [key: string]: string[] };
 
 

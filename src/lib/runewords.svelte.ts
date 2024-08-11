@@ -6,7 +6,7 @@ const BASES_DATA = BASES as Bases;
 
 interface FilterOptions {
 	search: string;
-	can_make: boolean;
+	only_can_make: boolean;
 	ladder_d2r: boolean;
 	ladder_d2lod: boolean;
 	versions: { [key: string]: boolean };
@@ -27,9 +27,22 @@ for (let key in BASES_DATA) {
 	}
 }
 
+export function isAnyBaseSelected(available_bases: string[], selected_bases: { [key: string]: boolean }): boolean {
+	let final_bases: string[] = [];
+	for (let i = 0; i < available_bases.length; i++) {
+		if (available_bases[i] in BASES) {
+			final_bases = final_bases.concat(BASES[available_bases[i]]);
+		} else {
+			final_bases.push(available_bases[i]);
+		}
+	}
+	return final_bases.some((x) => selected_bases[x]);
+}
+
+
 export const default_filter_options: FilterOptions = {
 	search: "",
-	can_make: true,
+	only_can_make: true,
 	ladder_d2r: true,
 	ladder_d2lod: true,
 	versions: Object.fromEntries(VERSIONS.map(v => [v, true])),

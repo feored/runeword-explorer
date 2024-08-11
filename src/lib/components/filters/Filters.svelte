@@ -34,7 +34,7 @@
 
 	function reset_filter_options() {
 		filter_options.search = default_filter_options.search;
-		filter_options.can_make = default_filter_options.can_make;
+		filter_options.only_can_make = default_filter_options.only_can_make;
 		filter_options.ladder_d2r = default_filter_options.ladder_d2r;
 		filter_options.ladder_d2lod = default_filter_options.ladder_d2lod;
 		versions.setVersions(true);
@@ -73,7 +73,7 @@
 					id="can_make"
 					name="can_make"
 					value="can_make"
-					bind:checked={filter_options.can_make}
+					bind:checked={filter_options.only_can_make}
 				/> Only Show Runewords I Can Make
 			</label>
 			<label
