@@ -1,10 +1,12 @@
 <script lang="ts">
-	let stats: string[] = $props();
+	interface Stats {
+		stats: string[];
+	}
+	let { stats }: Stats = $props();
 </script>
 
 <div class="stats">
-	<p>{rw_stats} stats</p>
-	{#each rw_stats as stat}
+	{#each stats as stat}
 		{#if stat.toLowerCase().includes('varies')}
 			<span class="variable">{stat}</span>
 		{:else}

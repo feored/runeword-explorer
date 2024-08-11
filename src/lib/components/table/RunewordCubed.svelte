@@ -6,13 +6,12 @@
 		upgsDone: number[];
 		rw_runes: string[];
 	}
-	let { upgsDone, rw_runes }: cubedProps = $props();
+	let { show, upgsDone, rw_runes }: cubedProps = $props();
 </script>
 
 <div>
-	{#if upgsDone}
-		{upgsDone}
-		<!-- {#each upgsDone as upgNb, runeIndex}
+	{#if show && upgsDone}
+		{#each upgsDone as upgNb, runeIndex}
 			{#if upgNb > 0}
 				<span
 					>{upgNb * upgCost(runeIndex)}
@@ -34,8 +33,9 @@
 						<span class="rune">{RUNES[runeIndex + 1]}</span>
 					{/if}
 				</span>
+				<br />
 			{/if}
-		{/each} -->
+		{/each}
 	{/if}
 </div>
 

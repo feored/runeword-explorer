@@ -16,20 +16,15 @@
 		let rws: Runeword[] = [];
 		for (let i = 0; i < RUNEWORDS.length; i++) {
 			let rw = RUNEWORDS[i];
-			console.log('Actual stats');
-			console.log(rw.stats);
 			let { success, upgsDone, missing } = getPathRw(rune_inventory, rw.runes);
-			// console.log('upgsDone', upgsDone);
-			// rw.success = success;
-			// rw.upgsDone = upgsDone;
-			// rw.missing = missing;
-			// rw.el_value = rw.runes
-			// 	.map((x) => getElValue(RUNES.indexOf(x)))
-			// 	.reduce((partialSum, a) => partialSum + a, 0);
+			rw.success = success;
+			rw.upgsDone = upgsDone;
+			rw.missing = missing;
+			rw.el_value = rw.runes
+				.map((x) => getElValue(RUNES.indexOf(x)))
+				.reduce((partialSum, a) => partialSum + a, 0);
 
 			rws.push(rw);
-
-			// console.log(rw);
 		}
 		return rws;
 	});
@@ -92,7 +87,7 @@
 						<td class="levelreq">
 							{rw.levelreq}
 						</td>
-						<td><RunewordCubed upgs={rw.upgsDone} rw_runes={rw.runes} /></td>
+						<td><RunewordCubed show={rw.success} upgsDone={rw.upgsDone} rw_runes={rw.runes} /></td>
 					</tr>
 				{/each}
 			</tbody>
