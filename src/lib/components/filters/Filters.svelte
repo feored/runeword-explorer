@@ -6,19 +6,6 @@
 	import type { FilterOptions } from '$lib/runewords.svelte.ts';
 	import { filter_options } from '$lib/runewords.svelte.ts';
 
-	$effect(() => {
-		console.log('filter options have changed');
-		console.log(filter_options.bases);
-		console.log(filter_options.required_runes);
-		console.log(filter_options.search);
-		console.log(filter_options.can_make);
-		console.log(filter_options.ladder_d2r);
-		console.log(filter_options.ladder_d2lod);
-		console.log(filter_options.versions);
-		console.log(filter_options.sockets);
-		console.log(filter_options.levelreq);
-	});
-
 	let filter_sockets = $state({ ...filter_options.sockets });
 	let filter_levelreq = $state({ ...filter_options.levelreq });
 
@@ -26,11 +13,17 @@
 		if (filter_sockets.min > filter_sockets.max) {
 			filter_sockets.max = filter_sockets.min;
 		}
+
+		filter_options.sockets = { ...filter_sockets };
+		console.log('UPDATED SOCKETS');
+	});
+
+	$effect(() => {
 		if (filter_levelreq.min > filter_levelreq.max) {
 			filter_levelreq.max = filter_levelreq.min;
 		}
-		filter_options.sockets = { ...filter_sockets };
 		filter_options.levelreq = { ...filter_levelreq };
+		console.log('UPDATED LEVELREQ');
 	});
 </script>
 
@@ -88,31 +81,22 @@
 		</fieldset>
 	</article>
 	<hr />
+	<Versions />
+	<hr />
 	<div class="flex">
-		<h5>Version</h5>
+		<h5>Sockets</h5>
 		<div class="flex all_or_none">
 			<a
 				href=" #"
-				onclick={VERSIONS.map((ver) => {
-					filter_options.versions[ver] = true;
-				})}
+				onclick={() => {
+					filter_sockets.min = 2;
+					filter_sockets.max = 6;
+				}}
 			>
-				All
-			</a>
-			<p>/</p>
-			<a
-				href=" #"
-				onclick={VERSIONS.map((ver) => {
-					filter_options.versions[ver] = false;
-				})}
-			>
-				None
+				Reset
 			</a>
 		</div>
 	</div>
-	<Versions />
-	<hr />
-	<h5>Sockets</h5>
 	<fieldset class="grid">
 		<fieldset>
 			<input
@@ -138,7 +122,20 @@
 		</fieldset>
 	</fieldset>
 	<hr />
-	<h5>Level Required</h5>
+	<div class="flex">
+		<h5>Level Required</h5>
+		<div class="flex all_or_none">
+			<a
+				href=" #"
+				onclick={() => {
+					filter_levelreq.min = 1;
+					filter_levelreq.max = 99;
+				}}
+			>
+				Reset
+			</a>
+		</div>
+	</div>
 	<fieldset class="grid">
 		<fieldset>
 			<input
