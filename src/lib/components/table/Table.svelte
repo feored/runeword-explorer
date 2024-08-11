@@ -10,8 +10,16 @@
 	import RunewordBases from '$lib/components/table/RunewordBases.svelte';
 	import RunewordStats from '$lib/components/table/RunewordStats.svelte';
 	import RunewordCubed from '$lib/components/table/RunewordCubed.svelte';
+	import { onMount } from 'svelte';
 
-	let active_runewords = $derived.by(() => {
+	let last_clicked_th;
+	let default_sort_th;
+
+	onMount(() => {
+		default_sort_th.click();
+	});
+
+	let runewords = $derived.by(() => {
 		console.log('Updating runewords');
 		let rws: Runeword[] = [];
 		for (let i = 0; i < RUNEWORDS.length; i++) {
@@ -38,29 +46,68 @@
 <section>
 	<section>
 		<p id="runeword-nb">
-			Showing {active_runewords.length}/{RUNEWORDS.length} ({active_runewords.length /
-				RUNEWORDS.length}%)
+			Showing {runewords.length}/{RUNEWORDS.length} ({(runewords.length * 100) / RUNEWORDS.length}%)
 		</p>
 	</section>
 	<section class="overflow-auto">
 		<table id="rwtable" class="striped sortable asc">
 			<thead>
 				<tr>
-					<th>Can Make</th>
-					<th>Version</th>
-					<th>Name</th>
-					<th>Bases</th>
-					<th>Sockets</th>
-					<th> Runes </th>
-					<th class="no-sort">Stats</th>
-					<th>Level Req.</th>
-					<th>Cubed Runes</th>
+					<th
+						onclick={() => {
+							last_clicked_th = this;
+						}}>Can Make</th
+					>
+					<th
+						onclick={() => {
+							last_clicked_th = this;
+						}}>Version</th
+					>
+					<th
+						onclick={() => {
+							last_clicked_th = this;
+						}}
+						bind:this={default_sort_th}>Name</th
+					>
+					<th
+						onclick={() => {
+							last_clicked_th = this;
+						}}>Bases</th
+					>
+					<th
+						onclick={() => {
+							last_clicked_th = this;
+						}}>Sockets</th
+					>
+					<th
+						onclick={() => {
+							last_clicked_th = this;
+						}}
+					>
+						Runes
+					</th>
+					<th
+						onclick={() => {
+							last_clicked_th = this;
+						}}
+						class="no-sort">Stats</th
+					>
+					<th
+						onclick={() => {
+							last_clicked_th = this;
+						}}>Level Req.</th
+					>
+					<th
+						onclick={() => {
+							last_clicked_th = this;
+						}}>Cubed Runes</th
+					>
 				</tr>
 			</thead>
 			<tbody>
-				{#each active_runewords as rw}
+				{#each runewords as rw}
 					<tr>
-						<td class="possible">
+						<td data-sort={rw.success} class="possible">
 							<RunewordPossible possible={rw.success} />
 						</td>
 						<td>
@@ -80,14 +127,16 @@
 						<td class="sockets">
 							{rw.sockets}
 						</td>
-						<td class="runes">
+						<td data-sort={rw.el_value} class="runes">
 							{rw.runes.join(' ')}
 						</td>
 						<td><RunewordStats stats={rw.stats} /> </td>
 						<td class="levelreq">
 							{rw.levelreq}
 						</td>
-						<td><RunewordCubed show={rw.success} upgsDone={rw.upgsDone} rw_runes={rw.runes} /></td>
+						<td data-sort={rw.success ? 0 : rw.upgsDone.filter((x) => x > 0).length}
+							><RunewordCubed show={rw.success} upgsDone={rw.upgsDone} rw_runes={rw.runes} /></td
+						>
 					</tr>
 				{/each}
 			</tbody>
@@ -96,6 +145,12 @@
 </section>
 
 <style>
+	#rwtable thead th {
+		position: sticky;
+		top: 0;
+		z-index: 9;
+	}
+
 	#rwtable th,
 	td {
 		text-align: center;

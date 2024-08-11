@@ -136,12 +136,6 @@ article>footer {
 	/* Original: var(--pico-border-radius) */
 }
 
-#rwtable thead th {
-	position: sticky;
-	top: 0;
-	z-index: 9;
-}
-
 tbody tr td {
 	padding-top: calc(var(--pico-spacing));
 	padding-bottom: calc(var(--pico-spacing));
