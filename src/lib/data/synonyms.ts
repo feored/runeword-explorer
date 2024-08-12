@@ -1,3 +1,8 @@
+// No need for abbreviations, e.g replenish life -> repl,
+// as just typing 'repl' will already bring up replenish.
+// Synonyms that contain another synonym should be placed
+// before the synonym it contains, e.g cbf before cb.
+
 export const SYNONYMS: Record<string, string> = {
 	mf: 'magic items',
 	'magic find': 'magic find',
@@ -5,6 +10,7 @@ export const SYNONYMS: Record<string, string> = {
 	cr: 'cold resist',
 	fr: 'fire resist',
 	lr: 'lightning resist',
+	cbf: 'cannot be frozen',
 	pr: 'poison res',
 	res: 'resist',
 	dtm: 'damage goes to mana',
@@ -13,7 +19,6 @@ export const SYNONYMS: Record<string, string> = {
 	cb: 'crushing blow',
 	ds: 'deadly strike',
 	ow: 'open wounds',
-	cbf: 'cannot be frozen',
 	gf: 'extra gold',
 	eg: 'extra gold',
 	maek: 'mana after each kill',
@@ -32,7 +37,6 @@ export const SYNONYMS: Record<string, string> = {
 	'mana leech': 'mana stolen',
 	ml: 'mana stolen',
 	bo: 'battle orders',
-	repl: 'replenish life',
 	plr: 'poison length reduced',
 	'mana regen': 'regenerate mana',
 	mreg: 'regenerate mana',
