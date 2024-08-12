@@ -18,6 +18,8 @@
 	import Stats from '$lib/components/table/cols/Stats.svelte';
 	import Cubed from '$lib/components/table/cols/Cubed.svelte';
 
+	import Mark from 'mark.js';
+
 	import { onMount } from 'svelte';
 
 	interface RunewordRow extends Runeword {
@@ -28,7 +30,7 @@
 	}
 
 	let default_sort_th: HTMLElement;
-	let mark_instance;
+	let mark_instance: Mark;
 
 	onMount(() => {
 		default_sort_th.click();
@@ -38,9 +40,11 @@
 		if (mark_instance) {
 			mark_instance.unmark();
 		}
-		mark_instance = new Mark(
-			document.querySelectorAll('#rwtable tr:not([hidden]) .searchable')
-		).mark(filter_options.search.toLowerCase(), { separateWordSearch: false, synonyms: SYNONYMS });
+		mark_instance = new Mark(document.querySelectorAll('#rwtable tr:not([hidden]) .searchable'));
+		mark_instance.mark(filter_options.search.toLowerCase(), {
+			separateWordSearch: false,
+			synonyms: SYNONYMS
+		});
 	});
 
 	let runewords: RunewordRow[] = $derived.by(() => {
@@ -112,7 +116,6 @@
 
 <svelte:head>
 	<script src="https://cdn.jsdelivr.net/npm/sortable-tablesort@3.2.3/sortable.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script>
 </svelte:head>
 
 <section>
