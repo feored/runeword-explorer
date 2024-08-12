@@ -38,7 +38,7 @@
 		}}
 		class="auto-width"
 	/>
-	<fieldset role="group" aria-labelledby="all_runes" class="auto-width">
+	<div role="group" aria-labelledby="all_runes" class="auto-width">
 		<input
 			type="number"
 			aria-describedby="all_runes"
@@ -55,7 +55,7 @@
 				setRunes(0, 33, all_set_nb);
 			}}
 		/>
-	</fieldset>
+	</div>
 </fieldset>
 
 <style>

@@ -73,9 +73,3 @@
 		{@render base_list('Melee Weapons')}
 	</article>
 </div>
-
-<style>
-	a {
-		cursor: pointer;
-	}
-</style>
