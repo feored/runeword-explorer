@@ -37,6 +37,7 @@
 		filter_options.only_can_make = default_filter_options.only_can_make;
 		filter_options.ladder_d2r = default_filter_options.ladder_d2r;
 		filter_options.ladder_d2lod = default_filter_options.ladder_d2lod;
+		filter_options.d2r_only = default_filter_options.d2r_only;
 		versions.setVersions(true);
 		filter_sockets = { ...default_filter_options.sockets };
 		filter_levelreq = { ...default_filter_options.levelreq };
@@ -76,6 +77,23 @@
 					bind:checked={filter_options.only_can_make}
 				/> Only Show Runewords I Can Make
 			</label>
+			<hr />
+			<label
+				><input
+					type="checkbox"
+					role="switch"
+					id="d2r_only"
+					name="d2r_only"
+					value="d2r_only"
+					bind:checked={filter_options.d2r_only}
+				/>
+				Show
+				<small
+					class="warning d2r_only"
+					style="display:inline-block !important"
+					data-tooltip="Diablo II: Resurrected">D2R</small
+				> Runewords
+			</label>
 			<label
 				><input
 					type="checkbox"
@@ -84,7 +102,13 @@
 					name="ladder_d2r"
 					value="ladder_d2r"
 					bind:checked={filter_options.ladder_d2r}
-				/> Show Ladder-Only Runewords (D2R)
+				/>
+				Show
+				<small
+					class="warning d2r_ladder"
+					style="display:inline-block !important"
+					data-tooltip="Diablo II: Resurrected">D2R</small
+				> Ladder-Only Runewords
 			</label>
 			<label
 				><input
@@ -94,7 +118,13 @@
 					name="ladder_d2lod"
 					value="ladder_d2lod"
 					bind:checked={filter_options.ladder_d2lod}
-				/> Show Ladder-Only Runewords (D2LoD)
+				/>
+				Show
+				<small
+					class="warning d2lod_ladder"
+					style="display:inline-block !important;"
+					data-tooltip="Diablo II: Lord of Destruction">D2LoD</small
+				> Ladder-Only Runewords
 			</label>
 		</fieldset>
 	</article>

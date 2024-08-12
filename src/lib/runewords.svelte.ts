@@ -9,6 +9,7 @@ interface FilterOptions {
 	only_can_make: boolean;
 	ladder_d2r: boolean;
 	ladder_d2lod: boolean;
+	d2r_only: boolean;
 	versions: { [key: string]: boolean };
 	sockets: { min: number, max: number };
 	levelreq: { min: number, max: number };
@@ -45,6 +46,7 @@ export const default_filter_options: FilterOptions = {
 	only_can_make: true,
 	ladder_d2r: true,
 	ladder_d2lod: true,
+	d2r_only: true,
 	versions: Object.fromEntries(VERSIONS.map(v => [v, true])),
 	sockets: { min: 2, max: 6 },
 	levelreq: { min: 1, max: 99 },

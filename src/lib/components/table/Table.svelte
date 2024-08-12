@@ -3,7 +3,7 @@
 	import RUNEWORDS from '$lib/data/runewords.json';
 	import { rune_inventory, filter_options, isAnyBaseSelected } from '$lib/runewords.svelte.ts';
 	import type { Runeword } from '$lib/rw';
-	import { RUNES, getPathRw, getElValue } from '$lib/rw.ts';
+	import { RUNES, D2R_VERSIONS, getPathRw, getElValue } from '$lib/rw.ts';
 	import RunewordName from '$lib/components/table/RunewordName.svelte';
 	import RunewordPossible from '$lib/components/table/RunewordPossible.svelte';
 	import RunewordVersion from '$lib/components/table/RunewordVersion.svelte';
@@ -64,6 +64,7 @@
 		if (
 			(!filter_options.ladder_d2lod && rw.ladder.d2lod) ||
 			(!filter_options.ladder_d2r && rw.ladder.d2r) ||
+			(!filter_options.d2r_only && D2R_VERSIONS.indexOf(rw.version) != -1) ||
 			(filter_options.only_can_make && !rw.success) ||
 			!filter_options.versions[rw.version] ||
 			rw.sockets < filter_options.sockets.min ||
