@@ -1,8 +1,6 @@
 [
 	{
-		"bases": [
-			"Off-hands"
-		],
+		"bases": ["Off-hands"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -11,11 +9,7 @@
 		},
 		"levelreq": 21,
 		"name": "Ancient's Pledge",
-		"runes": [
-			"Ral",
-			"Ort",
-			"Tal"
-		],
+		"runes": ["Ral", "Ort", "Tal"],
 		"sockets": 3,
 		"stats": [
 			"+50% Enhanced Defense",
@@ -28,11 +22,7 @@
 		"version": "1.09"
 	},
 	{
-		"bases": [
-			"Clubs",
-			"Hammers",
-			"Maces"
-		],
+		"bases": ["Clubs", "Hammers", "Maces"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -41,11 +31,7 @@
 		},
 		"levelreq": 35,
 		"name": "Black",
-		"runes": [
-			"Thul",
-			"Io",
-			"Nef"
-		],
+		"runes": ["Thul", "Io", "Nef"],
 		"sockets": 3,
 		"stats": [
 			"+120% Enhanced Damage",
@@ -61,9 +47,7 @@
 		"version": "1.09"
 	},
 	{
-		"bases": [
-			"Melee Weapons"
-		],
+		"bases": ["Melee Weapons"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -72,11 +56,7 @@
 		},
 		"levelreq": 65,
 		"name": "Fury",
-		"runes": [
-			"Jah",
-			"Gul",
-			"Eth"
-		],
+		"runes": ["Jah", "Gul", "Eth"],
 		"sockets": 3,
 		"stats": [
 			"+209% Enhanced Damage",
@@ -93,9 +73,7 @@
 		"version": "1.09"
 	},
 	{
-		"bases": [
-			"Scepters"
-		],
+		"bases": ["Scepters"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -104,12 +82,7 @@
 		},
 		"levelreq": 24,
 		"name": "Holy Thunder",
-		"runes": [
-			"Eth",
-			"Ral",
-			"Ort",
-			"Tal"
-		],
+		"runes": ["Eth", "Ral", "Ort", "Tal"],
 		"sockets": 4,
 		"stats": [
 			"+60% Enhanced Damage",
@@ -126,9 +99,7 @@
 		"version": "1.09"
 	},
 	{
-		"bases": [
-			"Melee Weapons"
-		],
+		"bases": ["Melee Weapons"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -137,13 +108,7 @@
 		},
 		"levelreq": 27,
 		"name": "Honor",
-		"runes": [
-			"Amn",
-			"El",
-			"Ith",
-			"Tir",
-			"Sol"
-		],
+		"runes": ["Amn", "El", "Ith", "Tir", "Sol"],
 		"sockets": 5,
 		"stats": [
 			"+160% Enhanced Damage",
@@ -161,10 +126,7 @@
 		"version": "1.09"
 	},
 	{
-		"bases": [
-			"Swords",
-			"Scepters"
-		],
+		"bases": ["Swords", "Scepters"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -173,11 +135,7 @@
 		},
 		"levelreq": 25,
 		"name": "King's Grace",
-		"runes": [
-			"Amn",
-			"Ral",
-			"Thul"
-		],
+		"runes": ["Amn", "Ral", "Thul"],
 		"sockets": 3,
 		"stats": [
 			"+100% Enhanced Damage",
@@ -193,9 +151,7 @@
 		"version": "1.09"
 	},
 	{
-		"bases": [
-			"Staves"
-		],
+		"bases": ["Staves"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -204,10 +160,7 @@
 		},
 		"levelreq": 19,
 		"name": "Leaf",
-		"runes": [
-			"Tir",
-			"Ral"
-		],
+		"runes": ["Tir", "Ral"],
 		"sockets": 2,
 		"stats": [
 			"Adds 5-30 Fire Damage",
@@ -222,9 +175,7 @@
 		"version": "1.09"
 	},
 	{
-		"bases": [
-			"Body Armors"
-		],
+		"bases": ["Body Armors"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -233,11 +184,7 @@
 		},
 		"levelreq": 41,
 		"name": "Lionheart",
-		"runes": [
-			"Hel",
-			"Lum",
-			"Fal"
-		],
+		"runes": ["Hel", "Lum", "Fal"],
 		"sockets": 3,
 		"stats": [
 			"+20% Enhanced Damage",
@@ -252,9 +199,7 @@
 		"version": "1.09"
 	},
 	{
-		"bases": [
-			"Helms"
-		],
+		"bases": ["Helms"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -263,10 +208,7 @@
 		},
 		"levelreq": 27,
 		"name": "Lore",
-		"runes": [
-			"Ort",
-			"Sol"
-		],
+		"runes": ["Ort", "Sol"],
 		"sockets": 2,
 		"stats": [
 			"+1 To All Skill Levels",
@@ -279,9 +221,7 @@
 		"version": "1.09"
 	},
 	{
-		"bases": [
-			"Melee Weapons"
-		],
+		"bases": ["Melee Weapons"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -290,11 +230,7 @@
 		},
 		"levelreq": 15,
 		"name": "Malice",
-		"runes": [
-			"Ith",
-			"El",
-			"Eth"
-		],
+		"runes": ["Ith", "El", "Eth"],
 		"sockets": 3,
 		"stats": [
 			"+33% Enhanced Damage",
@@ -309,9 +245,7 @@
 		"version": "1.09"
 	},
 	{
-		"bases": [
-			"Missile Weapons"
-		],
+		"bases": ["Missile Weapons"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -320,11 +254,7 @@
 		},
 		"levelreq": 39,
 		"name": "Melody",
-		"runes": [
-			"Shael",
-			"Ko",
-			"Nef"
-		],
+		"runes": ["Shael", "Ko", "Nef"],
 		"sockets": 3,
 		"stats": [
 			"+50% Enhanced Damage",
@@ -340,9 +270,7 @@
 		"version": "1.09"
 	},
 	{
-		"bases": [
-			"Staves"
-		],
+		"bases": ["Staves"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -351,12 +279,7 @@
 		},
 		"levelreq": 37,
 		"name": "Memory",
-		"runes": [
-			"Lum",
-			"Io",
-			"Sol",
-			"Eth"
-		],
+		"runes": ["Lum", "Io", "Sol", "Eth"],
 		"sockets": 4,
 		"stats": [
 			"+3 to Sorceress Skill Levels",
@@ -374,9 +297,7 @@
 		"version": "1.09"
 	},
 	{
-		"bases": [
-			"Helms"
-		],
+		"bases": ["Helms"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -385,10 +306,7 @@
 		},
 		"levelreq": 13,
 		"name": "Nadir",
-		"runes": [
-			"Nef",
-			"Tir"
-		],
+		"runes": ["Nef", "Tir"],
 		"sockets": 2,
 		"stats": [
 			"+50% Enhanced Defense",
@@ -403,9 +321,7 @@
 		"version": "1.09"
 	},
 	{
-		"bases": [
-			"Helms"
-		],
+		"bases": ["Helms"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -414,11 +330,7 @@
 		},
 		"levelreq": 27,
 		"name": "Radiance",
-		"runes": [
-			"Nef",
-			"Sol",
-			"Ith"
-		],
+		"runes": ["Nef", "Sol", "Ith"],
 		"sockets": 3,
 		"stats": [
 			"+75% Enhanced Defense",
@@ -434,9 +346,7 @@
 		"version": "1.09"
 	},
 	{
-		"bases": [
-			"Off-hands"
-		],
+		"bases": ["Off-hands"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -445,10 +355,7 @@
 		},
 		"levelreq": 29,
 		"name": "Rhyme",
-		"runes": [
-			"Shael",
-			"Eth"
-		],
+		"runes": ["Shael", "Eth"],
 		"sockets": 2,
 		"stats": [
 			"20% Increased Chance of Blocking",
@@ -462,9 +369,7 @@
 		"version": "1.09"
 	},
 	{
-		"bases": [
-			"Weapons"
-		],
+		"bases": ["Weapons"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -473,14 +378,7 @@
 		},
 		"levelreq": 55,
 		"name": "Silence",
-		"runes": [
-			"Dol",
-			"Eld",
-			"Hel",
-			"Ist",
-			"Tir",
-			"Vex"
-		],
+		"runes": ["Dol", "Eld", "Hel", "Ist", "Tir", "Vex"],
 		"sockets": 6,
 		"stats": [
 			"200% Enhanced Damage",
@@ -500,9 +398,7 @@
 		"version": "1.09"
 	},
 	{
-		"bases": [
-			"Body Armors"
-		],
+		"bases": ["Body Armors"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -511,10 +407,7 @@
 		},
 		"levelreq": 37,
 		"name": "Smoke",
-		"runes": [
-			"Nef",
-			"Lum"
-		],
+		"runes": ["Nef", "Lum"],
 		"sockets": 2,
 		"stats": [
 			"+75% Enhanced Defense",
@@ -528,9 +421,7 @@
 		"version": "1.09"
 	},
 	{
-		"bases": [
-			"Body Armors"
-		],
+		"bases": ["Body Armors"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -539,10 +430,7 @@
 		},
 		"levelreq": 17,
 		"name": "Stealth",
-		"runes": [
-			"Tal",
-			"Eth"
-		],
+		"runes": ["Tal", "Eth"],
 		"sockets": 2,
 		"stats": [
 			"Magic Damage Reduced By 3",
@@ -557,11 +445,7 @@
 		"version": "1.09"
 	},
 	{
-		"bases": [
-			"Swords",
-			"Axes",
-			"Maces"
-		],
+		"bases": ["Swords", "Axes", "Maces"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -570,10 +454,7 @@
 		},
 		"levelreq": 13,
 		"name": "Steel",
-		"runes": [
-			"Tir",
-			"El"
-		],
+		"runes": ["Tir", "El"],
 		"sockets": 2,
 		"stats": [
 			"20% Enhanced Damage",
@@ -588,9 +469,7 @@
 		"version": "1.09"
 	},
 	{
-		"bases": [
-			"Melee Weapons"
-		],
+		"bases": ["Melee Weapons"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -599,10 +478,7 @@
 		},
 		"levelreq": 25,
 		"name": "Strength",
-		"runes": [
-			"Amn",
-			"Tir"
-		],
+		"runes": ["Amn", "Tir"],
 		"sockets": 2,
 		"stats": [
 			"35% Enhanced Damage",
@@ -615,9 +491,7 @@
 		"version": "1.09"
 	},
 	{
-		"bases": [
-			"Weapons"
-		],
+		"bases": ["Weapons"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -626,11 +500,7 @@
 		},
 		"levelreq": 49,
 		"name": "Venom",
-		"runes": [
-			"Tal",
-			"Dol",
-			"Mal"
-		],
+		"runes": ["Tal", "Dol", "Mal"],
 		"sockets": 3,
 		"stats": [
 			"Hit Causes Monster To Flee 25%",
@@ -644,9 +514,7 @@
 		"version": "1.09"
 	},
 	{
-		"bases": [
-			"Body Armors"
-		],
+		"bases": ["Body Armors"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -655,11 +523,7 @@
 		},
 		"levelreq": 43,
 		"name": "Wealth",
-		"runes": [
-			"Lem",
-			"Ko",
-			"Tir"
-		],
+		"runes": ["Lem", "Ko", "Tir"],
 		"sockets": 3,
 		"stats": [
 			"300% Extra Gold From Monsters",
@@ -670,9 +534,7 @@
 		"version": "1.09"
 	},
 	{
-		"bases": [
-			"Wands"
-		],
+		"bases": ["Wands"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -681,10 +543,7 @@
 		},
 		"levelreq": 35,
 		"name": "White",
-		"runes": [
-			"Dol",
-			"Io"
-		],
+		"runes": ["Dol", "Io"],
 		"sockets": 2,
 		"stats": [
 			"Hit Causes Monster To Flee 25%",
@@ -700,9 +559,7 @@
 		"version": "1.09"
 	},
 	{
-		"bases": [
-			"Missile Weapons"
-		],
+		"bases": ["Missile Weapons"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -711,10 +568,7 @@
 		},
 		"levelreq": 21,
 		"name": "Zephyr",
-		"runes": [
-			"Ort",
-			"Eth"
-		],
+		"runes": ["Ort", "Eth"],
 		"sockets": 2,
 		"stats": [
 			"+33% Enhanced Damage",
@@ -729,11 +583,7 @@
 		"version": "1.09"
 	},
 	{
-		"bases": [
-			"Axes",
-			"Scepters",
-			"Hammers"
-		],
+		"bases": ["Axes", "Scepters", "Hammers"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -742,13 +592,7 @@
 		},
 		"levelreq": 63,
 		"name": "Beast",
-		"runes": [
-			"Ber",
-			"Tir",
-			"Um",
-			"Mal",
-			"Lum"
-		],
+		"runes": ["Ber", "Tir", "Um", "Mal", "Lum"],
 		"sockets": 5,
 		"stats": [
 			"Level 9 Fanaticism Aura When Equipped",
@@ -767,9 +611,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Body Armors"
-		],
+		"bases": ["Body Armors"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -778,12 +620,7 @@
 		},
 		"levelreq": 61,
 		"name": "Bramble",
-		"runes": [
-			"Ral",
-			"Ohm",
-			"Sur",
-			"Eth"
-		],
+		"runes": ["Ral", "Ohm", "Sur", "Eth"],
 		"sockets": 4,
 		"stats": [
 			"Level 15-21 Thorns Aura When Equipped (varies)",
@@ -801,9 +638,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Weapons"
-		],
+		"bases": ["Weapons"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -812,14 +647,7 @@
 		},
 		"levelreq": 69,
 		"name": "Breath of the Dying",
-		"runes": [
-			"Vex",
-			"Hel",
-			"El",
-			"Eld",
-			"Zod",
-			"Eth"
-		],
+		"runes": ["Vex", "Hel", "El", "Eld", "Zod", "Eth"],
 		"sockets": 6,
 		"stats": [
 			"50% Chance To Cast Level 20 Poison Nova When You Kill An Enemy",
@@ -840,9 +668,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Weapons"
-		],
+		"bases": ["Weapons"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -851,13 +677,7 @@
 		},
 		"levelreq": 57,
 		"name": "Call To Arms",
-		"runes": [
-			"Amn",
-			"Ral",
-			"Mal",
-			"Ist",
-			"Ohm"
-		],
+		"runes": ["Amn", "Ral", "Mal", "Ist", "Ohm"],
 		"sockets": 5,
 		"stats": [
 			"+1 To All Skills",
@@ -875,9 +695,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Assassin Katars"
-		],
+		"bases": ["Assassin Katars"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -886,11 +704,7 @@
 		},
 		"levelreq": 57,
 		"name": "Chaos",
-		"runes": [
-			"Fal",
-			"Ohm",
-			"Um"
-		],
+		"runes": ["Fal", "Ohm", "Um"],
 		"sockets": 3,
 		"stats": [
 			"9% Chance To Cast Level 11 Frozen Orb On Striking",
@@ -906,9 +720,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Body Armors"
-		],
+		"bases": ["Body Armors"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -917,12 +729,7 @@
 		},
 		"levelreq": 63,
 		"name": "Chains of Honor",
-		"runes": [
-			"Dol",
-			"Um",
-			"Ber",
-			"Ist"
-		],
+		"runes": ["Dol", "Um", "Ber", "Ist"],
 		"sockets": 4,
 		"stats": [
 			"+2 To All Skills",
@@ -939,11 +746,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Axes",
-			"Swords",
-			"Polearms"
-		],
+		"bases": ["Axes", "Swords", "Polearms"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -952,11 +755,7 @@
 		},
 		"levelreq": 48,
 		"name": "Crescent Moon",
-		"runes": [
-			"Shael",
-			"Um",
-			"Tir"
-		],
+		"runes": ["Shael", "Um", "Tir"],
 		"sockets": 3,
 		"stats": [
 			"10% Chance To Cast Level 17 Chain Lightning On Striking",
@@ -973,9 +772,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Helms"
-		],
+		"bases": ["Helms"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -984,11 +781,7 @@
 		},
 		"levelreq": 51,
 		"name": "Delirium",
-		"runes": [
-			"Lem",
-			"Ist",
-			"Io"
-		],
+		"runes": ["Lem", "Ist", "Io"],
 		"sockets": 3,
 		"stats": [
 			"1% Chance To Cast Level 50 Delirium (morph) When Struck",
@@ -1005,11 +798,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Axes",
-			"Polearms",
-			"Hammers"
-		],
+		"bases": ["Axes", "Polearms", "Hammers"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -1018,13 +807,7 @@
 		},
 		"levelreq": 67,
 		"name": "Doom",
-		"runes": [
-			"Hel",
-			"Ohm",
-			"Um",
-			"Lo",
-			"Cham"
-		],
+		"runes": ["Hel", "Ohm", "Um", "Lo", "Cham"],
 		"sockets": 5,
 		"stats": [
 			"5% Chance To Cast Level 18 Volcano On Striking",
@@ -1042,9 +825,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Body Armors"
-		],
+		"bases": ["Body Armors"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -1053,11 +834,7 @@
 		},
 		"levelreq": 47,
 		"name": "Duress",
-		"runes": [
-			"Shael",
-			"Um",
-			"Thul"
-		],
+		"runes": ["Shael", "Um", "Thul"],
 		"sockets": 3,
 		"stats": [
 			"+40% Faster Hit Recovery",
@@ -1075,9 +852,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Body Armors"
-		],
+		"bases": ["Body Armors"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -1086,11 +861,7 @@
 		},
 		"levelreq": 65,
 		"name": "Enigma",
-		"runes": [
-			"Jah",
-			"Ith",
-			"Ber"
-		],
+		"runes": ["Jah", "Ith", "Ber"],
 		"sockets": 3,
 		"stats": [
 			"+2 To All Skills",
@@ -1107,9 +878,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Melee Weapons"
-		],
+		"bases": ["Melee Weapons"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -1118,13 +887,7 @@
 		},
 		"levelreq": 63,
 		"name": "Eternity",
-		"runes": [
-			"Amn",
-			"Ber",
-			"Ist",
-			"Sol",
-			"Sur"
-		],
+		"runes": ["Amn", "Ber", "Ist", "Sol", "Sur"],
 		"sockets": 5,
 		"stats": [
 			"Indestructible",
@@ -1143,9 +906,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Paladin Shields"
-		],
+		"bases": ["Paladin Shields"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -1154,12 +915,7 @@
 		},
 		"levelreq": 57,
 		"name": "Exile",
-		"runes": [
-			"Vex",
-			"Ohm",
-			"Ist",
-			"Dol"
-		],
+		"runes": ["Vex", "Ohm", "Ist", "Dol"],
 		"sockets": 4,
 		"stats": [
 			"15% Chance To Cast Level 5 Life Tap On Striking",
@@ -1177,10 +933,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Axes",
-			"Hammers"
-		],
+		"bases": ["Axes", "Hammers"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -1189,12 +942,7 @@
 		},
 		"levelreq": 65,
 		"name": "Famine",
-		"runes": [
-			"Fal",
-			"Ohm",
-			"Ort",
-			"Jah"
-		],
+		"runes": ["Fal", "Ohm", "Ort", "Jah"],
 		"sockets": 4,
 		"stats": [
 			"+30% Increased Attack Speed",
@@ -1211,9 +959,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Body Armors"
-		],
+		"bases": ["Body Armors"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -1222,11 +968,7 @@
 		},
 		"levelreq": 47,
 		"name": "Gloom",
-		"runes": [
-			"Fal",
-			"Um",
-			"Pul"
-		],
+		"runes": ["Fal", "Um", "Pul"],
 		"sockets": 3,
 		"stats": [
 			"15% Chance To Cast Level 3 Dim Vision When Struck",
@@ -1241,9 +983,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Weapons"
-		],
+		"bases": ["Weapons"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -1252,12 +992,7 @@
 		},
 		"levelreq": 67,
 		"name": "Hand of Justice",
-		"runes": [
-			"Sur",
-			"Cham",
-			"Amn",
-			"Lo"
-		],
+		"runes": ["Sur", "Cham", "Amn", "Lo"],
 		"sockets": 4,
 		"stats": [
 			"100% Chance To Cast Level 36 Blaze When You Level-Up",
@@ -1275,10 +1010,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Staves",
-			"Maces"
-		],
+		"bases": ["Staves", "Maces"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -1287,12 +1019,7 @@
 		},
 		"levelreq": 55,
 		"name": "Heart of the Oak",
-		"runes": [
-			"Ko",
-			"Vex",
-			"Pul",
-			"Thul"
-		],
+		"runes": ["Ko", "Vex", "Pul", "Thul"],
 		"sockets": 4,
 		"stats": [
 			"+3 To All Skills",
@@ -1311,10 +1038,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Swords",
-			"Axes"
-		],
+		"bases": ["Swords", "Axes"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -1323,12 +1047,7 @@
 		},
 		"levelreq": 53,
 		"name": "Kingslayer",
-		"runes": [
-			"Mal",
-			"Um",
-			"Gul",
-			"Fal"
-		],
+		"runes": ["Mal", "Um", "Gul", "Fal"],
 		"sockets": 4,
 		"stats": [
 			"+30% Increased Attack Speed",
@@ -1345,9 +1064,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Weapons"
-		],
+		"bases": ["Weapons"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -1356,12 +1073,7 @@
 		},
 		"levelreq": 43,
 		"name": "Passion",
-		"runes": [
-			"Dol",
-			"Ort",
-			"Eld",
-			"Lem"
-		],
+		"runes": ["Dol", "Ort", "Eld", "Lem"],
 		"sockets": 4,
 		"stats": [
 			"+25% Increased Attack Speed",
@@ -1381,9 +1093,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Body Armors"
-		],
+		"bases": ["Body Armors"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -1392,10 +1102,7 @@
 		},
 		"levelreq": 49,
 		"name": "Prudence",
-		"runes": [
-			"Mal",
-			"Tir"
-		],
+		"runes": ["Mal", "Tir"],
 		"sockets": 2,
 		"stats": [
 			"+25% Faster Hit Recovery",
@@ -1410,9 +1117,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Off-hands"
-		],
+		"bases": ["Off-hands"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -1421,11 +1126,7 @@
 		},
 		"levelreq": 49,
 		"name": "Sanctuary",
-		"runes": [
-			"Ko",
-			"Ko",
-			"Mal"
-		],
+		"runes": ["Ko", "Ko", "Mal"],
 		"sockets": 3,
 		"stats": [
 			"+20% Faster Hit Recovery",
@@ -1441,9 +1142,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Off-hands"
-		],
+		"bases": ["Off-hands"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -1452,10 +1151,7 @@
 		},
 		"levelreq": 37,
 		"name": "Splendor",
-		"runes": [
-			"Eth",
-			"Lum"
-		],
+		"runes": ["Eth", "Lum"],
 		"sockets": 2,
 		"stats": [
 			"+1 To All Skills",
@@ -1471,9 +1167,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Body Armors"
-		],
+		"bases": ["Body Armors"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -1482,12 +1176,7 @@
 		},
 		"levelreq": 47,
 		"name": "Stone",
-		"runes": [
-			"Shael",
-			"Um",
-			"Pul",
-			"Lum"
-		],
+		"runes": ["Shael", "Um", "Pul", "Lum"],
 		"sockets": 4,
 		"stats": [
 			"+60% Faster Hit Recovery",
@@ -1503,9 +1192,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Melee Weapons"
-		],
+		"bases": ["Melee Weapons"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -1514,10 +1201,7 @@
 		},
 		"levelreq": 61,
 		"name": "Wind",
-		"runes": [
-			"Sur",
-			"El"
-		],
+		"runes": ["Sur", "El"],
 		"sockets": 2,
 		"stats": [
 			"10% Chance To Cast Level 9 Tornado On Striking",
@@ -1534,9 +1218,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Missile Weapons"
-		],
+		"bases": ["Missile Weapons"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -1545,12 +1227,7 @@
 		},
 		"levelreq": 65,
 		"name": "Brand",
-		"runes": [
-			"Jah",
-			"Lo",
-			"Mal",
-			"Gul"
-		],
+		"runes": ["Jah", "Lo", "Mal", "Gul"],
 		"sockets": 4,
 		"stats": [
 			"35% Chance To Cast Level 14 Amplify Damage When Struck",
@@ -1567,10 +1244,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Swords",
-			"Axes"
-		],
+		"bases": ["Swords", "Axes"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -1579,13 +1253,7 @@
 		},
 		"levelreq": 55,
 		"name": "Death",
-		"runes": [
-			"Hel",
-			"El",
-			"Vex",
-			"Ort",
-			"Gul"
-		],
+		"runes": ["Hel", "El", "Vex", "Ort", "Gul"],
 		"sockets": 5,
 		"stats": [
 			"100% Chance To Cast Level 44 Chain Lightning When You Die",
@@ -1605,10 +1273,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Polearms",
-			"Swords"
-		],
+		"bases": ["Polearms", "Swords"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -1617,13 +1282,7 @@
 		},
 		"levelreq": 65,
 		"name": "Destruction",
-		"runes": [
-			"Vex",
-			"Lo",
-			"Ber",
-			"Jah",
-			"Ko"
-		],
+		"runes": ["Vex", "Lo", "Ber", "Jah", "Ko"],
 		"sockets": 5,
 		"stats": [
 			"23% Chance To Cast Level 12 Volcano On Striking",
@@ -1642,10 +1301,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Body Armors",
-			"Off-hands"
-		],
+		"bases": ["Body Armors", "Off-hands"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -1654,11 +1310,7 @@
 		},
 		"levelreq": 61,
 		"name": "Dragon",
-		"runes": [
-			"Sur",
-			"Lo",
-			"Sol"
-		],
+		"runes": ["Sur", "Lo", "Sol"],
 		"sockets": 3,
 		"stats": [
 			"20% Chance to Cast Level 18 Venom When Struck",
@@ -1676,10 +1328,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Helms",
-			"Off-hands"
-		],
+		"bases": ["Helms", "Off-hands"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -1688,11 +1337,7 @@
 		},
 		"levelreq": 65,
 		"name": "Dream",
-		"runes": [
-			"Io",
-			"Jah",
-			"Pul"
-		],
+		"runes": ["Io", "Jah", "Pul"],
 		"sockets": 3,
 		"stats": [
 			"10% Chance To Cast Level 15 Confuse When Struck",
@@ -1710,9 +1355,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Missile Weapons"
-		],
+		"bases": ["Missile Weapons"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -1721,11 +1364,7 @@
 		},
 		"levelreq": 25,
 		"name": "Edge",
-		"runes": [
-			"Tir",
-			"Tal",
-			"Amn"
-		],
+		"runes": ["Tir", "Tal", "Amn"],
 		"sockets": 3,
 		"stats": [
 			"Level 15 Thorns Aura When Equipped",
@@ -1742,9 +1381,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Missile Weapons"
-		],
+		"bases": ["Missile Weapons"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -1753,12 +1390,7 @@
 		},
 		"levelreq": 65,
 		"name": "Faith",
-		"runes": [
-			"Ohm",
-			"Jah",
-			"Lem",
-			"Eld"
-		],
+		"runes": ["Ohm", "Jah", "Lem", "Eld"],
 		"sockets": 4,
 		"stats": [
 			"Level 12-15 Fanaticism Aura When Equipped (varies)",
@@ -1776,9 +1408,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Weapons"
-		],
+		"bases": ["Weapons"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -1787,12 +1417,7 @@
 		},
 		"levelreq": 59,
 		"name": "Fortitude",
-		"runes": [
-			"El",
-			"Sol",
-			"Dol",
-			"Lo"
-		],
+		"runes": ["El", "Sol", "Dol", "Lo"],
 		"sockets": 4,
 		"stats": [
 			"20% Chance To Cast Level 15 Chilling Armor when Struck",
@@ -1811,9 +1436,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Body Armors"
-		],
+		"bases": ["Body Armors"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -1822,12 +1445,7 @@
 		},
 		"levelreq": 59,
 		"name": "Fortitude",
-		"runes": [
-			"El",
-			"Sol",
-			"Dol",
-			"Lo"
-		],
+		"runes": ["El", "Sol", "Dol", "Lo"],
 		"sockets": 4,
 		"stats": [
 			"20% Chance To Cast Level 15 Chilling Armor when Struck",
@@ -1846,10 +1464,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Swords",
-			"Axes"
-		],
+		"bases": ["Swords", "Axes"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -1858,13 +1473,7 @@
 		},
 		"levelreq": 59,
 		"name": "Grief",
-		"runes": [
-			"Eth",
-			"Tir",
-			"Lo",
-			"Mal",
-			"Ral"
-		],
+		"runes": ["Eth", "Tir", "Lo", "Mal", "Ral"],
 		"sockets": 5,
 		"stats": [
 			"35% Chance To Cast Level 15 Venom On Striking",
@@ -1883,9 +1492,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Missile Weapons"
-		],
+		"bases": ["Missile Weapons"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -1894,12 +1501,7 @@
 		},
 		"levelreq": 39,
 		"name": "Harmony",
-		"runes": [
-			"Tir",
-			"Ith",
-			"Sol",
-			"Ko"
-		],
+		"runes": ["Tir", "Ith", "Sol", "Ko"],
 		"sockets": 4,
 		"stats": [
 			"Level 10 Vigor Aura When Equipped",
@@ -1919,9 +1521,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Missile Weapons"
-		],
+		"bases": ["Missile Weapons"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -1930,12 +1530,7 @@
 		},
 		"levelreq": 65,
 		"name": "Ice",
-		"runes": [
-			"Amn",
-			"Shael",
-			"Jah",
-			"Lo"
-		],
+		"runes": ["Amn", "Shael", "Jah", "Lo"],
 		"sockets": 4,
 		"stats": [
 			"100% Chance To Cast Level 40 Blizzard When You Level-up",
@@ -1953,14 +1548,8 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Polearms"
-		],
-		"bases_d2r": [
-			"Polearms",
-			"Spears",
-			"Amazon Spears"
-		],
+		"bases": ["Polearms"],
+		"bases_d2r": ["Polearms", "Spears", "Amazon Spears"],
 		"d2r_only": false,
 		"ladder": {
 			"d2lod": true,
@@ -1968,12 +1557,7 @@
 		},
 		"levelreq": 63,
 		"name": "Infinity",
-		"runes": [
-			"Ber",
-			"Mal",
-			"Ber",
-			"Ist"
-		],
+		"runes": ["Ber", "Mal", "Ber", "Ist"],
 		"sockets": 4,
 		"stats": [
 			"50% Chance To Cast Level 20 Chain Lightning When You Kill An Enemy",
@@ -1990,17 +1574,8 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Polearms",
-			"Staves"
-		],
-		"bases_d2r": [
-			"Polearms",
-			"Staves",
-			"Amazon Bows",
-			"Bows",
-			"Crossbows"
-		],
+		"bases": ["Polearms", "Staves"],
+		"bases_d2r": ["Polearms", "Staves", "Amazon Bows", "Bows", "Crossbows"],
 		"d2r_only": false,
 		"ladder": {
 			"d2lod": true,
@@ -2008,12 +1583,7 @@
 		},
 		"levelreq": 27,
 		"name": "Insight",
-		"runes": [
-			"Ral",
-			"Tir",
-			"Tal",
-			"Sol"
-		],
+		"runes": ["Ral", "Tir", "Tal", "Sol"],
 		"sockets": 4,
 		"stats": [
 			"Level 12-17 Meditation Aura When Equipped (varies)",
@@ -2031,11 +1601,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Swords",
-			"Hammers",
-			"Axes"
-		],
+		"bases": ["Swords", "Hammers", "Axes"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -2044,14 +1610,7 @@
 		},
 		"levelreq": 65,
 		"name": "Last Wish",
-		"runes": [
-			"Jah",
-			"Mal",
-			"Jah",
-			"Sur",
-			"Jah",
-			"Ber"
-		],
+		"runes": ["Jah", "Mal", "Jah", "Sur", "Jah", "Ber"],
 		"sockets": 6,
 		"stats": [
 			"6% Chance To Cast Level 11 Fade When Struck",
@@ -2068,11 +1627,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Swords",
-			"Hammers",
-			"Scepters "
-		],
+		"bases": ["Swords", "Hammers", "Scepters "],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -2081,11 +1636,7 @@
 		},
 		"levelreq": 43,
 		"name": "Lawbringer",
-		"runes": [
-			"Amn",
-			"Lem",
-			"Ko"
-		],
+		"runes": ["Amn", "Lem", "Ko"],
 		"sockets": 3,
 		"stats": [
 			"20% Chance To Cast Level 15 Decrepify On Striking",
@@ -2102,11 +1653,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Swords",
-			"Axes",
-			"Maces"
-		],
+		"bases": ["Swords", "Axes", "Maces"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -2115,12 +1662,7 @@
 		},
 		"levelreq": 49,
 		"name": "Oath",
-		"runes": [
-			"Shael",
-			"Pul",
-			"Mal",
-			"Lum"
-		],
+		"runes": ["Shael", "Pul", "Mal", "Lum"],
 		"sockets": 4,
 		"stats": [
 			"30% Chance To Cast Level 20 Bone Spirit On Striking",
@@ -2138,14 +1680,8 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Polearms"
-		],
-		"bases_d2r": [
-			"Amazon Spears",
-			"Polearms",
-			"Spears"
-		],
+		"bases": ["Polearms"],
+		"bases_d2r": ["Amazon Spears", "Polearms", "Spears"],
 		"d2r_only": false,
 		"ladder": {
 			"d2lod": true,
@@ -2153,13 +1689,7 @@
 		},
 		"levelreq": 41,
 		"name": "Obedience",
-		"runes": [
-			"Hel",
-			"Ko",
-			"Thul",
-			"Eth",
-			"Fal"
-		],
+		"runes": ["Hel", "Ko", "Thul", "Eth", "Fal"],
 		"sockets": 5,
 		"stats": [
 			"30% Chance To Cast Level 21 Enchant When You Kill An Enemy",
@@ -2178,9 +1708,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Weapons"
-		],
+		"bases": ["Weapons"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -2189,12 +1717,7 @@
 		},
 		"levelreq": 65,
 		"name": "Phoenix",
-		"runes": [
-			"Vex",
-			"Vex",
-			"Lo",
-			"Jah"
-		],
+		"runes": ["Vex", "Vex", "Lo", "Jah"],
 		"sockets": 4,
 		"stats": [
 			"100% Chance To Cast level 40 Blaze When You Level-up",
@@ -2211,9 +1734,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Off-hands"
-		],
+		"bases": ["Off-hands"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -2222,12 +1743,7 @@
 		},
 		"levelreq": 65,
 		"name": "Phoenix",
-		"runes": [
-			"Vex",
-			"Vex",
-			"Lo",
-			"Jah"
-		],
+		"runes": ["Vex", "Vex", "Lo", "Jah"],
 		"sockets": 4,
 		"stats": [
 			"100% Chance To Cast level 40 Blaze When You Level-up",
@@ -2244,14 +1760,8 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Polearms"
-		],
-		"bases_d2r": [
-			"Amazon Spears",
-			"Polearms",
-			"Spears"
-		],
+		"bases": ["Polearms"],
+		"bases_d2r": ["Amazon Spears", "Polearms", "Spears"],
 		"d2r_only": false,
 		"ladder": {
 			"d2lod": true,
@@ -2259,12 +1769,7 @@
 		},
 		"levelreq": 67,
 		"name": "Pride",
-		"runes": [
-			"Cham",
-			"Sur",
-			"Io",
-			"Lo"
-		],
+		"runes": ["Cham", "Sur", "Io", "Lo"],
 		"sockets": 4,
 		"stats": [
 			"25% Chance To Cast Level 17 Fire Wall When Struck",
@@ -2282,10 +1787,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Polearms",
-			"Scepters"
-		],
+		"bases": ["Polearms", "Scepters"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -2294,12 +1796,7 @@
 		},
 		"levelreq": 53,
 		"name": "Rift",
-		"runes": [
-			"Hel",
-			"Ko",
-			"Lem",
-			"Gul"
-		],
+		"runes": ["Hel", "Ko", "Lem", "Gul"],
 		"sockets": 4,
 		"stats": [
 			"20% Chance To Cast Level 16 Tornado On Striking",
@@ -2317,9 +1814,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Swords"
-		],
+		"bases": ["Swords"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -2328,12 +1823,7 @@
 		},
 		"levelreq": 25,
 		"name": "Spirit",
-		"runes": [
-			"Tal",
-			"Thul",
-			"Ort",
-			"Amn"
-		],
+		"runes": ["Tal", "Thul", "Ort", "Amn"],
 		"sockets": 4,
 		"stats": [
 			"+2 To All Skills",
@@ -2351,9 +1841,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Off-hands"
-		],
+		"bases": ["Off-hands"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -2362,12 +1850,7 @@
 		},
 		"levelreq": 25,
 		"name": "Spirit",
-		"runes": [
-			"Tal",
-			"Thul",
-			"Ort",
-			"Amn"
-		],
+		"runes": ["Tal", "Thul", "Ort", "Amn"],
 		"sockets": 4,
 		"stats": [
 			"+2 To All Skills",
@@ -2385,10 +1868,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Swords",
-			"Maces"
-		],
+		"bases": ["Swords", "Maces"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -2397,12 +1877,7 @@
 		},
 		"levelreq": 43,
 		"name": "Voice of Reason",
-		"runes": [
-			"Lem",
-			"Ko",
-			"El",
-			"Eld"
-		],
+		"runes": ["Lem", "Ko", "El", "Eld"],
 		"sockets": 4,
 		"stats": [
 			"15% Chance To Cast Level 13 Frozen Orb On Striking",
@@ -2421,9 +1896,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Missile Weapons"
-		],
+		"bases": ["Missile Weapons"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"ladder": {
@@ -2432,12 +1905,7 @@
 		},
 		"levelreq": 63,
 		"name": "Wrath",
-		"runes": [
-			"Pul",
-			"Lum",
-			"Ber",
-			"Mal"
-		],
+		"runes": ["Pul", "Lum", "Ber", "Mal"],
 		"sockets": 4,
 		"stats": [
 			"30% Chance To Cast Level 1 Decrepify On Striking",
@@ -2455,9 +1923,7 @@
 		"version": "1.10"
 	},
 	{
-		"bases": [
-			"Body Armors"
-		],
+		"bases": ["Body Armors"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"hero": "Necromancer",
@@ -2467,11 +1933,7 @@
 		},
 		"levelreq": 47,
 		"name": "Bone",
-		"runes": [
-			"Sol",
-			"Um",
-			"Um"
-		],
+		"runes": ["Sol", "Um", "Um"],
 		"sockets": 3,
 		"stats": [
 			"15% Chance To Cast level 10 Bone Armor When Struck",
@@ -2484,9 +1946,7 @@
 		"version": "1.11"
 	},
 	{
-		"bases": [
-			"Body Armors"
-		],
+		"bases": ["Body Armors"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"hero": "Sorceress",
@@ -2496,11 +1956,7 @@
 		},
 		"levelreq": 45,
 		"name": "Enlightenment",
-		"runes": [
-			"Pul",
-			"Ral",
-			"Sol"
-		],
+		"runes": ["Pul", "Ral", "Sol"],
 		"sockets": 3,
 		"stats": [
 			"5% Chance To Cast Level 15 Blaze When Struck",
@@ -2514,9 +1970,7 @@
 		"version": "1.11"
 	},
 	{
-		"bases": [
-			"Body Armors"
-		],
+		"bases": ["Body Armors"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"hero": "Barbarian",
@@ -2526,11 +1980,7 @@
 		},
 		"levelreq": 25,
 		"name": "Myth",
-		"runes": [
-			"Hel",
-			"Amn",
-			"Nef"
-		],
+		"runes": ["Hel", "Amn", "Nef"],
 		"sockets": 3,
 		"stats": [
 			"3% Chance To Cast Level 1 Howl When Struck",
@@ -2544,9 +1994,7 @@
 		"version": "1.11"
 	},
 	{
-		"bases": [
-			"Body Armors"
-		],
+		"bases": ["Body Armors"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"hero": "Amazon",
@@ -2556,11 +2004,7 @@
 		},
 		"levelreq": 29,
 		"name": "Peace",
-		"runes": [
-			"Shael",
-			"Thul",
-			"Amn"
-		],
+		"runes": ["Shael", "Thul", "Amn"],
 		"sockets": 3,
 		"stats": [
 			"4% Chance To Cast Level 5 Slow Missiles When Struck",
@@ -2574,9 +2018,7 @@
 		"version": "1.11"
 	},
 	{
-		"bases": [
-			"Body Armors"
-		],
+		"bases": ["Body Armors"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"hero": "Paladin",
@@ -2586,11 +2028,7 @@
 		},
 		"levelreq": 53,
 		"name": "Principle",
-		"runes": [
-			"Ral",
-			"Gul",
-			"Eld"
-		],
+		"runes": ["Ral", "Gul", "Eld"],
 		"sockets": 3,
 		"stats": [
 			"100% Chance To Cast Level 5 Holy Bolt On Striking",
@@ -2604,9 +2042,7 @@
 		"version": "1.11"
 	},
 	{
-		"bases": [
-			"Body Armors"
-		],
+		"bases": ["Body Armors"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"hero": "Druid",
@@ -2616,11 +2052,7 @@
 		},
 		"levelreq": 49,
 		"name": "Rain",
-		"runes": [
-			"Ort",
-			"Mal",
-			"Ith"
-		],
+		"runes": ["Ort", "Mal", "Ith"],
 		"sockets": 3,
 		"stats": [
 			"5% Chance To Cast Level 15 Cyclone Armor When Struck",
@@ -2634,9 +2066,7 @@
 		"version": "1.11"
 	},
 	{
-		"bases": [
-			"Body Armors"
-		],
+		"bases": ["Body Armors"],
 		"bases_d2r": [],
 		"d2r_only": false,
 		"hero": "Assassin",
@@ -2646,11 +2076,7 @@
 		},
 		"levelreq": 43,
 		"name": "Treachery",
-		"runes": [
-			"Shael",
-			"Thul",
-			"Lem"
-		],
+		"runes": ["Shael", "Thul", "Lem"],
 		"sockets": 3,
 		"stats": [
 			"5% Chance To Cast Level 15 Fade When Struck",
@@ -2664,11 +2090,7 @@
 		"version": "1.11"
 	},
 	{
-		"bases": [
-			"Swords",
-			"Assassin Katars",
-			"Daggers"
-		],
+		"bases": ["Swords", "Assassin Katars", "Daggers"],
 		"bases_d2r": [],
 		"d2r_only": true,
 		"ladder": {
@@ -2677,11 +2099,7 @@
 		},
 		"levelreq": 67,
 		"name": "Plague",
-		"runes": [
-			"Cham",
-			"Shael",
-			"Um"
-		],
+		"runes": ["Cham", "Shael", "Um"],
 		"sockets": 3,
 		"stats": [
 			"0% Chance to cast level 12 Lower Resist when struck",
@@ -2698,9 +2116,7 @@
 		"version": "2.4"
 	},
 	{
-		"bases": [
-			"Assassin Katars"
-		],
+		"bases": ["Assassin Katars"],
 		"bases_d2r": [],
 		"d2r_only": true,
 		"ladder": {
@@ -2709,11 +2125,7 @@
 		},
 		"levelreq": 23,
 		"name": "Pattern",
-		"runes": [
-			"Tal",
-			"Ort",
-			"Thul"
-		],
+		"runes": ["Tal", "Ort", "Thul"],
 		"sockets": 3,
 		"stats": [
 			"+30% Faster Block Rate",
@@ -2730,9 +2142,7 @@
 		"version": "2.4"
 	},
 	{
-		"bases": [
-			"Swords"
-		],
+		"bases": ["Swords"],
 		"bases_d2r": [],
 		"d2r_only": true,
 		"ladder": {
@@ -2741,14 +2151,7 @@
 		},
 		"levelreq": 41,
 		"name": "Unbending Will",
-		"runes": [
-			"Fal",
-			"Io",
-			"Ith",
-			"Eld",
-			"El",
-			"Hel"
-		],
+		"runes": ["Fal", "Io", "Ith", "Eld", "El", "Hel"],
 		"sockets": 6,
 		"stats": [
 			"18% Chance to cast Level 18 Taunt on striking",
@@ -2770,9 +2173,7 @@
 		"version": "2.4"
 	},
 	{
-		"bases": [
-			"Helms"
-		],
+		"bases": ["Helms"],
 		"bases_d2r": [],
 		"d2r_only": true,
 		"ladder": {
@@ -2781,11 +2182,7 @@
 		},
 		"levelreq": 45,
 		"name": "Wisdom",
-		"runes": [
-			"Pul",
-			"Ith",
-			"Eld"
-		],
+		"runes": ["Pul", "Ith", "Eld"],
 		"sockets": 3,
 		"stats": [
 			"+33% Piercing Attack",
@@ -2801,9 +2198,7 @@
 		"version": "2.4"
 	},
 	{
-		"bases": [
-			"Staves"
-		],
+		"bases": ["Staves"],
 		"bases_d2r": [],
 		"d2r_only": true,
 		"ladder": {
@@ -2812,14 +2207,7 @@
 		},
 		"levelreq": 69,
 		"name": "Obsession",
-		"runes": [
-			"Zod",
-			"Ist",
-			"Lem",
-			"Lum",
-			"Io",
-			"Nef"
-		],
+		"runes": ["Zod", "Ist", "Lem", "Lum", "Io", "Nef"],
 		"sockets": 6,
 		"stats": [
 			"Indestructible",
@@ -2839,9 +2227,7 @@
 		"version": "2.4"
 	},
 	{
-		"bases": [
-			"Helms"
-		],
+		"bases": ["Helms"],
 		"bases_d2r": [],
 		"d2r_only": true,
 		"ladder": {
@@ -2850,11 +2236,7 @@
 		},
 		"levelreq": 55,
 		"name": "Flickering Flame",
-		"runes": [
-			"Nef",
-			"Pul",
-			"Vex"
-		],
+		"runes": ["Nef", "Pul", "Vex"],
 		"sockets": 3,
 		"stats": [
 			"Level 4-8 Resist Fire Aura When Equipped (varies)",
@@ -2870,9 +2252,7 @@
 		"version": "2.4"
 	},
 	{
-		"bases": [
-			"Missile Weapons"
-		],
+		"bases": ["Missile Weapons"],
 		"bases_d2r": [],
 		"d2r_only": true,
 		"ladder": {
@@ -2881,13 +2261,7 @@
 		},
 		"levelreq": 67,
 		"name": "Mist",
-		"runes": [
-			"Cham",
-			"Shael",
-			"Gul",
-			"Thul",
-			"Ith"
-		],
+		"runes": ["Cham", "Shael", "Gul", "Thul", "Ith"],
 		"sockets": 5,
 		"stats": [
 			"Level 8-12 Concentration Aura When Equipped (varies)",
@@ -2905,9 +2279,7 @@
 		"version": "2.4"
 	},
 	{
-		"bases": [
-			"Helms"
-		],
+		"bases": ["Helms"],
 		"bases_d2r": [],
 		"d2r_only": true,
 		"ladder": {
@@ -2916,11 +2288,7 @@
 		},
 		"levelreq": 35,
 		"name": "Bulwark",
-		"runes": [
-			"Shael",
-			"Io",
-			"Sol"
-		],
+		"runes": ["Shael", "Io", "Sol"],
 		"sockets": 3,
 		"stats": [
 			"+20% Faster Hit Recovery",
@@ -2935,9 +2303,7 @@
 		"version": "2.6"
 	},
 	{
-		"bases": [
-			"Helms"
-		],
+		"bases": ["Helms"],
 		"bases_d2r": [],
 		"d2r_only": true,
 		"ladder": {
@@ -2946,11 +2312,7 @@
 		},
 		"levelreq": 35,
 		"name": "Cure",
-		"runes": [
-			"Shael",
-			"Io",
-			"Tal"
-		],
+		"runes": ["Shael", "Io", "Tal"],
 		"sockets": 3,
 		"stats": [
 			"+20% Faster Hit Recovery",
@@ -2963,9 +2325,7 @@
 		"version": "2.6"
 	},
 	{
-		"bases": [
-			"Helms"
-		],
+		"bases": ["Helms"],
 		"bases_d2r": [],
 		"d2r_only": true,
 		"ladder": {
@@ -2974,11 +2334,7 @@
 		},
 		"levelreq": 35,
 		"name": "Ground",
-		"runes": [
-			"Shael",
-			"Io",
-			"Ort"
-		],
+		"runes": ["Shael", "Io", "Ort"],
 		"sockets": 3,
 		"stats": [
 			"+20% Faster Hit Recovery",
@@ -2991,9 +2347,7 @@
 		"version": "2.6"
 	},
 	{
-		"bases": [
-			"Helms"
-		],
+		"bases": ["Helms"],
 		"bases_d2r": [],
 		"d2r_only": true,
 		"ladder": {
@@ -3002,11 +2356,7 @@
 		},
 		"levelreq": 35,
 		"name": "Hearth",
-		"runes": [
-			"Shael",
-			"Io",
-			"Thul"
-		],
+		"runes": ["Shael", "Io", "Thul"],
 		"sockets": 3,
 		"stats": [
 			"+20% Faster Hit Recovery",
@@ -3019,9 +2369,7 @@
 		"version": "2.6"
 	},
 	{
-		"bases": [
-			"Helms"
-		],
+		"bases": ["Helms"],
 		"bases_d2r": [],
 		"d2r_only": true,
 		"ladder": {
@@ -3030,11 +2378,7 @@
 		},
 		"levelreq": 35,
 		"name": "Temper",
-		"runes": [
-			"Shael",
-			"Io",
-			"Ral"
-		],
+		"runes": ["Shael", "Io", "Ral"],
 		"sockets": 3,
 		"stats": [
 			"+20% Faster Hit Recovery",
@@ -3047,9 +2391,7 @@
 		"version": "2.6"
 	},
 	{
-		"bases": [
-			"Body Armors"
-		],
+		"bases": ["Body Armors"],
 		"bases_d2r": [],
 		"d2r_only": true,
 		"ladder": {
@@ -3058,11 +2400,7 @@
 		},
 		"levelreq": 39,
 		"name": "Hustle",
-		"runes": [
-			"Shael",
-			"Ko",
-			"Eld"
-		],
+		"runes": ["Shael", "Ko", "Eld"],
 		"sockets": 3,
 		"stats": [
 			"+50% Faster Run/Walk",
@@ -3074,9 +2412,7 @@
 		"version": "2.6"
 	},
 	{
-		"bases": [
-			"Weapons"
-		],
+		"bases": ["Weapons"],
 		"bases_d2r": [],
 		"d2r_only": true,
 		"ladder": {
@@ -3085,11 +2421,7 @@
 		},
 		"levelreq": 39,
 		"name": "Hustle",
-		"runes": [
-			"Shael",
-			"Ko",
-			"Eld"
-		],
+		"runes": ["Shael", "Ko", "Eld"],
 		"sockets": 3,
 		"stats": [
 			"5% Chance to cast level nine Burst of Speed on striking",
@@ -3102,9 +2434,7 @@
 		"version": "2.6"
 	},
 	{
-		"bases": [
-			"Assassin Katars"
-		],
+		"bases": ["Assassin Katars"],
 		"bases_d2r": [],
 		"d2r_only": true,
 		"ladder": {
@@ -3113,11 +2443,7 @@
 		},
 		"levelreq": 53,
 		"name": "Mosaic",
-		"runes": [
-			"Mal",
-			"Gul",
-			"Thul"
-		],
+		"runes": ["Mal", "Gul", "Thul"],
 		"sockets": 3,
 		"stats": [
 			"+25% chance for finishing moves to not consume charges",
@@ -3131,9 +2457,7 @@
 		"version": "2.6"
 	},
 	{
-		"bases": [
-			"Helms"
-		],
+		"bases": ["Helms"],
 		"bases_d2r": [],
 		"d2r_only": true,
 		"ladder": {
@@ -3142,11 +2466,7 @@
 		},
 		"levelreq": 67,
 		"name": "Metamorphosis",
-		"runes": [
-			"Io",
-			"Cham",
-			"Fal"
-		],
+		"runes": ["Io", "Cham", "Fal"],
 		"sockets": 3,
 		"stats": [
 			"Werewolf strikes grant Mark for 180 seconds",

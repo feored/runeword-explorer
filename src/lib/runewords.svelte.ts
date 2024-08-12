@@ -1,6 +1,6 @@
-import { RUNES, VERSIONS } from "$lib/rw";
-import type { Bases } from "$lib/rw";
-import BASES from "$lib/data/itemtypes.json";
+import { RUNES, VERSIONS } from '$lib/rw';
+import type { Bases } from '$lib/rw';
+import BASES from '$lib/data/itemtypes.json';
 
 const BASES_DATA = BASES as Bases;
 
@@ -11,8 +11,8 @@ interface FilterOptions {
 	ladder_d2lod: boolean;
 	d2r_only: boolean;
 	versions: { [key: string]: boolean };
-	sockets: { min: number, max: number };
-	levelreq: { min: number, max: number };
+	sockets: { min: number; max: number };
+	levelreq: { min: number; max: number };
 	bases: { [key: string]: boolean };
 	required_runes: boolean[];
 }
@@ -28,7 +28,10 @@ for (let key in BASES_DATA) {
 	}
 }
 
-export function isAnyBaseSelected(available_bases: string[], selected_bases: { [key: string]: boolean }): boolean {
+export function isAnyBaseSelected(
+	available_bases: string[],
+	selected_bases: { [key: string]: boolean }
+): boolean {
 	let final_bases: string[] = [];
 	for (let i = 0; i < available_bases.length; i++) {
 		if (available_bases[i] in BASES) {
@@ -40,19 +43,17 @@ export function isAnyBaseSelected(available_bases: string[], selected_bases: { [
 	return final_bases.some((x) => selected_bases[x]);
 }
 
-
 export const default_filter_options: FilterOptions = {
-	search: "",
+	search: '',
 	only_can_make: true,
 	ladder_d2r: true,
 	ladder_d2lod: true,
 	d2r_only: true,
-	versions: Object.fromEntries(VERSIONS.map(v => [v, true])),
+	versions: Object.fromEntries(VERSIONS.map((v) => [v, true])),
 	sockets: { min: 2, max: 6 },
 	levelreq: { min: 1, max: 99 },
 	bases: Object.fromEntries(all_bases.map((base_name) => [base_name, true])),
 	required_runes: new Array(RUNES.length).fill(false)
 };
-
 
 export let filter_options: FilterOptions = $state({ ...default_filter_options });

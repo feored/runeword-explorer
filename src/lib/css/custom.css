@@ -27,10 +27,8 @@
 	--color-border-d2rladder: rgb(181, 0, 0);
 
 	--color-d2lodladder: rgb(45 78 121);
-	--color-border-d2lodladder: rgb(88, 82, 175)
+	--color-border-d2lodladder: rgb(88, 82, 175);
 }
-
-
 
 .color-good {
 	color: var(--color-good);
@@ -39,8 +37,6 @@
 .color-bad {
 	color: var(--color-bad);
 }
-
-
 
 /* LAYOUT */
 
@@ -52,7 +48,6 @@
 	column-gap: var(--pico-grid-column-gap);
 	row-gap: var(--pico-grid-row-gap);
 }
-
 
 .all_or_none {
 	margin-left: auto;
@@ -71,18 +66,18 @@
 	width: auto !important;
 }
 
-
 /* PicoCSS fixes and overrides : https://github.com/picocss/pico/discussions/482#discussioncomment-9043725*/
 
 :root {
-	--pico-font-family-sans-serif: Inter, system-ui, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, Helvetica, Arial, "Helvetica Neue", sans-serif, var(--pico-font-family-emoji);
+	--pico-font-family-sans-serif: Inter, system-ui, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+		Helvetica, Arial, 'Helvetica Neue', sans-serif, var(--pico-font-family-emoji);
 	--pico-font-size: 100%;
 	/* Original: 100% */
 	--pico-line-height: 1.25;
 	/* Original: 1.5 */
 	--pico-form-element-spacing-vertical: 0.5rem;
 	/* Original: 1rem */
-	--pico-form-element-spacing-horizontal: 1.0rem;
+	--pico-form-element-spacing-horizontal: 1rem;
 	/* Original: 1.25rem */
 	--pico-border-radius: 0.375rem;
 	/* Original: 0.25rem */
@@ -131,7 +126,7 @@ table {
 	/* Original: var(--pico-border-radius) */
 }
 
-article>footer {
+article > footer {
 	border-radius: calc(var(--pico-border-radius) * 2);
 	/* Original: var(--pico-border-radius) */
 }
@@ -140,7 +135,6 @@ tbody tr td {
 	padding-top: calc(var(--pico-spacing));
 	padding-bottom: calc(var(--pico-spacing));
 }
-
 
 table.striped tbody tr:nth-child(odd of :not([hidden])) th,
 table.striped tbody tr:nth-child(odd of :not([hidden])) td {
@@ -152,16 +146,14 @@ table.striped tbody tr:nth-child(even of :not([hidden])) td {
 	background-color: inherit !important;
 }
 
-
-[data-tooltip][data-placement=top]::before,
-[data-tooltip][data-placement=top]::after,
+[data-tooltip][data-placement='top']::before,
+[data-tooltip][data-placement='top']::after,
 [data-tooltip]::before,
 [data-tooltip]::after {
 	height: max-content;
 	white-space: pre;
 	word-wrap: normal;
 }
-
 
 .warning {
 	color: var(--color-normal);
