@@ -4,6 +4,7 @@
 	import { rune_inventory, filter_options, isAnyBaseSelected } from '$lib/runewords.svelte.ts';
 	import type { Runeword } from '$lib/rw';
 	import { RUNES, D2R_VERSIONS, getPathRw, getElValue } from '$lib/rw.ts';
+	import SYNONYMS from '$lib/data/synonyms.json';
 	import RunewordName from '$lib/components/table/RunewordName.svelte';
 	import RunewordPossible from '$lib/components/table/RunewordPossible.svelte';
 	import RunewordVersion from '$lib/components/table/RunewordVersion.svelte';
@@ -28,11 +29,12 @@
 	});
 
 	$effect(() => {
-		console.log('Marking stuff again');
-		if (mark_instance) mark_instance.unmark();
+		if (mark_instance) {
+			mark_instance.unmark();
+		}
 		mark_instance = new Mark(
 			document.querySelectorAll('#rwtable tr:not([hidden]) .searchable')
-		).mark(filter_options.search.toLowerCase(), { separateWordSearch: false });
+		).mark(filter_options.search.toLowerCase(), { separateWordSearch: false, synonyms: SYNONYMS });
 	});
 
 	let runewords: RunewordRow[] = $derived.by(() => {
@@ -59,6 +61,19 @@
 	});
 
 	function filter_rw(rw, filter_options) {
+		function search(search_term: string): boolean {
+			if (
+				rw.name.toLowerCase().includes(search_term) ||
+				rw.runes.join(' ').toLowerCase().includes(search_term) ||
+				rw.stats.some((x) => x.toLowerCase().includes(search_term)) ||
+				rw.bases.some((x) => x.toLowerCase().includes(search_term)) ||
+				rw.bases_d2r.some((x) => x.toLowerCase().includes(search_term))
+			) {
+				return true;
+			}
+			return false;
+		}
+
 		let rw_bases: string[] = Array.from(new Set([].concat(rw.bases, rw.bases_d2r)));
 		let show = true;
 		if (
@@ -80,21 +95,13 @@
 		// search bar
 		let search_term = filter_options.search.toLowerCase();
 		if (show && search_term != '') {
-			console.log('searching' + search_term + ' in ' + rw.name);
-			show = false;
-			if (
-				rw.name.toLowerCase().includes(search_term) ||
-				rw.runes.join(' ').toLowerCase().includes(search_term) ||
-				rw.stats.some((x) => x.toLowerCase().includes(search_term)) ||
-				rw.bases.some((x) => x.toLowerCase().includes(search_term)) ||
-				rw.bases_d2r.some((x) => x.toLowerCase().includes(search_term))
-			) {
-				console.log('Found');
-				show = true;
-			} else {
-				console.log('Not Found');
+			show = search(search_term);
+			// If the row is not already shown, try again with synonym of search term
+			if (!show && search_term in SYNONYMS) {
+				show = search(SYNONYMS[search_term]);
 			}
 		}
+
 		return show;
 	}
 </script>
@@ -177,17 +184,16 @@
 						<td>
 							<RunewordVersion version={rw.version} />
 						</td>
-						<td>
+						<td class="searchable">
 							<RunewordName
 								name={rw.name}
 								d2r_only={rw.d2r_only}
 								d2r_ladder={rw.ladder.d2r}
 								d2lod_ladder={rw.ladder.d2lod}
-								class="searchable"
 							/>
 						</td>
-						<td>
-							<RunewordBases bases={rw.bases} bases_d2r={rw.bases_d2r} class="searchable" />
+						<td class="searchable">
+							<RunewordBases bases={rw.bases} bases_d2r={rw.bases_d2r} />
 						</td>
 						<td class="sockets">
 							{rw.sockets}
@@ -195,7 +201,7 @@
 						<td data-sort={rw.el_value} class="runes searchable">
 							{rw.runes.join(' ')}
 						</td>
-						<td><RunewordStats stats={rw.stats} class="searchable" /> </td>
+						<td class="searchable"><RunewordStats stats={rw.stats} /> </td>
 						<td class="levelreq">
 							{rw.levelreq}
 						</td>
