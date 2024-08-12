@@ -25,9 +25,9 @@
 <div class="flex">
 	<h5>Version</h5>
 	<div class="flex all_or_none">
-		<a href=" #" onclick={setVersions(true)}> All </a>
+		<button class="outline" onclick={() => setVersions(true)}> All </button>
 		<p>/</p>
-		<a href=" #" onclick={setVersions(false)}> None </a>
+		<button class="outline secondary" onclick={() => setVersions(false)}> None </button>
 	</div>
 </div>
 <article id="filter_versions">

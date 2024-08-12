@@ -133,16 +133,16 @@
 	<hr />
 	<div class="flex">
 		<h5>Sockets</h5>
-		<div class="flex all_or_none">
-			<a
-				href=" #"
+		<div class="all_or_none">
+			<button
+				class="outline"
 				onclick={() => {
 					filter_sockets.min = 2;
 					filter_sockets.max = 6;
 				}}
 			>
 				Reset
-			</a>
+			</button>
 		</div>
 	</div>
 	<fieldset class="grid">
@@ -172,16 +172,16 @@
 	<hr />
 	<div class="flex">
 		<h5>Level Required</h5>
-		<div class="flex all_or_none">
-			<a
-				href=" #"
+		<div class="all_or_none">
+			<button
+				class="outline"
 				onclick={() => {
 					filter_levelreq.min = 1;
 					filter_levelreq.max = 99;
 				}}
 			>
 				Reset
-			</a>
+			</button>
 		</div>
 	</div>
 	<fieldset class="grid">
@@ -215,5 +215,9 @@
 <style>
 	#filters fieldset {
 		margin-bottom: 0;
+	}
+
+	.warning {
+		margin-bottom: inherit;
 	}
 </style>

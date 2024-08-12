@@ -24,10 +24,10 @@
 {#snippet all_none(base_type)}
 	<div class="flex">
 		<h6>{base_type}</h6>
-		<div class="flex all_or_none">
-			<a onclick={() => setBases(base_type, true)}> All </a>
+		<div class="all_or_none">
+			<button class="outline" onclick={() => setBases(base_type, true)}> All </button>
 			<p>/</p>
-			<a onclick={() => setBases(base_type, false)}> None </a>
+			<button class="outline secondary" onclick={() => setBases(base_type, false)}> None </button>
 		</div>
 	</div>
 {/snippet}
@@ -47,10 +47,10 @@
 	<hr />
 	<div class="flex">
 		<h5>Bases</h5>
-		<div class="flex all_or_none">
-			<a onclick={() => setAllBases(true)}> All Bases </a>
+		<div class="all_or_none">
+			<button class="outline" onclick={() => setAllBases(true)}> All Bases </button>
 			<p>/</p>
-			<a onclick={() => setAllBases(false)}> None </a>
+			<button class="outline secondary" onclick={() => setAllBases(false)}> None </button>
 		</div>
 	</div>
 	<br />
