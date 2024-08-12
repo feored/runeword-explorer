@@ -1,27 +1,34 @@
 <script lang="ts">
 	import '$lib/css/sortable.css';
-	import RUNEWORDS from '$lib/data/runewords.json';
-	import { rune_inventory, filter_options, isAnyBaseSelected } from '$lib/runewords.svelte.ts';
-	import type { Runeword } from '$lib/rw';
-	import { RUNES, D2R_VERSIONS, getPathRw, getElValue } from '$lib/rw.ts';
-	import SYNONYMS from '$lib/data/synonyms.json';
-	import RunewordName from '$lib/components/table/RunewordName.svelte';
-	import RunewordPossible from '$lib/components/table/RunewordPossible.svelte';
-	import RunewordVersion from '$lib/components/table/RunewordVersion.svelte';
-	import RunewordBases from '$lib/components/table/RunewordBases.svelte';
-	import RunewordStats from '$lib/components/table/RunewordStats.svelte';
-	import RunewordCubed from '$lib/components/table/RunewordCubed.svelte';
+
+	import { RUNEWORDS } from '$lib/data/runewords';
+	import { RUNES } from '$lib/data/runes';
+	import { SYNONYMS } from '$lib/data/synonyms';
+
+	import type { Runeword } from '$lib/data/runewords';
+
+	import { isAnyBaseSelected } from '$lib/data/bases';
+	import { rune_inventory, filter_options, type FilterOptions } from '$lib/options.svelte';
+	import { calc_runeword, getElValue } from '$lib/runewordcalc';
+
+	import Name from '$lib/components/table/cols/Name.svelte';
+	import Possible from '$lib/components/table/cols/Possible.svelte';
+	import Version from '$lib/components/table/cols/Version.svelte';
+	import Bases from '$lib/components/table/cols/Bases.svelte';
+	import Stats from '$lib/components/table/cols/Stats.svelte';
+	import Cubed from '$lib/components/table/cols/Cubed.svelte';
+
 	import { onMount } from 'svelte';
 
 	interface RunewordRow extends Runeword {
-		el_value?: number;
-		upgsDone?: number[];
-		success?: boolean;
-		missing?: string[];
+		el_value: number;
+		upgs_done: number[];
+		success: boolean;
+		missing: number;
 	}
 
-	let last_clicked_th;
-	let default_sort_th;
+	let last_clicked_th: HTMLElement;
+	let default_sort_th: HTMLElement;
 	let mark_instance;
 
 	onMount(() => {
@@ -38,18 +45,13 @@
 	});
 
 	let runewords: RunewordRow[] = $derived.by(() => {
-		let rws = [];
-		for (let i = 0; i < RUNEWORDS.length; i++) {
-			let { success, upgsDone, missing } = getPathRw(rune_inventory, RUNEWORDS[i].runes);
-			RUNEWORDS[i].success = success;
-			RUNEWORDS[i].upgsDone = upgsDone;
-			RUNEWORDS[i].missing = missing;
-			RUNEWORDS[i].el_value = RUNEWORDS[i].runes
+		return RUNEWORDS.map((rw) => {
+			let { success, upgs_done, missing } = calc_runeword(rune_inventory, rw.runes);
+			let el_value = rw.runes
 				.map((x) => getElValue(RUNES.indexOf(x)))
 				.reduce((partialSum, a) => partialSum + a, 0);
-			rws.push({ ...RUNEWORDS[i] });
-		}
-		return rws;
+			return { ...rw, success, upgs_done, missing, el_value };
+		});
 	});
 
 	let shown_rows = $derived.by(() => {
@@ -60,7 +62,7 @@
 		return shown;
 	});
 
-	function filter_rw(rw, filter_options) {
+	function filter_rw(rw: RunewordRow, filter_options: FilterOptions): boolean {
 		function search(search_term: string): boolean {
 			if (
 				rw.name.toLowerCase().includes(search_term) ||
@@ -74,19 +76,22 @@
 			return false;
 		}
 
-		let rw_bases: string[] = Array.from(new Set([].concat(rw.bases, rw.bases_d2r)));
+		let rw_bases: string[] = Array.from(new Set(Array.from(rw.bases).concat(rw.bases_d2r)));
+		let required_runes = filter_options.required_runes
+			.map((r, index) => (r ? index : 0))
+			.filter((r) => r > 0);
 		let show = true;
 		if (
 			(!filter_options.ladder_d2lod && rw.ladder.d2lod) ||
 			(!filter_options.ladder_d2r && rw.ladder.d2r) ||
-			(!filter_options.d2r_only && D2R_VERSIONS.indexOf(rw.version) != -1) ||
+			(!filter_options.show_d2r_only && rw.d2r_only) ||
 			(filter_options.only_can_make && !rw.success) ||
 			!filter_options.versions[rw.version] ||
 			rw.sockets < filter_options.sockets.min ||
 			rw.sockets > filter_options.sockets.max ||
 			rw.levelreq < filter_options.levelreq.min ||
 			rw.levelreq > filter_options.levelreq.max ||
-			filter_options.required_runes.filter(Boolean).some((x) => rw.runes.indexOf(x) == -1) ||
+			required_runes.some((r_index) => rw.runes.indexOf(RUNES[r_index]) == -1) ||
 			!isAnyBaseSelected(rw_bases, filter_options.bases)
 		) {
 			show = false;
@@ -179,13 +184,13 @@
 				{#each runewords as rw, rw_index}
 					<tr hidden={!shown_rows[rw_index]}>
 						<td data-sort={rw.success} class="possible">
-							<RunewordPossible possible={rw.success} />
+							<Possible possible={rw.success} />
 						</td>
 						<td>
-							<RunewordVersion version={rw.version} />
+							<Version version={rw.version} />
 						</td>
 						<td class="searchable">
-							<RunewordName
+							<Name
 								name={rw.name}
 								d2r_only={rw.d2r_only}
 								d2r_ladder={rw.ladder.d2r}
@@ -193,7 +198,7 @@
 							/>
 						</td>
 						<td class="searchable">
-							<RunewordBases bases={rw.bases} bases_d2r={rw.bases_d2r} />
+							<Bases bases={rw.bases} bases_d2r={rw.bases_d2r} />
 						</td>
 						<td class="sockets">
 							{rw.sockets}
@@ -201,12 +206,12 @@
 						<td data-sort={rw.el_value} class="runes searchable">
 							{rw.runes.join(' ')}
 						</td>
-						<td class="searchable"><RunewordStats stats={rw.stats} /> </td>
+						<td class="searchable"><Stats stats={rw.stats} /> </td>
 						<td class="levelreq">
 							{rw.levelreq}
 						</td>
-						<td data-sort={rw.success ? 0 : rw.upgsDone.filter((x) => x > 0).length}
-							><RunewordCubed show={rw.success} upgsDone={rw.upgsDone} rw_runes={rw.runes} /></td
+						<td data-sort={rw.success ? 0 : rw.upgs_done.filter((x) => x > 0).length}
+							><Cubed show={rw.success} upgs_done={rw.upgs_done} rw_runes={rw.runes} /></td
 						>
 					</tr>
 				{/each}

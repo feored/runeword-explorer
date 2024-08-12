@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { VERSIONS } from '$lib/rw';
-	import { filter_options } from '$lib/runewords.svelte.ts';
+	import { VERSIONS } from '$lib/data/versions';
+	import { filter_options } from '$lib/options.svelte';
 
 	let filter_versions = $state({ ...filter_options.versions });
 	$effect(() => {
 		filter_options.versions = { ...filter_versions };
 	});
 
-	export function setVersions(value) {
+	export function setVersions(value: boolean): void {
 		for (let i = 0; i < VERSIONS.length; i++) {
 			filter_versions[VERSIONS[i]] = value;
 		}

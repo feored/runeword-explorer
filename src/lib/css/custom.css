@@ -90,7 +90,6 @@
 	box-shadow: 0 0 0 var(--pico-outline-width) var(--pico-primary-focus);
 } */
 
-
 .text-center {
 	text-align: center;
 }
@@ -163,7 +162,7 @@ table {
 	/* Original: var(--pico-border-radius) */
 }
 
-article>footer {
+article > footer {
 	border-radius: calc(var(--pico-border-radius) * 2);
 	/* Original: var(--pico-border-radius) */
 }

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Check, CircleX } from 'lucide-svelte';
-	let { possible } = $props();
+	let { possible }: { possible: boolean } = $props();
 </script>
 
 <div>

@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Bases from '$lib/components/Filters/Bases.svelte';
-	import Versions from '$lib/components/Filters/Versions.svelte';
-	import RequiredRunes from '$lib/components/Filters/RequiredRunes.svelte';
-	import { default_filter_options, filter_options } from '$lib/runewords.svelte.ts';
+	import Bases from '$lib/components/filters/filters/Bases.svelte';
+	import Versions from '$lib/components/filters/filters/FilterVersions.svelte';
+	import RequiredRunes from '$lib/components/filters/filters/RequiredRunes.svelte';
+	import { default_filter_options, filter_options } from '$lib/options.svelte';
 
 	let filter_sockets = $state({ ...filter_options.sockets });
 	let filter_levelreq = $state({ ...filter_options.levelreq });
@@ -28,16 +28,16 @@
 		filter_options.levelreq = { ...filter_levelreq };
 	});
 
-	let versions;
-	let bases;
-	let required_runes;
+	let versions: Versions;
+	let bases: Bases;
+	let required_runes: RequiredRunes;
 
 	function reset_filter_options() {
 		filter_options.search = default_filter_options.search;
 		filter_options.only_can_make = default_filter_options.only_can_make;
 		filter_options.ladder_d2r = default_filter_options.ladder_d2r;
 		filter_options.ladder_d2lod = default_filter_options.ladder_d2lod;
-		filter_options.d2r_only = default_filter_options.d2r_only;
+		filter_options.show_d2r_only = default_filter_options.show_d2r_only;
 		versions.setVersions(true);
 		filter_sockets = { ...default_filter_options.sockets };
 		filter_levelreq = { ...default_filter_options.levelreq };
@@ -85,7 +85,7 @@
 					id="d2r_only"
 					name="d2r_only"
 					value="d2r_only"
-					bind:checked={filter_options.d2r_only}
+					bind:checked={filter_options.show_d2r_only}
 				/>
 				Show
 				<small

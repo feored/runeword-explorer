@@ -1,6 +1,12 @@
 <script lang="ts">
-	let { name, d2r_only, d2r_ladder, d2lod_ladder } = $props();
-	let warnings_count = [d2r_only, d2r_ladder, d2lod_ladder].filter(Boolean).length;
+	interface RWNameProps {
+		name: string;
+		d2r_only: boolean;
+		d2r_ladder: boolean;
+		d2lod_ladder: boolean;
+	}
+	let { name, d2r_only, d2r_ladder, d2lod_ladder }: RWNameProps = $props();
+
 	const tooltips = {
 		d2r_only:
 			'Runeword only available in Diablo II: Resurrected.\nCannot be made in Diablo II: Lord of Destruction.',
@@ -13,7 +19,7 @@
 
 <div>
 	<p class="name">{name}</p>
-	{#if warnings_count > 0}
+	{#if [d2r_only, d2r_ladder, d2lod_ladder].filter(Boolean).length > 0}
 		<div class="warnings">
 			{#if d2r_only}
 				<small data-tooltip={tooltips.d2r_only} data-placement="bottom" class="warning d2r_only"

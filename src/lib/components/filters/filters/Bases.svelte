@@ -1,27 +1,27 @@
 <script lang="ts">
-	import BASES from '$lib/data/itemtypes.json';
-	import { filter_options } from '$lib/runewords.svelte.ts';
+	import { BASES } from '$lib/data/bases';
+	import { filter_options } from '$lib/options.svelte';
 
 	let filter_bases = $state({ ...filter_options.bases });
 	$effect(() => {
 		filter_options.bases = { ...filter_bases };
 	});
 
-	export function setBases(base_type, value) {
+	export function setBases(base_type: string, value: boolean): void {
 		for (let i = 0; i < BASES[base_type].length; i++) {
 			filter_bases[BASES[base_type][i]] = value;
 		}
 		filter_bases = { ...filter_bases };
 	}
 
-	export function setAllBases(value) {
+	export function setAllBases(value: boolean): void {
 		Object.keys(BASES).forEach((base_type) => {
 			setBases(base_type, value);
 		});
 	}
 </script>
 
-{#snippet all_none(base_type)}
+{#snippet all_none(base_type: string)}
 	<div class="flex">
 		<h6>{base_type}</h6>
 		<div class="all_or_none">
@@ -32,7 +32,7 @@
 	</div>
 {/snippet}
 
-{#snippet base_list(base_type)}
+{#snippet base_list(base_type: string)}
 	<fieldset class="custom-grid">
 		{#each BASES[base_type] as base}
 			<label>

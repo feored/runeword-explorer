@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { RUNES } from '$lib/rw';
-	import { rune_inventory } from '$lib/runewords.svelte.ts';
+	import { RUNES } from '$lib/data/runes';
+	import { rune_inventory } from '$lib/options.svelte';
 
 	let all_set_nb = $state(1);
 
-	function setRunes(start, end, value) {
+	function setRunes(start: number, end: number, value: number): void {
 		for (let i = start; i < end; i++) {
 			rune_inventory[i] = value;
 		}

@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { RUNES } from '$lib/rw';
-	import type { FilterOptions } from '$lib/runewords.svelte.ts';
-	import { filter_options } from '$lib/runewords.svelte.ts';
+	import { RUNES } from '$lib/data/runes';
+	import { filter_options } from '$lib/options.svelte';
+
 	let required_runes = $state([...filter_options.required_runes]);
 	$effect(() => {
 		filter_options.required_runes = [...required_runes];
 	});
 
-	export function setRequiredRunes(value) {
+	export function setRequiredRunes(value: boolean): void {
 		for (let i = 0; i < RUNES.length; i++) {
 			required_runes[i] = value;
 		}

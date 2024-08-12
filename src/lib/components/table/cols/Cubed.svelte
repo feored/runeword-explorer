@@ -1,17 +1,19 @@
 <script lang="ts">
-	import { RUNES, UPG_GEM, upgCost } from '$lib/rw.ts';
+	import { RUNES } from '$lib/data/runes';
+	import { UPG_GEM, upgCost } from '$lib/runewordcalc';
 	import { ArrowRight } from 'lucide-svelte';
 
 	interface cubedProps {
-		upgsDone: number[];
+		show: boolean;
+		upgs_done: number[];
 		rw_runes: string[];
 	}
-	let { show, upgsDone, rw_runes }: cubedProps = $props();
+	let { show, upgs_done, rw_runes }: cubedProps = $props();
 </script>
 
 <div>
-	{#if show && upgsDone}
-		{#each upgsDone as upgNb, runeIndex}
+	{#if show && upgs_done}
+		{#each upgs_done as upgNb, runeIndex}
 			{#if upgNb > 0}
 				<span
 					>{upgNb * upgCost(runeIndex)}

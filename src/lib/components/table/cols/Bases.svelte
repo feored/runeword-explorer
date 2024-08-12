@@ -1,5 +1,5 @@
 <script lang="ts">
-	import BASES from '$lib/data/itemtypes.json';
+	import { BASES } from '$lib/data/bases';
 
 	interface BasesProps {
 		bases: string[];
@@ -14,7 +14,7 @@
 	};
 </script>
 
-{#snippet BaseDisplay(base_name)}
+{#snippet BaseDisplay(base_name: string)}
 	{#if base_name in BASES}
 		<span data-html="true" data-tooltip={BASES[base_name].join(',\n')}>{base_name}</span>
 	{:else}
