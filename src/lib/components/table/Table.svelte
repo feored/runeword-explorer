@@ -11,7 +11,6 @@
 	import RunewordStats from '$lib/components/table/RunewordStats.svelte';
 	import RunewordCubed from '$lib/components/table/RunewordCubed.svelte';
 	import { onMount } from 'svelte';
-	// import { Mark } from 'mark';
 
 	interface RunewordRow extends Runeword {
 		el_value?: number;
