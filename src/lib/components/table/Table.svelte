@@ -27,7 +27,6 @@
 		missing: number;
 	}
 
-	let last_clicked_th: HTMLElement;
 	let default_sort_th: HTMLElement;
 	let mark_instance;
 
@@ -129,55 +128,15 @@
 		<table id="rwtable" class="striped sortable asc">
 			<thead>
 				<tr>
-					<th
-						onclick={() => {
-							last_clicked_th = this;
-						}}>Can Make</th
-					>
-					<th
-						onclick={() => {
-							last_clicked_th = this;
-						}}>Version</th
-					>
-					<th
-						onclick={() => {
-							last_clicked_th = this;
-						}}
-						bind:this={default_sort_th}>Name</th
-					>
-					<th
-						onclick={() => {
-							last_clicked_th = this;
-						}}>Bases</th
-					>
-					<th
-						onclick={() => {
-							last_clicked_th = this;
-						}}>Sockets</th
-					>
-					<th
-						onclick={() => {
-							last_clicked_th = this;
-						}}
-					>
-						Runes
-					</th>
-					<th
-						onclick={() => {
-							last_clicked_th = this;
-						}}
-						class="no-sort">Stats</th
-					>
-					<th
-						onclick={() => {
-							last_clicked_th = this;
-						}}>Level Req.</th
-					>
-					<th
-						onclick={() => {
-							last_clicked_th = this;
-						}}>Cubed Runes</th
-					>
+					<th>Can Make</th>
+					<th>Version</th>
+					<th bind:this={default_sort_th}>Name</th>
+					<th>Bases</th>
+					<th>Sockets</th>
+					<th> Runes </th>
+					<th class="no-sort">Stats</th>
+					<th>Level Req.</th>
+					<th>Cubed Runes</th>
 				</tr>
 			</thead>
 			<tbody>
