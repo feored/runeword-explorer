@@ -1,20 +1,8 @@
 {
-	"Off-hands": [
-		"Paladin Shields",
-		"Shields",
-		"Necromancer Shrunken Heads"
-	],
-	"Helms": [
-		"Helms",
-		"Barbarian Helms",
-		"Druid Pelts",
-		"Circlets"
-	],
-	"Missile Weapons": [
-		"Amazon Bows",
-		"Bows",
-		"Crossbows"
-	],
+	"Off-hands": ["Paladin Shields", "Shields", "Necromancer Shrunken Heads"],
+	"Helms": ["Helms", "Barbarian Helms", "Druid Pelts", "Circlets"],
+	"Armors": ["Body Armors"],
+	"Missile Weapons": ["Amazon Bows", "Bows", "Crossbows"],
 	"Melee Weapons": [
 		"Amazon Spears",
 		"Assassin Katars",
@@ -37,6 +25,7 @@
 		"Axes",
 		"Bows",
 		"Clubs",
+		"Daggers",
 		"Crossbows",
 		"Hammers",
 		"Maces",
