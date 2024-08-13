@@ -4,21 +4,20 @@
 	import Table from '$lib/components/table/Table.svelte';
 </script>
 
-<div class="wrapper">
-	<div id="sidebar" class="grid-sidebar">
-		<div class="container">
+<div class="container mx-auto p-4">
+	<header>
+		<h1 class="text-xl font-semibold">Runeword Calculator</h1>
+	</header>
+	<RunesGrid />
+
+	<div class="flex gap-4">
+		<div class="flex-initial basis-1/4">
 			<Filters />
 		</div>
+		<div class="grow">
+			<Table />
+		</div>
 	</div>
-	<div class="container-fluid grid-runes">
-		<header>
-			<h4 class="text-center">Runeword Calculator</h4>
-		</header>
-		<RunesGrid />
-	</div>
-	<main class="container-fluid grid-main" id="content">
-		<Table />
-	</main>
 </div>
 
 <style>
