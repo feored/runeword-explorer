@@ -100,6 +100,17 @@ function calc_missing(rune_inventory: number[], rw_runes: string[]) {
 
 	let runes_needed = default_inventory();
 
+	// remove common:
+	for (let i = 0; i < RUNES.length; i++) {
+		if (working_runes[i] > 0 && working_inv[i] > 0) {
+			let substract: number = Math.min(working_runes[i], working_inv[i]);
+			working_runes[i] -= substract;
+			working_inv[i] -= substract;
+		}
+	}
+	console.log('Runes target after eliminating common');
+	console.log(working_runes);
+
 	let lowest_index: number = Math.min(...RUNES.map((_, i) => (working_inv[i] > 0 ? i : RUNES.length)));
 	if (lowest_index === RUNES.length) {
 		// console.log('Have no runes to start with');
@@ -113,7 +124,7 @@ function calc_missing(rune_inventory: number[], rw_runes: string[]) {
 			runes_needed[i] += nb;
 		}
 	}
-	console.log('Runes after eliminating left side');
+	console.log('Runes target after eliminating left side');
 	console.log(working_runes);
 	console.log('Runes needed after eliminating left side');
 	console.log(runes_needed);
@@ -121,8 +132,10 @@ function calc_missing(rune_inventory: number[], rw_runes: string[]) {
 	let highest_index: number = Math.max(...RUNES.map((_, i) => (working_runes[i] > 0 ? i : 0)));
 	console.log('Highest index: ' + highest_index);
 	console.log('Lowest index: ' + lowest_index);
-	working_inv.map((r, i) => (r = i > highest_index ? 0 : r));
-	console.log('Runes after eliminating right side');
+	for (let i = RUNES.length - 1; i > highest_index; i--) {
+		working_inv[i] = 0;
+	}
+	console.log('Runes held after eliminating right side');
 	console.log(working_inv);
 
 	let need_in_el = get_inv_el_value(working_runes);
@@ -135,7 +148,7 @@ function calc_missing(rune_inventory: number[], rw_runes: string[]) {
 	console.log(runes_needed);
 	console.log("D IN R0")
 	console.log(need_in_el - have_in_el);
-	let missing = els_decompose(need_in_el - have_in_el, lowest_index, highest_index + 1);
+	let missing = els_decompose(need_in_el - have_in_el, lowest_index, highest_index);
 
 	console.log('Runes after decomposing');
 	console.log(missing);
