@@ -9,7 +9,7 @@
 
 	import { isAnyBaseSelected } from '$lib/data/bases';
 	import { rune_inventory, filter_options, type FilterOptions } from '$lib/options.svelte';
-	import { calc_runeword, getElValue } from '$lib/runewordcalc';
+	import { calc_runeword, get_el_value } from '$lib/runewordcalc';
 
 	import Name from '$lib/components/table/cols/Name.svelte';
 	import Possible from '$lib/components/table/cols/Possible.svelte';
@@ -26,7 +26,7 @@
 		el_value: number;
 		upgs_done: number[];
 		success: boolean;
-		missing: number;
+		missing: number[];
 	}
 
 	let default_sort_th: HTMLElement;
@@ -51,7 +51,7 @@
 		return RUNEWORDS.map((rw) => {
 			let { success, upgs_done, missing } = calc_runeword(rune_inventory, rw.runes);
 			let el_value = rw.runes
-				.map((x) => getElValue(RUNES.indexOf(x)))
+				.map((x) => get_el_value(RUNES.indexOf(x)))
 				.reduce((partialSum, a) => partialSum + a, 0);
 			return { ...rw, success, upgs_done, missing, el_value };
 		});
@@ -173,7 +173,12 @@
 							{rw.levelreq}
 						</td>
 						<td data-sort={rw.success ? 0 : rw.upgs_done.filter((x) => x > 0).length}
-							><Cubed show={rw.success} upgs_done={rw.upgs_done} rw_runes={rw.runes} /></td
+							><Cubed
+								show={rw.success}
+								upgs_done={rw.upgs_done}
+								rw_runes={rw.runes}
+								missing={rw.missing}
+							/></td
 						>
 					</tr>
 				{/each}
