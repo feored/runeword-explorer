@@ -23,23 +23,22 @@
 						min="0"
 						step="1"
 						bind:value={rune_inventory[index]}
-						class="rounded border border-stone-500 bg-stone-600 text-right"
+						class="rounded border border-stone-500 bg-stone-700 text-right"
 					/>
-					<small class="text-right text-sm text-orange-400" id={rune + '-label'}>{rune}</small>
+					<small class="text-right text-sm text-amber-400" id={rune + '-label'}>{rune}</small>
 				</div>
 			{/each}
 		</fieldset>
 	</article>
 	<!-- <hr class="my-4 h-px border-0 bg-stone-950" /> -->
 	<fieldset class="flex place-content-between">
-		<input
+		<button
 			type="button"
-			value="Reset All"
 			onclick={() => {
 				setRunes(0, 33, 0);
 			}}
-			class="cursor-pointer rounded border border-stone-600 bg-stone-700 px-4 py-2 text-orange-400"
-		/>
+			class="rounded border border-stone-600 bg-stone-700 px-4 py-2 text-amber-400"
+		>Reset All</button>
 		<div role="group" aria-labelledby="all_runes" class="auto-width">
 			<input
 				type="number"
@@ -49,14 +48,16 @@
 				bind:value={all_set_nb}
 				min="0"
 				step="1"
+				class="rounded border border-stone-500 bg-stone-700 text-right py-2"
 			/>
-			<input
+			<button
 				type="button"
-				value="Set All"
+				
 				onclick={() => {
 					setRunes(0, 33, all_set_nb);
 				}}
-			/>
+				class="rounded border border-stone-600 bg-stone-700 px-4 py-2 text-amber-400"
+			>Set All</button>
 		</div>
 	</fieldset>
 </div>
