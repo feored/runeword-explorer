@@ -56,11 +56,11 @@
 	align-items: flex-start;
 }
 
-.all_or_none button, button.reset {
+.all_or_none button,
+button.reset {
 	border: none;
 	padding: 0;
 }
-
 
 .text-center {
 	text-align: center;

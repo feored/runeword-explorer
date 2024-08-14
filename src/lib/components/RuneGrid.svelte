@@ -4,10 +4,10 @@
 
 	let all_set_nb = $state(1);
 	let ranges = [
-		{start: 0, end: 33, display: 'All'},
-		{start: 0, end: 11, display: 'El to Amn'},
-		{start: 11, end: 22, display: 'Sol to Um'},
-		{start: 22, end: 33, display: 'Mal to Zod'}
+		{ start: 0, end: 33, display: 'All' },
+		{ start: 0, end: 11, display: 'El to Amn' },
+		{ start: 11, end: 22, display: 'Sol to Um' },
+		{ start: 22, end: 33, display: 'Mal to Zod' }
 	];
 	let selected_range = $state(0);
 
@@ -22,7 +22,7 @@
 <article>
 	{#each [0, 1, 2] as row}
 		<div class="rune-grid" style="align-items:center; margin:auto;">
-			{#each RUNES.slice(row*11, (row+1)*11) as rune, index}
+			{#each RUNES.slice(row * 11, (row + 1) * 11) as rune, index}
 				<div>
 					<input
 						type="number"
@@ -30,12 +30,12 @@
 						name={rune}
 						min="0"
 						step="1"
-						bind:value={rune_inventory[row*11 + index]}
+						bind:value={rune_inventory[row * 11 + index]}
 					/>
 					<small id={rune + '-label'}>{rune}</small>
 				</div>
 			{/each}
-		</div>	
+		</div>
 	{/each}
 	<hr />
 	<div class="flex" style="justify-content: space-between;">
@@ -44,8 +44,8 @@
 			type="button"
 			onclick={() => {
 				setRunes(0);
-			}}
-		>Reset</button>
+			}}>Reset</button
+		>
 		<div aria-labelledby="all_runes" class="set-runes">
 			<div>
 				<input
@@ -59,16 +59,21 @@
 					step="1"
 				/>
 				<small>Number to set</small>
-				</div>
-				<div>
-					<select class="auto-width" name="rune-range" aria-label="Range of runes to set" bind:value={selected_range}>
-						{#each ranges as range, index}
-							<option value={index}>{range.display}</option>
-						{/each}
-					</select>
-					<small>Range of runes</small>
-				</div>
-			
+			</div>
+			<div>
+				<select
+					class="auto-width"
+					name="rune-range"
+					aria-label="Range of runes to set"
+					bind:value={selected_range}
+				>
+					{#each ranges as range, index}
+						<option value={index}>{range.display}</option>
+					{/each}
+				</select>
+				<small>Range of runes</small>
+			</div>
+
 			<input
 				type="button"
 				value="Set"
@@ -76,20 +81,16 @@
 					setRunes(all_set_nb);
 				}}
 			/>
-			
 		</div>
 	</div>
 </article>
 
-
 <style>
-
-	
 	.set-runes {
 		display: flex;
 		gap: var(--pico-form-element-spacing-horizontal);
 	}
-	
+
 	.rune-grid {
 		display: grid;
 		grid-auto-flow: row;
@@ -102,7 +103,7 @@
 	.rune-grid small {
 		font-size: medium;
 	}
-	
+
 	.rune-grid input[type='number'] {
 		min-width: 3rem;
 		max-width: 5rem;

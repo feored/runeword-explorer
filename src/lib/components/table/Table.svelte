@@ -27,6 +27,7 @@
 		upgs_done: number[];
 		success: boolean;
 		missing: number[];
+		cubing_steps: number;
 	}
 
 	let default_sort_th: HTMLElement;
@@ -47,13 +48,25 @@
 		});
 	});
 
+	function sum_steps(upgs) {
+		var total = 0;
+		var i = upgs.length;
+
+		while (i--) {
+			total += upgs[i];
+		}
+
+		return total;
+	}
+
 	let runewords: RunewordRow[] = $derived.by(() => {
 		return RUNEWORDS.map((rw) => {
 			let { success, upgs_done, missing } = calc_runeword(rune_inventory, rw.runes);
 			let el_value = rw.runes
 				.map((x) => get_el_value(RUNES.indexOf(x)))
 				.reduce((partialSum, a) => partialSum + a, 0);
-			return { ...rw, success, upgs_done, missing, el_value };
+			let cubing_steps = upgs_done ? sum_steps(upgs_done) : 0;
+			return { ...rw, success, upgs_done, missing, el_value, cubing_steps };
 		});
 	});
 
@@ -174,10 +187,11 @@
 						</td>
 						<td data-sort={rw.success ? 0 : rw.upgs_done.filter((x) => x > 0).length}
 							><Cubed
-								show={rw.success}
+								success={rw.success}
 								upgs_done={rw.upgs_done}
 								rw_runes={rw.runes}
-								missing={rw.missing}
+								inventory={rune_inventory}
+								cubing_steps={rw.cubing_steps}
 							/></td
 						>
 					</tr>
@@ -188,7 +202,13 @@
 </section>
 {#if runeword_rows.filter(Boolean).length > 10}
 	<section>
-		<button class="reset outline" style="width: 100%; text-align:center;" onclick={() => {document.documentElement.scrollTop = 0;}}>Back to Top</button>
+		<button
+			class="reset outline"
+			style="width: 100%; text-align:center;"
+			onclick={() => {
+				document.documentElement.scrollTop = 0;
+			}}>Back to Top</button
+		>
 	</section>
 {/if}
 
@@ -205,13 +225,14 @@
 	}
 
 	#rwtable tbody tr:hover td {
-		background: rgba(127, 127, 127, 0.1) !important;
+		background: rgba(0, 0, 0, 0.5) !important;
 	}
 
 	#runeword-nb {
 		text-align: center;
-		font-style: italic;
-		color: var(--color-grey);
+		font-weight: 600;
+		font-size: small;
+		color: var(--pico-secondary);
 	}
 
 	.runes {
@@ -223,7 +244,6 @@
 		font-size: large;
 		font-weight: light;
 	}
-
 
 	.levelreq,
 	.sockets,

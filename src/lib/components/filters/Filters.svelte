@@ -62,7 +62,7 @@
 			bind:value={filter_options.search}
 		/>
 	</fieldset>
-	
+
 	<details open>
 		<summary>General</summary>
 		<article>
@@ -139,42 +139,42 @@
 	<details>
 		<summary>Sockets</summary>
 		<div class="flex">
-		<div class="all_or_none">
-			<button
-				class="outline"
-				onclick={() => {
-					filter_sockets.min = 2;
-					filter_sockets.max = 6;
-				}}
-			>
-				Reset
-			</button>
+			<div class="all_or_none">
+				<button
+					class="outline"
+					onclick={() => {
+						filter_sockets.min = 2;
+						filter_sockets.max = 6;
+					}}
+				>
+					Reset
+				</button>
+			</div>
 		</div>
-	</div>
-	<fieldset class="grid">
-		<fieldset>
-			<input
-				type="number"
-				id="minsocket"
-				name="minsocket"
-				bind:value={filter_sockets.min}
-				min="2"
-				step="1"
-				max="6"
-			/><small>Minimum</small>
+		<fieldset class="grid">
+			<fieldset>
+				<input
+					type="number"
+					id="minsocket"
+					name="minsocket"
+					bind:value={filter_sockets.min}
+					min="2"
+					step="1"
+					max="6"
+				/><small>Minimum</small>
+			</fieldset>
+			<fieldset>
+				<input
+					type="number"
+					id="maxsocket"
+					name="maxsocket"
+					bind:value={filter_sockets.max}
+					min="2"
+					step="1"
+					max="6"
+				/><small>Maximum</small>
+			</fieldset>
 		</fieldset>
-		<fieldset>
-			<input
-				type="number"
-				id="maxsocket"
-				name="maxsocket"
-				bind:value={filter_sockets.max}
-				min="2"
-				step="1"
-				max="6"
-			/><small>Maximum</small>
-		</fieldset>
-	</fieldset>
 	</details>
 	<hr />
 	<details>
@@ -243,7 +243,7 @@
 	.warning {
 		margin-bottom: inherit;
 	}
-	details .all_or_none{
+	details .all_or_none {
 		margin-bottom: var(--pico-spacing);
 	}
 </style>

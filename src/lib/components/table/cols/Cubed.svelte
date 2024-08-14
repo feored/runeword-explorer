@@ -2,58 +2,93 @@
 	import { RUNES } from '$lib/data/runes';
 	import { UPG_GEM, upg_cost } from '$lib/runewordcalc';
 	import { ArrowRight } from 'lucide-svelte';
+	import { calc_missing } from '$lib/runewordcalc';
 
 	interface cubedProps {
-		show: boolean;
+		success: boolean;
 		upgs_done: number[];
 		rw_runes: string[];
-		missing: number[];
+		inventory: number[];
+		cubing_steps: number;
 	}
-	let { show, upgs_done, rw_runes, missing }: cubedProps = $props();
+	let { success, upgs_done, rw_runes, inventory, cubing_steps }: cubedProps = $props();
 </script>
-
 <div>
-	{#if show && upgs_done}
-		{#each upgs_done as upgNb, rune_index}
-			{#if upgNb > 0}
-				<span
-					>{upgNb * upg_cost(rune_index)}
-					<span class="rune">
-						{RUNES[rune_index]}
-					</span>
-					{#if UPG_GEM[rune_index]}
-						+ {upgNb}
-						<span class={UPG_GEM[rune_index].toLowerCase()}>{UPG_GEM[rune_index]}</span>
-					{/if}
-					<ArrowRight size="1em" />
-					{#if rw_runes.includes(RUNES[rune_index + 1])}
-						<span class="highlight"
-							>{upgNb}
-							<span class="rune">{RUNES[rune_index + 1]}</span>
-						</span>
-					{:else}
-						{upgNb}
-						<span class="rune">{RUNES[rune_index + 1]}</span>
-					{/if}
-				</span>
-				<br />
-			{/if}
-		{/each}
+	{#if success}
+		{#if cubing_steps > 0}
+			<details>
+				<summary>{cubing_steps} Steps</summary>
+				<table>
+					<tbody>
+					{#each upgs_done as upg_nb, rune_index}
+						{#if upg_nb > 0}
+							<tr>
+								<td>
+									<span
+										>{upg_nb * upg_cost(rune_index)}
+										<span class="rune">
+											{RUNES[rune_index]}
+										</span>
+									</span>
+								</td>
+								<td>
+									{#if UPG_GEM[rune_index]}
+										{upg_nb}
+										<span class={UPG_GEM[rune_index].toLowerCase()}>{UPG_GEM[rune_index]}</span>
+									{/if}</td
+								>
+								<td>
+									<ArrowRight size="1em" />
+								</td>
+								<td>
+									{#if rw_runes.includes(RUNES[rune_index + 1])}
+										<span class="highlight"
+											>{upg_nb}
+											<span class="rune">{RUNES[rune_index + 1]}</span>
+										</span>
+									{:else}
+										{upg_nb}
+										<span class="rune">{RUNES[rune_index + 1]}</span>
+									{/if}
+								</td>
+							</tr>
+						{/if}
+					{/each}
+						</tbody>
+				</table>
+			</details>
+		{/if}
 	{:else}
-		<p>Missing:</p>
-		{#each missing as nb, rune_index}
-			{#if nb > 0}
-				<span
-					>{nb}
-					<span class="rune">{RUNES[rune_index]}</span>
-				</span>
-				<br />
-			{/if}
-		{/each}
+		<details>
+			<summary>Missing Runes</summary>
+			<table>
+				<tbody>
+				{#each calc_missing(inventory, rw_runes) as nb, rune_index}
+					{#if nb > 0}
+						<tr>
+							<td>
+								{nb}
+							</td>
+							<td>
+								<span class="rune">{RUNES[rune_index]}</span>
+							</td>
+						</tr>
+					{/if}
+				{/each}
+					</tbody>
+			</table>
+		</details>
 	{/if}
 </div>
 
 <style>
+	td {
+		border: none;
+		min-width: 0;
+		padding: 0.25rem;
+		background-color: black !important;
+	}
+
 	.highlight {
 		text-decoration: underline;
 	}

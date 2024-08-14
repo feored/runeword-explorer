@@ -4,8 +4,8 @@
 	import Table from '$lib/components/table/Table.svelte';
 	import { version } from '$app/environment';
 	import { Github } from 'lucide-svelte';
-
 </script>
+
 <div class="container-fluid wrapper">
 	<div id="sidebar" class="grid-sidebar">
 		<div class="container">
@@ -15,8 +15,8 @@
 	<div class="grid-runes container-fluid">
 		<header>
 			<div class="version">
-			<h6>Runeword Explorer v{version}</h6>
-			<a href="https://github.com/feored/runewords"><Github size="1rem"/></a>
+				<h6>Runeword Explorer v{version}</h6>
+				<a href="https://github.com/feored/runewords"><Github size="1rem" /></a>
 			</div>
 		</header>
 		<RunesGrid />
@@ -55,7 +55,7 @@
 		top: 0;
 		max-height: 100vh;
 		overflow-y: auto;
-  		scrollbar-width: thin;
+		scrollbar-width: thin;
 	}
 
 	@media (max-width: 70rem) {
@@ -78,7 +78,7 @@
 	}
 
 	.version {
-		justify-content:end;
+		justify-content: end;
 		display: flex;
 		gap: var(--pico-spacing);
 	}
