@@ -3,20 +3,19 @@
 	import Filters from '$lib/components/filters/Filters.svelte';
 	import Table from '$lib/components/table/Table.svelte';
 </script>
-
-<div class="wrapper">
+<div class="container-fluid wrapper">
 	<div id="sidebar" class="grid-sidebar">
 		<div class="container">
 			<Filters />
 		</div>
 	</div>
-	<div class="container-fluid grid-runes">
+	<div class="grid-runes container-fluid">
 		<header>
 			<h4 class="text-center">Runeword Calculator</h4>
 		</header>
 		<RunesGrid />
 	</div>
-	<main class="container-fluid grid-main" id="content">
+	<main class="grid-main container-fluid" id="content">
 		<Table />
 	</main>
 </div>
@@ -24,8 +23,8 @@
 <style>
 	.wrapper {
 		display: grid;
-		gap: var(--pico-spacing);
-		grid-template-columns: minmax(30em, 1fr) 3fr;
+		gap: var(--pico-form-element-spacing-horizontal);
+		grid-template-columns: minmax(30rem, 1fr) 3fr;
 		grid-template-rows: auto 1fr;
 		grid-template-areas:
 			'sidebar runes'
@@ -50,9 +49,10 @@
 		top: 0;
 		max-height: 100vh;
 		overflow-y: auto;
+  		scrollbar-width: thin;
 	}
 
-	@media (max-width: 100em) {
+	@media (max-width: 70rem) {
 		.wrapper {
 			grid-template-columns: 1fr;
 			grid-template-areas:

@@ -13,7 +13,6 @@
 
 .sortable thead th:not(.no-sort)::after {
 	margin-left: 3px;
-	content: '▸';
 }
 
 .sortable thead th:not(.no-sort):hover::after {

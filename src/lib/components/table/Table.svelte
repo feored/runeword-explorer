@@ -181,7 +181,9 @@
 		</table>
 	</section>
 </section>
-
+<section>
+	<button class="reset outline" style="width: 100%; text-align:center;" onclick={() => {document.documentElement.scrollTop = 0;}}>Back to Top</button>
+</section>
 <style>
 	#rwtable thead th {
 		position: sticky;
@@ -213,6 +215,7 @@
 		font-size: large;
 		font-weight: light;
 	}
+
 
 	.levelreq,
 	.sockets,

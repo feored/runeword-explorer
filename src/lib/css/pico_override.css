@@ -1,0 +1,79 @@
+
+/* PicoCSS fixes and overrides, partly from https://github.com/picocss/pico/discussions/482#discussioncomment-9043725*/
+
+:root {
+	--pico-font-family-sans-serif: Inter, system-ui, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+		Helvetica, Arial, 'Helvetica Neue', sans-serif, var(--pico-font-family-emoji);
+
+	--pico-font-size: 87.5%;
+	/* Original: 100% */
+	--pico-line-height: 1.25;
+	/* Original: 1.5 */
+	--pico-form-element-spacing-vertical: 0.5rem;
+    /* Original: 1rem */
+    --pico-form-element-spacing-horizontal: 0.5rem;
+    /* Original: 1.25rem */
+	--pico-spacing: 1rem;
+	/* Original: 1rem */
+	
+}
+
+
+@media (min-width: 1024px) {
+    :root {
+        --pico-font-size: 87.5%;
+        /* Original: 118.75% */
+    }
+}
+
+@media (min-width: 1280px) {
+    :root {
+        --pico-font-size: 87.5%;
+        /* Original: 125% */
+    }
+}
+
+@media (min-width: 1536px) {
+    :root {
+        --pico-font-size: 100%;
+        /* Original: 131.25% */
+    }
+}
+
+article,
+table {
+	border: 1px solid var(--pico-muted-border-color);
+	/* Original doesn't have a border */
+	border-radius: calc(var(--pico-border-radius) * 2);
+	/* Original: var(--pico-border-radius) */
+}
+
+article > footer {
+	border-radius: calc(var(--pico-border-radius) * 2);
+	/* Original: var(--pico-border-radius) */
+}
+
+tbody tr td {
+	padding-top: calc(var(--pico-spacing));
+	padding-bottom: calc(var(--pico-spacing));
+}
+
+table.striped tbody tr:nth-child(odd of :not([hidden])) th,
+table.striped tbody tr:nth-child(odd of :not([hidden])) td {
+	background-color: var(--pico-table-row-stripped-background-color) !important;
+}
+
+table.striped tbody tr:nth-child(even of :not([hidden])) th,
+table.striped tbody tr:nth-child(even of :not([hidden])) td {
+	background-color: inherit !important;
+}
+
+[data-tooltip][data-placement='top']::before,
+[data-tooltip][data-placement='top']::after,
+[data-tooltip]::before,
+[data-tooltip]::after {
+	height: max-content;
+	white-space: pre;
+	word-wrap: normal;
+}
+
