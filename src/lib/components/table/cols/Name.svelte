@@ -44,7 +44,7 @@
 
 <style>
 	.name {
-		font-size: larger;
+		font-weight: 500;
 		color: var(--color-unique);
 	}
 

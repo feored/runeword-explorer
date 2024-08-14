@@ -2,6 +2,9 @@
 	import RunesGrid from '$lib/components/RuneGrid.svelte';
 	import Filters from '$lib/components/filters/Filters.svelte';
 	import Table from '$lib/components/table/Table.svelte';
+	import { version } from '$app/environment';
+	import { Github } from 'lucide-svelte';
+
 </script>
 <div class="container-fluid wrapper">
 	<div id="sidebar" class="grid-sidebar">
@@ -11,7 +14,10 @@
 	</div>
 	<div class="grid-runes container-fluid">
 		<header>
-			<h4 class="text-center">Runeword Calculator</h4>
+			<div class="version">
+			<h6>Runeword Calculator v{version}</h6>
+			<a href="https://github.com/feored/runewords"><Github size="1rem"/></a>
+			</div>
 		</header>
 		<RunesGrid />
 	</div>
@@ -69,5 +75,11 @@
 
 	header {
 		padding-block: var(--pico-block-spacing-vertical);
+	}
+
+	.version {
+		justify-content:end;
+		display: flex;
+		gap: var(--pico-spacing);
 	}
 </style>
