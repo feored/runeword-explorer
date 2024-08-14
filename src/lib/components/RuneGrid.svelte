@@ -47,16 +47,19 @@
 			}}
 		>Reset</button>
 		<div aria-labelledby="all_runes" class="set-runes">
+			<div>
 				<input
 					type="number"
 					aria-describedby="all_runes"
 					id="all_runes"
 					name="all_runes"
 					bind:value={all_set_nb}
+					style="min-width: 6rem;"
 					min="0"
 					step="1"
 				/>
-				
+				<small>Number to set</small>
+				</div>
 				<div>
 					<select class="auto-width" name="rune-range" aria-label="Range of runes to set" bind:value={selected_range}>
 						{#each ranges as range, index}

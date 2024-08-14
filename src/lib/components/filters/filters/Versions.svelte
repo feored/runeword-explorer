@@ -14,7 +14,7 @@
 		filter_versions = { ...filter_versions };
 	}
 
-	let VERSION_NAME = {
+	const VERSION_NAME: Record<string, string> = {
 		'1.09': 'D2LoD 1.09',
 		'1.10': 'D2LoD 1.10',
 		'1.11': 'D2LoD 1.11',
@@ -24,14 +24,13 @@
 </script>
 
 <div class="flex">
-	<h5>Version</h5>
 	<div class="flex all_or_none">
 		<button class="outline" onclick={() => setVersions(true)}> All </button>
 		<p>/</p>
 		<button class="outline secondary" onclick={() => setVersions(false)}> None </button>
 	</div>
 </div>
-<article id="filter_versions">
+<article>
 	<fieldset class="custom-grid">
 		{#each VERSIONS as version}
 			<label>

@@ -44,16 +44,13 @@
 {/snippet}
 
 <div id="bases">
-	<hr />
 	<div class="flex">
-		<h5>Bases</h5>
 		<div class="all_or_none">
 			<button class="outline" onclick={() => setAllBases(true)}> All Bases </button>
 			<p>/</p>
 			<button class="outline secondary" onclick={() => setAllBases(false)}> None </button>
 		</div>
 	</div>
-	<br />
 	<!--Off-hands-->
 	{#each ['Off-hands', 'Armors', 'Helms'] as base_type}
 		<article id={base_type}>

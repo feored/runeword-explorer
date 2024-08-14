@@ -17,7 +17,6 @@
 
 <div id="required_runes">
 	<div class="flex">
-		<h5>Required Runes</h5>
 		<div class="flex all_or_none">
 			<a href={'#'} onclick={() => setRequiredRunes(false)}> None </a>
 		</div>
@@ -46,5 +45,8 @@
 		grid-template-rows: repeat(auto-fill, 1fr);
 		column-gap: var(--pico-grid-column-gap);
 		row-gap: var(--pico-grid-row-gap);
+	}
+	.all_or_none {
+		margin-bottom: var(--pico-spacing);
 	}
 </style>

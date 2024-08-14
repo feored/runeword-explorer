@@ -46,11 +46,10 @@
 	}
 </script>
 
-<div class="flex" style="justify-content: space-between;">
-	<h3>Filters</h3>
-	<button onclick={() => reset_filter_options()}>Reset Filters</button>
+<div class="flex" style="justify-content: space-between; align-items:flex-start">
+	<h5>Filters</h5>
+	<button class="reset outline" onclick={() => reset_filter_options()}>Reset Filters</button>
 </div>
-<br />
 <hr />
 <aside id="filters">
 	<fieldset>
@@ -63,76 +62,83 @@
 			bind:value={filter_options.search}
 		/>
 	</fieldset>
+	
+	<details open>
+		<summary>General</summary>
+		<article>
+			<fieldset>
+				<label
+					><input
+						type="checkbox"
+						role="switch"
+						id="can_make"
+						name="can_make"
+						value="can_make"
+						bind:checked={filter_options.only_can_make}
+					/><span style="font-weight:500">Only Show Runewords I Can Make</span>
+				</label>
+				<hr />
+				<label
+					><input
+						type="checkbox"
+						role="switch"
+						id="d2r_only"
+						name="d2r_only"
+						value="d2r_only"
+						bind:checked={filter_options.show_d2r_only}
+					/>
+					Show
+					<small
+						class="warning d2r_only"
+						style="display:inline-block !important"
+						data-tooltip="Diablo II: Resurrected">D2R</small
+					> Runewords
+				</label>
+				<label
+					><input
+						type="checkbox"
+						role="switch"
+						id="ladder_d2r"
+						name="ladder_d2r"
+						value="ladder_d2r"
+						bind:checked={filter_options.ladder_d2r}
+					/>
+					Show
+					<small
+						class="warning d2r_ladder"
+						style="display:inline-block !important"
+						data-tooltip="Diablo II: Resurrected">D2R</small
+					> Ladder-Only Runewords
+				</label>
+				<label
+					><input
+						type="checkbox"
+						role="switch"
+						id="ladder_d2lod"
+						name="ladder_d2lod"
+						value="ladder_d2lod"
+						bind:checked={filter_options.ladder_d2lod}
+					/>
+					Show
+					<small
+						class="warning d2lod_ladder"
+						style="display:inline-block !important;"
+						data-tooltip="Diablo II: Lord of Destruction">D2LoD</small
+					> Ladder-Only Runewords
+				</label>
+			</fieldset>
+		</article>
+	</details>
 	<hr />
-	<h5>General</h5>
-	<article>
-		<fieldset>
-			<label
-				><input
-					type="checkbox"
-					role="switch"
-					id="can_make"
-					name="can_make"
-					value="can_make"
-					bind:checked={filter_options.only_can_make}
-				/> Only Show Runewords I Can Make
-			</label>
-			<hr />
-			<label
-				><input
-					type="checkbox"
-					role="switch"
-					id="d2r_only"
-					name="d2r_only"
-					value="d2r_only"
-					bind:checked={filter_options.show_d2r_only}
-				/>
-				Show
-				<small
-					class="warning d2r_only"
-					style="display:inline-block !important"
-					data-tooltip="Diablo II: Resurrected">D2R</small
-				> Runewords
-			</label>
-			<label
-				><input
-					type="checkbox"
-					role="switch"
-					id="ladder_d2r"
-					name="ladder_d2r"
-					value="ladder_d2r"
-					bind:checked={filter_options.ladder_d2r}
-				/>
-				Show
-				<small
-					class="warning d2r_ladder"
-					style="display:inline-block !important"
-					data-tooltip="Diablo II: Resurrected">D2R</small
-				> Ladder-Only Runewords
-			</label>
-			<label
-				><input
-					type="checkbox"
-					role="switch"
-					id="ladder_d2lod"
-					name="ladder_d2lod"
-					value="ladder_d2lod"
-					bind:checked={filter_options.ladder_d2lod}
-				/>
-				Show
-				<small
-					class="warning d2lod_ladder"
-					style="display:inline-block !important;"
-					data-tooltip="Diablo II: Lord of Destruction">D2LoD</small
-				> Ladder-Only Runewords
-			</label>
-		</fieldset>
-	</article>
+	<details>
+		<summary>Versions</summary>
+		<Versions bind:this={versions} />
+	</details>
+	<!-- <Versions bind:this={versions} /> -->
 	<hr />
-	<Versions bind:this={versions} />
-	<hr />
-	<div class="flex">
-		<h5>Sockets</h5>
+	<details>
+		<summary>Sockets</summary>
+		<div class="flex">
 		<div class="all_or_none">
 			<button
 				class="outline"
@@ -169,55 +175,75 @@
 			/><small>Maximum</small>
 		</fieldset>
 	</fieldset>
+	</details>
 	<hr />
-	<div class="flex">
-		<h5>Level Required</h5>
-		<div class="all_or_none">
-			<button
-				class="outline"
-				onclick={() => {
-					filter_levelreq.min = 1;
-					filter_levelreq.max = 99;
-				}}
-			>
-				Reset
-			</button>
+	<details>
+		<summary>Level Required</summary>
+		<div class="flex">
+			<div class="all_or_none">
+				<button
+					class="outline"
+					onclick={() => {
+						filter_levelreq.min = 1;
+						filter_levelreq.max = 99;
+					}}
+				>
+					Reset
+				</button>
+			</div>
 		</div>
-	</div>
-	<fieldset class="grid">
-		<fieldset>
-			<input
-				type="number"
-				id="minlevel"
-				name="minlevel"
-				bind:value={filter_levelreq.min}
-				min="1"
-				step="1"
-				max="99"
-			/><small>Minimum</small>
+		<fieldset class="grid">
+			<fieldset>
+				<input
+					type="number"
+					id="minlevel"
+					name="minlevel"
+					bind:value={filter_levelreq.min}
+					min="1"
+					step="1"
+					max="99"
+				/><small>Minimum</small>
+			</fieldset>
+			<fieldset>
+				<input
+					type="number"
+					id="maxlevel"
+					name="maxlevel"
+					bind:value={filter_levelreq.max}
+					min="1"
+					step="1"
+					max="99"
+				/><small>Maximum</small>
+			</fieldset>
 		</fieldset>
-		<fieldset>
-			<input
-				type="number"
-				id="maxlevel"
-				name="maxlevel"
-				bind:value={filter_levelreq.max}
-				min="1"
-				step="1"
-				max="99"
-			/><small>Maximum</small>
-		</fieldset>
-	</fieldset>
-	<Bases bind:this={bases} />
-	<RequiredRunes bind:this={required_runes} />
+	</details>
+	<hr />
+	<details>
+		<summary>Bases</summary>
+		<Bases bind:this={bases} />
+	</details>
+	<hr />
+	<details>
+		<summary>Required Runes</summary>
+		<RequiredRunes bind:this={required_runes} />
+	</details>
 </aside>
 
 <style>
+	details summary {
+		font-weight: 600;
+		--pico-font-size: 1.125rem;
+		--pico-line-height: 1.225;
+		--pico-typography-spacing-top: 1.6875rem;
+	}
 	#filters fieldset {
 		margin-bottom: 0;
 	}
 
 	.warning {
 		margin-bottom: inherit;
+	}
+	details .all_or_none{
+		margin-bottom: var(--pico-spacing);
 	}
 </style>

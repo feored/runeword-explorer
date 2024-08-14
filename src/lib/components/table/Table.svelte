@@ -57,7 +57,7 @@
 		});
 	});
 
-	let shown_rows = $derived.by(() => {
+	let runeword_rows = $derived.by(() => {
 		let shown = [];
 		for (let i = 0; i < runewords.length; i++) {
 			shown.push(filter_rw(runewords[i], filter_options));
@@ -121,9 +121,9 @@
 <section>
 	<section>
 		<p id="runeword-nb">
-			Showing {shown_rows.filter(Boolean).length}/{shown_rows.length} ({(
-				(shown_rows.filter(Boolean).length * 100) /
-				shown_rows.length
+			Showing {runeword_rows.filter(Boolean).length}/{runeword_rows.length} ({(
+				(runeword_rows.filter(Boolean).length * 100) /
+				runeword_rows.length
 			).toFixed(2)}%)
 		</p>
 	</section>
@@ -144,7 +144,7 @@
 			</thead>
 			<tbody>
 				{#each runewords as rw, rw_index}
-					<tr hidden={!shown_rows[rw_index]}>
+					<tr hidden={!runeword_rows[rw_index]}>
 						<td data-sort={rw.success} class="possible">
 							<Possible possible={rw.success} />
 						</td>
@@ -181,9 +181,12 @@
 		</table>
 	</section>
 </section>
-<section>
-	<button class="reset outline" style="width: 100%; text-align:center;" onclick={() => {document.documentElement.scrollTop = 0;}}>Back to Top</button>
-</section>
+{#if runeword_rows.filter(Boolean).length > 10}
+	<section>
+		<button class="reset outline" style="width: 100%; text-align:center;" onclick={() => {document.documentElement.scrollTop = 0;}}>Back to Top</button>
+	</section>
+{/if}
+
 <style>
 	#rwtable thead th {
 		position: sticky;
