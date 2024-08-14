@@ -1,81 +1,59 @@
 <script lang="ts">
 	import { RUNES } from '$lib/data/runes';
-	import { UPG_GEM, upgCost } from '$lib/runewordcalc';
+	import { UPG_GEM, upg_cost } from '$lib/runewordcalc';
 	import { ArrowRight } from 'lucide-svelte';
 
 	interface cubedProps {
 		show: boolean;
 		upgs_done: number[];
 		rw_runes: string[];
+		missing: number[];
 	}
-	let { show, upgs_done, rw_runes }: cubedProps = $props();
-
-	function sum_steps(upgs){
-		var total = 0;
-		var i = upgs.length; 
-
-		while (i--) {
-			total += upgs_done[i];
-		}
-
-		return total;
-	}
+	let { show, upgs_done, rw_runes, missing }: cubedProps = $props();
 </script>
 
 <div>
 	{#if show && upgs_done}
-	<details>
-		<summary>{sum_steps(upgs_done)} Steps</summary>
-	<table>
-		{#each upgs_done as upgNb, runeIndex}
+		{#each upgs_done as upgNb, rune_index}
 			{#if upgNb > 0}
-				<tr>
-					<td>
-						<span
-					>{upgNb * upgCost(runeIndex)}
+				<span
+					>{upgNb * upg_cost(rune_index)}
 					<span class="rune">
-						{RUNES[runeIndex]}
+						{RUNES[rune_index]}
 					</span>
-					</span>
-				</td>
-				<td>
-					{#if UPG_GEM[runeIndex]}
-					
-						{upgNb}
-						<span class={UPG_GEM[runeIndex].toLowerCase()}>{UPG_GEM[runeIndex]}</span>
-					
-					{/if}</td>
-					<td>
+					{#if UPG_GEM[rune_index]}
+						+ {upgNb}
+						<span class={UPG_GEM[rune_index].toLowerCase()}>{UPG_GEM[rune_index]}</span>
+					{/if}
 					<ArrowRight size="1em" />
-					</td>
-					<td>
-					{#if rw_runes.includes(RUNES[runeIndex + 1])}
+					{#if rw_runes.includes(RUNES[rune_index + 1])}
 						<span class="highlight"
 							>{upgNb}
-							<span class="rune">{RUNES[runeIndex + 1]}</span>
+							<span class="rune">{RUNES[rune_index + 1]}</span>
 						</span>
 					{:else}
 						{upgNb}
-						<span class="rune">{RUNES[runeIndex + 1]}</span>
+						<span class="rune">{RUNES[rune_index + 1]}</span>
 					{/if}
-					</td>
-			</tr>
+				</span>
+				<br />
 			{/if}
 		{/each}
-			</table>
-			</details>
+	{:else}
+		<p>Missing:</p>
+		{#each missing as nb, rune_index}
+			{#if nb > 0}
+				<span
+					>{nb}
+					<span class="rune">{RUNES[rune_index]}</span>
+				</span>
+				<br />
+			{/if}
+		{/each}
 	{/if}
 </div>
 
 <style>
-
-	td {
-		border: none;
-		min-width:0;
-		padding:0.25rem;
-		background-color: black !important;
-	}
-
 	.highlight {
 		text-decoration: underline;
 	}

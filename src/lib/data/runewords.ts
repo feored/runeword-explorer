@@ -14,6 +14,8 @@ export interface Runeword {
 	version: '1.09' | '1.10' | '1.11' | '2.4' | '2.6';
 }
 
+
+
 export const RUNEWORDS: Runeword[] = [
 	{
 		bases: ['Off-hands'],
