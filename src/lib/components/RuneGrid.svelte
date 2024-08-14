@@ -2,8 +2,8 @@
 	import { RUNES } from '$lib/data/runes';
 	import { rune_inventory } from '$lib/options.svelte';
 	import * as d2s from '@dschu012/d2s';
-	import { constants as CONSTANTS_99} from "@dschu012/d2s/lib/data/versions/99_constant_data";
-	import { constants as CONSTANTS_96} from '@dschu012/d2s/lib/data/versions/96_constant_data';
+	import { constants as CONSTANTS_99 } from '@dschu012/d2s/lib/data/versions/99_constant_data';
+	import { constants as CONSTANTS_96 } from '@dschu012/d2s/lib/data/versions/96_constant_data';
 
 	let set_constants = false;
 
@@ -14,18 +14,18 @@
 			const file = files[0];
 			const reader = new FileReader();
 			reader.onload = async (e) => {
-				if (!set_constants){
-					d2s.setConstantData(0x60, CONSTANTS_96); 
-					d2s.setConstantData(0x61, CONSTANTS_96); 
-					d2s.setConstantData(0x62, CONSTANTS_96); 
-					d2s.setConstantData(0x63, CONSTANTS_99); 
+				if (!set_constants) {
+					d2s.setConstantData(0x60, CONSTANTS_96);
+					d2s.setConstantData(0x61, CONSTANTS_96);
+					d2s.setConstantData(0x62, CONSTANTS_96);
+					d2s.setConstantData(0x63, CONSTANTS_99);
 					set_constants = true;
 				}
-				d2s.read(e.target.result).then(function(response) {
+				d2s.read(e.target.result).then(function (response) {
 					rune_inventory.fill(0);
-					response.items.forEach(item => {
+					response.items.forEach((item) => {
 						if (item.categories.includes('Rune')) {
-							let rune_index = parseInt(item.type.substring(1))-1;
+							let rune_index = parseInt(item.type.substring(1)) - 1;
 							rune_inventory[rune_index]++;
 						}
 					});
@@ -44,16 +44,12 @@
 	];
 	let selected_range = $state(0);
 
-		
-
 	function setRunes(value: number): void {
 		let rune_range = ranges[selected_range];
 		for (let i = rune_range.start; i < rune_range.end; i++) {
 			rune_inventory[i] = value;
 		}
 	}
-	
-
 </script>
 
 <article>
@@ -77,18 +73,22 @@
 	<hr />
 	<div class="flex" style="justify-content: space-between;">
 		<div class="flex" style="gap: var(--pico-spacing);">
-				<div>
-				<input bind:files type="file" accept=".d2s">
-				<small>Load a save file to automatically retrieve runes</small>
+			<div>
+				<input bind:files type="file" accept=".d2s" />
+				<small
+					><span data-tooltip="Does not support Shared Stash files." data-placement="bottom"
+						>Load a save file</span
+					> to fill runes.</small
+				>
 			</div>
 		</div>
 		<button
-				class="reset outline"
-				type="button"
-				onclick={() => {
-					setRunes(0);
-				}}>Reset Runes</button
-			>
+			class="reset outline"
+			type="button"
+			onclick={() => {
+				setRunes(0);
+			}}>Reset Runes</button
+		>
 		<div aria-labelledby="all_runes" class="set-runes">
 			<div>
 				<input

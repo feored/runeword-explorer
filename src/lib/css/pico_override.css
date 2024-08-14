@@ -72,6 +72,6 @@ table.striped tbody tr:nth-child(even of :not([hidden])) td {
 	height: max-content;
 	white-space: pre;
 	word-wrap: normal;
-	z-index:99;
+	z-index: 99;
 	overflow: visible !important;
 }

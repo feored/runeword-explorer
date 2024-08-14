@@ -62,7 +62,7 @@
 	{:else}
 		<details>
 			<summary>Missing Runes</summary>
-			
+
 			<table>
 				<tbody>
 					{#each calc_missing(inventory, rw_runes) as nb, rune_index}
@@ -79,7 +79,12 @@
 					{/each}
 				</tbody>
 			</table>
-			<em style="font-size: smallest;" data-html="true" data-tooltip="The smallest number of runes required&#10;&#13; to cube up to this runeword.">?<em>
+			<em
+				style="font-size: smallest;"
+				data-html="true"
+				data-tooltip="The smallest number of runes required&#10;&#13; to cube up to this runeword."
+				>?<em> </em></em
+			>
 		</details>
 	{/if}
 </div>
