@@ -45,7 +45,7 @@ table {
 	/* Original: var(--pico-border-radius) */
 }
 
-article > footer {
+article>footer {
 	border-radius: calc(var(--pico-border-radius) * 2);
 	/* Original: var(--pico-border-radius) */
 }

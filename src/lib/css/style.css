@@ -13,13 +13,6 @@
 	--color-good: rgb(6, 151, 6);
 	--color-bad: var(--color-server);
 
-	--color-topaz: rgb(255, 255, 0);
-	--color-amethyst: rgb(153, 50, 204);
-	--color-sapphire: rgb(79, 164, 230);
-	--color-ruby: rgb(173, 26, 12);
-	--color-emerald: rgb(27, 180, 47);
-	--color-diamond: rgb(134, 134, 134);
-
 	--color-d2r: black;
 	--color-border-d2r: rgb(71, 71, 71);
 
@@ -80,20 +73,25 @@ button.reset {
 	padding: calc(var(--pico-spacing) / 3);
 	font-size: x-small;
 	width: fit-content;
+	text-decoration: none;
 }
 
 .d2r_only {
 	background-color: var(--color-d2r);
-	border: var(--pico-border-width) solid var(--color-border-d2r);
+	border: var(--pico-border-width) solid var(--color-border-d2r) !important;
 }
 
 .d2r_ladder {
 	background-color: var(--color-d2rladder);
-	border: var(--pico-border-width) solid var(--color-border-d2rladder);
+	border: var(--pico-border-width) solid var(--color-border-d2rladder) !important;
 }
 
 .d2lod_ladder,
 .d2lod_only {
 	background-color: var(--color-d2lodladder);
-	border: var(--pico-border-width) solid var(--color-border-d2lodladder);
+	border: var(--pico-border-width) solid var(--color-border-d2lodladder) !important;
+}
+
+details summary {
+	min-width:max-content;
 }

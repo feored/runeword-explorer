@@ -181,7 +181,7 @@
 						<td data-sort={rw.el_value} class="runes searchable">
 							{rw.runes.join(' ')}
 						</td>
-						<td class="searchable" style="min-width: 20rem;"><Stats compact={filter_options.compact_mode} stats={rw.stats} /> </td>
+						<td class="searchable" style="min-width: 15rem;"><Stats compact={filter_options.compact_mode} stats={rw.stats} /> </td>
 						<td class="levelreq">
 							{rw.levelreq}
 						</td>
@@ -213,6 +213,10 @@
 {/if}
 
 <style>
+
+	#rwtable {
+		layout::fixed;
+	}
 	#rwtable thead th {
 		position: sticky;
 		top: 0;
@@ -241,8 +245,9 @@
 
 	.levelreq,
 	.sockets {
-		font-size: large;
-		font-weight: light;
+		background-color: var(--color-magic);
+		padding: var(--pico-spacing);
+		font-weight: 500;
 	}
 
 	.levelreq,

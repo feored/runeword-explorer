@@ -3,6 +3,7 @@
 	import Versions from '$lib/components/filters/filters/Versions.svelte';
 	import RequiredRunes from '$lib/components/filters/filters/RequiredRunes.svelte';
 	import { default_filter_options, filter_options } from '$lib/options.svelte';
+	import { CircleHelp } from 'lucide-svelte';
 
 	let filter_sockets = $state({ ...filter_options.sockets });
 	let filter_levelreq = $state({ ...filter_options.levelreq });
@@ -85,7 +86,7 @@
 						id="compact_mode"
 						name="compact_mode"
 						bind:checked={filter_options.compact_mode}
-					/><span data-tooltip="Stats will be collapsed by default.">Compact Mode</span>
+					/><span>Compact Mode <span  data-tooltip="Stats will be collapsed by default."><CircleHelp size="1.25rem"/></span></span>
 				</label>
 				<hr />
 				<label
@@ -118,7 +119,7 @@
 						class="warning d2r_ladder"
 						style="display:inline-block !important"
 						data-tooltip="Diablo II: Resurrected">D2R</small
-					> Ladder-Only Runewords
+					> Ladder-Only
 				</label>
 				<label
 					><input
@@ -134,7 +135,7 @@
 						class="warning d2lod_ladder"
 						style="display:inline-block !important;"
 						data-tooltip="Diablo II: Lord of Destruction">D2LoD</small
-					> Ladder-Only Runewords
+					> Ladder-Only
 				</label>
 			</fieldset>
 		</article>

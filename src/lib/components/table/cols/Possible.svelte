@@ -3,10 +3,20 @@
 	let { possible }: { possible: boolean } = $props();
 </script>
 
-<div>
+<div class={possible ? "success" : "failure"}>
 	{#if possible}
-		<Check color="green" size="1.5em" />
+		<Check size="1.5rem" />
 	{:else}
-		<CircleX color="red" size="1.5em" />
+		<CircleX size="1.5rem" />
 	{/if}
 </div>
+
+<style>
+	.success {
+		color: var(--pico-primary);
+	}
+
+	.failure {
+		color: #c33a32;
+	}
+</style>

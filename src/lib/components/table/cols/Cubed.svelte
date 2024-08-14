@@ -3,6 +3,8 @@
 	import { UPG_GEM, upg_cost } from '$lib/runewordcalc';
 	import { ArrowRight } from 'lucide-svelte';
 	import { calc_missing } from '$lib/runewordcalc';
+	import { CircleHelp } from 'lucide-svelte';
+
 
 	interface cubedProps {
 		success: boolean;
@@ -102,13 +104,23 @@
 				style="font-size: smallest;"
 				data-html="true"
 				data-tooltip="The smallest number of runes required&#10;&#13; to cube up to this runeword."
-				>?<em> </em></em
+				><CircleHelp size="1rem" /></em
 			>
 		</details>
 	{/if}
 </div>
 
 <style>
+
+	:root {
+		--color-topaz: rgb(255, 255, 0);
+		--color-amethyst: rgb(153, 50, 204);
+		--color-sapphire: rgb(79, 164, 230);
+		--color-ruby: rgb(173, 26, 12);
+		--color-emerald: rgb(27, 180, 47);
+		--color-diamond: rgb(134, 134, 134);
+	}
+
 	td {
 		border: none;
 		min-width: 0;
@@ -145,4 +157,6 @@
 	.diamond {
 		color: var(--color-diamond);
 	}
+
+
 </style>
