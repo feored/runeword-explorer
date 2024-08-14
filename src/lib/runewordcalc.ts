@@ -27,7 +27,7 @@ function default_inventory(): number[] {
 export function calc_runeword(
 	rune_inventory: number[],
 	rw_runes: string[]
-): { success: boolean; upgs_done: number[]; } {
+): { success: boolean; upgs_done: number[] } {
 	let working_inv: number[] = Array.from(rune_inventory);
 	let working_runes: number[] = RUNES.map((r) =>
 		rw_runes.includes(r) ? rw_runes.filter((x) => x === r).length : 0

@@ -13,6 +13,7 @@
 	}
 	let { success, upgs_done, rw_runes, inventory, cubing_steps }: cubedProps = $props();
 </script>
+
 <div>
 	{#if success}
 		{#if cubing_steps > 0}
@@ -20,41 +21,41 @@
 				<summary>{cubing_steps} Steps</summary>
 				<table>
 					<tbody>
-					{#each upgs_done as upg_nb, rune_index}
-						{#if upg_nb > 0}
-							<tr>
-								<td>
-									<span
-										>{upg_nb * upg_cost(rune_index)}
-										<span class="rune">
-											{RUNES[rune_index]}
+						{#each upgs_done as upg_nb, rune_index}
+							{#if upg_nb > 0}
+								<tr>
+									<td>
+										<span
+											>{upg_nb * upg_cost(rune_index)}
+											<span class="rune">
+												{RUNES[rune_index]}
+											</span>
 										</span>
-									</span>
-								</td>
-								<td>
-									{#if UPG_GEM[rune_index]}
-										{upg_nb}
-										<span class={UPG_GEM[rune_index].toLowerCase()}>{UPG_GEM[rune_index]}</span>
-									{/if}</td
-								>
-								<td>
-									<ArrowRight size="1em" />
-								</td>
-								<td>
-									{#if rw_runes.includes(RUNES[rune_index + 1])}
-										<span class="highlight"
-											>{upg_nb}
+									</td>
+									<td>
+										{#if UPG_GEM[rune_index]}
+											{upg_nb}
+											<span class={UPG_GEM[rune_index].toLowerCase()}>{UPG_GEM[rune_index]}</span>
+										{/if}</td
+									>
+									<td>
+										<ArrowRight size="1em" />
+									</td>
+									<td>
+										{#if rw_runes.includes(RUNES[rune_index + 1])}
+											<span class="highlight"
+												>{upg_nb}
+												<span class="rune">{RUNES[rune_index + 1]}</span>
+											</span>
+										{:else}
+											{upg_nb}
 											<span class="rune">{RUNES[rune_index + 1]}</span>
-										</span>
-									{:else}
-										{upg_nb}
-										<span class="rune">{RUNES[rune_index + 1]}</span>
-									{/if}
-								</td>
-							</tr>
-						{/if}
-					{/each}
-						</tbody>
+										{/if}
+									</td>
+								</tr>
+							{/if}
+						{/each}
+					</tbody>
 				</table>
 			</details>
 		{/if}
@@ -63,19 +64,19 @@
 			<summary>Missing Runes</summary>
 			<table>
 				<tbody>
-				{#each calc_missing(inventory, rw_runes) as nb, rune_index}
-					{#if nb > 0}
-						<tr>
-							<td>
-								{nb}
-							</td>
-							<td>
-								<span class="rune">{RUNES[rune_index]}</span>
-							</td>
-						</tr>
-					{/if}
-				{/each}
-					</tbody>
+					{#each calc_missing(inventory, rw_runes) as nb, rune_index}
+						{#if nb > 0}
+							<tr>
+								<td>
+									{nb}
+								</td>
+								<td>
+									<span class="rune">{RUNES[rune_index]}</span>
+								</td>
+							</tr>
+						{/if}
+					{/each}
+				</tbody>
 			</table>
 		</details>
 	{/if}
