@@ -12,12 +12,31 @@
 		cubing_steps: number;
 	}
 	let { success, upgs_done, rw_runes, inventory, cubing_steps }: cubedProps = $props();
+	
+
+	let gem_td_required = $derived.by(()=> {
+		const LOWEST_RUNE_INDEX_GEM_REQUIRED = 9;
+		let highest = 0;
+		if (!success || !upgs_done){
+			return highest;
+		}
+		for (let i = 0; i < upgs_done.length; i++){
+			if (upgs_done[i] > 0){
+				highest = i;
+				if (i >= LOWEST_RUNE_INDEX_GEM_REQUIRED){
+					break;
+				}
+			}
+		}
+		return highest >= LOWEST_RUNE_INDEX_GEM_REQUIRED;
+	})
+
 </script>
 
 <div>
 	{#if success}
 		{#if cubing_steps > 0}
-			<details>
+			<details open={cubing_steps <= 100}>
 				<summary>{cubing_steps} Steps</summary>
 				<table>
 					<tbody>
@@ -31,13 +50,13 @@
 												{RUNES[rune_index]}
 											</span>
 										</span>
-									</td>
-									<td>
-										{#if UPG_GEM[rune_index]}
+									</td>{#if gem_td_required}
+									<td>{#if UPG_GEM[rune_index]}
+									
+										
 											{upg_nb}
 											<span class={UPG_GEM[rune_index].toLowerCase()}>{UPG_GEM[rune_index]}</span>
-										{/if}</td
-									>
+										{/if}</td>{/if}
 									<td>
 										<ArrowRight size="1em" />
 									</td>
