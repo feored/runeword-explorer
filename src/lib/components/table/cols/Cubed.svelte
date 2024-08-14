@@ -9,22 +9,46 @@
 		rw_runes: string[];
 	}
 	let { show, upgs_done, rw_runes }: cubedProps = $props();
+
+	function sum_steps(upgs){
+		var total = 0;
+		var i = upgs.length; 
+
+		while (i--) {
+			total += upgs_done[i];
+		}
+
+		return total;
+	}
 </script>
 
 <div>
 	{#if show && upgs_done}
+	<details>
+		<summary>{sum_steps(upgs_done)} Steps</summary>
+	<table>
 		{#each upgs_done as upgNb, runeIndex}
 			{#if upgNb > 0}
-				<span
+				<tr>
+					<td>
+						<span
 					>{upgNb * upgCost(runeIndex)}
 					<span class="rune">
 						{RUNES[runeIndex]}
 					</span>
+					</span>
+				</td>
+				<td>
 					{#if UPG_GEM[runeIndex]}
-						+ {upgNb}
+					
+						{upgNb}
 						<span class={UPG_GEM[runeIndex].toLowerCase()}>{UPG_GEM[runeIndex]}</span>
-					{/if}
+					
+					{/if}</td>
+					<td>
 					<ArrowRight size="1em" />
+					</td>
+					<td>
 					{#if rw_runes.includes(RUNES[runeIndex + 1])}
 						<span class="highlight"
 							>{upgNb}
@@ -34,14 +58,24 @@
 						{upgNb}
 						<span class="rune">{RUNES[runeIndex + 1]}</span>
 					{/if}
-				</span>
-				<br />
+					</td>
+			</tr>
 			{/if}
 		{/each}
+			</table>
+			</details>
 	{/if}
 </div>
 
 <style>
+
+	td {
+		border: none;
+		min-width:0;
+		padding:0.25rem;
+		background-color: black !important;
+	}
+
 	.highlight {
 		text-decoration: underline;
 	}

@@ -15,7 +15,7 @@
 	<div class="grid-runes container-fluid">
 		<header>
 			<div class="version">
-			<h6>Runeword Calculator v{version}</h6>
+			<h6>Runeword Explorer v{version}</h6>
 			<a href="https://github.com/feored/runewords"><Github size="1rem"/></a>
 			</div>
 		</header>
