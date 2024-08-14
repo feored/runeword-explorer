@@ -181,7 +181,7 @@
 						<td data-sort={rw.el_value} class="runes searchable">
 							{rw.runes.join(' ')}
 						</td>
-						<td class="searchable"><Stats stats={rw.stats} /> </td>
+						<td class="searchable" style="min-width: 20rem;"><Stats compact={filter_options.compact_mode} stats={rw.stats} /> </td>
 						<td class="levelreq">
 							{rw.levelreq}
 						</td>

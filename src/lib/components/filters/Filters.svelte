@@ -82,6 +82,16 @@
 					><input
 						type="checkbox"
 						role="switch"
+						id="compact_mode"
+						name="compact_mode"
+						bind:checked={filter_options.compact_mode}
+					/><span data-tooltip="Stats will be collapsed by default.">Compact Mode</span>
+				</label>
+				<hr />
+				<label
+					><input
+						type="checkbox"
+						role="switch"
 						id="d2r_only"
 						name="d2r_only"
 						value="d2r_only"
@@ -241,7 +251,7 @@
 	}
 
 	.warning {
-		margin-bottom: inherit;
+		margin-bottom: 0;
 	}
 	details .all_or_none {
 		margin-bottom: var(--pico-spacing);

@@ -1,8 +1,9 @@
 <script lang="ts">
 	interface Stats {
 		stats: Record<string, string[]>;
+		compact: boolean;
 	}
-	let { stats }: Stats = $props();
+	let { stats, compact }: Stats = $props();
 	let single_stat: boolean = $derived.by(() => {return Object.keys(stats).length === 1 && 'all' in stats});
 	let active_tab = $state(0);
 </script>
@@ -35,15 +36,35 @@
 	{/each}
 {/snippet}
 
-<div class="stats">
+{#snippet stats_cell(stats)}
 	{#if single_stat}
 		{@render stat_list_display(stats['all'])}
 	{:else}
 		{@render stat_tabs(stats)}
 	{/if}
+{/snippet}
+
+<div class="stats">
+	{#if compact}
+		<details>
+			<summary></summary>
+			{@render stats_cell(stats)}
+		</details>
+	{:else}
+		{@render stats_cell(stats)}
+	{/if}
 </div>
 
 <style>
+
+	details[open] summary::before {
+		content: "Hide";
+	}
+
+	details:not([open]) summary::before {
+		content: "Show";
+	}
+
 	.stats {
 		color: var(--color-magic);
 	}

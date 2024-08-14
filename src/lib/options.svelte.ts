@@ -5,6 +5,7 @@ import { all_bases } from '$lib/data/bases';
 export interface FilterOptions {
 	search: string;
 	only_can_make: boolean;
+	compact_mode: boolean;
 	ladder_d2r: boolean;
 	ladder_d2lod: boolean;
 	show_d2r_only: boolean;
@@ -20,6 +21,7 @@ export let rune_inventory: number[] = $state(new Array(RUNES.length).fill(0));
 export const default_filter_options: FilterOptions = {
 	search: '',
 	only_can_make: true,
+	compact_mode: false,
 	ladder_d2r: true,
 	ladder_d2lod: true,
 	show_d2r_only: true,
