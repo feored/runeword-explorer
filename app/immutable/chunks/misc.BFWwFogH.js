@@ -1,1 +1,0 @@
-import{h as n,a as r}from"./disclose-version.B91IQsLN.js";function l(t,e,a,f){n&&r(),e===void 0||e(t,a)}function d(t){var a;var e=(a=t.$$slots)==null?void 0:a.default;return e===!0?t.children:e}export{d,l as s};
