@@ -83,7 +83,7 @@
 			if (
 				rw.name.toLowerCase().includes(search_term) ||
 				rw.runes.join(' ').toLowerCase().includes(search_term) ||
-				rw.stats.some((x) => x.toLowerCase().includes(search_term)) ||
+				Object.values(rw.stats).some((statList) => statList.some((statLine) => statLine.toLowerCase().includes(search_term))) ||
 				rw.bases.some((x) => x.toLowerCase().includes(search_term)) ||
 				rw.bases_d2r.some((x) => x.toLowerCase().includes(search_term))
 			) {
