@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Bases from '$lib/components/filters/filters/Bases.svelte';
-	import Versions from '$lib/components/filters/filters/FilterVersions.svelte';
+	import Versions from '$lib/components/filters/filters/Versions.svelte';
 	import RequiredRunes from '$lib/components/filters/filters/RequiredRunes.svelte';
 	import { default_filter_options, filter_options } from '$lib/options.svelte';
 

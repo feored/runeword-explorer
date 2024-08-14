@@ -24,7 +24,7 @@
 	.wrapper {
 		display: grid;
 		gap: var(--pico-form-element-spacing-horizontal);
-		grid-template-columns: minmax(30rem, 1fr) 3fr;
+		grid-template-columns: minmax(30rem, 1fr) 4fr;
 		grid-template-rows: auto 1fr;
 		grid-template-areas:
 			'sidebar runes'

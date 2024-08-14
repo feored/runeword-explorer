@@ -19,7 +19,7 @@
 	}
 </script>
 
-<article id="runes">
+<article>
 	{#each [0, 1, 2] as row}
 		<div class="rune-grid" style="align-items:center; margin:auto;">
 			{#each RUNES.slice(row*11, (row+1)*11) as rune, index}
@@ -38,7 +38,7 @@
 		</div>	
 	{/each}
 	<hr />
-	<fieldset class="flex" style="justify-content: space-between;">
+	<div class="flex" style="justify-content: space-between;">
 		<button
 			class="reset outline"
 			type="button"
@@ -47,44 +47,43 @@
 			}}
 		>Reset</button>
 		<div aria-labelledby="all_runes" class="set-runes">
-			
 				<input
-				type="number"
-				aria-describedby="all_runes"
-				id="all_runes"
-				name="all_runes"
-				bind:value={all_set_nb}
-				min="0"
-				step="1"
-			/>
-			<div role="group">
-				<input
-					type="button"
-					value="Set"
-					onclick={() => {
-						setRunes(all_set_nb);
-					}}
+					type="number"
+					aria-describedby="all_runes"
+					id="all_runes"
+					name="all_runes"
+					bind:value={all_set_nb}
+					min="0"
+					step="1"
 				/>
-				<select name="rune-range" aria-label="Range of runes to set" bind:value={selected_range}>
-					{#each ranges as range, index}
-						<option value={index}>{range.display}</option>
-					{/each}
-				</select>
-			</div>
+				
+				<div>
+					<select class="auto-width" name="rune-range" aria-label="Range of runes to set" bind:value={selected_range}>
+						{#each ranges as range, index}
+							<option value={index}>{range.display}</option>
+						{/each}
+					</select>
+					<small>Range of runes</small>
+				</div>
+			
+			<input
+				type="button"
+				value="Set"
+				onclick={() => {
+					setRunes(all_set_nb);
+				}}
+			/>
+			
 		</div>
-	</fieldset>
+	</div>
 </article>
 
 
 <style>
 
-	#runes small {
-		font-size: medium;
-	}
-
+	
 	.set-runes {
 		display: flex;
-		justify-content: space-between;
 		gap: var(--pico-form-element-spacing-horizontal);
 	}
 	
@@ -97,8 +96,11 @@
 		row-gap: var(--pico-grid-row-gap);
 	}
 
-
-	input[type='number'] {
+	.rune-grid small {
+		font-size: medium;
+	}
+	
+	.rune-grid input[type='number'] {
 		min-width: 3rem;
 		max-width: 5rem;
 	}

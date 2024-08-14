@@ -13,6 +13,14 @@
 		}
 		filter_versions = { ...filter_versions };
 	}
+
+	let VERSION_NAME = {
+		'1.09': 'D2LoD 1.09',
+		'1.10': 'D2LoD 1.10',
+		'1.11': 'D2LoD 1.11',
+		'2.4': 'D2R 2.4',
+		'2.6': 'D2R 2.6'
+	};
 </script>
 
 <div class="flex">
@@ -33,7 +41,7 @@
 					value={version}
 					bind:checked={filter_versions[version]}
 				/>
-				{version}
+				{VERSION_NAME[version]}
 			</label>
 		{/each}
 	</fieldset>
