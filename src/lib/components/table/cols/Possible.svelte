@@ -3,7 +3,7 @@
 	let { possible }: { possible: boolean } = $props();
 </script>
 
-<div class={possible ? "success" : "failure"}>
+<div class={possible ? 'success' : 'failure'}>
 	{#if possible}
 		<Check size="1.5rem" />
 	{:else}

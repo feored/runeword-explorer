@@ -4,7 +4,9 @@
 		compact: boolean;
 	}
 	let { stats, compact }: Stats = $props();
-	let single_stat: boolean = $derived.by(() => {return Object.keys(stats).length === 1 && 'all' in stats});
+	let single_stat: boolean = $derived.by(() => {
+		return Object.keys(stats).length === 1 && 'all' in stats;
+	});
 	let active_tab = $state(0);
 </script>
 
@@ -26,9 +28,13 @@
 {#snippet stat_tabs(stats)}
 	<div role="tabs">
 		{#each Object.keys(stats) as stat_list_key, index}
-			<button class={active_tab == index ? "active" : "inactive outline reset"} type="button" onclick={() => active_tab = index}>{stat_list_key}</button>
+			<button
+				class={active_tab == index ? 'active' : 'inactive outline reset'}
+				type="button"
+				onclick={() => (active_tab = index)}>{stat_list_key}</button
+			>
 		{/each}
-  	</div>
+	</div>
 	{#each Object.keys(stats) as stat_list_key, index}
 		<section hidden={active_tab !== index}>
 			{@render stat_list_display(stats[stat_list_key])}
@@ -56,13 +62,12 @@
 </div>
 
 <style>
-
 	details[open] summary::before {
-		content: "Hide";
+		content: 'Hide';
 	}
 
 	details:not([open]) summary::before {
-		content: "Show";
+		content: 'Show';
 	}
 
 	.stats {
@@ -73,18 +78,17 @@
 		color: #86b0ff;
 	}
 
-	[role="tabs"]{
-		display:flex;
+	[role='tabs'] {
+		display: flex;
 		justify-content: center;
 		gap: var(--pico-spacing);
 	}
 
-	[role="tabs"] button.active {
+	[role='tabs'] button.active {
 		text-decoration: var(--pico-primary) underline;
 	}
 
-	[role="tabs"] button:not(.active) {
+	[role='tabs'] button:not(.active) {
 		color: var(--pico-secondary) !important;
 	}
-
 </style>

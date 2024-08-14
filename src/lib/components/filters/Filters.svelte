@@ -3,10 +3,10 @@
 	import Versions from '$lib/components/filters/filters/Versions.svelte';
 	import RequiredRunes from '$lib/components/filters/filters/RequiredRunes.svelte';
 	import { default_filter_options, filter_options } from '$lib/options.svelte';
-	import { CircleHelp } from 'lucide-svelte';
 
 	let filter_sockets = $state({ ...filter_options.sockets });
 	let filter_levelreq = $state({ ...filter_options.levelreq });
+	let root_element: HTMLElement;
 
 	$effect(() => {
 		filter_sockets.max = Math.min(filter_sockets.max, 6);
@@ -44,15 +44,18 @@
 		filter_levelreq = { ...default_filter_options.levelreq };
 		bases.setAllBases(true);
 		required_runes.setRequiredRunes(false);
+		root_element.querySelectorAll('details:not(.always_open)').forEach((details) => {
+			details.removeAttribute('open');
+		});
 	}
 </script>
 
 <div class="flex" style="justify-content: space-between; align-items:flex-start">
 	<h5>Filters</h5>
-	<button class="reset outline" onclick={() => reset_filter_options()}>Reset Filters</button>
+	<button class="reset outline" onclick={() => reset_filter_options()}>Reset All Filters</button>
 </div>
 <hr />
-<aside id="filters">
+<aside id="filters" bind:this={root_element}>
 	<fieldset>
 		<input
 			id="searchbar"
@@ -64,7 +67,7 @@
 		/>
 	</fieldset>
 
-	<details open>
+	<details open class="always_open">
 		<summary>General</summary>
 		<article>
 			<fieldset>
@@ -86,7 +89,7 @@
 						id="compact_mode"
 						name="compact_mode"
 						bind:checked={filter_options.compact_mode}
-					/><span>Compact Mode <span  data-tooltip="Stats will be collapsed by default."><CircleHelp size="1.25rem"/></span></span>
+					/><span>Compact Mode</span>
 				</label>
 				<hr />
 				<label

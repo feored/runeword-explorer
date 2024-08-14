@@ -5,7 +5,6 @@
 	import { calc_missing } from '$lib/runewordcalc';
 	import { CircleHelp } from 'lucide-svelte';
 
-
 	interface cubedProps {
 		success: boolean;
 		upgs_done: number[];
@@ -14,25 +13,23 @@
 		cubing_steps: number;
 	}
 	let { success, upgs_done, rw_runes, inventory, cubing_steps }: cubedProps = $props();
-	
 
-	let gem_td_required = $derived.by(()=> {
+	let gem_td_required = $derived.by(() => {
 		const LOWEST_RUNE_INDEX_GEM_REQUIRED = 9;
 		let highest = 0;
-		if (!success || !upgs_done){
+		if (!success || !upgs_done) {
 			return highest;
 		}
-		for (let i = 0; i < upgs_done.length; i++){
-			if (upgs_done[i] > 0){
+		for (let i = 0; i < upgs_done.length; i++) {
+			if (upgs_done[i] > 0) {
 				highest = i;
-				if (i >= LOWEST_RUNE_INDEX_GEM_REQUIRED){
+				if (i >= LOWEST_RUNE_INDEX_GEM_REQUIRED) {
 					break;
 				}
 			}
 		}
 		return highest >= LOWEST_RUNE_INDEX_GEM_REQUIRED;
-	})
-
+	});
 </script>
 
 <div>
@@ -53,12 +50,12 @@
 											</span>
 										</span>
 									</td>{#if gem_td_required}
-									<td>{#if UPG_GEM[rune_index]}
-									
-										
-											{upg_nb}
-											<span class={UPG_GEM[rune_index].toLowerCase()}>{UPG_GEM[rune_index]}</span>
-										{/if}</td>{/if}
+										<td
+											>{#if UPG_GEM[rune_index]}
+												{upg_nb}
+												<span class={UPG_GEM[rune_index].toLowerCase()}>{UPG_GEM[rune_index]}</span>
+											{/if}</td
+										>{/if}
 									<td>
 										<ArrowRight size="1em" />
 									</td>
@@ -111,7 +108,6 @@
 </div>
 
 <style>
-
 	:root {
 		--color-topaz: rgb(255, 255, 0);
 		--color-amethyst: rgb(153, 50, 204);
@@ -157,6 +153,4 @@
 	.diamond {
 		color: var(--color-diamond);
 	}
-
-
 </style>

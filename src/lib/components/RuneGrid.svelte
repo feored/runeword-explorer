@@ -63,6 +63,7 @@
 						name={rune}
 						min="0"
 						step="1"
+						class:active_rune={rune_inventory[row * 11 + index] > 0}
 						bind:value={rune_inventory[row * 11 + index]}
 					/>
 					<small id={rune + '-label'}>{rune}</small>
@@ -82,13 +83,6 @@
 				>
 			</div>
 		</div>
-		<button
-			class="reset outline"
-			type="button"
-			onclick={() => {
-				setRunes(0);
-			}}>Reset Runes</button
-		>
 		<div aria-labelledby="all_runes" class="set-runes">
 			<div>
 				<input
@@ -124,6 +118,15 @@
 					setRunes(all_set_nb);
 				}}
 			/>
+			<input
+				style="margin-left: var(--pico-spacing);"
+				type="button"
+				class="secondary outline"
+				onclick={() => {
+					setRunes(0);
+				}}
+				value="Reset Runes"
+			/>
 		</div>
 	</div>
 </article>
@@ -150,5 +153,13 @@
 	.rune-grid input[type='number'] {
 		min-width: 3rem;
 		max-width: 5rem;
+	}
+
+	.rune-grid input.active_rune {
+		color: var(--pico-color);
+	}
+
+	.rune-grid input:not(.active_rune) {
+		color: var(--pico-secondary);
 	}
 </style>

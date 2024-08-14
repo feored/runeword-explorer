@@ -83,7 +83,9 @@
 			if (
 				rw.name.toLowerCase().includes(search_term) ||
 				rw.runes.join(' ').toLowerCase().includes(search_term) ||
-				Object.values(rw.stats).some((statList) => statList.some((statLine) => statLine.toLowerCase().includes(search_term))) ||
+				Object.values(rw.stats).some((statList) =>
+					statList.some((statLine) => statLine.toLowerCase().includes(search_term))
+				) ||
 				rw.bases.some((x) => x.toLowerCase().includes(search_term)) ||
 				rw.bases_d2r.some((x) => x.toLowerCase().includes(search_term))
 			) {
@@ -181,7 +183,9 @@
 						<td data-sort={rw.el_value} class="runes searchable">
 							{rw.runes.join(' ')}
 						</td>
-						<td class="searchable" style="min-width: 15rem;"><Stats compact={filter_options.compact_mode} stats={rw.stats} /> </td>
+						<td class="searchable" style="min-width: 15rem;"
+							><Stats compact={filter_options.compact_mode} stats={rw.stats} />
+						</td>
 						<td class="levelreq">
 							{rw.levelreq}
 						</td>
@@ -213,10 +217,6 @@
 {/if}
 
 <style>
-
-	#rwtable {
-		layout::fixed;
-	}
 	#rwtable thead th {
 		position: sticky;
 		top: 0;
