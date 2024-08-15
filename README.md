@@ -6,7 +6,7 @@ It shows you the gems and exact cubing requirements, and if you can't get there,
 
 ### Features
 
-- Instantly fill in the runes of your character/shared stash by uploading the file<sup>1</sup>
+- Instantly fill in the runes of your character/shared stash by uploading the relevant .d2s/.d2i file<sup>1</sup>
 
 - An exact description of the steps required to cube up to a certain runeword.
 
