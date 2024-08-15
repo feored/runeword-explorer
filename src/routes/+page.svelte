@@ -16,7 +16,7 @@
 		<header>
 			<div class="version">
 				<h6>Runeword Explorer v{version}</h6>
-				<a href="https://github.com/feored/runewords"><Github size="1rem" /></a>
+				<a href="https://github.com/feored/runeword-explorer/"><Github size="1rem" /></a>
 			</div>
 		</header>
 		<RunesGrid />
