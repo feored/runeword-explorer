@@ -75,3 +75,7 @@ table.striped tbody tr:nth-child(even of :not([hidden])) td {
 	z-index: 99;
 	overflow: visible !important;
 }
+
+[data-tooltip]:not(a, button, input) {
+	border-bottom: none;
+}

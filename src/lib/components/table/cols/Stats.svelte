@@ -26,7 +26,7 @@
 {/snippet}
 
 {#snippet stat_tabs(stats)}
-	<div role="tabs">
+	<div class="tabs">
 		{#each Object.keys(stats) as stat_list_key, index}
 			<button
 				class={active_tab == index ? 'active' : 'inactive outline reset'}
@@ -78,17 +78,17 @@
 		color: #86b0ff;
 	}
 
-	[role='tabs'] {
+	.tabs {
 		display: flex;
 		justify-content: center;
 		gap: var(--pico-spacing);
 	}
 
-	[role='tabs'] button.active {
+	.tabs button.active {
 		text-decoration: var(--pico-primary) underline;
 	}
 
-	[role='tabs'] button:not(.active) {
+	.tabs button:not(.active) {
 		color: var(--pico-secondary) !important;
 	}
 </style>

@@ -3,46 +3,58 @@
 	import { rune_inventory } from '$lib/options.svelte';
 	import { d2s_reader } from '$lib/d2s_utils';
 	import type { ParsedItems } from '$lib/d2s_utils';
-	import Modal from '$lib/components/ui/Modal.svelte';
+	import { CircleAlert } from 'lucide-svelte';
 
 	let d2s = new d2s_reader();
-	let modal : Modal;
-	let files = $state(null);
+
+	let d2s_files = $state(null);
+	let d2i_files = $state(null);
 
 	$effect(() => {
-		if (files && files.length > 0) {
-			const file = files[0];
-			modal.open();
+		if (d2s_files && d2s_files.length > 0) {
+			const file = d2s_files[0];
 			const reader = new FileReader();
 			reader.onload = async (e) => {
-				if (file.name.endsWith('.d2s')) {
-					console.log('Reading character items');
-					d2s.read_character_items(e.target.result).then(function (response) {
-						console.log(response);
+				d2s.read_character_items(e.target.result).then(function (response) {
+					if (response.error) {
+						alert('Error: ' + response.error_message);
+					} else {
 						fill_runes(response.items);
-					});
-				} else if (file.name.endsWith('.d2i')) {
-					d2s.read_shared_stash_items(e.target.result).then(function (response) {
-						console.log(response);
-						fill_runes(response.items);
-					});
-				}
+					}
+				});
 			};
 			reader.readAsArrayBuffer(file);
 		}
 	});
 
-function fill_runes(items):void {
-	console.log(items);
-	rune_inventory.fill(0);
-	items.forEach((item) => {
-		if (item.categories.includes('Rune')) {
-			let rune_index = parseInt(item.type.substring(1)) - 1;
-			rune_inventory[rune_index]++;
+	$effect(() => {
+		if (d2i_files && d2i_files.length > 0) {
+			const file = d2i_files[0];
+			const reader = new FileReader();
+			reader.onload = async (e) => {
+				d2s.read_shared_stash_items(e.target.result).then(function (response) {
+					if (response.error) {
+						alert('Error: ' + response.error_message);
+					} else {
+						fill_runes(response.items);
+					}
+				});
+			};
+			reader.readAsArrayBuffer(file);
 		}
 	});
-}
 
+	function fill_runes(items, clear = false): void {
+		if (clear) {
+			rune_inventory.fill(0);
+		}
+		items.forEach((item) => {
+			if (item.categories.includes('Rune')) {
+				let rune_index = parseInt(item.type.substring(1)) - 1;
+				rune_inventory[rune_index]++;
+			}
+		});
+	}
 
 	let all_set_nb = $state(1);
 	let ranges = [
@@ -75,22 +87,22 @@ function fill_runes(items):void {
 						class:active_rune={rune_inventory[row * 11 + index] > 0}
 						bind:value={rune_inventory[row * 11 + index]}
 					/>
-					<small id={rune + '-label'}>{rune}</small>
+					<small>{rune}</small>
 				</div>
 			{/each}
 		</div>
 	{/each}
 	<hr />
+
 	<div class="flex" style="justify-content: space-between;">
-		<div class="flex" style="gap: var(--pico-spacing);">
-			<div>
-				<input bind:files type="file" accept=".d2s, .d2i" />
-				<small
-					><span data-tooltip="Does not support Shared Stash files." data-placement="bottom"
-						>Load a save file</span
-					> to fill runes.</small
-				>
-			</div>
+		<div>
+			<input bind:files={d2s_files} type="file" accept=".d2s" />
+			<small>
+				Load runes from a save file. <span
+					data-tooltip="Reset your runes if you don't want them to be added to the total."
+					><CircleAlert size="1rem" /></span
+				></small
+			>
 		</div>
 		<div aria-labelledby="all_runes" class="set-runes">
 			<div>
@@ -127,24 +139,29 @@ function fill_runes(items):void {
 					setRunes(all_set_nb);
 				}}
 			/>
-			<input
-				style="margin-left: var(--pico-spacing);"
-				type="button"
-				class="secondary outline"
-				onclick={() => {
-					setRunes(0);
-				}}
-				value="Reset Runes"
-			/>
 		</div>
 	</div>
+	<div class="flex" style="justify-content: space-between;">
+		<div>
+			<input bind:files={d2i_files} type="file" accept=".d2i" />
+			<small>
+				Load runes from a shared stash file. <span
+					data-tooltip="Reset your runes if you don't want them to be added to the total."
+					><CircleAlert size="1rem" /></span
+				></small
+			>
+		</div>
+		<input
+			style="width:auto;"
+			type="button"
+			class="secondary"
+			onclick={() => {
+				setRunes(0);
+			}}
+			value="Reset Runes"
+		/>
+	</div>
 </article>
-<Modal bind:this={modal}>
-	<h2 slot="header">Rune Grid</h2>
-	<p>
-		Select the number of each rune you have in your inventory. You can also load a save file to fill the runes automatically.
-	</p>
-</Modal>
 
 <style>
 	.set-runes {
@@ -163,15 +180,18 @@ function fill_runes(items):void {
 
 	.rune-grid small {
 		font-size: medium;
+		color: var(--pico-secondary);
 	}
 
 	.rune-grid input[type='number'] {
 		min-width: 3rem;
 		max-width: 5rem;
+		font-size: 1.25rem;
+		font-family: var(--pico-font-family-monospace);
 	}
 
 	.rune-grid input.active_rune {
-		color: var(--pico-color);
+		color: var(--pico-primary);
 	}
 
 	.rune-grid input:not(.active_rune) {
