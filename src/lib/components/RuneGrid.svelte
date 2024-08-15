@@ -1,39 +1,48 @@
 <script lang="ts">
 	import { RUNES } from '$lib/data/runes';
 	import { rune_inventory } from '$lib/options.svelte';
-	import * as d2s from '@dschu012/d2s';
-	import { constants as CONSTANTS_99 } from '@dschu012/d2s/lib/data/versions/99_constant_data';
-	import { constants as CONSTANTS_96 } from '@dschu012/d2s/lib/data/versions/96_constant_data';
+	import { d2s_reader } from '$lib/d2s_utils';
+	import type { ParsedItems } from '$lib/d2s_utils';
+	import Modal from '$lib/components/ui/Modal.svelte';
 
-	let set_constants = false;
-
+	let d2s = new d2s_reader();
+	let modal : Modal;
 	let files = $state(null);
 
 	$effect(() => {
-		if (files) {
+		if (files && files.length > 0) {
 			const file = files[0];
+			modal.open();
 			const reader = new FileReader();
 			reader.onload = async (e) => {
-				if (!set_constants) {
-					d2s.setConstantData(0x60, CONSTANTS_96);
-					d2s.setConstantData(0x61, CONSTANTS_96);
-					d2s.setConstantData(0x62, CONSTANTS_96);
-					d2s.setConstantData(0x63, CONSTANTS_99);
-					set_constants = true;
-				}
-				d2s.read(e.target.result).then(function (response) {
-					rune_inventory.fill(0);
-					response.items.forEach((item) => {
-						if (item.categories.includes('Rune')) {
-							let rune_index = parseInt(item.type.substring(1)) - 1;
-							rune_inventory[rune_index]++;
-						}
+				if (file.name.endsWith('.d2s')) {
+					console.log('Reading character items');
+					d2s.read_character_items(e.target.result).then(function (response) {
+						console.log(response);
+						fill_runes(response.items);
 					});
-				});
+				} else if (file.name.endsWith('.d2i')) {
+					d2s.read_shared_stash_items(e.target.result).then(function (response) {
+						console.log(response);
+						fill_runes(response.items);
+					});
+				}
 			};
 			reader.readAsArrayBuffer(file);
 		}
 	});
+
+function fill_runes(items):void {
+	console.log(items);
+	rune_inventory.fill(0);
+	items.forEach((item) => {
+		if (item.categories.includes('Rune')) {
+			let rune_index = parseInt(item.type.substring(1)) - 1;
+			rune_inventory[rune_index]++;
+		}
+	});
+}
+
 
 	let all_set_nb = $state(1);
 	let ranges = [
@@ -75,7 +84,7 @@
 	<div class="flex" style="justify-content: space-between;">
 		<div class="flex" style="gap: var(--pico-spacing);">
 			<div>
-				<input bind:files type="file" accept=".d2s" />
+				<input bind:files type="file" accept=".d2s, .d2i" />
 				<small
 					><span data-tooltip="Does not support Shared Stash files." data-placement="bottom"
 						>Load a save file</span
@@ -130,6 +139,12 @@
 		</div>
 	</div>
 </article>
+<Modal bind:this={modal}>
+	<h2 slot="header">Rune Grid</h2>
+	<p>
+		Select the number of each rune you have in your inventory. You can also load a save file to fill the runes automatically.
+	</p>
+</Modal>
 
 <style>
 	.set-runes {
