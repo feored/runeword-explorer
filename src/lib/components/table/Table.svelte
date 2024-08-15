@@ -149,7 +149,7 @@
 					<th>Can Make</th>
 					<th>Version</th>
 					<th bind:this={default_sort_th}>Name</th>
-					<th>Bases</th>
+					<th class="no-sort">Bases</th>
 					<th>Sockets</th>
 					<th> Runes </th>
 					<th class="no-sort">Stats</th>
@@ -166,7 +166,7 @@
 						<td>
 							<Version version={rw.version} />
 						</td>
-						<td class="searchable">
+						<td class="searchable" data-sort={rw.name}>
 							<Name
 								name={rw.name}
 								d2r_only={rw.d2r_only}
@@ -189,7 +189,7 @@
 						<td class="levelreq">
 							{rw.levelreq}
 						</td>
-						<td data-sort={rw.success ? 0 : rw.upgs_done.filter((x) => x > 0).length}
+						<td data-sort={rw.success ? rw.cubing_steps : 0}
 							><Cubed
 								success={rw.success}
 								upgs_done={rw.upgs_done}

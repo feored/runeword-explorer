@@ -7,38 +7,30 @@
 
 	let d2s = new d2s_reader();
 
-	let d2s_files = $state(null);
-	let d2i_files = $state(null);
+	let files = $state(null);
 
 	$effect(() => {
-		if (d2s_files && d2s_files.length > 0) {
-			const file = d2s_files[0];
+		if (files && files.length > 0) {
+			const file = files[0];
 			const reader = new FileReader();
 			reader.onload = async (e) => {
-				d2s.read_character_items(e.target.result).then(function (response) {
-					if (response.error) {
-						alert('Error: ' + response.error_message);
-					} else {
-						fill_runes(response.items);
-					}
-				});
-			};
-			reader.readAsArrayBuffer(file);
-		}
-	});
-
-	$effect(() => {
-		if (d2i_files && d2i_files.length > 0) {
-			const file = d2i_files[0];
-			const reader = new FileReader();
-			reader.onload = async (e) => {
-				d2s.read_shared_stash_items(e.target.result).then(function (response) {
-					if (response.error) {
-						alert('Error: ' + response.error_message);
-					} else {
-						fill_runes(response.items);
-					}
-				});
+				if (file.name.endsWith('.d2s')) {
+					d2s.read_character_items(e.target.result).then(function (response) {
+						if (response.error) {
+							alert('Error: ' + response.error_message);
+						} else {
+							fill_runes(response.items);
+						}
+					});
+				} else if (file.name.endsWith('.d2i')) {
+					d2s.read_shared_stash_items(e.target.result).then(function (response) {
+						if (response.error) {
+							alert('Error: ' + response.error_message);
+						} else {
+							fill_runes(response.items);
+						}
+					});
+				}
 			};
 			reader.readAsArrayBuffer(file);
 		}
@@ -80,7 +72,6 @@
 				<div>
 					<input
 						type="number"
-						id={rune + '-input'}
 						name={rune}
 						min="0"
 						step="1"
@@ -95,14 +86,24 @@
 	<hr />
 
 	<div class="flex" style="justify-content: space-between;">
-		<div>
-			<input bind:files={d2s_files} type="file" accept=".d2s" />
-			<small>
-				Load runes from a save file. <span
-					data-tooltip="Reset your runes if you don't want them to be added to the total."
-					><CircleAlert size="1rem" /></span
-				></small
-			>
+		<div class="flex" style="gap:var(--pico-spacing)">
+			<input
+				style="width:auto;"
+				type="button"
+				onclick={() => {
+					setRunes(0);
+				}}
+				value="Reset Runes"
+			/>
+			<div>
+				<input bind:files type="file" accept=".d2s, .d2i" />
+				<small>
+					Load runes from a save file or shared stash file. <span
+						data-tooltip="Reset your runes if you don't want them to be added to the total."
+						><CircleAlert size="1rem" /></span
+					></small
+				>
+			</div>
 		</div>
 		<div aria-labelledby="all_runes" class="set-runes">
 			<div>
@@ -140,26 +141,6 @@
 				}}
 			/>
 		</div>
-	</div>
-	<div class="flex" style="justify-content: space-between;">
-		<div>
-			<input bind:files={d2i_files} type="file" accept=".d2i" />
-			<small>
-				Load runes from a shared stash file. <span
-					data-tooltip="Reset your runes if you don't want them to be added to the total."
-					><CircleAlert size="1rem" /></span
-				></small
-			>
-		</div>
-		<input
-			style="width:auto;"
-			type="button"
-			class="secondary"
-			onclick={() => {
-				setRunes(0);
-			}}
-			value="Reset Runes"
-		/>
 	</div>
 </article>
 
