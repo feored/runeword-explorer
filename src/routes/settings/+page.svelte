@@ -6,6 +6,8 @@
 	import { default_settings, settings, type ISettings } from '$lib/options.svelte';
 	import { CircleHelp } from 'lucide-svelte';
 
+	const MAX_STEPS = default_settings.max_steps;
+
 	$effect(() => {
 		localStorage.setItem('settings', JSON.stringify(settings));
 	});
@@ -49,7 +51,11 @@
 			<p>Maximum number of cubing steps to show before collapsing.</p>
 			<div role="group" class="auto-width">
 				<input type="number" name="max_steps" min="0" step="1" bind:value={settings.max_steps} />
-				<button onclick={() => (settings.max_steps = default_settings.max_steps)}>Reset</button>
+				<button
+					onclick={() => {
+						settings.max_steps = MAX_STEPS;
+					}}>Reset</button
+				>
 			</div>
 			<br />
 			<label for="expand_bases">

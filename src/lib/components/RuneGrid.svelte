@@ -16,7 +16,6 @@
 		if (!mounted) {
 			return;
 		}
-		console.log('Saving runes', rune_inventory);
 		localStorage.setItem('runes', JSON.stringify(rune_inventory));
 	});
 
