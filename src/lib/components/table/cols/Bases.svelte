@@ -2,11 +2,12 @@
 	import { BASES } from '$lib/data/bases';
 
 	interface BasesProps {
+		expand: boolean;
 		bases: string[];
 		bases_d2r: string[];
 	}
 
-	let { bases, bases_d2r }: BasesProps = $props();
+	let { expand, bases, bases_d2r }: BasesProps = $props();
 
 	const tooltips = {
 		d2lod: 'Bases available in Diablo II: Lord of Destruction.',
@@ -16,7 +17,15 @@
 
 {#snippet BaseDisplay(base_name: string)}
 	{#if base_name in BASES}
-		<span data-html="true" data-tooltip={BASES[base_name].join(',\n')}>{base_name}</span>
+		{#if expand}
+			{#each BASES[base_name] as expanded_base_name}
+				<span>{expanded_base_name}</span><br />
+			{/each}
+		{:else}
+			<span class="tooltip" data-html="true" data-tooltip={BASES[base_name].join(',\n')}
+				>{base_name}</span
+			>
+		{/if}
 	{:else}
 		<span>{base_name}</span>
 	{/if}
@@ -52,6 +61,10 @@
 	.bases_group {
 		border-radius: var(--pico-border-radius);
 		border: var(--pico-border-width) solid #28354f;
+	}
+
+	.tooltip {
+		border-bottom: 1px dotted;
 	}
 
 	.bases {

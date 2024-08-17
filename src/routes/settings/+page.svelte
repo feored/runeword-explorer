@@ -4,6 +4,7 @@
 	import { onMount } from 'svelte';
 	import { RUNEWORDS } from '$lib/data/runewords';
 	import { default_settings, settings, type ISettings } from '$lib/options.svelte';
+	import { CircleHelp } from 'lucide-svelte';
 
 	$effect(() => {
 		localStorage.setItem('settings', JSON.stringify(settings));
@@ -17,6 +18,7 @@
 		let parsed_settings: ISettings = JSON.parse(local_settings);
 		settings.max_steps = parsed_settings.max_steps || default_settings.max_steps;
 		settings.blacklist = parsed_settings.blacklist || default_settings.blacklist;
+		settings.expand_bases = parsed_settings.expand_bases || default_settings.expand_bases;
 	});
 
 	let rw_names = RUNEWORDS.map((rw) => rw.name).sort();
@@ -45,11 +47,20 @@
 		<div class="container">
 			<h4>General</h4>
 			<p>Maximum number of cubing steps to show before collapsing.</p>
-			<small>Default: 100</small><br />
 			<div role="group" class="auto-width">
 				<input type="number" name="max_steps" min="0" step="1" bind:value={settings.max_steps} />
 				<button onclick={() => (settings.max_steps = default_settings.max_steps)}>Reset</button>
 			</div>
+			<br />
+			<label for="expand_bases">
+				<input type="checkbox" role="switch" bind:checked={settings.expand_bases} />Expand Base
+				Categories
+				<span
+					data-tooltip="Show the full list of bases instead of the category name (Weapons, Helms, etc) and a tooltip."
+					><CircleHelp size="1rem" /></span
+				></label
+			>
+
 			<hr />
 			<h4>Blacklist</h4>
 			<small>Blacklisted runewords will never be shown.</small>

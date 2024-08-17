@@ -48,8 +48,9 @@
 			return;
 		}
 		let parsed_settings: ISettings = JSON.parse(local_settings);
-		settings.max_steps = parsed_settings.max_steps;
-		settings.blacklist = parsed_settings.blacklist;
+		settings.max_steps = parsed_settings.max_steps || default_settings.max_steps;
+		settings.blacklist = parsed_settings.blacklist || default_settings.blacklist;
+		settings.expand_bases = parsed_settings.expand_bases || default_settings.expand_bases;
 	});
 
 	$effect(() => {
@@ -192,7 +193,7 @@
 							/>
 						</td>
 						<td class="searchable">
-							<Bases bases={rw.bases} bases_d2r={rw.bases_d2r} />
+							<Bases expand={settings.expand_bases} bases={rw.bases} bases_d2r={rw.bases_d2r} />
 						</td>
 						<td class="sockets">
 							{rw.sockets}

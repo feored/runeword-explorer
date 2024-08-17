@@ -34,16 +34,16 @@ export const default_filter_options: FilterOptions = {
 
 export let filter_options: FilterOptions = $state({ ...default_filter_options });
 
-
 export interface ISettings {
 	max_steps: number;
 	blacklist: string[];
+	expand_bases: boolean;
 }
 
 export const default_settings: ISettings = {
 	max_steps: 100,
-	blacklist: []
+	blacklist: [],
+	expand_bases: false
 };
 
 export let settings: ISettings = $state(default_settings);
-
