@@ -23,6 +23,15 @@
 		settings.expand_bases = parsed_settings.expand_bases || default_settings.expand_bases;
 	});
 
+	function toggleBlacklist(rw: string): void {
+		let index = settings.blacklist.indexOf(rw);
+		if (index > -1) {
+			settings.blacklist.splice(index, 1);
+		} else {
+			settings.blacklist.push(rw);
+		}
+	}
+
 	let rw_names = RUNEWORDS.map((rw) => rw.name).sort();
 </script>
 
@@ -86,7 +95,7 @@
 									type="checkbox"
 									role="switch"
 									checked={settings.blacklist.includes(rw)}
-									oninput={() => settings.blacklist.push(rw)}
+									oninput={() => toggleBlacklist(rw)}
 								/>
 							</td>
 						</tr>
