@@ -5,14 +5,17 @@
 	import { calc_missing } from '$lib/runewordcalc';
 	import { CircleHelp } from 'lucide-svelte';
 
+	const MAX_STEPS_SHOW = 100;
+
 	interface cubedProps {
+		compact: boolean;
 		success: boolean;
 		upgs_done: number[];
 		rw_runes: string[];
 		inventory: number[];
 		cubing_steps: number;
 	}
-	let { success, upgs_done, rw_runes, inventory, cubing_steps }: cubedProps = $props();
+	let { compact, success, upgs_done, rw_runes, inventory, cubing_steps }: cubedProps = $props();
 
 	let gem_td_required = $derived.by(() => {
 		const LOWEST_RUNE_INDEX_GEM_REQUIRED = 9;
@@ -35,7 +38,7 @@
 <div>
 	{#if success}
 		{#if cubing_steps > 0}
-			<details open={cubing_steps <= 100}>
+			<details open={!compact && cubing_steps <= MAX_STEPS_SHOW}>
 				<summary>{cubing_steps} Steps</summary>
 				<table>
 					<tbody>

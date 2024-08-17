@@ -191,6 +191,7 @@
 						</td>
 						<td data-sort={rw.success ? rw.cubing_steps : 0}
 							><Cubed
+								compact={filter_options.compact_mode}
 								success={rw.success}
 								upgs_done={rw.upgs_done}
 								rw_runes={rw.runes}
