@@ -36,7 +36,7 @@
 			</ul>
 			<ul>
 				<li>
-					<a href="../"><House size="1rem" /> Home</a>
+					<a href="./"><House size="1rem" /> Home</a>
 				</li>
 				<li>
 					<a href="https://github.com/feored/runeword-explorer/"><Github size="1rem" /> Github </a>
