@@ -37,10 +37,12 @@ export let filter_options: FilterOptions = $state({ ...default_filter_options })
 
 export interface ISettings {
 	max_steps: number;
+	blacklist: string[];
 }
 
 export const default_settings: ISettings = {
-	max_steps: 100
+	max_steps: 100,
+	blacklist: []
 };
 
 export let settings: ISettings = $state(default_settings);

@@ -42,16 +42,14 @@
 
 	onMount(() => {
 		default_sort_th.click();
+
 		let local_settings = localStorage.getItem('settings');
 		if (local_settings === null) {
 			return;
 		}
 		let parsed_settings: ISettings = JSON.parse(local_settings);
-		for (let key in default_settings) {
-			console.log('Setting', key, 'to', parsed_settings[key as keyof typeof default_settings]);
-			settings[key as keyof typeof default_settings] =
-				parsed_settings[key as keyof typeof default_settings];
-		}
+		settings.max_steps = parsed_settings.max_steps;
+		settings.blacklist = parsed_settings.blacklist;
 	});
 
 	$effect(() => {
@@ -77,7 +75,7 @@
 	}
 
 	let runewords: RunewordRow[] = $derived.by(() => {
-		return RUNEWORDS.map((rw) => {
+		return RUNEWORDS.filter((rw) => !settings.blacklist.includes(rw.name)).map((rw) => {
 			let { success, upgs_done } = calc_runeword(rune_inventory, rw.runes);
 			let el_value = rw.runes
 				.map((x) => get_el_value(RUNES.indexOf(x)))
@@ -156,7 +154,9 @@
 			Showing {runeword_rows.filter(Boolean).length}/{runeword_rows.length} ({(
 				(runeword_rows.filter(Boolean).length * 100) /
 				runeword_rows.length
-			).toFixed(2)}%)
+			).toFixed(2)}%) {settings.blacklist.length > 0
+				? '[' + settings.blacklist.length + ' blacklisted]'
+				: ''}
 		</p>
 	</section>
 	<section class="overflow-auto">
