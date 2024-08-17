@@ -16,7 +16,20 @@ It shows you the gems and exact cubing requirements, and if you can't get there,
 
 - Search using synonyms<sup>3</sup> (e.g searching 'mf' will also look for "Magic Items",  'ias' for "Increased Attack Speed".
 
-<hr >
+
+### Changelog
+
+**0.4.0**
+
+- Use localstorage to save rune grid between sessions
+- Setting to blacklist runeowrd
+- Setting to expand category bases into their full contents
+- Setting to calibrate # of cubing steps to show before collapsing
+- Separate settings page
+- Fixed favicons
+
+
+### Notes
 
 <sup>1</sup> Using [d2s](https://github.com/dschu012/d2s/) by [dschu012](https://github.com/dschu012/) to parse .d2s files, with shared stash support based on [myocytebd's](https://github.com/myocytebd/d2s.d2r) fork. Thanks to them.
 
