@@ -22,12 +22,11 @@
 
 	onMount(() => {
 		let local_settings = localStorage.getItem('runes');
-		if (local_settings === null) {
-			return;
-		}
-		let parsed_settings: number[] = JSON.parse(local_settings);
-		for (let i = 0; i < parsed_settings.length; i++) {
-			rune_inventory[i] = parsed_settings[i];
+		if (local_settings != null) {
+			let parsed_settings: number[] = JSON.parse(local_settings);
+			for (let i = 0; i < parsed_settings.length; i++) {
+				rune_inventory[i] = parsed_settings[i];
+			}
 		}
 		mounted = true;
 	});
