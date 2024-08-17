@@ -4,10 +4,33 @@
 	import { d2s_reader } from '$lib/d2s_utils';
 	import type { ParsedItems } from '$lib/d2s_utils';
 	import { CircleAlert } from 'lucide-svelte';
+	import { onMount } from 'svelte';
+
+	let mounted = $state(false);
 
 	let d2s = new d2s_reader();
 
-	let files = $state(null);
+	let files: FileList | null = $state(null);
+
+	$effect(() => {
+		if (!mounted) {
+			return;
+		}
+		console.log('Saving runes', rune_inventory);
+		localStorage.setItem('runes', JSON.stringify(rune_inventory));
+	});
+
+	onMount(() => {
+		let local_settings = localStorage.getItem('runes');
+		if (local_settings === null) {
+			return;
+		}
+		let parsed_settings: number[] = JSON.parse(local_settings);
+		for (let i = 0; i < parsed_settings.length; i++) {
+			rune_inventory[i] = parsed_settings[i];
+		}
+		mounted = true;
+	});
 
 	$effect(() => {
 		if (files && files.length > 0) {

@@ -2,6 +2,8 @@ import { RUNES } from '$lib/data/runes';
 import { VERSIONS } from '$lib/data/versions';
 import { all_bases } from '$lib/data/bases';
 
+export let rune_inventory: number[] = $state(new Array(RUNES.length).fill(0));
+
 export interface FilterOptions {
 	search: string;
 	only_can_make: boolean;
@@ -15,8 +17,6 @@ export interface FilterOptions {
 	bases: { [key: string]: boolean };
 	required_runes: boolean[];
 }
-
-export let rune_inventory: number[] = $state(new Array(RUNES.length).fill(0));
 
 export const default_filter_options: FilterOptions = {
 	search: '',
@@ -33,3 +33,15 @@ export const default_filter_options: FilterOptions = {
 };
 
 export let filter_options: FilterOptions = $state({ ...default_filter_options });
+
+
+export interface ISettings {
+	max_steps: number;
+}
+
+export const default_settings: ISettings = {
+	max_steps: 100
+};
+
+export let settings: ISettings = $state(default_settings);
+

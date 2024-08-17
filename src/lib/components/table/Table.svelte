@@ -8,7 +8,14 @@
 	import type { Runeword } from '$lib/data/runewords';
 
 	import { isAnyBaseSelected } from '$lib/data/bases';
-	import { rune_inventory, filter_options, type FilterOptions } from '$lib/options.svelte';
+	import {
+		rune_inventory,
+		settings,
+		default_settings,
+		filter_options,
+		type ISettings,
+		type FilterOptions
+	} from '$lib/options.svelte';
 	import { calc_runeword, get_el_value } from '$lib/runewordcalc';
 
 	import Name from '$lib/components/table/cols/Name.svelte';
@@ -26,7 +33,7 @@
 		el_value: number;
 		upgs_done: number[];
 		success: boolean;
-		missing: number[];
+		missing?: number[];
 		cubing_steps: number;
 	}
 
@@ -35,6 +42,16 @@
 
 	onMount(() => {
 		default_sort_th.click();
+		let local_settings = localStorage.getItem('settings');
+		if (local_settings === null) {
+			return;
+		}
+		let parsed_settings: ISettings = JSON.parse(local_settings);
+		for (let key in default_settings) {
+			console.log('Setting', key, 'to', parsed_settings[key as keyof typeof default_settings]);
+			settings[key as keyof typeof default_settings] =
+				parsed_settings[key as keyof typeof default_settings];
+		}
 	});
 
 	$effect(() => {
@@ -48,7 +65,7 @@
 		});
 	});
 
-	function sum_steps(upgs) {
+	function sum_steps(upgs: number[]): number {
 		var total = 0;
 		var i = upgs.length;
 
@@ -61,12 +78,12 @@
 
 	let runewords: RunewordRow[] = $derived.by(() => {
 		return RUNEWORDS.map((rw) => {
-			let { success, upgs_done, missing } = calc_runeword(rune_inventory, rw.runes);
+			let { success, upgs_done } = calc_runeword(rune_inventory, rw.runes);
 			let el_value = rw.runes
 				.map((x) => get_el_value(RUNES.indexOf(x)))
 				.reduce((partialSum, a) => partialSum + a, 0);
 			let cubing_steps = upgs_done ? sum_steps(upgs_done) : 0;
-			return { ...rw, success, upgs_done, missing, el_value, cubing_steps };
+			return { ...rw, success, upgs_done, el_value, cubing_steps };
 		});
 	});
 
@@ -191,6 +208,7 @@
 						</td>
 						<td data-sort={rw.success ? rw.cubing_steps : 0}
 							><Cubed
+								max_steps={settings.max_steps}
 								compact={filter_options.compact_mode}
 								success={rw.success}
 								upgs_done={rw.upgs_done}

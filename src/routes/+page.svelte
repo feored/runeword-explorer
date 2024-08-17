@@ -3,7 +3,7 @@
 	import Filters from '$lib/components/filters/Filters.svelte';
 	import Table from '$lib/components/table/Table.svelte';
 	import { version } from '$app/environment';
-	import { Github } from 'lucide-svelte';
+	import { Settings, Github } from 'lucide-svelte';
 </script>
 
 <div class="container-fluid wrapper">
@@ -13,12 +13,24 @@
 		</div>
 	</div>
 	<div class="grid-runes container-fluid">
-		<header>
-			<div class="version">
-				<h6>Runeword Explorer v{version}</h6>
-				<a href="https://github.com/feored/runeword-explorer/"><Github size="1rem" /></a>
-			</div>
-		</header>
+		<nav>
+			<ul>
+				<li>
+					<strong>
+						Runeword Explorer v{version}
+					</strong>
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<a href="/settings"><Settings size="1rem" /> Settings</a>
+				</li>
+				<li>
+					<a href="https://github.com/feored/runeword-explorer/"><Github size="1rem" /> Github </a>
+				</li>
+			</ul>
+		</nav>
+		<hr />
 		<RunesGrid />
 	</div>
 	<main class="grid-main container-fluid" id="content">
@@ -71,15 +83,5 @@
 			max-height: none;
 			position: relative;
 		}
-	}
-
-	header {
-		padding-block: var(--pico-block-spacing-vertical);
-	}
-
-	.version {
-		justify-content: end;
-		display: flex;
-		gap: var(--pico-spacing);
 	}
 </style>
