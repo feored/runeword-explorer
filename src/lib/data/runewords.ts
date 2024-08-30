@@ -2538,7 +2538,7 @@ export const RUNEWORDS: Runeword[] = [
 		version: '2.6'
 	},
 	{
-		bases: ['Body Armors'],
+		bases: ['Body Armors', 'Weapons'],
 		bases_d2r: [],
 		d2r_only: true,
 		ladder: {
@@ -2550,33 +2550,20 @@ export const RUNEWORDS: Runeword[] = [
 		runes: ['Shael', 'Ko', 'Eld'],
 		sockets: 3,
 		stats: {
-			all: [
-				'+50% Faster Run/Walk',
-				'+20% Increased Attack Speed',
+			'Body Armors': [
+				'+65% Faster Run/Walk',
+				'+40% Increased Attack Speed',
 				'+20% Faster Hit Recovery',
+				'+6 to Evade',
 				'+10 to Dexterity',
-				'50% Slower Stamina Drain'
-			]
-		},
-		version: '2.6'
-	},
-	{
-		bases: ['Weapons'],
-		bases_d2r: [],
-		d2r_only: true,
-		ladder: {
-			d2lod: false,
-			d2r: true
-		},
-		levelreq: 39,
-		name: 'Hustle',
-		runes: ['Shael', 'Ko', 'Eld'],
-		sockets: 3,
-		stats: {
-			all: [
-				'5% Chance to cast level nine Burst of Speed on striking',
+				'50% Slower Stamina Drain',
+				'+All Resistances +10'
+			],
+			Weapons: [
+				'5% Chance to cast level 1 Burst of Speed on striking',
+				'Level 1 Fanaticism Aura When Equipped',
 				'+30% Increased Attack Speed',
-				'+130-150% Enhanced Damage (varies)',
+				'+180-200% Enhanced Damage (varies)',
 				'+75% Damage to Undead',
 				'+50 to Attack Rating against Undead',
 				'+10 to Dexterity'
@@ -2598,12 +2585,16 @@ export const RUNEWORDS: Runeword[] = [
 		sockets: 3,
 		stats: {
 			all: [
-				'+25% chance for finishing moves to not consume charges',
+				'+50% chance for finishing moves to not consume charges',
+				'When a finisher is executed this way, it now refreshes the expiration timer of the stack',
 				'+2 to Martial Arts (Assassin only)',
 				'+20% Increased Attack Speed',
 				'+200-250% Enhanced Damage (varies)',
 				'+20% Bonus to Attack Rating',
-				'Adds 3-14 Cold Damage',
+				'7% Life Steal',
+				'+8-15% to Cold Skill Damage (varies)',
+				'+8-15% to Lightning Skill Damage (varies)',
+				'+8-15% to Fire Skill Damage (varies)',
 				'Prevent Monster Heal'
 			]
 		},
@@ -2627,12 +2618,14 @@ export const RUNEWORDS: Runeword[] = [
 				'Mark of the Wolf:',
 				'+20% Bonus to Attack Rating',
 				'Increase Maximum Life 40%',
+				'',
 				'Werebear strikes grant Mark for 180 seconds',
 				'Mark of the Bear:',
 				'+25% Attack Speed',
-				'+25% Chance of Crushing Blow',
 				'Physical Damage Received Reduced by 20%',
+				'',
 				'+5 to Shape Shifting Skills (Druid only)',
+				'+25% chance of Crushing Blow',
 				'+50-80% Enhanced Defense (varies)',
 				'+10 to Strength',
 				'+10 to Vitality',

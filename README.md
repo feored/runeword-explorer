@@ -14,8 +14,7 @@ It shows you the gems and exact cubing requirements, and if you can't get there,
 
 - All the filters I could think of and a search bar.
 
-- Search using synonyms<sup>3</sup> (e.g searching 'mf' will also look for "Magic Items",  'ias' for "Increased Attack Speed".
-
+- Search using synonyms<sup>3</sup> (e.g searching 'mf' will also look for "Magic Items", 'ias' for "Increased Attack Speed".
 
 ### Changelog
 
@@ -27,7 +26,6 @@ It shows you the gems and exact cubing requirements, and if you can't get there,
 - Setting to calibrate # of cubing steps to show before collapsing
 - Separate settings page
 - Fixed favicons
-
 
 ### Notes
 
