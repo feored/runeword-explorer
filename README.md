@@ -1,5 +1,7 @@
 ## Runeword Explorer
 
+https://feored.github.io/runeword-explorer
+
 This is a runeword calculator for those of us who play single-player D2, where you can't just trade for runes, and sometimes it's worth cubing up a bunch of runes if it lets you get an Enigma.
 
 It shows you the gems and exact cubing requirements, and if you can't get there, the lowest number of runes you're still missing.
