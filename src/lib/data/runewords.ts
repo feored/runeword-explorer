@@ -2226,7 +2226,7 @@ export const RUNEWORDS: Runeword[] = [
 		sockets: 3,
 		stats: {
 			all: [
-				'0% Chance to cast level 12 Lower Resist when struck',
+				'20% Chance to cast level 12 Lower Resist when struck',
 				'25% Chance to cast level 15 Poison Nova on striking',
 				'Level 13-17 Cleansing Aura When Equipped (varies)',
 				'+1-2 All Skills',
