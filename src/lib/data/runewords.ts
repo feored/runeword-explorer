@@ -2455,6 +2455,7 @@ export const RUNEWORDS: Runeword[] = [
 		sockets: 3,
 		stats: {
 			all: [
+				'Level 1 Cleansing Aura when Equipped',
 				'+20% Faster Hit Recovery',
 				'+75-100% Enhanced Defense (varies)',
 				'+10 to Vitality',
