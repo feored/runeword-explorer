@@ -19,6 +19,12 @@ It shows you the gems and exact cubing requirements, and if you can't get there,
 - Search using synonyms<sup>3</sup> (e.g searching 'mf' will also look for "Magic Items", 'ias' for "Increased Attack Speed".)
 
 
+### Usage
+
+Install: ```npm install```
+
+Run development server:  ```npm run dev```
+
 ### Notes
 
 <sup>1</sup> Using [d2s](https://github.com/dschu012/d2s/) by [dschu012](https://github.com/dschu012/) to parse .d2s files, with shared stash support based on [myocytebd's](https://github.com/myocytebd/d2s.d2r) fork. Thanks to them.
