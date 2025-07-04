@@ -9,23 +9,16 @@
 	let root_element: HTMLElement;
 
 	$effect(() => {
-		filter_sockets.max = Math.min(filter_sockets.max, 6);
-		filter_sockets.min = Math.max(filter_sockets.min, 2);
-
-		if (filter_sockets.max < filter_sockets.min) {
-			filter_sockets.min = filter_sockets.max;
-		}
+		filter_sockets.max = Math.min(Math.max(filter_sockets.max, filter_sockets.min), 6);
+		filter_sockets.min = Math.min(Math.max(filter_sockets.min, 2), filter_sockets.max);
 
 		filter_options.sockets = { ...filter_sockets };
 	});
 
 	$effect(() => {
-		filter_levelreq.max = Math.min(filter_levelreq.max, 99);
-		filter_levelreq.min = Math.max(filter_levelreq.min, 1);
+		filter_levelreq.max = Math.min(Math.max(filter_levelreq.max, filter_levelreq.min), 99);
+		filter_levelreq.min = Math.min(Math.max(filter_levelreq.min, 1), filter_levelreq.max);
 
-		if (filter_levelreq.min > filter_levelreq.max) {
-			filter_levelreq.max = filter_levelreq.min;
-		}
 		filter_options.levelreq = { ...filter_levelreq };
 	});
 
