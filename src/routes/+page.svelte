@@ -23,7 +23,7 @@
 			</ul>
 			<ul>
 				<li>
-					<a href="/settings"><Settings size="1rem" /> Settings</a>
+					<a href="./settings"><Settings size="1rem" /> Settings</a>
 				</li>
 				<li>
 					<a href="https://github.com/feored/runeword-explorer/"><Github size="1rem" /> Github </a>

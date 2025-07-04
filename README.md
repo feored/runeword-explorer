@@ -16,7 +16,7 @@ It shows you the gems and exact cubing requirements, and if you can't get there,
 
 - All the filters I could think of and a search bar.
 
-- Search using synonyms<sup>3</sup> (e.g searching 'mf' will also look for "Magic Items", 'ias' for "Increased Attack Speed".
+- Search using synonyms<sup>3</sup> (e.g searching 'mf' will also look for "Magic Items", 'ias' for "Increased Attack Speed".)
 
 
 ### Notes
@@ -26,7 +26,6 @@ It shows you the gems and exact cubing requirements, and if you can't get there,
 <sup>2</sup> Smallest in terms of cubing value. Consider the following example: You are looking to make the runeword "Nef Tir", and you have 5 Els, 1 Eld and 1 Tir. The value in Els of "Nef Tir" is 27 + 9 = 36, and you currently own 5 + 3 + 9 = 17 "El value". The calculator will give you the smallest decomposition of runes that equal (36 - 17 = 19) Els and let you cube up to Nef Tir, which in this case is 1 El and 2 Tir (1 + 18).
 
 <sup>3</sup> Full list of synonyms [here](https://github.com/feored/runeword-explorer/blob/main/src/lib/data/synonyms.ts)
-
 
 ### Changelog
 

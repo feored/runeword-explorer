@@ -6,6 +6,8 @@
 	import { default_settings, settings, type ISettings } from '$lib/options.svelte';
 	import { CircleHelp } from 'lucide-svelte';
 
+	const MAX_STEPS = default_settings.max_steps;
+
 	$effect(() => {
 		localStorage.setItem('settings', JSON.stringify(settings));
 	});
@@ -20,6 +22,15 @@
 		settings.blacklist = parsed_settings.blacklist || default_settings.blacklist;
 		settings.expand_bases = parsed_settings.expand_bases || default_settings.expand_bases;
 	});
+
+	function toggleBlacklist(rw: string): void {
+		let index = settings.blacklist.indexOf(rw);
+		if (index > -1) {
+			settings.blacklist.splice(index, 1);
+		} else {
+			settings.blacklist.push(rw);
+		}
+	}
 
 	let rw_names = RUNEWORDS.map((rw) => rw.name).sort();
 </script>
@@ -36,7 +47,7 @@
 			</ul>
 			<ul>
 				<li>
-					<a href="/"><House size="1rem" /> Home</a>
+					<a href="./"><House size="1rem" /> Home</a>
 				</li>
 				<li>
 					<a href="https://github.com/feored/runeword-explorer/"><Github size="1rem" /> Github </a>
@@ -49,7 +60,11 @@
 			<p>Maximum number of cubing steps to show before collapsing.</p>
 			<div role="group" class="auto-width">
 				<input type="number" name="max_steps" min="0" step="1" bind:value={settings.max_steps} />
-				<button onclick={() => (settings.max_steps = default_settings.max_steps)}>Reset</button>
+				<button
+					onclick={() => {
+						settings.max_steps = MAX_STEPS;
+					}}>Reset</button
+				>
 			</div>
 			<br />
 			<label for="expand_bases">
@@ -80,7 +95,7 @@
 									type="checkbox"
 									role="switch"
 									checked={settings.blacklist.includes(rw)}
-									oninput={() => settings.blacklist.push(rw)}
+									oninput={() => toggleBlacklist(rw)}
 								/>
 							</td>
 						</tr>
