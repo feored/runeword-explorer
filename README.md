@@ -36,6 +36,7 @@ Run development server:  ```npm run dev```
 ### Changelog
 
 **0.4.2**
+- Make all runewords show up by default (you now have to click on "Only Show Runewords I Can Make")
 - Add simple missing rune caculation setting and make it default
 - Slighly nicer-looking settings page
 
