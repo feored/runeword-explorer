@@ -35,6 +35,10 @@ Run development server:  ```npm run dev```
 
 ### Changelog
 
+**0.4.2**
+- Add simple missing rune caculation setting and make it default
+- Slighly nicer-looking settings page
+
 **0.4.1**
 
 - Fix level/socket filter bug when manually setting values

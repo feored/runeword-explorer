@@ -55,6 +55,19 @@ export function calc_runeword(
 	return { success, upgs_done };
 }
 
+export function calc_missing_runes_simple(inventory: number[], rw_runes: string[]): number[] {
+	let missing_runes: number[] = default_inventory();
+	rw_runes.forEach((rune) => {
+		if (!RUNES.includes(rune)) {
+			throw new Error(`Invalid rune: ${rune}`);
+		}
+		if (inventory[RUNES.indexOf(rune)] <= 0) {
+			missing_runes[RUNES.indexOf(rune)]++;
+		}
+	});
+	return missing_runes;
+}
+
 export function calc_missing(rune_inventory: number[], rw_runes: string[]) {
 	let working_inv: number[] = [...rune_inventory];
 	let working_runes: number[] = RUNES.map((r) =>

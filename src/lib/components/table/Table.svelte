@@ -51,6 +51,8 @@
 		settings.max_steps = parsed_settings.max_steps || default_settings.max_steps;
 		settings.blacklist = parsed_settings.blacklist || default_settings.blacklist;
 		settings.expand_bases = parsed_settings.expand_bases || default_settings.expand_bases;
+		settings.missing_runes_cube_mode =
+			parsed_settings.missing_runes_cube_mode || default_settings.missing_runes_cube_mode;
 	});
 
 	$effect(() => {
@@ -216,6 +218,7 @@
 								rw_runes={rw.runes}
 								inventory={rune_inventory}
 								cubing_steps={rw.cubing_steps}
+								missing_runes_cube_mode={settings.missing_runes_cube_mode}
 							/></td
 						>
 					</tr>

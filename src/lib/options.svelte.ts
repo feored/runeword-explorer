@@ -20,7 +20,7 @@ export interface FilterOptions {
 
 export const default_filter_options: FilterOptions = {
 	search: '',
-	only_can_make: true,
+	only_can_make: false,
 	compact_mode: false,
 	ladder_d2r: true,
 	ladder_d2lod: true,
@@ -38,12 +38,14 @@ export interface ISettings {
 	max_steps: number;
 	blacklist: string[];
 	expand_bases: boolean;
+	missing_runes_cube_mode: boolean; // if true, missing runes will show as lowest 'rune value' and require cubing, otherwise just the literal missing runes
 }
 
 export const default_settings: ISettings = {
 	max_steps: 100,
 	blacklist: [],
-	expand_bases: false
+	expand_bases: false,
+	missing_runes_cube_mode: false
 };
 
 export let settings: ISettings = $state(default_settings);

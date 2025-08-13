@@ -21,6 +21,8 @@
 		settings.max_steps = parsed_settings.max_steps || default_settings.max_steps;
 		settings.blacklist = parsed_settings.blacklist || default_settings.blacklist;
 		settings.expand_bases = parsed_settings.expand_bases || default_settings.expand_bases;
+		settings.missing_runes_cube_mode =
+			parsed_settings.missing_runes_cube_mode || default_settings.missing_runes_cube_mode;
 	});
 
 	function toggleBlacklist(rw: string): void {
@@ -36,28 +38,32 @@
 </script>
 
 <div class="container-fluid">
-	<div class="container-fluid">
-		<nav>
-			<ul>
-				<li>
-					<strong>
-						Runeword Explorer v{version}
-					</strong>
-				</li>
-			</ul>
-			<ul>
-				<li>
-					<a href="./"><House size="1rem" /> Home</a>
-				</li>
-				<li>
-					<a href="https://github.com/feored/runeword-explorer/"><Github size="1rem" /> Github </a>
-				</li>
-			</ul>
-		</nav>
-		<hr />
-		<div class="container">
-			<h4>General</h4>
-			<p>Maximum number of cubing steps to show before collapsing.</p>
+	<nav>
+		<ul>
+			<li>
+				<strong>
+					Runeword Explorer v{version}
+				</strong>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="./"><House size="1rem" /> Home</a>
+			</li>
+			<li>
+				<a href="https://github.com/feored/runeword-explorer/"><Github size="1rem" /> Github </a>
+			</li>
+		</ul>
+	</nav>
+	<hr />
+	<div class="container">
+		<h3>Settings</h3>
+
+		<article>
+			<header>
+				<b>Max Cubing Steps</b>
+				<p><small>Maximum number of cubing steps to show before collapsing.</small></p>
+			</header>
 			<div role="group" class="auto-width">
 				<input type="number" name="max_steps" min="0" step="1" bind:value={settings.max_steps} />
 				<button
@@ -66,19 +72,47 @@
 					}}>Reset</button
 				>
 			</div>
-			<br />
+		</article>
+		<article>
+			<header>
+				<b>Expand Bases</b>
+				<p>
+					<small>
+						Show the full list of bases instead of the category name (Weapons, Helms, etc) and a
+						tooltip.</small
+					>
+				</p>
+			</header>
 			<label for="expand_bases">
 				<input type="checkbox" role="switch" bind:checked={settings.expand_bases} />Expand Base
 				Categories
-				<span
-					data-tooltip="Show the full list of bases instead of the category name (Weapons, Helms, etc) and a tooltip."
-					><CircleHelp size="1rem" /></span
-				></label
-			>
-
-			<hr />
-			<h4>Blacklist</h4>
-			<small>Blacklisted runewords will never be shown.</small>
+			</label>
+		</article>
+		<article>
+			<header>
+				<b>Missing Runes Calculation</b>
+				<p>
+					<small>
+						Calculate missing runes based on the least rune value required while taking into account
+						cubing.<br /> Example: If you're missing an Um, but you have a Pul, suggest a Pul (to
+						cube the two Puls into the Um.)<br /> Turn off to have the normal missing rune calc (e.g
+						if you're missing an Um, show Um).
+					</small>
+				</p>
+			</header>
+			<label for="missing_runes_cube_mode">
+				<input
+					type="checkbox"
+					role="switch"
+					bind:checked={settings.missing_runes_cube_mode}
+				/>Extended Missing Runes Calculation
+			</label>
+		</article>
+		<article>
+			<header>
+				<h4>Blacklist</h4>
+				<small>Blacklisted runewords will never be shown.</small>
+			</header>
 			<table id="blacklist-table">
 				<thead>
 					<tr>
@@ -103,7 +137,7 @@
 				</tbody>
 			</table>
 			<button onclick={() => (settings.blacklist = [])}>Reset Blacklist</button>
-		</div>
+		</article>
 	</div>
 </div>
 

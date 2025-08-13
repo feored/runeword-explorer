@@ -2,7 +2,7 @@
 	import { RUNES } from '$lib/data/runes';
 	import { UPG_GEM, upg_cost } from '$lib/runewordcalc';
 	import { ArrowRight } from 'lucide-svelte';
-	import { calc_missing } from '$lib/runewordcalc';
+	import { calc_missing, calc_missing_runes_simple } from '$lib/runewordcalc';
 	import { CircleHelp } from 'lucide-svelte';
 
 	interface cubedProps {
@@ -13,9 +13,18 @@
 		inventory: number[];
 		cubing_steps: number;
 		max_steps: number;
+		missing_runes_cube_mode?: boolean;
 	}
-	let { max_steps, compact, success, upgs_done, rw_runes, inventory, cubing_steps }: cubedProps =
-		$props();
+	let {
+		max_steps,
+		compact,
+		success,
+		upgs_done,
+		rw_runes,
+		inventory,
+		cubing_steps,
+		missing_runes_cube_mode
+	}: cubedProps = $props();
 
 	let gem_td_required = $derived.by(() => {
 		const LOWEST_RUNE_INDEX_GEM_REQUIRED = 9;
@@ -83,29 +92,47 @@
 	{:else}
 		<details>
 			<summary>Missing Runes</summary>
-
-			<table>
-				<tbody>
-					{#each calc_missing(inventory, rw_runes) as nb, rune_index}
-						{#if nb > 0}
-							<tr>
-								<td>
-									{nb}
-								</td>
-								<td>
-									<span class="rune">{RUNES[rune_index]}</span>
-								</td>
-							</tr>
-						{/if}
-					{/each}
-				</tbody>
-			</table>
-			<em
-				style="font-size: smallest;"
-				data-html="true"
-				data-tooltip="The smallest number of runes required&#10;&#13; to cube up to this runeword."
-				><CircleHelp size="1rem" /></em
-			>
+			{#if missing_runes_cube_mode}
+				<table>
+					<tbody>
+						{#each calc_missing(inventory, rw_runes) as nb, rune_index}
+							{#if nb > 0}
+								<tr>
+									<td>
+										{nb}
+									</td>
+									<td>
+										<span class="rune">{RUNES[rune_index]}</span>
+									</td>
+								</tr>
+							{/if}
+						{/each}
+					</tbody>
+				</table>
+				<em
+					style="font-size: smallest;"
+					data-html="true"
+					data-tooltip="The smallest number of runes required&#10;&#13; to cube up to this runeword."
+					><CircleHelp size="1rem" /></em
+				>
+			{:else}
+				<table>
+					<tbody>
+						{#each calc_missing_runes_simple(inventory, rw_runes) as nb, rune_index}
+							{#if nb > 0}
+								<tr>
+									<td>
+										{nb}
+									</td>
+									<td>
+										<span class="rune">{RUNES[rune_index]}</span>
+									</td>
+								</tr>
+							{/if}
+						{/each}</tbody
+					>
+				</table>
+			{/if}
 		</details>
 	{/if}
 </div>
