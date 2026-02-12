@@ -2,19 +2,20 @@
 <html lang="en" data-theme="dark">
 
 <head>
-	<title>Runeword Explorer</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link rel="apple-touch-icon" sizes="76x76" href="./apple-touch-icon.png" />
-	<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
-	<link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png" />
+    <title>Runeword Explorer</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="apple-touch-icon" sizes="76x76" href="./apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png" />
 
-	<link rel="mask-icon" href="./safari-pinned-tab.svg" color="#080e21" />
-	<meta name="msapplication-TileColor" content="#da532c" />
-	<meta name="theme-color" content="#080e21" />
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.jade.css" />
-	<script data-goatcounter="https://feor.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-	
+    <link rel="mask-icon" href="./safari-pinned-tab.svg" color="#080e21" />
+    <meta name="description" content="Explore Diablo 2 runewords with advanced filtering and search capabilities." />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#080e21" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.jade.css" />
+    <script data-goatcounter="https://feor.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    
 		<link href="./app/immutable/assets/0.WTKNmRZW.css" rel="stylesheet">
 		<link href="./app/immutable/assets/3.D4OJh1vy.css" rel="stylesheet">
 		<link rel="modulepreload" href="./app/immutable/entry/start.Bq6rztHB.js">
@@ -36,7 +37,7 @@
 </head>
 
 <body data-sveltekit-preload-data="hover">
-	<div style="display: contents"><!--[--><!--[--><!----><!--[--><!----><div class="container-fluid"><nav><ul><li><strong>Runeword Explorer v0.5.0</strong></li></ul> <ul><li><a href="./"><svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-house"><!--[--><!----><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"><!----></path><!----><!----><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----> Home</a></li> <li><a href="https://github.com/feored/runeword-explorer/"><svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github"><!--[--><!----><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"><!----></path><!----><!----><path d="M9 18c-4.51 2-5-2-7-2"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----> Github</a></li></ul></nav> <hr/> <div class="container"><h3>Settings</h3> <article><header><b>Max Cubing Steps</b> <p><small>Maximum number of cubing steps to show before collapsing.</small></p></header> <div role="group" class="auto-width"><input type="number" name="max_steps" min="0" step="1" value="100"/> <button>Reset</button></div></article> <article><header><b>Expand Bases</b> <p><small>Show the full list of bases instead of the category name (Weapons, Helms, etc) and a
+    <div style="display: contents"><!--[--><!--[--><!----><!--[--><!----><div class="container-fluid"><nav><ul><li><strong>Runeword Explorer v0.5.0</strong></li></ul> <ul><li><a href="./"><svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-house"><!--[--><!----><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"><!----></path><!----><!----><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----> Home</a></li> <li><a href="https://github.com/feored/runeword-explorer/"><svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github"><!--[--><!----><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"><!----></path><!----><!----><path d="M9 18c-4.51 2-5-2-7-2"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----> Github</a></li></ul></nav> <hr/> <div class="container"><h3>Settings</h3> <article><header><b>Max Cubing Steps</b> <p><small>Maximum number of cubing steps to show before collapsing.</small></p></header> <div role="group" class="auto-width"><input type="number" name="max_steps" min="0" step="1" value="100"/> <button>Reset</button></div></article> <article><header><b>Expand Bases</b> <p><small>Show the full list of bases instead of the category name (Weapons, Helms, etc) and a
 						tooltip.</small></p></header> <label for="expand_bases"><input type="checkbox" role="switch"/>Expand Base
 				Categories</label></article> <article><header><b>Missing Runes Calculation</b> <p><small>Calculate missing runes based on the least rune value required while taking into account
 						cubing.<br/> Example: If you're missing an Um, but you have a Pul, suggest a Pul (to
