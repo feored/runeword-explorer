@@ -36,10 +36,10 @@ Run development server:  ```npm run dev```
 ### Changelog
 
 **0.5.0**
--- Added RotW runewords
--- Added a RotW filter
--- Added a notes section to runewords displayed below the name (until I figure out how to handle Hustle/Mania/Hysteria gracefully)
--- Added hoto -> heart of the oak synonym in search bar
+- Added RotW runewords
+- Added a RotW filter
+- Added a notes section to runewords displayed below the name (until I figure out how to handle Hustle/Mania/Hysteria gracefully)
+- Added hoto -> heart of the oak synonym in search bar
 
 **0.4.2**
 - Make all runewords show up by default (you now have to click on "Only Show Runewords I Can Make")
