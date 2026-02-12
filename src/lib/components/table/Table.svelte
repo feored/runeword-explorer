@@ -101,6 +101,7 @@
 			if (
 				rw.name.toLowerCase().includes(search_term) ||
 				rw.runes.join(' ').toLowerCase().includes(search_term) ||
+				rw.notes?.some((note) => note.toLowerCase().includes(search_term)) ||
 				Object.values(rw.stats).some((statList) =>
 					statList.some((statLine) => statLine.toLowerCase().includes(search_term))
 				) ||
@@ -121,6 +122,7 @@
 			(!filter_options.ladder_d2lod && rw.ladder.d2lod) ||
 			(!filter_options.ladder_d2r && rw.ladder.d2r) ||
 			(!filter_options.show_d2r_only && rw.d2r_only) ||
+			(!filter_options.show_rotw && rw.rotw_only) ||
 			(filter_options.only_can_make && !rw.success) ||
 			!filter_options.versions[rw.version] ||
 			rw.sockets < filter_options.sockets.min ||
@@ -192,6 +194,8 @@
 								d2r_only={rw.d2r_only}
 								d2r_ladder={rw.ladder.d2r}
 								d2lod_ladder={rw.ladder.d2lod}
+								rotw_only={rw.rotw_only ?? false}
+								notes={rw.notes}
 							/>
 						</td>
 						<td class="searchable">

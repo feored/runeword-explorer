@@ -89,16 +89,16 @@
 					><input
 						type="checkbox"
 						role="switch"
-						id="d2r_only"
-						name="d2r_only"
-						value="d2r_only"
-						bind:checked={filter_options.show_d2r_only}
+						id="rotw"
+						name="rotw"
+						value="rotw"
+						bind:checked={filter_options.show_rotw}
 					/>
 					Show
 					<small
-						class="warning d2r_only"
-						style="display:inline-block !important"
-						data-tooltip="Diablo II: Resurrected">D2R</small
+						class="warning rotw_only"
+						style="display:inline-block !important;"
+						data-tooltip="Diablo II Resurrected: Reign of the Warlock">RotW</small
 					> Runewords
 				</label>
 				<label
@@ -115,7 +115,23 @@
 						class="warning d2r_ladder"
 						style="display:inline-block !important"
 						data-tooltip="Diablo II: Resurrected">D2R</small
-					> Ladder-Only
+					> Ladder-Only Runewords
+				</label>
+				<label
+					><input
+						type="checkbox"
+						role="switch"
+						id="d2r_only"
+						name="d2r_only"
+						value="d2r_only"
+						bind:checked={filter_options.show_d2r_only}
+					/>
+					Show
+					<small
+						class="warning d2r_only"
+						style="display:inline-block !important"
+						data-tooltip="Diablo II: Resurrected">D2R</small
+					> Runewords
 				</label>
 				<label
 					><input
@@ -131,7 +147,7 @@
 						class="warning d2lod_ladder"
 						style="display:inline-block !important;"
 						data-tooltip="Diablo II: Lord of Destruction">D2LoD</small
-					> Ladder-Only
+					> Ladder-Only Runewords
 				</label>
 			</fieldset>
 		</article>

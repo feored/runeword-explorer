@@ -4,8 +4,10 @@
 		d2r_only: boolean;
 		d2r_ladder: boolean;
 		d2lod_ladder: boolean;
+		rotw_only: boolean;
+		notes?: string[];
 	}
-	let { name, d2r_only, d2r_ladder, d2lod_ladder }: RWNameProps = $props();
+	let { name, d2r_only, d2r_ladder, d2lod_ladder, rotw_only, notes }: RWNameProps = $props();
 
 	const tooltips = {
 		d2r_only:
@@ -13,12 +15,19 @@
 		d2r_ladder:
 			'Runeword restricted to ladder in Diablo II: Resurrected.\nCan be made in single-player mode.',
 		d2lod_ladder:
-			'Runeword restricted to ladder in Diablo II:  Lord of Destruction.\nCan be made in any mode in Diablo II: Resurrected.'
+			'Runeword restricted to ladder in Diablo II:  Lord of Destruction.\nCan be made in any mode in Diablo II: Resurrected.',
+		rotw_only:
+			'Runeword only available in Diablo II: Resurrected: Reign of the Warlock.\nCannot be made in any other version.'
 	};
 </script>
 
 <div>
 	<p class="name">{name}</p>
+	{#if notes}
+		{#each notes as note}
+			<p>{note}</p>
+		{/each}
+	{/if}
 	{#if [d2r_only, d2r_ladder, d2lod_ladder].filter(Boolean).length > 0}
 		<div class="warnings">
 			{#if d2r_only}
@@ -36,6 +45,11 @@
 					data-tooltip={tooltips.d2lod_ladder}
 					data-placement="bottom"
 					class="warning d2lod_ladder">D2LoD Ladder</small
+				>
+			{/if}
+			{#if rotw_only}
+				<small data-tooltip={tooltips.rotw_only} data-placement="bottom" class="warning rotw_only"
+					>RotW</small
 				>
 			{/if}
 		</div>
