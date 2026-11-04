@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { VERSIONS } from '$lib/data/versions';
-	import { filter_options } from '$lib/options.svelte';
+	import { VERSIONS } from '#lib/data/versions.ts';
+	import { filter_options } from '#lib/options.svelte.ts';
 
 	let filter_versions = $state({ ...filter_options.versions });
 	$effect(() => {

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { BASES } from '$lib/data/bases';
+	import { BASES } from '#lib/data/bases.ts';
 
 	interface BasesProps {
 		expand: boolean;

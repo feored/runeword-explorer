@@ -10,7 +10,7 @@
 	let active_tab = $state(0);
 </script>
 
-{#snippet stat_line_display(stat)}
+{#snippet stat_line_display(stat: string)}
 	{#if stat.toLowerCase().includes('varies')}
 		<span class="variable">{stat}</span>
 	{:else}
@@ -19,13 +19,13 @@
 	<br />
 {/snippet}
 
-{#snippet stat_list_display(stats)}
+{#snippet stat_list_display(stats: string[])}
 	{#each stats as stat}
 		{@render stat_line_display(stat)}
 	{/each}
 {/snippet}
 
-{#snippet stat_tabs(stats)}
+{#snippet stat_tabs(stats: Record<string, string[]>)}
 	<div class="tabs">
 		{#each Object.keys(stats) as stat_list_key, index}
 			<button
@@ -42,7 +42,7 @@
 	{/each}
 {/snippet}
 
-{#snippet stats_cell(stats)}
+{#snippet stats_cell(stats: Record<string, string[]>)}
 	{#if single_stat}
 		{@render stat_list_display(stats['all'])}
 	{:else}

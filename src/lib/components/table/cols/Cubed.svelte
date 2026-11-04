@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { RUNES } from '$lib/data/runes';
-	import { UPG_GEM, upg_cost } from '$lib/runewordcalc';
-	import { ArrowRight } from 'lucide-svelte';
-	import { calc_missing, calc_missing_runes_simple } from '$lib/runewordcalc';
-	import { CircleHelp } from 'lucide-svelte';
+	import { RUNES } from '#lib/data/runes.ts';
+	import { UPG_GEM, upg_cost } from '#lib/runewordcalc.ts';
+	import { ArrowRight } from '@lucide/svelte';
+	import { calc_missing, calc_missing_runes_simple } from '#lib/runewordcalc.ts';
+	import { CircleHelp } from '@lucide/svelte';
 
 	interface cubedProps {
 		compact: boolean;

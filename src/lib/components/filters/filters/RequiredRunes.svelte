@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { RUNES } from '$lib/data/runes';
-	import { filter_options } from '$lib/options.svelte';
+	import { RUNES } from '#lib/data/runes.ts';
+	import { filter_options } from '#lib/options.svelte.ts';
 
 	let required_runes = $state([...filter_options.required_runes]);
 	$effect(() => {

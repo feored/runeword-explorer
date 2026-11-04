@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { version } from '$app/environment';
-	import { House, Github } from 'lucide-svelte';
-	import { RUNEWORDS } from '$lib/data/runewords';
-	import { default_settings, settings } from '$lib/options.svelte';
-	import { CircleHelp } from 'lucide-svelte';
+	import { version } from '$app/env';
+	import { House } from '@lucide/svelte';
+	import { RUNEWORDS } from '#lib/data/runewords.ts';
+	import { default_settings, settings } from '#lib/options.svelte.ts';
+	import { CircleHelp } from '@lucide/svelte';
 
 	const MAX_STEPS = default_settings.max_steps;
 
@@ -33,7 +33,7 @@
 				<a href="./"><House size="1rem" /> Home</a>
 			</li>
 			<li>
-				<a href="https://github.com/feored/runeword-explorer/"><Github size="1rem" /> Github </a>
+				<a href="https://github.com/feored/runeword-explorer/">Github</a>
 			</li>
 		</ul>
 	</nav>

@@ -1,7 +1,7 @@
 import { read as d2s_read } from '@dschu012/d2s/lib/d2/d2s';
 import { constants as CONSTANTS_99 } from '@dschu012/d2s/lib/data/versions/99_constant_data';
 import { constants as CONSTANTS_96 } from '@dschu012/d2s/lib/data/versions/96_constant_data';
-import type { IConstantData, IItem } from '@dschu012/d2s/lib/d2/types';
+import type { IItem } from '@dschu012/d2s/lib/d2/types';
 import { BitReader } from '@dschu012/d2s/lib/binary/bitreader';
 import { getConstantData, setConstantData } from '@dschu012/d2s/lib/d2/constants';
 import { readItems } from '@dschu012/d2s/lib/d2/items';
@@ -26,10 +26,10 @@ export class d2s_reader {
 		setConstantData(0x63, CONSTANTS_99);
 	}
 
-	async read_character_items(buffer: Uint8Array): Promise<ParsedItems> {
+	async read_character_items(buffer: ArrayBuffer): Promise<ParsedItems> {
 		let response: ParsedItems = { items: [], error: false };
 		try {
-			let character = await d2s_read(buffer);
+			let character = await d2s_read(new Uint8Array(buffer));
 			response.items = character.items;
 			return response;
 		} catch (e: unknown) {
@@ -43,11 +43,10 @@ export class d2s_reader {
 		}
 	}
 
-	async read_shared_stash_items(buffer: Uint8Array): Promise<ParsedItems> {
+	async read_shared_stash_items(buffer: ArrayBuffer): Promise<ParsedItems> {
 		const reader = new BitReader(buffer);
 		let stash: ParsedItems = { items: [], error: false };
 		let version: number = 0;
-		let constants: IConstantData;
 		while (reader.bits.length != reader.offset) {
 			if (reader.ReadUInt32().toString(16).padStart(8, '0').toLowerCase() != FILE_HEADER) {
 				stash.error = true;

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import RunesGrid from '$lib/components/RuneGrid.svelte';
-	import Filters from '$lib/components/filters/Filters.svelte';
-	import Table from '$lib/components/table/Table.svelte';
-	import { version } from '$app/environment';
-	import { Settings, Github } from 'lucide-svelte';
+	import RunesGrid from '#lib/components/RuneGrid.svelte';
+	import Filters from '#lib/components/filters/Filters.svelte';
+	import Table from '#lib/components/table/Table.svelte';
+	import { version } from '$app/env';
+	import { Settings } from '@lucide/svelte';
 </script>
 
 <div class="container-fluid wrapper">
@@ -26,7 +26,7 @@
 					<a href="./settings"><Settings size="1rem" /> Settings</a>
 				</li>
 				<li>
-					<a href="https://github.com/feored/runeword-explorer/"><Github size="1rem" /> Github </a>
+					<a href="https://github.com/feored/runeword-explorer/">Github</a>
 				</li>
 			</ul>
 		</nav>

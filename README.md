@@ -21,6 +21,8 @@ It shows you the gems and exact cubing requirements, and if you can't get there,
 
 ### Usage
 
+Requires Node.js 24+.
+
 Install: ```npm install```
 
 Run development server:  ```npm run dev```
@@ -34,6 +36,15 @@ Run development server:  ```npm run dev```
 <sup>3</sup> Full list of synonyms [here](https://github.com/feored/runeword-explorer/blob/main/src/lib/data/synonyms.ts)
 
 ### Changelog
+
+**0.5.2**
+- Updated to SvelteKit 3 and Vite 8
+- Updated dependencies=
+
+**0.5.1**
+- Fixed extended missing rune calculation counting higher runes towards lower runes
+- Fixed settings getting reset when refreshing the settings page
+- Fixed the El required rune filter
 
 **0.5.0**
 - Added RotW runewords

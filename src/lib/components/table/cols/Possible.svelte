@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Check, CircleX } from 'lucide-svelte';
+	import { Check, CircleX } from '@lucide/svelte';
 	let { possible }: { possible: boolean } = $props();
 </script>
 

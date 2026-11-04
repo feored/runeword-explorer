@@ -1,9 +1,9 @@
 <script lang="ts">
-	import '$lib/css/pico_override.css';
-	import '$lib/css/style.css';
+	import '#lib/css/pico_override.css';
+	import '#lib/css/style.css';
 
 	import { onMount, type Snippet } from 'svelte';
-	import { default_settings, settings, type ISettings } from '$lib/options.svelte';
+	import { default_settings, settings, type ISettings } from '#lib/options.svelte.ts';
 
 	let { children }: { children: Snippet } = $props();
 	let loaded = $state(false);

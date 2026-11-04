@@ -1,27 +1,27 @@
 <script lang="ts">
-	import '$lib/css/sortable.css';
+	import '#lib/css/sortable.css';
 
-	import { RUNEWORDS } from '$lib/data/runewords';
-	import { RUNES } from '$lib/data/runes';
-	import { SYNONYMS } from '$lib/data/synonyms';
+	import { RUNEWORDS } from '#lib/data/runewords.ts';
+	import { RUNES } from '#lib/data/runes.ts';
+	import { SYNONYMS } from '#lib/data/synonyms.ts';
 
-	import type { Runeword } from '$lib/data/runewords';
+	import type { Runeword } from '#lib/data/runewords.ts';
 
-	import { isAnyBaseSelected } from '$lib/data/bases';
+	import { isAnyBaseSelected } from '#lib/data/bases.ts';
 	import {
 		rune_inventory,
 		settings,
 		filter_options,
 		type FilterOptions
-	} from '$lib/options.svelte';
-	import { calc_runeword, get_el_value } from '$lib/runewordcalc';
+	} from '#lib/options.svelte.ts';
+	import { calc_runeword, get_el_value } from '#lib/runewordcalc.ts';
 
-	import Name from '$lib/components/table/cols/Name.svelte';
-	import Possible from '$lib/components/table/cols/Possible.svelte';
-	import Version from '$lib/components/table/cols/Version.svelte';
-	import Bases from '$lib/components/table/cols/Bases.svelte';
-	import Stats from '$lib/components/table/cols/Stats.svelte';
-	import Cubed from '$lib/components/table/cols/Cubed.svelte';
+	import Name from '#lib/components/table/cols/Name.svelte';
+	import Possible from '#lib/components/table/cols/Possible.svelte';
+	import Version from '#lib/components/table/cols/Version.svelte';
+	import Bases from '#lib/components/table/cols/Bases.svelte';
+	import Stats from '#lib/components/table/cols/Stats.svelte';
+	import Cubed from '#lib/components/table/cols/Cubed.svelte';
 
 	import Mark from 'mark.js';
 

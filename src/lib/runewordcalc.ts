@@ -1,4 +1,4 @@
-import { RUNES } from '$lib/data/runes';
+import { RUNES } from '#lib/data/runes.ts';
 
 const GEM_Q: string[] = ['Chipped', 'Flawed', '', 'Flawless'];
 const GEM_TYPE: string[] = ['Topaz', 'Amethyst', 'Sapphire', 'Ruby', 'Emerald', 'Diamond'];

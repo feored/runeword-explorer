@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { BASES } from '$lib/data/bases';
-	import { filter_options } from '$lib/options.svelte';
+	import { BASES } from '#lib/data/bases.ts';
+	import { filter_options } from '#lib/options.svelte.ts';
 
 	let filter_bases = $state({ ...filter_options.bases });
 	$effect(() => {

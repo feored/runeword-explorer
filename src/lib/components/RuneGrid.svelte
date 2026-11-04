@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { RUNES } from '$lib/data/runes';
-	import { rune_inventory } from '$lib/options.svelte';
-	import { d2s_reader } from '$lib/d2s_utils';
-	import type { ParsedItems } from '$lib/d2s_utils';
-	import { CircleAlert } from 'lucide-svelte';
+	import { RUNES } from '#lib/data/runes.ts';
+	import { rune_inventory } from '#lib/options.svelte.ts';
+	import { d2s_reader } from '#lib/d2s_utils.ts';
+	import type { IItem } from '@dschu012/d2s/lib/d2/types';
+	import { CircleAlert } from '@lucide/svelte';
 	import { onMount } from 'svelte';
 
 	let mounted = $state(false);
@@ -34,9 +34,13 @@
 		if (files && files.length > 0) {
 			const file = files[0];
 			const reader = new FileReader();
-			reader.onload = async (e) => {
+			reader.onload = () => {
+				const buffer = reader.result;
+				if (!(buffer instanceof ArrayBuffer)) {
+					return;
+				}
 				if (file.name.endsWith('.d2s')) {
-					d2s.read_character_items(e.target.result).then(function (response) {
+					d2s.read_character_items(buffer).then(function (response) {
 						if (response.error) {
 							alert('Error: ' + response.error_message);
 						} else {
@@ -44,7 +48,7 @@
 						}
 					});
 				} else if (file.name.endsWith('.d2i')) {
-					d2s.read_shared_stash_items(e.target.result).then(function (response) {
+					d2s.read_shared_stash_items(buffer).then(function (response) {
 						if (response.error) {
 							alert('Error: ' + response.error_message);
 						} else {
@@ -57,7 +61,7 @@
 		}
 	});
 
-	function fill_runes(items, clear = false): void {
+	function fill_runes(items: IItem[], clear = false): void {
 		if (clear) {
 			rune_inventory.fill(0);
 		}

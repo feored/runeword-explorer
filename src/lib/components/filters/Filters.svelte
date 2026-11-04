@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Bases from '$lib/components/filters/filters/Bases.svelte';
-	import Versions from '$lib/components/filters/filters/Versions.svelte';
-	import RequiredRunes from '$lib/components/filters/filters/RequiredRunes.svelte';
-	import { default_filter_options, filter_options } from '$lib/options.svelte';
+	import Bases from '#lib/components/filters/filters/Bases.svelte';
+	import Versions from '#lib/components/filters/filters/Versions.svelte';
+	import RequiredRunes from '#lib/components/filters/filters/RequiredRunes.svelte';
+	import { default_filter_options, filter_options } from '#lib/options.svelte.ts';
 
 	let filter_sockets = $state({ ...filter_options.sockets });
 	let filter_levelreq = $state({ ...filter_options.levelreq });
