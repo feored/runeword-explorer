@@ -50,4 +50,7 @@ export const default_settings: ISettings = {
     missing_runes_cube_mode: false
 };
 
-export let settings: ISettings = $state(default_settings);
+export let settings: ISettings = $state({
+    ...default_settings,
+    blacklist: [...default_settings.blacklist]
+});

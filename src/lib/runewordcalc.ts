@@ -1,5 +1,4 @@
 import { RUNES } from '$lib/data/runes';
-import { get } from 'svelte/store';
 
 const GEM_Q: string[] = ['Chipped', 'Flawed', '', 'Flawless'];
 const GEM_TYPE: string[] = ['Topaz', 'Amethyst', 'Sapphire', 'Ruby', 'Emerald', 'Diamond'];
@@ -71,111 +70,40 @@ export function calc_missing_runes_simple(inventory: number[], rw_runes: string[
 	return missing_runes;
 }
 
-export function calc_missing(rune_inventory: number[], rw_runes: string[]) {
-	let working_inv: number[] = [...rune_inventory];
-	let working_runes: number[] = RUNES.map((r) =>
-		rw_runes.includes(r) ? rw_runes.filter((x) => x === r).length : 0
-	);
-	let runes_needed = default_inventory();
+export function calc_missing(rune_inventory: number[], rw_runes: string[]): number[] {
+	const required = RUNES.map((rune) => rw_runes.filter((r) => r === rune).length);
+	const missing = default_inventory();
 
-	// remove the runes from the runeword that are already in the inventory
-	// since they're not missing
+	let carry = 0;
+	// value in Els of smaller runes left over after cubing
+	let leftover_value = 0;
+
 	for (let i = 0; i < RUNES.length; i++) {
-		if (working_runes[i] > 0 && working_inv[i] > 0) {
-			let substract: number = Math.min(working_runes[i], working_inv[i]);
-			working_runes[i] -= substract;
-			working_inv[i] -= substract;
+		const available = rune_inventory[i] + carry;
+		const rune_value = get_el_value(i);
+
+		if (available < required[i]) {
+			let deficit = (required[i] - available) * rune_value - leftover_value;
+
+			// find which runes to add, using this rune or smaller ones
+			for (let j = i; j >= 0; j--) {
+				const value = get_el_value(j);
+				const count = Math.floor(deficit / value);
+				missing[j] += count;
+				deficit -= count * value;
+			}
+
+			// we haveve now used up the leftover runes
+			carry = 0;
+			leftover_value = 0;
+		} else {
+			const surplus = available - required[i];
+			const cost = upg_cost(i);
+
+			carry = Math.floor(surplus / cost);
+			leftover_value += (surplus % cost) * rune_value;
 		}
 	}
 
-	// find the lowest rune we have
-	let lowest_index: number = Math.min(
-		...RUNES.map((_, i) => (working_inv[i] > 0 ? i : RUNES.length))
-	);
-	if (lowest_index === RUNES.length) {
-		// if we have no runes left, we need all the other runes
-		// in the runeword
-		return working_runes;
-	}
-
-	// if we have runes left, remove all the lower-tier runes
-	// from the runeword and add them straight to our missing list
-	// E.g if our lowest rune is a Pul, there is no way to get
-	// a shael or a lem by cubing, therefore we need to add them
-	for (let i = 0; i < lowest_index; i++) {
-		if (working_runes[i] > 0) {
-			let nb = working_runes[i];
-			working_runes[i] = 0;
-			runes_needed[i] += nb;
-		}
-	}
-
-	// find the highest rune we need and remove all
-	// the higher-tier runes from the inventory
-	// since we can't cube them down
-	let highest_index: number = Math.max(...RUNES.map((_, i) => (working_runes[i] > 0 ? i : 0)));
-	for (let i = RUNES.length - 1; i > highest_index; i--) {
-		working_inv[i] = 0;
-	}
-
-	let need_in_el = get_inv_el_value(working_runes);
-	let have_in_el = get_inv_el_value(working_inv);
-
-	// find out the value of runes we're still
-	// missing in els and decompose it into runes
-	let missing = els_decompose(need_in_el - have_in_el, lowest_index, highest_index);
-
-	// the problem with the decomposition is that if e.g
-	// we're missing Vex Vex Lo for phoenix, it might decompose
-	// the missing value into Lo Ohm (Ohm = 2Vex in value)
-
-	// therefore, let's construct a list of the runes we still have
-	// + the runes we think we're missing
-	let new_have = [...working_inv];
-	for (let i = 0; i < RUNES.length; i++) {
-		new_have[i] += missing[i];
-	}
-
-	// and looping from the end, if we have more of a rune
-	// than we need, we conclude that actually we needed
-	// more of the previous rune
-	for (let i = RUNES.length - 1; i > 0; i--) {
-		if (new_have[i] > working_runes[i] && working_runes[i] > 0) {
-			let nb = new_have[i] - working_runes[i];
-			new_have[i] -= nb;
-			new_have[i - 1] += upg_cost(i - 1) * nb;
-		}
-	}
-
-	// finally, we obtain a new "have + missing" list
-	// which we calculated to be correct
-	// so we deduct the "have" list to get the final missing list
-	missing = default_inventory();
-	for (let i = 0; i < RUNES.length; i++) {
-		missing[i] = new_have[i] - working_inv[i];
-	}
-
-	// and add it this missing list, to the runes we decided
-	// we needed at the beginning (e.g the ones lower tier than
-	// the lowest rune we have)
-	for (let i = 0; i < RUNES.length; i++) {
-		runes_needed[i] += missing[i];
-	}
-	return runes_needed;
-}
-
-function els_decompose(els: number, min = 0, max = RUNES.length): number[] {
-	let runes = default_inventory();
-	for (let i = max; i >= 0; i--) {
-		if (els === 0) {
-			break;
-		}
-		let el_value = get_el_value(i);
-		if (els >= el_value) {
-			let nb = Math.floor(els / el_value);
-			runes[i] += nb;
-			els -= nb * el_value;
-		}
-	}
-	return runes;
+	return missing;
 }

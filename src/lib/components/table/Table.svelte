@@ -11,9 +11,7 @@
 	import {
 		rune_inventory,
 		settings,
-		default_settings,
 		filter_options,
-		type ISettings,
 		type FilterOptions
 	} from '$lib/options.svelte';
 	import { calc_runeword, get_el_value } from '$lib/runewordcalc';
@@ -42,17 +40,6 @@
 
 	onMount(() => {
 		default_sort_th.click();
-
-		let local_settings = localStorage.getItem('settings');
-		if (local_settings === null) {
-			return;
-		}
-		let parsed_settings: ISettings = JSON.parse(local_settings);
-		settings.max_steps = parsed_settings.max_steps || default_settings.max_steps;
-		settings.blacklist = parsed_settings.blacklist || default_settings.blacklist;
-		settings.expand_bases = parsed_settings.expand_bases || default_settings.expand_bases;
-		settings.missing_runes_cube_mode =
-			parsed_settings.missing_runes_cube_mode || default_settings.missing_runes_cube_mode;
 	});
 
 	$effect(() => {
@@ -114,9 +101,6 @@
 		}
 
 		let rw_bases: string[] = Array.from(new Set(Array.from(rw.bases).concat(rw.bases_d2r)));
-		let required_runes = filter_options.required_runes
-			.map((r, index) => (r ? index : 0))
-			.filter((r) => r > 0);
 		let show = true;
 		if (
 			(!filter_options.ladder_d2lod && rw.ladder.d2lod) ||
@@ -129,7 +113,9 @@
 			rw.sockets > filter_options.sockets.max ||
 			rw.levelreq < filter_options.levelreq.min ||
 			rw.levelreq > filter_options.levelreq.max ||
-			required_runes.some((r_index) => rw.runes.indexOf(RUNES[r_index]) == -1) ||
+			filter_options.required_runes.some(
+				(selected, index) => selected && !rw.runes.includes(RUNES[index])
+			) ||
 			!isAnyBaseSelected(rw_bases, filter_options.bases)
 		) {
 			show = false;
