@@ -36,6 +36,10 @@ Run development server: `npm run dev`
 
 ### Changelog
 
+**0.6.1**
+- Added RotW 3.4 data (Eternity)
+- Made settings a dialog rather than a separate page
+
 **0.6.0**
 
 - Refactored how the data is stored/loaded to account for different rules per mode/game/patch.
