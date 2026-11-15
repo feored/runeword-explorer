@@ -24,12 +24,14 @@ export enum D2RLoDPatch {
 	V2_6,
 	V3_1,
 	V3_1_1,
-	V3_3
+	V3_3,
+	V3_4
 }
 export enum RotWPatch {
 	V3_1,
 	V3_1_1,
-	V3_3
+	V3_3,
+	V3_4
 }
 export const PATCHES = {
 	lod: {
@@ -43,12 +45,14 @@ export const PATCHES = {
 		'2.6': D2RLoDPatch.V2_6,
 		'3.1': D2RLoDPatch.V3_1,
 		'3.1.1': D2RLoDPatch.V3_1_1,
-		'3.3': D2RLoDPatch.V3_3
+		'3.3': D2RLoDPatch.V3_3,
+		'3.4': D2RLoDPatch.V3_4
 	},
 	rotw: {
 		'3.1': RotWPatch.V3_1,
 		'3.1.1': RotWPatch.V3_1_1,
-		'3.3': RotWPatch.V3_3
+		'3.3': RotWPatch.V3_3,
+		'3.4': RotWPatch.V3_4
 	}
 } as const;
 
@@ -64,7 +68,7 @@ export interface Profile {
 }
 export const DEFAULT_PROFILE: Profile = {
 	edition: 'rotw',
-	patch: '3.3',
+	patch: '3.4',
 	mode: 'online-ladder'
 };
 

@@ -53,6 +53,17 @@ export const ROTW_31_UNLOCKED_33: Availability = {
 		{ since: RotWPatch.V3_3, modes: ALL_MODES }
 	]
 };
+export const ETERNITY_ROTW_ORIGINAL: Availability = {
+	edition: 'rotw',
+	periods: [
+		{ since: RotWPatch.V3_1, until: RotWPatch.V3_4, modes: ALL_MODES },
+		{ since: RotWPatch.V3_4, modes: ['online-non-ladder'] }
+	]
+};
+export const ETERNITY_ROTW_34: Availability = {
+	edition: 'rotw',
+	periods: [{ since: RotWPatch.V3_4, modes: ['offline', 'online-ladder'] }]
+};
 export const MOSAIC_D2R: Availability = {
 	edition: 'd2r-lod',
 	periods: [

@@ -10,6 +10,8 @@ import {
 	D2R_OFFLINE_LADDER_FROM_26,
 	ROTW_ALL_MODES_FROM_31,
 	ROTW_31_UNLOCKED_33,
+	ETERNITY_ROTW_ORIGINAL,
+	ETERNITY_ROTW_34,
 	MOSAIC_D2R,
 	MOSAIC_ROTW
 } from './availability.ts';
@@ -60,6 +62,12 @@ const FROM_D2R_26: Runeword['rules'] = [
 ];
 const HUSTLE_D2R: Runeword['rules'] = [{ availability: D2R_OFFLINE_LADDER_FROM_26 }];
 const HUSTLE_ROTW: Runeword['rules'] = [{ availability: ROTW_31_UNLOCKED_33 }];
+const ETERNITY: Runeword['rules'] = [
+	{ availability: LOD_ALL_MODES_FROM_110 },
+	{ availability: D2R_ALL_MODES_FROM_24 },
+	{ availability: ETERNITY_ROTW_ORIGINAL },
+	{ variant: 'rotw-3.4', availability: ETERNITY_ROTW_34 }
+];
 const MOSAIC: Runeword['rules'] = [{ availability: MOSAIC_D2R }, { availability: MOSAIC_ROTW }];
 const EXPANDED_BASES: Runeword['rules'] = [
 	{ availability: LOD_LADDER_FROM_110 },
@@ -828,7 +836,33 @@ export const RUNEWORDS: Runeword[] = [
 				'Level 8 Revive (88 Charges)'
 			]
 		},
-		rules: FROM_LOD_110
+		variants: {
+			'rotw-3.4': {
+				name: 'Eternity',
+				runes: ['Amn', 'Ber', 'Ist', 'Sol', 'Sur'],
+				bases: ['Melee Weapons', 'Missile Weapons'],
+				levelreq: 63,
+				stats: {
+					all: [
+						'Indestructible',
+						'+30% Increased Attack Speed',
+						'+300-390% Enhanced Damage (varies)',
+						'+9 To Minimum Damage',
+						'+3-297 To Maximum Damage (Based On Character Level)',
+						'7% Life Stolen Per Hit',
+						'20% Chance of Crushing Blow',
+						'Hit Blinds Target',
+						'Slows Target By 33%',
+						'Regenerate Mana 16%',
+						'Replenish Life +16',
+						'Cannot Be Frozen',
+						'30% Better Chance Of Getting Magic Items',
+						'+5 To Revive (O skill)'
+					]
+				}
+			}
+		},
+		rules: ETERNITY
 	},
 	{
 		id: 'exile',
