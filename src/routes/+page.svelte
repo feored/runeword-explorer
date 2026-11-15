@@ -2,8 +2,11 @@
 	import RunesGrid from '#lib/components/RuneGrid.svelte';
 	import Filters from '#lib/components/filters/Filters.svelte';
 	import Table from '#lib/components/table/Table.svelte';
+	import SettingsDialog from '#lib/components/SettingsDialog.svelte';
 	import { version } from '$app/env';
-	import { Settings } from '@lucide/svelte';
+	import { Settings as SettingsIcon } from '@lucide/svelte';
+
+	let settings_dialog: SettingsDialog;
 </script>
 
 <div class="container-fluid wrapper">
@@ -23,7 +26,9 @@
 			</ul>
 			<ul>
 				<li>
-					<a href="./settings"><Settings size="1rem" /> Settings</a>
+					<button class="settings-button" onclick={() => settings_dialog.open()}
+						><SettingsIcon size="1rem" /> Settings</button
+					>
 				</li>
 				<li>
 					<a href="https://github.com/feored/runeword-explorer/">Github</a>
@@ -37,6 +42,7 @@
 		<Table />
 	</main>
 </div>
+<SettingsDialog bind:this={settings_dialog} />
 
 <style>
 	.wrapper {
@@ -47,6 +53,14 @@
 		grid-template-areas:
 			'sidebar runes'
 			'sidebar main';
+	}
+
+	.settings-button {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		background: none;
+		color: var(--pico-primary);
 	}
 
 	.grid-sidebar {

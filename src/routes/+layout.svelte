@@ -35,4 +35,6 @@
 	});
 </script>
 
-{@render children()}
+{#if loaded}
+	{@render children()}
+{/if}
