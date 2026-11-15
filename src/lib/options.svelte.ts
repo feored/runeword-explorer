@@ -1,18 +1,15 @@
 import { RUNES } from '#lib/data/runes.ts';
-import { VERSIONS } from '#lib/data/versions.ts';
+import { INTRODUCED_IN } from '#lib/data/runewords.ts';
 import { all_bases } from '#lib/data/bases.ts';
+import { DEFAULT_PROFILE, type Profile } from '#lib/data/rulesets.ts';
 
-export let rune_inventory: number[] = $state(new Array(RUNES.length).fill(0));
+export const rune_inventory: number[] = $state(new Array(RUNES.length).fill(0));
 
 export interface FilterOptions {
 	search: string;
 	only_can_make: boolean;
 	compact_mode: boolean;
-	ladder_d2r: boolean;
-	ladder_d2lod: boolean;
-	show_d2r_only: boolean;
-	show_rotw: boolean;
-	versions: { [key: string]: boolean };
+	introduced_in: { [key: string]: boolean };
 	sockets: { min: number; max: number };
 	levelreq: { min: number; max: number };
 	bases: { [key: string]: boolean };
@@ -23,34 +20,30 @@ export const default_filter_options: FilterOptions = {
 	search: '',
 	only_can_make: false,
 	compact_mode: false,
-	ladder_d2r: true,
-	ladder_d2lod: true,
-	show_d2r_only: true,
-	show_rotw: true,
-	versions: Object.fromEntries(VERSIONS.map((v) => [v, true])),
+	introduced_in: Object.fromEntries(INTRODUCED_IN.map(({ id }) => [id, true])),
 	sockets: { min: 2, max: 6 },
 	levelreq: { min: 1, max: 99 },
 	bases: Object.fromEntries(all_bases.map((base_name) => [base_name, true])),
 	required_runes: new Array(RUNES.length).fill(false)
 };
 
-export let filter_options: FilterOptions = $state({ ...default_filter_options });
+export const filter_options: FilterOptions = $state({ ...default_filter_options });
 
 export interface ISettings {
+	profile: Profile;
 	max_steps: number;
-	blacklist: string[];
 	expand_bases: boolean;
 	missing_runes_cube_mode: boolean; // if true, missing runes will show as lowest 'rune value' and require cubing, otherwise just the literal missing runes
 }
 
 export const default_settings: ISettings = {
+	profile: { ...DEFAULT_PROFILE },
 	max_steps: 100,
-	blacklist: [],
 	expand_bases: false,
 	missing_runes_cube_mode: false
 };
 
-export let settings: ISettings = $state({
+export const settings: ISettings = $state({
 	...default_settings,
-	blacklist: [...default_settings.blacklist]
+	profile: { ...DEFAULT_PROFILE }
 });

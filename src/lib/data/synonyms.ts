@@ -5,7 +5,7 @@
 
 export const SYNONYMS: Record<string, string> = {
     mf: 'magic items',
-    'magic find': 'magic find',
+    'magic find': 'magic items',
     ed: 'enhanced damage',
     frw: 'faster run/walk',
     cr: 'cold resist',

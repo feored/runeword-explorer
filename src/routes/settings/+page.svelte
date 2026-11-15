@@ -1,22 +1,10 @@
 <script lang="ts">
 	import { version } from '$app/env';
+	import { resolve } from '$app/paths';
 	import { House } from '@lucide/svelte';
-	import { RUNEWORDS } from '#lib/data/runewords.ts';
 	import { default_settings, settings } from '#lib/options.svelte.ts';
-	import { CircleHelp } from '@lucide/svelte';
 
 	const MAX_STEPS = default_settings.max_steps;
-
-	function toggleBlacklist(rw: string): void {
-		let index = settings.blacklist.indexOf(rw);
-		if (index > -1) {
-			settings.blacklist.splice(index, 1);
-		} else {
-			settings.blacklist.push(rw);
-		}
-	}
-
-	let rw_names = RUNEWORDS.map((rw) => rw.name).sort();
 </script>
 
 <div class="container-fluid">
@@ -30,7 +18,7 @@
 		</ul>
 		<ul>
 			<li>
-				<a href="./"><House size="1rem" /> Home</a>
+				<a href={resolve('/')}><House size="1rem" /> Home</a>
 			</li>
 			<li>
 				<a href="https://github.com/feored/runeword-explorer/">Github</a>
@@ -90,44 +78,5 @@
 				/>Extended Missing Runes Calculation
 			</label>
 		</article>
-		<article>
-			<header>
-				<h4>Blacklist</h4>
-				<small>Blacklisted runewords will never be shown.</small>
-			</header>
-			<table id="blacklist-table">
-				<thead>
-					<tr>
-						<th>Runeword</th>
-						<th>Blacklisted</th>
-					</tr>
-				</thead>
-				<tbody>
-					{#each rw_names as rw}
-						<tr>
-							<td>{rw}</td>
-							<td>
-								<input
-									type="checkbox"
-									role="switch"
-									checked={settings.blacklist.includes(rw)}
-									oninput={() => toggleBlacklist(rw)}
-								/>
-							</td>
-						</tr>
-					{/each}
-				</tbody>
-			</table>
-			<button onclick={() => (settings.blacklist = [])}>Reset Blacklist</button>
-		</article>
 	</div>
 </div>
-
-<style>
-	#blacklist-table {
-		width: max-content;
-		overflow: auto;
-		display: block;
-		max-height: 50vh;
-	}
-</style>

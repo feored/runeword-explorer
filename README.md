@@ -18,14 +18,13 @@ It shows you the gems and exact cubing requirements, and if you can't get there,
 
 - Search using synonyms<sup>3</sup> (e.g searching 'mf' will also look for "Magic Items", 'ias' for "Increased Attack Speed".)
 
-
 ### Usage
 
 Requires Node.js 24+.
 
-Install: ```npm install```
+Install: `npm install`
 
-Run development server:  ```npm run dev```
+Run development server: `npm run dev`
 
 ### Notes
 
@@ -37,22 +36,34 @@ Run development server:  ```npm run dev```
 
 ### Changelog
 
+**0.6.0**
+
+- Refactored how the data is stored/loaded to account for different rules per mode/game/patch.
+- Removed blacklist
+- New patch/mode dropdown
+- Split RotW Hustle into Hysteria/Mania.
+- Fixed Mosaic runes
+
 **0.5.2**
+
 - Updated to SvelteKit 3 and Vite 8
-- Updated dependencies=
+- Updated dependencies
 
 **0.5.1**
+
 - Fixed extended missing rune calculation counting higher runes towards lower runes
 - Fixed settings getting reset when refreshing the settings page
 - Fixed the El required rune filter
 
 **0.5.0**
+
 - Added RotW runewords
 - Added a RotW filter
 - Added a notes section to runewords displayed below the name (until I figure out how to handle Hustle/Mania/Hysteria gracefully)
 - Added hoto -> heart of the oak synonym in search bar
 
 **0.4.2**
+
 - Make all runewords show up by default (you now have to click on "Only Show Runewords I Can Make")
 - Add simple missing rune calculation setting and make it default
 - Slighly nicer-looking settings page

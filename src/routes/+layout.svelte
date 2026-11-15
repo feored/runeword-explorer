@@ -16,7 +16,7 @@
 				const saved: Partial<ISettings> = JSON.parse(raw);
 
 				settings.max_steps = saved.max_steps ?? default_settings.max_steps;
-				settings.blacklist = saved.blacklist ?? [...default_settings.blacklist];
+				settings.profile = { ...(saved.profile ?? default_settings.profile) };
 				settings.expand_bases = saved.expand_bases ?? default_settings.expand_bases;
 				settings.missing_runes_cube_mode =
 					saved.missing_runes_cube_mode ?? default_settings.missing_runes_cube_mode;

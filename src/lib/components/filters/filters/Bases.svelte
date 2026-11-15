@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { BASES } from '#lib/data/bases.ts';
-	import { filter_options } from '#lib/options.svelte.ts';
+	import { BASES, expand_base } from '#lib/data/bases.ts';
+	import { filter_options, settings } from '#lib/options.svelte.ts';
 
 	let filter_bases = $state({ ...filter_options.bases });
 	$effect(() => {
@@ -34,7 +34,7 @@
 
 {#snippet base_list(base_type: string)}
 	<fieldset class="custom-grid">
-		{#each BASES[base_type] as base}
+		{#each expand_base(base_type, settings.profile.edition) as base (base)}
 			<label>
 				<input type="checkbox" name={base_type} value={base} bind:checked={filter_bases[base]} />
 				{base}
@@ -52,7 +52,7 @@
 		</div>
 	</div>
 	<!--Off-hands-->
-	{#each ['Off-hands', 'Armors', 'Helms'] as base_type}
+	{#each ['Off-hands', 'Armors', 'Helms'] as base_type (base_type)}
 		<article id={base_type}>
 			{@render all_none(base_type)}
 			{@render base_list(base_type)}

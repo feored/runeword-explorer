@@ -1,7 +1,8 @@
 <script lang="ts">
 	import Bases from '#lib/components/filters/filters/Bases.svelte';
-	import Versions from '#lib/components/filters/filters/Versions.svelte';
+	import IntroducedIn from '#lib/components/filters/filters/IntroducedIn.svelte';
 	import RequiredRunes from '#lib/components/filters/filters/RequiredRunes.svelte';
+	import Profile from '#lib/components/filters/filters/Profile.svelte';
 	import { default_filter_options, filter_options } from '#lib/options.svelte.ts';
 
 	let filter_sockets = $state({ ...filter_options.sockets });
@@ -22,17 +23,14 @@
 		filter_options.levelreq = { ...filter_levelreq };
 	});
 
-	let versions: Versions;
+	let introduced_in: IntroducedIn;
 	let bases: Bases;
 	let required_runes: RequiredRunes;
 
 	function reset_filter_options() {
 		filter_options.search = default_filter_options.search;
 		filter_options.only_can_make = default_filter_options.only_can_make;
-		filter_options.ladder_d2r = default_filter_options.ladder_d2r;
-		filter_options.ladder_d2lod = default_filter_options.ladder_d2lod;
-		filter_options.show_d2r_only = default_filter_options.show_d2r_only;
-		versions.setVersions(true);
+		introduced_in.set_all(true);
 		filter_sockets = { ...default_filter_options.sockets };
 		filter_levelreq = { ...default_filter_options.levelreq };
 		bases.setAllBases(true);
@@ -61,6 +59,11 @@
 	</fieldset>
 
 	<details open class="always_open">
+		<summary>Game</summary>
+		<Profile />
+	</details>
+	<hr />
+	<details open class="always_open">
 		<summary>General</summary>
 		<article>
 			<fieldset>
@@ -84,80 +87,9 @@
 						bind:checked={filter_options.compact_mode}
 					/><span>Compact Mode</span>
 				</label>
-				<hr />
-				<label
-					><input
-						type="checkbox"
-						role="switch"
-						id="rotw"
-						name="rotw"
-						value="rotw"
-						bind:checked={filter_options.show_rotw}
-					/>
-					Show
-					<small
-						class="warning rotw_only"
-						style="display:inline-block !important;"
-						data-tooltip="Diablo II Resurrected: Reign of the Warlock">RotW</small
-					> Runewords
-				</label>
-				<label
-					><input
-						type="checkbox"
-						role="switch"
-						id="ladder_d2r"
-						name="ladder_d2r"
-						value="ladder_d2r"
-						bind:checked={filter_options.ladder_d2r}
-					/>
-					Show
-					<small
-						class="warning d2r_ladder"
-						style="display:inline-block !important"
-						data-tooltip="Diablo II: Resurrected">D2R</small
-					> Ladder-Only Runewords
-				</label>
-				<label
-					><input
-						type="checkbox"
-						role="switch"
-						id="d2r_only"
-						name="d2r_only"
-						value="d2r_only"
-						bind:checked={filter_options.show_d2r_only}
-					/>
-					Show
-					<small
-						class="warning d2r_only"
-						style="display:inline-block !important"
-						data-tooltip="Diablo II: Resurrected">D2R</small
-					> Runewords
-				</label>
-				<label
-					><input
-						type="checkbox"
-						role="switch"
-						id="ladder_d2lod"
-						name="ladder_d2lod"
-						value="ladder_d2lod"
-						bind:checked={filter_options.ladder_d2lod}
-					/>
-					Show
-					<small
-						class="warning d2lod_ladder"
-						style="display:inline-block !important;"
-						data-tooltip="Diablo II: Lord of Destruction">D2LoD</small
-					> Ladder-Only Runewords
-				</label>
 			</fieldset>
 		</article>
 	</details>
-	<hr />
-	<details>
-		<summary>Versions</summary>
-		<Versions bind:this={versions} />
-	</details>
-	<!-- <Versions bind:this={versions} /> -->
 	<hr />
 	<details>
 		<summary>Sockets</summary>
@@ -250,6 +182,11 @@
 		<summary>Required Runes</summary>
 		<RequiredRunes bind:this={required_runes} />
 	</details>
+	<hr />
+	<details>
+		<summary>Introduced in</summary>
+		<IntroducedIn bind:this={introduced_in} />
+	</details>
 </aside>
 
 <style>
@@ -260,10 +197,6 @@
 		--pico-typography-spacing-top: 1.6875rem;
 	}
 	#filters fieldset {
-		margin-bottom: 0;
-	}
-
-	.warning {
 		margin-bottom: 0;
 	}
 	details .all_or_none {
